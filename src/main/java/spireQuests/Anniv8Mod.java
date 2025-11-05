@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 import spireQuests.abstracts.AbstractSQRelic;
 import spireQuests.cardvars.SecondDamage;
 import spireQuests.cardvars.SecondMagicNumber;
+import spireQuests.quests.QuestManager;
 import spireQuests.util.TexLoader;
 
 import java.lang.reflect.InvocationTargetException;
@@ -161,6 +162,8 @@ public class Anniv8Mod implements
     @Override
     public void receivePostInitialize() {
         initializedStrings = true;
+
+        QuestManager.initialize();
         addPotions();
         addSaveFields();
         initializeConfig();

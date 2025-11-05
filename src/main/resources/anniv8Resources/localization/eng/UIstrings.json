@@ -5,5 +5,19 @@
       "",
       ""
     ]
+  },
+  "${ModID}:QuestUI": {
+    "TEXT": [
+      "Quests",
+      "",
+      ""
+    ]
+  },
+  "${ModID}:TESTQUEST": {
+    "TEXT": [
+      "THE QUEST",
+      "THE DESCRIPTION",
+      "ME"
+    ]
   }
 }

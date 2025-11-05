@@ -22,7 +22,11 @@ import static spireQuests.Anniv8Mod.modID;
 public class QuestManager {
     private static final Map<String, AbstractQuest> quests = new HashMap<>();
 
-    public static SpireField<List<AbstractQuest>> currentQuests = new SpireField<>(ArrayList::new);
+    public static SpireField<List<AbstractQuest>> currentQuests = new SpireField<>(() -> {
+        ArrayList<AbstractQuest> quests = new ArrayList<>();
+        quests.add(new TestQuest());
+        return quests;
+    });
 
     public static void initialize() {
         new AutoAdd(modID)
