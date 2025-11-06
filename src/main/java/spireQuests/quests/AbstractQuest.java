@@ -13,7 +13,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public abstract class AbstractQuest implements Comparable<AbstractQuest> {
-
     public enum QuestType {
         SHORT,
         LONG
@@ -90,13 +89,26 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
      */
     protected Tracker addTracker(Tracker questTracker) {
         trackers.add(questTracker);
-        questTracker.text = localization.EXTRA_TEXT[trackerTextIndex];
-        ++trackerTextIndex;
+
+        if (!questTracker.hidden) {
+            if (trackerTextIndex >= localization.EXTRA_TEXT.length) {
+                throw new RuntimeException("Quest " + id + " needs more entries in EXTRA_TEXT for its trackers");
+            }
+            questTracker.text = localization.EXTRA_TEXT[trackerTextIndex];
+            ++trackerTextIndex;
+        }
 
         if (questTracker.trigger != null) triggers.add(questTracker.trigger);
         if (questTracker.reset != null) triggers.add(questTracker.reset);
 
         return questTracker;
+    }
+
+    public boolean complete() {
+        for (Tracker tracker : trackers) {
+            if (!tracker.isComplete()) return false;
+        }
+        return true;
     }
 
     public void onStart() {
@@ -158,6 +170,10 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         public abstract boolean isComplete();
         public boolean isFailed() {
             return false;
+        }
+
+        public boolean hidden() {
+            return hidden;
         }
 
         protected final void addCondition(Supplier<Boolean> condition) {
