@@ -3,6 +3,7 @@ package spireQuests.quests;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public String name;
     public String description;
     public String author;
+
+    private int trackerTextIndex = 0;
 
     public List<Tracker> trackers;
     protected List<Consumer<Trigger<?>>> triggers;
@@ -87,10 +90,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
      */
     protected Tracker addTracker(Tracker questTracker) {
         trackers.add(questTracker);
-        Consumer<Trigger<?>> triggerMethod = questTracker.getTriggerMethod();
-        if (triggerMethod != null) {
-            triggers.add(triggerMethod);
-        }
+        questTracker.text = localization.EXTRA_TEXT[trackerTextIndex];
+        ++trackerTextIndex;
+
+        if (questTracker.trigger != null) triggers.add(questTracker.trigger);
+        if (questTracker.reset != null) triggers.add(questTracker.reset);
+
         return questTracker;
     }
 
@@ -144,29 +149,39 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     //also add a method hide() which will make a tracker invisible for something like part of a sequential tracker
 
     public abstract static class Tracker {
+        public String text;
         protected boolean hidden = false;
         protected Supplier<Boolean> condition = null;
         protected Consumer<Trigger<?>> trigger = null;
         protected Consumer<Trigger<?>> reset = null;
-
-        private Consumer<Trigger<?>> getTriggerMethod() {
-            return trigger;
-        }
-        private Consumer<Trigger<?>> getResetMethod() {
-            return reset;
-        }
 
         public abstract boolean isComplete();
         public boolean isFailed() {
             return false;
         }
 
-        public abstract String progressString();
+        protected final void addCondition(Supplier<Boolean> condition) {
+            if (this.condition != null) {
+                Supplier<Boolean> oldCondition = this.condition;
+                this.condition = () -> oldCondition.get() && condition.get();
+            }
+            else {
+                this.condition = condition;
+            }
+        }
+
+        /**
+         * Causes a tracker to not be displayed. This should be done for a subcondition, like "be in a shop" before "obtain x cards"
+         */
+        protected final Tracker hide() {
+            this.hidden = true;
+            return this;
+        }
 
         protected final <A> void setTrigger(Trigger<A> trigger, Consumer<A> onTrigger) {
-            this.trigger = (obj) -> {
-                if (condition == null || condition.get()) trigger.getTriggerMethod(onTrigger);
-            };
+            this.trigger = trigger.getTriggerMethod((param) -> {
+                if (Tracker.this.condition == null || Tracker.this.condition.get()) onTrigger.accept(param);
+            });
         }
 
         /**
@@ -194,22 +209,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         }
 
-        protected final void addCondition(Supplier<Boolean> condition) {
-            if (this.condition != null) {
-                Supplier<Boolean> oldCondition = this.condition;
-                this.condition = () -> oldCondition.get() && condition.get();
-            }
-            else {
-                this.condition = condition;
-            }
-        }
 
-        /**
-         * Causes a tracker to not be displayed. This should be done for a subcondition, like "be in a shop" before "obtain x cards"
-         */
-        protected final Tracker hide() {
-            this.hidden = true;
-            return this;
+        public abstract String progressString();
+
+        @Override
+        public String toString() {
+            return text + progressString();
         }
 
         /**
@@ -233,12 +238,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         protected final Tracker add(AbstractQuest quest) {
-            quest.trackers.add(this);
-            Consumer<Trigger<?>> triggerMethod = getTriggerMethod();
-            if (triggerMethod != null) {
-                quest.triggers.add(triggerMethod);
-            }
-            return this;
+            return quest.addTracker(this);
         }
     }
 
@@ -285,7 +285,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public String progressString() {
-            return progress.get() + "/" + target;
+            return String.format(" (%s/%s)", progress.get(), target);
         }
     }
 
@@ -339,7 +339,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public String progressString() {
-            return count + "/" + targetCount;
+            return String.format(" (%d/%d)", count, targetCount);
         }
     }
 
@@ -387,7 +387,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public String progressString() {
-            return state + "/" + target;
+            return String.format(" (%s/%s)", state, target);
         }
     }
 }

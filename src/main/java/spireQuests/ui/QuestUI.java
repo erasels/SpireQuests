@@ -32,19 +32,19 @@ public class QuestUI {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("QuestUI"));
     private static final String[] TEXT = uiStrings.TEXT;
 
-    private static final float LARGE_SPACING = 32 * Settings.scale;
-    private static final float SMALL_SPACING = 24 * Settings.scale;
+    private static final float LARGE_SPACING = 34; //no settings.scale for text readability
+    private static final float SMALL_SPACING = 24;
 
     private static final BitmapFont largeFont = FontHelper.cardTitleFont;
     private static final BitmapFont smallFont = FontHelper.tipBodyFont;
-    private static final float QUEST_SCALE = Settings.scale * 0.8f;
+    private static final float QUEST_SCALE = 0.9f;
 
     private static final Hitbox titleHb;
     private static final Texture dropdownArrow = TexLoader.getTexture(makeUIPath("arrow.png"));
 
     static {
-        float width = FontHelper.getWidth(largeFont, TEXT[0], Settings.scale) + 32 * Settings.scale;
-        titleHb = new Hitbox(width, 30 * Settings.scale);
+        float width = FontHelper.getWidth(largeFont, TEXT[0], 1.1f) + 35;
+        titleHb = new Hitbox(width, 32);
     }
 
     public static void update(float xPos, float yPos) {
@@ -62,28 +62,32 @@ public class QuestUI {
         }*/
 
         sb.setColor(Color.WHITE);
+        largeFont.getData().setScale(1.1f);
 
-        if (titleHb.hovered) {
-            largeFont.getData().setScale(Settings.scale * 1.1f);
-            FontHelper.renderFontRightAligned(sb, largeFont, TEXT[0], xPos, yPos - LARGE_SPACING * 0.5f, Color.WHITE);
-        }
-        largeFont.getData().setScale(Settings.scale);
-        FontHelper.renderFontRightAligned(sb, largeFont, TEXT[0], xPos, yPos - LARGE_SPACING * 0.5f, Settings.GOLD_COLOR);
-        sb.draw(dropdownArrow, xPos - titleHb.width, yPos, LARGE_SPACING, LARGE_SPACING);
+        FontHelper.renderFontRightAligned(sb, largeFont, TEXT[0], xPos, yPos - LARGE_SPACING * 0.5f, titleHb.hovered ? Color.WHITE : Settings.GOLD_COLOR);
+        sb.draw(dropdownArrow, xPos - titleHb.width, yPos - 33, 32, 32);
 
         largeFont.getData().setScale(QUEST_SCALE);
-        smallFont.getData().setScale(Settings.scale);
 
         for (AbstractQuest quest : quests) {
             yPos -= LARGE_SPACING;
             float rewardOffset = 50; //arbitrary temp
-            FontHelper.renderFontRightAligned(sb, largeFont, TEXT[0], xPos - rewardOffset, yPos - SMALL_SPACING * 0.5f, Color.WHITE);
+            FontHelper.renderFontRightAligned(sb, largeFont, quest.name, xPos - rewardOffset, yPos - SMALL_SPACING * 0.5f, Color.WHITE);
 
             for (AbstractQuest.Tracker tracker : quest.trackers) {
                 yPos -= SMALL_SPACING;
-                FontHelper.renderFontRightAligned(sb, smallFont, tracker.toString(), xPos - rewardOffset, yPos - SMALL_SPACING * 0.5f, Color.WHITE);
+                Color textColor = Color.WHITE;
+                if (tracker.isFailed()) {
+                    textColor = Settings.RED_TEXT_COLOR;
+                }
+                else if (tracker.isComplete()) {
+                    textColor = Settings.GOLD_COLOR;
+                }
+                FontHelper.renderFontRightAligned(sb, smallFont, tracker.toString(), xPos, yPos - SMALL_SPACING * 0.5f, textColor);
             }
         }
+
+        largeFont.getData().setScale(1);
 
 
         titleHb.render(sb);

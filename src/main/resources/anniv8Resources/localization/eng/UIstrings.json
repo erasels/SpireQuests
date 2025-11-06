@@ -18,6 +18,10 @@
       "THE QUEST",
       "THE DESCRIPTION",
       "ME"
+    ],
+    "EXTRA_TEXT": [
+      "Add 5 Common Cards in a row",
+      "Obtain a Rare Card"
     ]
   }
 }
