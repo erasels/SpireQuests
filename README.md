@@ -13,7 +13,10 @@ Either modargo, Mindbomber or I (erasels) will be reviewing your pull request an
 Images unique to your quest should be saved in `anniv8Resources/images/[quest]/`.  
 Localization is saved in `anniv8Resources/localization/[langKey]/[quest]/`.  
   
-To test your contribution, INSERT TEST HERE  
+To test your contribution, you can use the following console commands:
+* `addquest {questid}`: adds the quest to your quest log (ex: `addquest TestQuest`)
+* `spawnquest {slot} {questid}`: adds the quest to the specified slot (0-2) on the quest board if your current room has one (ex: `spawnquest 0 TestQuest`)
+
 **Please make sure to add your interactable to the [Contributions List](https://docs.google.com/spreadsheets/d/1Vg56thYTilz6elyO7A8KjkEcVMb_n_tnlYp2hvNPCrQ/edit?gid=0#gid=0) before your PR. If it's an idea you want to code yourself, you can add it there even without having started coding it.**
 
 ### Contribution guidelines
