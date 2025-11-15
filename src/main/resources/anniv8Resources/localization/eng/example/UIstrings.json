@@ -9,5 +9,15 @@
       "Add 5 Common Cards in a row",
       "Obtain a Burning Blood and 100 Gold."
     ]
+  },
+  "${ModID}:EnterRoomTestQuest": {
+    "TEXT": [
+      "Enter Room Test",
+      "Enter 5 ? rooms.",
+      "Test"
+    ],
+    "EXTRA_TEXT": [
+      "? Rooms"
+    ]
   }
 }
