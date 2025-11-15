@@ -1,0 +1,12 @@
+{
+  "${ModID}:RagerQuest": {
+    "TEXT": [
+      "Rager",
+      "Play 5 Attacks in a turn.",
+      "Gk"
+    ],
+    "EXTRA_TEXT": [
+      "Attacks played this turn"
+    ]
+  }
+}
