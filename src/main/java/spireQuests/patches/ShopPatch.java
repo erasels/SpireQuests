@@ -9,41 +9,35 @@ import com.megacrit.cardcrawl.rooms.ShopRoom;
 import spireQuests.ui.QuestBoardProp;
 
 public class ShopPatch {
-	@SpirePatch(
-			clz = ShopRoom.class,
-			method = "render",
-			paramtypez = SpriteBatch.class
-	)
-	public static class PostRender {
-		@SpirePostfixPatch()
-		public static void Render(ShopRoom original, SpriteBatch sb) {
-			if (QuestBoardProp.questBoardProp != null) {
-				QuestBoardProp.questBoardProp.render(sb);
-			}
-		}
-	}
+    @SpirePatch(
+            clz = ShopRoom.class,
+            method = "render",
+            paramtypez = SpriteBatch.class
+    )
+    public static class PostRender {
+        @SpirePostfixPatch()
+        public static void Render(ShopRoom original, SpriteBatch sb) {
+            if (QuestBoardProp.questBoardProp != null) {
+                QuestBoardProp.questBoardProp.render(sb);
+            }
+        }
+    }
 
-	@SpirePatch(
-			clz = ShopRoom.class,
-			method = "update"
-	)
-	public static class PostUpdate {
-		@SpirePostfixPatch()
-		public static void Update() {
-			if (QuestBoardProp.questBoardProp != null) {
-				QuestBoardProp.questBoardProp.update();
-			}
-		}
-	}
+    @SpirePatch(clz = ShopRoom.class, method = "update")
+    public static class PostUpdate {
+        @SpirePostfixPatch()
+        public static void Update() {
+            if (QuestBoardProp.questBoardProp != null) {
+                QuestBoardProp.questBoardProp.update();
+            }
+        }
+    }
 
-	@SpirePatch(
-			clz = ShopRoom.class,
-			method = "onPlayerEntry"
-	)
-	public static class PostPlayerEntry {
-		@SpirePostfixPatch()
-		public static void PlayerEntry() {
-			QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 300.0F * Settings.xScale, AbstractDungeon.floorY + 109.0F * Settings.yScale);
-		}
-	}
+    @SpirePatch(clz = ShopRoom.class, method = "onPlayerEntry")
+    public static class PostPlayerEntry {
+        @SpirePostfixPatch
+        public static void PlayerEntry() {
+            QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 300.0F * Settings.xScale, AbstractDungeon.floorY + 109.0F * Settings.yScale, false);
+        }
+    }
 }

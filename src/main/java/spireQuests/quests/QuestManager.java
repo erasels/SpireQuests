@@ -11,10 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireQuests.Anniv8Mod;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.Anniv8Mod.modID;
@@ -25,11 +22,16 @@ import static spireQuests.Anniv8Mod.modID;
 )
 public class QuestManager {
     private static final Map<String, AbstractQuest> quests = new HashMap<>();
+    private static final EnumMap<AbstractQuest.QuestDifficulty, ArrayList<AbstractQuest>> questsByDifficulty = new EnumMap<>(AbstractQuest.QuestDifficulty.class);
 
     public static SpireField<List<AbstractQuest>> currentQuests = new SpireField<>(ArrayList::new);
 
     //Called once in postInitialize
     public static void initialize() {
+        for(AbstractQuest.QuestDifficulty diff : AbstractQuest.QuestDifficulty.values()) {
+            questsByDifficulty.put(diff, new ArrayList<>());
+        }
+
         new AutoAdd(modID)
             .packageFilter(Anniv8Mod.class)
             .any(AbstractQuest.class, QuestManager::registerQuest);
@@ -56,6 +58,10 @@ public class QuestManager {
 
     private static void registerQuest(AutoAdd.Info info, AbstractQuest quest) {
         AbstractQuest q = quests.put(quest.id, quest);
+        ArrayList<AbstractQuest> questOfDifficulty = questsByDifficulty.get(quest.difficulty);
+        questOfDifficulty.add(quest);
+        questsByDifficulty.put(quest.difficulty, questOfDifficulty);
+
         if (q != null) {
             throw new RuntimeException("Duplicate quest ID " + q.id + " for classes " + q.getClass().getName() + " and " + quest.getClass().getName());
         }
@@ -68,6 +74,14 @@ public class QuestManager {
             return null;
         }
         return quest.makeCopy();
+    }
+
+    public static Collection<AbstractQuest> getAllQuests() {
+        return new ArrayList<>(quests.values());
+    }
+
+    public static ArrayList<AbstractQuest> getQuestsByDifficulty(AbstractQuest.QuestDifficulty difficulty) {
+        return questsByDifficulty.get(difficulty);
     }
 
     public static List<AbstractQuest> quests() {

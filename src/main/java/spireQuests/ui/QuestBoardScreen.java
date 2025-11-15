@@ -12,11 +12,19 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import spireQuests.quests.AbstractQuest;
+import spireQuests.quests.QuestManager;
 import spireQuests.util.TexLoader;
+import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static spireQuests.Anniv8Mod.makeUIPath;
+import static spireQuests.quests.QuestManager.getQuestsByDifficulty;
 
 public class QuestBoardScreen extends CustomScreen {
     public static final String ID = spireQuests.Anniv8Mod.makeID("QuestBoard");
@@ -35,6 +43,58 @@ public class QuestBoardScreen extends CustomScreen {
 
     public QuestBoardScreen() {
         questBoardImg = TexLoader.getTexture(questBoardImagePath);
+    }
+
+    public static ArrayList<AbstractQuest> generateRandomQuests(boolean fromNeow) {
+        ArrayList<AbstractQuest> generatedQuests = new ArrayList<>();
+        Set<String> usedQuestIds = new HashSet<>();
+
+        for (AbstractQuest.QuestDifficulty difficulty : rollDifficulties(fromNeow)) {
+            AbstractQuest quest = rollQuestForDifficulty(difficulty, usedQuestIds);
+            if (quest != null) {
+                quest.setCost();
+                generatedQuests.add(quest);
+                usedQuestIds.add(quest.id);
+            }
+        }
+
+        return generatedQuests;
+    }
+
+    private static AbstractQuest.QuestDifficulty[] rollDifficulties(boolean fromNeow) {
+        AbstractQuest.QuestDifficulty[] difficulties = new AbstractQuest.QuestDifficulty[] {
+                AbstractQuest.QuestDifficulty.EASY,
+                AbstractQuest.QuestDifficulty.NORMAL,
+                AbstractQuest.QuestDifficulty.HARD
+        };
+
+        if (fromNeow) {
+            boolean challenge = AbstractDungeon.miscRng.randomBoolean();
+            if (challenge) {
+                difficulties[2] = AbstractQuest.QuestDifficulty.CHALLENGE;
+            }
+        }
+
+        return difficulties;
+    }
+
+    private static AbstractQuest rollQuestForDifficulty(AbstractQuest.QuestDifficulty difficulty, Set<String> usedQuestIds) {
+        ArrayList<AbstractQuest> pool = getQuestsByDifficulty(difficulty);
+        if (pool.isEmpty()) {
+            // TODO: Change once enough quests exist
+            return rollQuestForDifficulty(AbstractQuest.QuestDifficulty.HARD, new HashSet<>());
+        }
+
+        ArrayList<AbstractQuest> possible = pool.stream()
+                .filter(q -> !usedQuestIds.contains(q.id))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        if(!possible.isEmpty()) {
+            AbstractQuest rolled = Wiz.getRandomItem(pool, AbstractDungeon.miscRng);
+            return rolled.makeCopy();
+        }
+
+        return rollQuestForDifficulty(AbstractQuest.QuestDifficulty.HARD, new HashSet<>());
     }
 
     @Override

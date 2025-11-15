@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import spireQuests.quests.AbstractQuest;
-import spireQuests.quests.modargo.PeasantQuest;
-import spireQuests.quests.example.TestQuest;
 import spireQuests.util.TexLoader;
 
 import java.util.ArrayList;
@@ -29,17 +27,10 @@ public class QuestBoardProp {
 
     public static QuestBoardProp questBoardProp;
 
-    public QuestBoardProp(float drawX, float drawY) {
+    public QuestBoardProp(float drawX, float drawY, boolean fromNeow) {
         this.drawX = drawX;
         this.drawY = drawY;
-        this.quests = new ArrayList<>();
-        // TODO select 3 random quests
-        this.quests.add(new TestQuest());
-        this.quests.add(new PeasantQuest());
-        this.quests.add(new TestQuest());
-        for (AbstractQuest quest : quests) {
-            quest.setCost();
-        }
+        this.quests = QuestBoardScreen.generateRandomQuests(fromNeow);
         numQuestsPickable = 2;
         this.sprite = TexLoader.getTexture(questBoardPropImagePath);
         this.hb = new Hitbox(sprite.getWidth() * Settings.xScale, sprite.getHeight() * Settings.yScale);
