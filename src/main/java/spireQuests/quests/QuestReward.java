@@ -5,12 +5,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Sozu;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import spireQuests.Anniv8Mod;
+import spireQuests.util.TexLoader;
+import spireQuests.util.Wiz;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +23,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import static spireQuests.Anniv8Mod.makeID;
+import static spireQuests.Anniv8Mod.makeUIPath;
 
 public abstract class QuestReward {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestReward")).TEXT;
@@ -26,6 +32,7 @@ public abstract class QuestReward {
         addRewardSaver(new RewardLoader(GoldReward.class, (save) -> new GoldReward(Integer.parseInt(save))));
         addRewardSaver(new RewardLoader(RelicReward.class, (save) -> new RelicReward(RelicLibrary.getRelic(save).makeCopy())));
         addRewardSaver(new RewardLoader(RandomRelicReward.class, (save) -> new RandomRelicReward(RelicLibrary.getRelic(save).makeCopy())));
+        addRewardSaver(new RewardLoader(PotionReward.class, (save) -> new PotionReward(PotionHelper.getPotion(save))));
     }
 
     private static void addRewardSaver(RewardLoader loader) {
@@ -187,6 +194,47 @@ public abstract class QuestReward {
                     break;
             }
             return String.format(TEXT[1], relicTier);
+        }
+    }
+
+    public static class PotionReward extends QuestReward {
+        private final AbstractPotion potion;
+        private final TextureRegion img;
+
+        public PotionReward(AbstractPotion p) {
+            super(String.format(TEXT[1], p.name));
+            this.potion = p;
+            this.img = TexLoader.getTextureAsAtlasRegion(makeUIPath("potion_reward.png"));
+        }
+
+        @Override
+        public TextureRegion icon() {
+            return img;
+        }
+
+        @Override
+        public void addTooltip(List<PowerTip> tips) {
+            tips.addAll(potion.tips);
+        }
+
+        @Override
+        public void obtainRewardItem() {
+            AbstractDungeon.combatRewardScreen.rewards.add(0, new RewardItem(potion));
+            AbstractDungeon.combatRewardScreen.positionRewards();
+        }
+
+        @Override
+        public void obtainInstant() {
+            if (AbstractDungeon.player.hasRelic(Sozu.ID)) {
+                AbstractDungeon.player.getRelic(Sozu.ID).flash();
+                return;
+            }
+            Wiz.p().obtainPotion(this.potion);
+        }
+
+        @Override
+        protected String saveParam() {
+            return potion.ID;
         }
     }
 
