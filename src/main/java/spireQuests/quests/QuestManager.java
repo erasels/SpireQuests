@@ -24,6 +24,8 @@ import static spireQuests.Anniv8Mod.modID;
         method = SpirePatch.CLASS
 )
 public class QuestManager {
+    public static final int QUEST_LIMIT = 5;
+
     private static final Map<String, AbstractQuest> quests = new HashMap<>();
 
     public static SpireField<List<AbstractQuest>> currentQuests = new SpireField<>(ArrayList::new);
@@ -88,14 +90,27 @@ public class QuestManager {
     }
 
     public static void startQuest(AbstractQuest quest) {
-        quests().add(quest);
-        quests().sort(null);
+        List<AbstractQuest> questList = quests();
+        if (questList.size() >= QUEST_LIMIT) {
+            AbstractQuest toRemove = questList.get(0);
+            Anniv8Mod.logger.info("Removing quest {} due to quest limit ({})!", toRemove.id, QUEST_LIMIT);
+            failQuest(toRemove);
+        }
+
+        questList.add(quest);
+        questList.sort(null);
         quest.onStart();
     }
 
     public static void completeQuest(AbstractQuest quest) {
-        if (!quest.complete()) {
-            Anniv8Mod.logger.warn("completeQuest called when quest is not complete!");
+        if (!quest.complete() && !quest.fail()) {
+            Anniv8Mod.logger.warn("completeQuest called when quest is not complete/failed!");
+            return;
+        }
+
+        if (quest.fail()) {
+            quests().remove(quest);
+            quest.onFail();
             return;
         }
 
@@ -105,6 +120,12 @@ public class QuestManager {
 
         quests().remove(quest);
         quest.obtainRewards();
+    }
+
+    public static void failQuest(AbstractQuest quest) {
+        quest.forceFail();
+        quest.onFail();
+        completeQuest(quest);
     }
 
     public void update() {

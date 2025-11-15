@@ -49,6 +49,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public List<Tracker> trackers;
     protected List<Consumer<Trigger<?>>> triggers;
     private boolean complete;
+    private boolean failed;
 
     private static final int HP_COST_MIN_RANGE = 3;
     private static final int HP_COST_MAX_RANGE = 6;
@@ -198,9 +199,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     public boolean complete() {
-        if (complete) {
-            return true;
-        }
+        if (failed) return false;
+        if (complete) return true;
 
         for (Tracker tracker : trackers) {
             if (!tracker.isComplete()) return false;
@@ -210,6 +210,32 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         triggers.clear();
         trackers.add(new QuestCompleteTracker());
         return true;
+    }
+
+    public boolean fail() {
+        if(complete) return false;
+        if(failed) return true;
+
+        boolean notFailed = true;
+        for (Tracker tracker : trackers) {
+            if (tracker.isFailed() || (tracker instanceof QuestFailedTracker)) {
+                notFailed = false;
+                break;
+            }
+        }
+        if (notFailed) return false;
+
+        forceFail();
+        return true;
+    }
+
+    public void forceFail() {
+        if(complete) Anniv8Mod.logger.warn("Forcefully failed quest that was complete {}", this.id);
+
+        failed = true;
+        trackers.clear();
+        triggers.clear();
+        trackers.add(new QuestFailedTracker());
     }
 
     public final void obtainRewards() {
@@ -240,6 +266,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         //most likely when they are in a complete state, they can be clicked to claim the reward?
     }
 
+    public void onFail() {
+    }
+
     public void triggerTrackers(Trigger<?> trigger) {
         for (Consumer<Trigger<?>> triggerMethod : triggers) {
             triggerMethod.accept(trigger);
@@ -253,12 +282,19 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     public void loadSave(String[] questData) {
-        if (questData.length == 1 && QuestCompleteTracker.COMPLETE_STRING.equals(questData[0])) {
-            complete = true;
-            trackers.clear();
-            triggers.clear();
-            trackers.add(new QuestCompleteTracker());
-            return;
+        if (questData.length == 1) {
+            if(QuestCompleteTracker.COMPLETE_STRING.equals(questData[0])) {
+                complete = true;
+                trackers.clear();
+                triggers.clear();
+                trackers.add(new QuestCompleteTracker());
+                return;
+            } else if (QuestFailedTracker.FAIL_STRING.equals(questData[0])) {
+                failed = true;
+                trackers.clear();
+                triggers.clear();
+                trackers.add(new QuestFailedTracker());
+            }
         }
 
         for (int i = 0; i < questData.length; ++i) {
@@ -644,6 +680,37 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         @Override
         public String saveData() {
             return COMPLETE_STRING;
+        }
+    }
+
+    /**
+     * A tracker used to mark a quest as completed to avoid having the state change afterward
+     */
+    private static class QuestFailedTracker extends Tracker {
+        public static final String FAIL_STRING = "FAILED";
+
+        public QuestFailedTracker() {
+
+        }
+
+        @Override
+        public boolean isComplete() {
+            return true;
+        }
+
+        @Override
+        public String progressString() {
+            return TEXT[1];
+        }
+
+        @Override
+        public String toString() {
+            return TEXT[1];
+        }
+
+        @Override
+        public String saveData() {
+            return FAIL_STRING;
         }
     }
 

@@ -25,7 +25,8 @@
   },
   "${ModID}:AbstractQuest": {
     "TEXT": [
-      "Quest Complete! Click to claim."
+      "Quest Complete! Click to claim.",
+      "Quest Failed! Click to remove."
     ]
   },
   "${ModID}:QuestReward": {

@@ -74,8 +74,8 @@ public class QuestUI {
             hb.update();
 
             if (hb.hovered) {
-                if (InputHelper.justClickedLeft && quest.complete()) {
-                    QuestManager.completeQuest(quest);
+                if (InputHelper.justClickedLeft) {
+                    if(quest.complete() || quest.fail()) QuestManager.completeQuest(quest);
                 }
             }
         }
