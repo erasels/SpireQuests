@@ -218,7 +218,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         boolean notFailed = true;
         for (Tracker tracker : trackers) {
-            if (tracker.isFailed() || (tracker instanceof QuestFailedTracker)) {
+            if (tracker.isFailed()) {
                 notFailed = false;
                 break;
             }
