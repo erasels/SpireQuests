@@ -1,0 +1,12 @@
+{
+  "${ModID}:PeasantQuest": {
+    "TEXT": [
+      "Peasant",
+      "Have the number of commons in your deck, minus the number of uncommons and rares, be at least 10.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Common surplus"
+    ]
+  }
+}

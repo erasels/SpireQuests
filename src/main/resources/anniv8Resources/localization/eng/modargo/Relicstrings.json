@@ -1,0 +1,9 @@
+{
+  "${ModID}:PeasantsTunic": {
+    "NAME": "Peasant's Tunic",
+    "FLAVOR": "Despite the simplicity, it looks rather dashing.",
+    "DESCRIPTIONS": [
+      "Whenever you play a #yCommon card, gain #b1 #yBlock."
+    ]
+  }
+}

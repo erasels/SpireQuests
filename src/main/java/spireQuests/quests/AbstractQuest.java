@@ -27,7 +27,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public enum QuestDifficulty {
         EASY,
         NORMAL,
-        HARD
+        HARD,
+        CHALLENGE
     }
 
     public final String id;

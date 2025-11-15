@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireQuests.Anniv8Mod;
-import spireQuests.quests.example.TestQuest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +26,7 @@ import static spireQuests.Anniv8Mod.modID;
 public class QuestManager {
     private static final Map<String, AbstractQuest> quests = new HashMap<>();
 
-    public static SpireField<List<AbstractQuest>> currentQuests = new SpireField<>(() -> {
-        ArrayList<AbstractQuest> quests = new ArrayList<>();
-        quests.add(new TestQuest());
-        return quests;
-    });
+    public static SpireField<List<AbstractQuest>> currentQuests = new SpireField<>(ArrayList::new);
 
     //Called once in postInitialize
     public static void initialize() {
@@ -48,12 +43,12 @@ public class QuestManager {
             @Override
             public void onLoad(QuestSave questSave) {
                 if (questSave == null) return;
-
                 for (int i = 0; i < questSave.questIds.length; ++i) {
                     AbstractQuest quest = getQuest(questSave.questIds[i]);
                     if (quest == null) continue;
                     quest.refreshState();
                     quest.loadSave(questSave.questData[i]);
+                    currentQuests.get(AbstractDungeon.player).add(quest);
                 }
             }
         });
