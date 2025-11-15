@@ -695,6 +695,11 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public boolean isComplete() {
+            return false;
+        }
+
+        @Override
+        public boolean isFailed() {
             return true;
         }
 
