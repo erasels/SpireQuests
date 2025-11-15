@@ -1,9 +1,11 @@
 package spireQuests.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -17,6 +19,7 @@ public class QuestTriggers {
     public static final Trigger<AbstractCard> ADD_CARD = new Trigger<>();
     public static final Trigger<MapRoomNode> ENTER_ROOM = new Trigger<>();
     public static final Trigger<MapRoomNode> LEAVE_ROOM = new Trigger<>();
+    public static final Trigger<AbstractCard> PLAY_CARD = new Trigger<>();
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -80,6 +83,20 @@ public class QuestTriggers {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
+        }
+    }
+
+    @SpirePatch2(
+            clz = UseCardAction.class,
+            method = SpirePatch.CONSTRUCTOR,
+            paramtypez = { AbstractCard.class, AbstractCreature.class }
+    )
+    public static class OnPlayCard {
+        @SpirePostfixPatch
+        public static void onPlayPatch(AbstractCard card) {
+            if (disabled()) return;
+
+            PLAY_CARD.trigger(card);
         }
     }
 
