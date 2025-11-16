@@ -1,9 +1,13 @@
 package spireQuests.quests;
 
+import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardSave;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -13,7 +17,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Sozu;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import spireQuests.Anniv8Mod;
+import spireQuests.rewards.SingleCardReward;
 import spireQuests.util.TexLoader;
 import spireQuests.util.Wiz;
 
@@ -29,10 +35,11 @@ public abstract class QuestReward {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestReward")).TEXT;
     private static final Map<String, RewardLoader> rewardLoaders = new HashMap<>();
     static {
-        addRewardSaver(new RewardLoader(GoldReward.class, (save) -> new GoldReward(Integer.parseInt(save))));
-        addRewardSaver(new RewardLoader(RelicReward.class, (save) -> new RelicReward(RelicLibrary.getRelic(save).makeCopy())));
-        addRewardSaver(new RewardLoader(RandomRelicReward.class, (save) -> new RandomRelicReward(RelicLibrary.getRelic(save).makeCopy())));
-        addRewardSaver(new RewardLoader(PotionReward.class, (save) -> new PotionReward(PotionHelper.getPotion(save))));
+        addRewardSaver(new RewardLoader(GoldReward.class, (save) -> new GoldReward(Integer.parseInt(save.param))));
+        addRewardSaver(new RewardLoader(RelicReward.class, (save) -> new RelicReward(RelicLibrary.getRelic(save.param).makeCopy())));
+        addRewardSaver(new RewardLoader(RandomRelicReward.class, (save) -> new RandomRelicReward(RelicLibrary.getRelic(save.param).makeCopy())));
+        addRewardSaver(new RewardLoader(PotionReward.class, (save) -> new PotionReward(PotionHelper.getPotion(save.param))));
+        addRewardSaver(new RewardLoader(CardReward.class, CardReward::fromSave));
     }
 
     private static void addRewardSaver(RewardLoader loader) {
@@ -42,10 +49,14 @@ public abstract class QuestReward {
     public static QuestReward fromSave(QuestRewardSave save) {
         RewardLoader loader = rewardLoaders.get(save.type);
         if (loader == null) {
-            Anniv8Mod.logger.error("Unable to load saved reward of type " + save.type);
+            Anniv8Mod.logger.error("Unable to load saved reward of type {}", save.type);
             return null;
         }
-        return loader.loader.apply(save.param);
+        QuestReward reward = loader.loader.apply(save);
+        if (reward == null) {
+            Anniv8Mod.logger.error("Unable to load saved reward of type {}", save.type);
+        }
+        return reward;
     }
 
 
@@ -238,11 +249,58 @@ public abstract class QuestReward {
         }
     }
 
+    public static class CardReward extends QuestReward {
+        private static final TextureRegion IMG = TexLoader.getTextureAsAtlasRegion(makeUIPath("card_reward.png"));
+        private final AbstractCard card;
+
+        public CardReward(AbstractCard card) {
+            super(String.format(TEXT[1], card.name));
+            this.card = card;
+        }
+
+        @Override
+        public TextureRegion icon() {
+            return IMG;
+        }
+
+        @Override
+        public void addTooltip(List<PowerTip> tips) {
+            tips.add(new CardPowerTip(card));
+        }
+
+        @Override
+        public void obtainRewardItem() {
+            AbstractDungeon.combatRewardScreen.rewards.add(0, new SingleCardReward(card));
+            AbstractDungeon.combatRewardScreen.positionRewards();
+        }
+
+        @Override
+        public void obtainInstant() {
+            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(card, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+        }
+
+        @Override
+        protected String saveParam() {
+            return card.cardID;
+        }
+
+        @Override
+        public QuestRewardSave getSave() {
+            return new QuestRewardSave(getClass().getSimpleName(), saveParam(), new CardSave(card.cardID, card.timesUpgraded, card.misc));
+        }
+
+        public static CardReward fromSave(QuestRewardSave save) {
+            CardSave s = save.card;
+            AbstractCard loaded = CardLibrary.getCopy(s.id, s.upgrades, s.misc);
+            return new CardReward(loaded);
+        }
+    }
+
     private static class RewardLoader {
         public final String key;
-        public final Function<String, ? extends QuestReward> loader;
+        public final Function<QuestRewardSave, ? extends QuestReward> loader;
 
-        public <T extends QuestReward> RewardLoader(Class<T> type, Function<String, T> loader) {
+        public <T extends QuestReward> RewardLoader(Class<T> type, Function<QuestRewardSave, T> loader) {
             this.key = type.getSimpleName();
             this.loader = loader;
         }
@@ -251,14 +309,20 @@ public abstract class QuestReward {
     public static class QuestRewardSave {
         public String type;
         public String param;
+        public CardSave card;
 
         public QuestRewardSave() {
 
         }
 
         public QuestRewardSave(String type, String param) {
+            this(type, param, null);
+        }
+
+        public QuestRewardSave(String type, String param, CardSave card) {
             this.type = type;
             this.param = param;
+            this.card = card;
         }
     }
 }

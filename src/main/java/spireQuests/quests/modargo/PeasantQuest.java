@@ -19,5 +19,6 @@ public class PeasantQuest extends AbstractQuest {
         }).add(this);
 
         addReward(new QuestReward.RelicReward(new PeasantsTunic()));
+        needHoverTip = true;
     }
 }

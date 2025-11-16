@@ -12,9 +12,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import spireQuests.quests.AbstractQuest;
+import spireQuests.quests.QuestManager;
 import spireQuests.util.TexLoader;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static spireQuests.Anniv8Mod.makeUIPath;
 
@@ -85,6 +87,7 @@ public class QuestBoardScreen extends CustomScreen {
             questBoardQuest.render(sb, boardY);
         }
         FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, TEXT[2] + parentProp.numQuestsPickable + TEXT[3], (float) Settings.WIDTH / 2, AbstractDungeon.floorY - 250.0F * Settings.yScale + boardY, Color.WHITE, 1.2f);
+        renderQuestLimitWarning(sb);
     }
 
     @Override
@@ -115,5 +118,17 @@ public class QuestBoardScreen extends CustomScreen {
             questBoardQuests.add(questBoardQuest);
             x += xIncrease;
         }
+    }
+
+    private void renderQuestLimitWarning(SpriteBatch sb) {
+        List<AbstractQuest> activeQuests = QuestManager.quests();
+        if (activeQuests == null || activeQuests.size() < QuestManager.QUEST_LIMIT) {
+            return;
+        }
+
+        AbstractQuest questToReplace = activeQuests.get(0);
+        float warningY = AbstractDungeon.floorY - 300F * Settings.yScale + boardY;
+        String replacementText = String.format(TEXT[5], questToReplace.name);
+        FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, replacementText, (float) Settings.WIDTH / 2, warningY, Settings.RED_TEXT_COLOR, 0.7F);
     }
 }

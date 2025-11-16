@@ -10,6 +10,7 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -32,6 +33,7 @@ import spireQuests.commands.SpawnQuestCommand;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
+import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.TexLoader;
 
@@ -41,6 +43,8 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
+
+import static spireQuests.rewards.RewardEnums.SQ_SINGLECARDREWARD;
 
 @SuppressWarnings({"unused"})
 @SpireInitializer
@@ -52,7 +56,8 @@ public class Anniv8Mod implements
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostDungeonInitializeSubscriber,
-        StartGameSubscriber {
+        StartGameSubscriber,
+        PostRenderSubscriber{
 
     public static final Logger logger = LogManager.getLogger("SpireQuests");
 
@@ -333,6 +338,15 @@ public class Anniv8Mod implements
     public void receivePostDungeonInitialize() {
         if (!CardCrawlGame.isInARun()) {
 
+        }
+    }
+
+    public static SingleCardReward hoverRewardWorkaround;
+    @Override
+    public void receivePostRender(SpriteBatch sb) {
+        if(hoverRewardWorkaround != null) {
+            hoverRewardWorkaround.renderCardOnHover(sb);
+            hoverRewardWorkaround = null;
         }
     }
 

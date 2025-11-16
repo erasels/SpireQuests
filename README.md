@@ -1,27 +1,30 @@
 # MtS Modding Anniversary 8: Spire Quests
 ## Preamble
-A group project for the eighth anniversary of Mod the Spire. INSERT DESC HERE  
+A group project for the eighth anniversary of Mod the Spire. This mod supplies the player with Quests that they can pick at the start of the run and in shops.  
 For a full write-up, please see the [Design Doc](https://docs.google.com/document/d/1lMwZQwiQLaizmrpsV3VjMuTTTZaKhzQGk356Cn7uRnE/edit?tab=t.0)  
 For a list of contributions, take a look at the [Contributions List](https://docs.google.com/spreadsheets/d/1Vg56thYTilz6elyO7A8KjkEcVMb_n_tnlYp2hvNPCrQ/edit?gid=0#gid=0)
   
 ## Contributions
-**Due to how we're planning to use [squash merges](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-commits) this time around, we recommend making branches in your own repository instead of using your `main` branch for PRs.**
+⚠️ **Due to how we're planning to use [squash merges](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-commits) this time around, we recommend making branches in your own repository instead of using your `main` branch for PRs.** ⚠️
 
 Either modargo, Mindbomber or I (erasels) will be reviewing your pull request and suggesting changes to code and/or design and balance if needed to keep the project cohesive. Be aware that even after code is merged, maintainers may need to make bug fixes and balance changes as we get feedback (we'll do our best to consult contributors for balance changes). Collaborating with others to make a contribution is fine.
   
 ### Technical Guidelines
-Make a directory with your username under the `quests` directory; this is where all your code will go -- all the quests you make, their supporting relics/cards/potions/etc., any patches specific to your quests, and any utilities or other logic your quests need.
+Make a directory with your username under the `quests` directory; this is where all your code will go -- all the quests you make, their supporting relics/cards/potions/etc., any patches specific to your quests, and any utilities (that are not generally applicable) or other logic your quests need.
 
-To make a quest, make a class that extends `AbstractQuest` (take a look over it to understand what methods it defines). Quests interact with the game using _triggers_, which define when your quest should update its status (because the player made or lost progress) or do something else to interact with the game. There are a number of built-in triggers, such as entering a room, changing your deck, playing cards, etc. If a given trigger doesn't exist already, you may need to implement it yourself, but we're happy to help anyone work out what to do for cases like this. The best way to understand more about how the system works is to look through currently implemented quests (the examples show a few simple patterns).
+To make a quest, make a class that extends `AbstractQuest` (take a look over it to understand what methods it defines). Quests interact with the game using _triggers_, which define when your quest should update its status (because the player made or lost progress) or do something else to interact with the game. There are a number of built-in triggers, such as entering a room, changing your deck, playing cards, etc. You can see all implemented triggers in `patches/QuestTriggers.java`. Feel free to implement new triggers if they are needed.    
 
 Your quest also needs to set its reward by calling `addReward`. There are several reward types defined in `QuestReward` that should cover most quests (look through that class for what's available).
 
+Relics/cards/monsters/powers you make should extend the appropriate class in the `abstracts` folder.
+
 Images unique to your quests should be saved in `anniv8Resources/images/[username]/`.  
-Localization is saved in `anniv8Resources/localization/[langKey]/[username]/[quest]/`.  
+Localization is saved in `anniv8Resources/localization/[langKey]/[username]/`.  
   
 To test your contribution, you can use the following console commands:
 * `addquest {questid}`: adds the quest to your quest log (ex: `addquest TestQuest`)
 * `spawnquest {slot} {questid}`: adds the quest to the specified slot (0-2) on the quest board if your current room has one (ex: `spawnquest 0 TestQuest`)
+* You can also instantly remove a quest by right-clicking it in debug mode
 
 **Please make sure to add your quest to the [Contributions List](https://docs.google.com/spreadsheets/d/1Vg56thYTilz6elyO7A8KjkEcVMb_n_tnlYp2hvNPCrQ/edit?gid=0#gid=0) before your PR. If it's an idea you want to code yourself, you can add it there even without having started coding it.**
 

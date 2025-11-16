@@ -41,6 +41,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public String author;
     public float width = 0;
     protected float titleScale = 1.2f; // change as needed for longer titles
+    public boolean needHoverTip = false;
 
     public boolean useDefaultReward;
     public List<QuestReward> questRewards;
@@ -63,20 +64,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     private ArrayList<PowerTip> previewTooltips;
 
     /*
-    examples of how trackers would be added in the constructor of a quest
-    addTracker(new PassiveTracker<>(() -> AbstractDungeon.player.currentHealth, 1));
-    addTracker(new TriggerTracker<>(QuestTriggers.REMOVE_CARD, 1));
-    addTracker(new TriggerTracker<AbstractCard>(QuestTriggers.ADD_CARD, 5) {
-        @Override
-        public void trigger(AbstractCard param) {
-            if (param.rarity == AbstractCard.CardRarity.COMMON) {
-                super.trigger(param);
-            }
-        }
-    });*/
-    /*
     trackers that require another tracker to be completed first
-    idk which format i like better
 
     Tracker condition = addTracker(new TriggerTracker<>(QuestTriggers.ADD_CARD, 1).hide());
     condition = addTracker(new TriggerTracker<>(QuestTriggers.REMOVE_CARD, 1).after(condition));
@@ -174,6 +162,14 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     /**
+     * This allows customizing the PowerTip that is shown if needsHoverToolip is true and the quets is hovered in the UI
+     * @return PowerTip that will be displayed on hover
+     */
+    public PowerTip getHoverTooltip() {
+        return new PowerTip(name, getDescription());
+    }
+
+    /**
      * Adds an objective tracker to a quest. Should be used in the constructor. Can also call Tracker.add
      * @param questTracker
      * @return
@@ -243,6 +239,14 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         trackers.add(new QuestFailedTracker());
     }
 
+    public boolean isCompleted() {
+        return complete;
+    }
+
+    public boolean isFailed() {
+        return failed;
+    }
+
     public final void obtainRewards() {
         onComplete();
         if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) {
@@ -262,7 +266,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     public void onStart() {
-
+        for (Tracker t : trackers) {
+            t.refreshState();
+        }
     }
 
     public void onComplete() {
@@ -338,6 +344,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         if (quest.useDefaultReward) {
             //TODO: default reward roll
+            //(Will add when I make quests without custom rewards)
         }
         return quest;
     }
@@ -352,14 +359,6 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         return name.compareTo(o.name);
     }
-
-
-    //chained method to make a sequential tracker? Each part of a sequential tracker should still be displayed if not explicitly hidden?
-    //Also a "reset" condition? or some other way to make a tracker quickly reset?
-    //maybe a getResetTrigger that defaults to null
-    //I don't like this. Make a generic method that gets called to add a reset trigger instead?
-    //Probably swap Tracker to an actual class, no reason for it to be an interface at this point.
-    //also add a method hide() which will make a tracker invisible for something like part of a sequential tracker
 
     public abstract static class Tracker {
         public String text;
@@ -396,10 +395,6 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         public final <A> void setTrigger(Trigger<A> trigger, Consumer<A> onTrigger) {
-//            if (trigger != null) {
-//                throw new RuntimeException("setTrigger should only be set once on a Tracker!");
-//            }
-
             this.trigger = trigger.getTriggerMethod((param) -> {
                 if (Tracker.this.condition == null || Tracker.this.condition.get()) onTrigger.accept(param);
             });
@@ -479,7 +474,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         /**
-         * Called upon loading save, to ensure quest displays an accurate state
+         * Called upon starting quest or loading save, to ensure quest displays an accurate state
          */
         public void refreshState() {
 

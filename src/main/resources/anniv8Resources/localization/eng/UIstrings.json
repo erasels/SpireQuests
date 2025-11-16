@@ -21,9 +21,10 @@
       "You can select ",
       " more quest(s)",
       "By: ",
+      "Quest log is full! The next one will replace: %s",
       "#yQuest: NL ",
       "#gRewards: NL "
-      ]
+    ]
   },
   "${ModID}:AbstractQuest": {
     "TEXT": [
@@ -38,6 +39,12 @@
       "a random Common relic",
       "a random Uncommon relic",
       "a random Rare relic"
+    ]
+  },
+  "${ModID}:SingleCardReward": {
+    "TEXT": [
+      "[Card] ",
+      "Tip: Right-click for detailed card view!"
     ]
   }
 }

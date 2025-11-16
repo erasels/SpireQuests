@@ -79,7 +79,7 @@ public class QuestBoardQuest {
             FontHelper.renderSmartText(
                     sb,
                     FontHelper.cardDescFont_N,
-                    TEXT[5] + quest.getDescription(),
+                    TEXT[6] + quest.getDescription(),
                     this.x + 55.0F * Settings.xScale,
                     this.y + 165.0F * Settings.yScale + boardY,
                     textWidth,
@@ -90,7 +90,7 @@ public class QuestBoardQuest {
             FontHelper.renderSmartText(
                     sb,
                     FontHelper.cardDescFont_N,
-                    TEXT[6] + quest.getRewardsText(),
+                    TEXT[7] + quest.getRewardsText(),
                     this.x + 55.0F * Settings.xScale,
                     this.y - 60.0F * Settings.yScale + boardY,
                     textWidth,
