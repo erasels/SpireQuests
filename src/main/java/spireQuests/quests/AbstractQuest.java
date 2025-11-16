@@ -210,6 +210,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         trackers.clear();
         triggers.clear();
         trackers.add(new QuestCompleteTracker());
+        completeSFX();
         return true;
     }
 
@@ -227,6 +228,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         if (notFailed) return false;
 
         forceFail();
+        failSFX();
         return true;
     }
 
@@ -237,6 +239,16 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         trackers.clear();
         triggers.clear();
         trackers.add(new QuestFailedTracker());
+    }
+
+    //override if you want different completion SFX.
+    public void completeSFX() {
+        CardCrawlGame.sound.play("UNLOCK_PING");
+    }
+
+    //override if you want different failure SFX.
+    public void failSFX() {
+        CardCrawlGame.sound.play("DEATH_STINGER");
     }
 
     public boolean isCompleted() {
