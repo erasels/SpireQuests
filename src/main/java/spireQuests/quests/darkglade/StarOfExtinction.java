@@ -14,7 +14,7 @@ public class StarOfExtinction extends AbstractSQCard {
     private static final int UP_DAMAGE = 10;
 
     public StarOfExtinction() {
-        super(ID, "Darkglade", 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, "darkglade", 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
         exhaust = true;
     }
