@@ -17,8 +17,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireQuests.util.CardArtRoller;
 
-import static spireQuests.Anniv8Mod.makeImagePath;
-import static spireQuests.Anniv8Mod.modID;
+import static spireQuests.Anniv8Mod.*;
 import static spireQuests.util.Wiz.atb;
 import static spireQuests.util.Wiz.att;
 
@@ -46,12 +45,12 @@ public abstract class AbstractSQCard extends CustomCard {
         this(cardID, null, cost, type, rarity, target, color);
     }
 
-    public AbstractSQCard(final String cardID, final String zoneID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        this(cardID, zoneID, cost, type, rarity, target, CardColor.COLORLESS);
+    public AbstractSQCard(final String cardID, final String packageName, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
+        this(cardID, packageName, cost, type, rarity, target, CardColor.COLORLESS);
     }
 
-    public AbstractSQCard(final String cardID, final String zoneID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        this(cardID, cost, type, rarity, target, color, getCardTextureString((zoneID != null ? zoneID + "/" : "") + cardID.replace(modID + ":", ""), type));
+    public AbstractSQCard(final String cardID, final String packageName, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+        this(cardID, cost, type, rarity, target, color, getCardTextureString(packageName, cardID.replace(modID + ":", "")));
     }
 
     public AbstractSQCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color, final String textureString) {
@@ -90,12 +89,12 @@ public abstract class AbstractSQCard extends CustomCard {
         }
     }
 
-    public static String getCardTextureString(final String cardName, final AbstractCard.CardType cardType) {
-        String textureString = makeImagePath("cards/" + cardName + ".png");
+    public static String getCardTextureString(String packageName, String cardName) {
+        String textureString = makeContributionPath(packageName, cardName + ".png");
 
         FileHandle h = Gdx.files.internal(textureString);
         if (!h.exists()) {
-            textureString = makeImagePath("ui/missing.png");
+            textureString = makeUIPath("missing.png");
         }
         return textureString;
     }

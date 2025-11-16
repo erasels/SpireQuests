@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import spireQuests.Anniv8Mod;
 import spireQuests.util.TexLoader;
 
+import static spireQuests.Anniv8Mod.makeContributionPath;
+
 public abstract class AbstractSQPower extends AbstractPower {
     public int amount2 = -1;
     public boolean isTwoAmount = false;
@@ -22,7 +24,7 @@ public abstract class AbstractSQPower extends AbstractPower {
         this(ID, NAME, null, powerType, isTurnBased, owner, amount);
     }
 
-    public AbstractSQPower(String ID, String NAME, String zoneID, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
+    public AbstractSQPower(String ID, String NAME, String packageName, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         this.ID = ID;
         this.isTurnBased = isTurnBased;
 
@@ -32,8 +34,8 @@ public abstract class AbstractSQPower extends AbstractPower {
         this.amount = amount;
         this.type = powerType;
 
-        Texture normalTexture = TexLoader.getTexture(Anniv8Mod.modID + "Resources/images/powers/" + (zoneID != null ? zoneID + "/" : "") + ID.replaceAll(Anniv8Mod.modID + ":", "") + "32.png");
-        Texture hiDefImage = TexLoader.getTexture(Anniv8Mod.modID + "Resources/images/powers/" + (zoneID != null ? zoneID + "/" : "") + ID.replaceAll(Anniv8Mod.modID + ":", "") + "84.png");
+        Texture normalTexture = TexLoader.getTexture(makeContributionPath(packageName, ID.replaceAll(Anniv8Mod.modID + ":", "") + "32.png"));
+        Texture hiDefImage = TexLoader.getTexture(makeContributionPath(packageName, ID.replaceAll(Anniv8Mod.modID + ":", "") + "84.png"));
         if (hiDefImage != null) {
             region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
             if (normalTexture != null)

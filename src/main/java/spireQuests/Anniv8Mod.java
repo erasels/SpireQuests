@@ -104,40 +104,16 @@ public class Anniv8Mod implements
         return modID + "Resources/images/" + resourcePath;
     }
 
+    public static String makeContributionPath(String packageName, String resourcePath) {
+        return modID + "Resources/images/" + packageName + "/" + resourcePath;
+    }
+
     public static String makeUIPath(String resourcePath) {
         return modID + "Resources/images/ui/" + resourcePath;
     }
 
-    public static String makeRelicPath(String resourcePath) {
-        return modID + "Resources/images/relics/" + resourcePath;
-    }
-
-    public static String makeMonsterPath(String resourcePath) {
-        return modID + "Resources/images/monsters/" + resourcePath;
-    }
-
-    public static String makePowerPath(String resourcePath) {
-        return modID + "Resources/images/powers/" + resourcePath;
-    }
-
-    public static String makeCardPath(String resourcePath) {
-        return modID + "Resources/images/cards/" + resourcePath;
-    }
-
     public static String makeShaderPath(String resourcePath) {
         return modID + "Resources/shaders/" + resourcePath;
-    }
-
-    public static String makeOrbPath(String resourcePath) {
-        return modID + "Resources/images/orbs/" + resourcePath;
-    }
-
-    public static String makeEventPath(String resourcePath) {
-        return modID + "Resources/images/events/" + resourcePath;
-    }
-
-    public static String makeBackgroundPath(String resourcePath) {
-        return modID + "Resources/images/backgrounds/" + resourcePath;
     }
 
     public static void initialize() {

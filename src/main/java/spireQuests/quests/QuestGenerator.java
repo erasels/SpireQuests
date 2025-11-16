@@ -86,7 +86,7 @@ public class QuestGenerator {
                 .collect(Collectors.toCollection(ArrayList::new));
 
         if (!possible.isEmpty()) {
-            AbstractQuest rolled = Wiz.getRandomItem(pool, AbstractDungeon.miscRng);
+            AbstractQuest rolled = Wiz.getRandomItem(possible, AbstractDungeon.miscRng);
             return rolled.makeCopy();
         }
 
