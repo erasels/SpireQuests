@@ -15,7 +15,7 @@ public class ImpendingDay extends AbstractSQCard {
     private static final int HEAL = 2;
 
     public ImpendingDay() {
-        super(ID,1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID,"Darkglade", 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HEAL;
     }
