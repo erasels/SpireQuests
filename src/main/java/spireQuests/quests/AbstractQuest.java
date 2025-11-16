@@ -136,7 +136,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     //override if you want to set up the text differently
-    private String rewardsText = null;
+    protected String rewardsText = null;
     public String getRewardsText() {
         if (rewardsText == null) {
             StringBuilder sb = new StringBuilder();
@@ -261,9 +261,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     public void onComplete() {
-        //How should quest rewards be handled? Should they be immediate?
-        //At the end of the room?
-        //most likely when they are in a complete state, they can be clicked to claim the reward?
+
     }
 
     public void onFail() {
@@ -393,9 +391,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         public final <A> void setTrigger(Trigger<A> trigger, Consumer<A> onTrigger) {
-            if (trigger != null) {
-                throw new RuntimeException("setTrigger should only be set once on a Tracker!");
-            }
+//            if (trigger != null) {
+//                throw new RuntimeException("setTrigger should only be set once on a Tracker!");
+//            }
 
             this.trigger = trigger.getTriggerMethod((param) -> {
                 if (Tracker.this.condition == null || Tracker.this.condition.get()) onTrigger.accept(param);
