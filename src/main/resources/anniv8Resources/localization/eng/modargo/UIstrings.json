@@ -8,5 +8,15 @@
     "EXTRA_TEXT": [
       "Common surplus"
     ]
+  },
+  "${ModID}:ChartTheUnknownQuest": {
+    "TEXT": [
+      "Chart the Unknown",
+      "Visit 5 ? rooms.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "? rooms"
+    ]
   }
 }
