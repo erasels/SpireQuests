@@ -34,7 +34,7 @@
   },
   "${ModID}:QuestReward": {
     "TEXT": [
-      "Gain %d Gold.",
+      "Gain #b%d #yGold.",
       "Obtain %s.",
       "a random Common relic",
       "a random Uncommon relic",

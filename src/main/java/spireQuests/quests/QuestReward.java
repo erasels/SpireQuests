@@ -7,11 +7,7 @@ import com.megacrit.cardcrawl.cards.CardSave;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.PotionHelper;
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Sozu;
@@ -122,7 +118,7 @@ public abstract class QuestReward {
         private final TextureRegion img;
 
         public RelicReward(AbstractRelic r) {
-            super(String.format(TEXT[1], r.name));
+            super(String.format(TEXT[1], FontHelper.colorString(r.name, "y")));
             this.relic = r;
             this.img = new TextureRegion(this.relic.img, 28, 28, 72, 72);
         }
@@ -213,7 +209,7 @@ public abstract class QuestReward {
         private final TextureRegion img;
 
         public PotionReward(AbstractPotion p) {
-            super(String.format(TEXT[1], p.name));
+            super(String.format(TEXT[1], FontHelper.colorString(p.name, "y")));
             this.potion = p;
             this.img = TexLoader.getTextureAsAtlasRegion(makeUIPath("potion_reward.png"));
         }
@@ -254,7 +250,7 @@ public abstract class QuestReward {
         private final AbstractCard card;
 
         public CardReward(AbstractCard card) {
-            super(String.format(TEXT[1], card.name));
+            super(String.format(TEXT[1], FontHelper.colorString(card.name, "y")));
             this.card = card;
         }
 
