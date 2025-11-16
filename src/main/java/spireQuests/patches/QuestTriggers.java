@@ -26,6 +26,7 @@ public class QuestTriggers {
     public static final Trigger<Integer> DAMAGE_TAKEN = new Trigger<>();
     public static final Trigger<Void> TURN_START = new Trigger<>();
     public static final Trigger<Void> VICTORY = new Trigger<>();
+    public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;

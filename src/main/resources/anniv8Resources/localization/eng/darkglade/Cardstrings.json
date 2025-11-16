@@ -1,0 +1,10 @@
+{
+  "${ModID}:ImpendingDay": {
+    "NAME": "Impending Day",
+    "DESCRIPTION": "Deal !D! damage. NL If Fatal, heal !M! HP."
+  },
+  "${ModID}:StarOfExtinction": {
+    "NAME": "Star of Extinction",
+    "DESCRIPTION": "Exhaust a card and permanently remove it from the master deck. NL Deal !D! damage to ALL enemies. NL Exhaust."
+  }
+}

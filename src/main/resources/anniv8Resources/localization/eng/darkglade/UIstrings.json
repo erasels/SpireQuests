@@ -9,5 +9,15 @@
       "Elite encounter with last played card being a starter Strike",
       "Upgrade a random #yAttack."
     ]
+  },
+  "${ModID}:DoomsdayCalendarQuest": {
+    "TEXT": [
+      "Doomsday Calendar",
+      "Upon pickup, obtain #yImpending #yDay. NL #yFatally kill enemies with #yImpending #yDay #b12 times.",
+      "Darkglade"
+    ],
+    "EXTRA_TEXT": [
+      "Number of Sacrifices"
+    ]
   }
 }
