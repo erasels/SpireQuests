@@ -143,7 +143,7 @@ public class QuestUI {
 
                 yPos -= LARGE_SPACING;
                 float rewardOffset = 34 * quest.questRewards.size() + 8;
-                FontHelper.renderFontRightAligned(sb, largeFont, quest.name, xPos - rewardOffset, yPos - SMALL_SPACING * 0.5f, quest.complete() ? Settings.GOLD_COLOR : Color.WHITE);
+                FontHelper.renderFontRightAligned(sb, largeFont, quest.name, xPos - rewardOffset, yPos - SMALL_SPACING * 0.5f, quest.complete() ? Settings.GOLD_COLOR : quest.fail() ? Settings.RED_TEXT_COLOR : Color.WHITE);
 
                 quest.width = FontHelper.layout.width + rewardOffset;
 

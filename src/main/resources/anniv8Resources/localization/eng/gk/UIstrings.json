@@ -8,5 +8,15 @@
     "EXTRA_TEXT": [
       "Attacks played this turn"
     ]
+  },
+  "${ModID}:AbstinenceQuest": {
+    "TEXT": [
+      "Abstinence",
+      "Don't use potions for the next 4 combats.",
+      "Gk"
+    ],
+    "EXTRA_TEXT": [
+      "Combats without potions"
+    ]
   }
 }
