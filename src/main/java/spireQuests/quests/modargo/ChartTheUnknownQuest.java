@@ -10,7 +10,7 @@ public class ChartTheUnknownQuest extends AbstractQuest {
     public ChartTheUnknownQuest() {
         super(QuestType.SHORT, QuestDifficulty.EASY);
 
-        new TriggerTracker<>(QuestTriggers.ENTER_ROOM, 5)
+        new TriggerTracker<>(QuestTriggers.ENTER_ROOM, 4)
                 .triggerCondition((node) -> node.room instanceof EventRoom)
                 .add(this);
 
@@ -19,6 +19,6 @@ public class ChartTheUnknownQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 1 || AbstractDungeon.actNum == 2;
+        return AbstractDungeon.actNum == 1;
     }
 }

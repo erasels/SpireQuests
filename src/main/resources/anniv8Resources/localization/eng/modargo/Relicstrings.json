@@ -8,9 +8,9 @@
   },
   "${ModID}:OwlMask": {
     "NAME": "Owl Mask",
-    "FLAVOR": "",
+    "FLAVOR": "Hoot hoot.",
     "DESCRIPTIONS": [
-      "Whenever you enter a #y? room, gain #b2 Max HP."
+      "Whenever you enter a #y? room, gain #b1 Max HP."
     ]
   }
 }

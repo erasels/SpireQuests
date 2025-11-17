@@ -17,7 +17,7 @@ public class OwlMask extends AbstractSQRelic {
     public void onEnterRoom(AbstractRoom room) {
         if (room instanceof EventRoom) {
             this.flash();
-            AbstractDungeon.player.increaseMaxHp(2, true);
+            AbstractDungeon.player.increaseMaxHp(1, true);
         }
     }
 }

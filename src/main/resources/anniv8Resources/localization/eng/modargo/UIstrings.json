@@ -12,7 +12,7 @@
   "${ModID}:ChartTheUnknownQuest": {
     "TEXT": [
       "Chart the Unknown",
-      "Visit 5 ? rooms.",
+      "Visit 4 ? rooms.",
       "modargo"
     ],
     "EXTRA_TEXT": [
