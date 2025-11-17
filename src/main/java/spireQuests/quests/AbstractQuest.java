@@ -187,11 +187,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         if (questTracker.trigger != null) triggers.add(questTracker.trigger);
         if (questTracker.reset != null) triggers.addAll(questTracker.reset);
-        if (questTracker.failTriggers != null) {
-            for (Function<AbstractQuest, Consumer<Trigger<?>>> failTrigger : questTracker.failTriggers) {
-                triggers.add(failTrigger.apply(this));
-            }
-        }
+        if (questTracker.failTriggers != null) triggers.addAll(questTracker.failTriggers);
 
         return questTracker;
     }
@@ -384,7 +380,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         protected Supplier<Boolean> condition = null;
         protected Consumer<Trigger<?>> trigger = null;
         protected ArrayList<Consumer<Trigger<?>>> reset = new ArrayList<>();
-        protected ArrayList<Function<AbstractQuest, Consumer<Trigger<?>>>> failTriggers = new ArrayList<>();
+        protected ArrayList<Consumer<Trigger<?>>> failTriggers = new ArrayList<>();
 
         public abstract boolean isComplete();
         public boolean isFailed() {
@@ -420,7 +416,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         /**
-         * Sets a trigger that will fail the quest when the condition is met.
+         * Sets a trigger that will fail (the quest) when the condition is met.
          * @param trigger
          */
         public final <A> Tracker setFailureTrigger(Trigger<A> trigger) {
@@ -428,13 +424,13 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         /**
-         * Sets a trigger that will fail the quest when the condition is met.
+         * Sets a trigger that will fail (the quest) when the condition is met.
          * @param trigger
          * @param condition Receives the trigger parameter and only fails the quest if true is returned.
          */
         public final <A> Tracker setFailureTrigger(Trigger<A> trigger, Function<A, Boolean> condition) {
-            this.failTriggers.add((quest) -> trigger.getTriggerMethod((param) -> {
-                if (quest.isFailed() || quest.isCompleted()) return;
+            this.failTriggers.add(trigger.getTriggerMethod((param) -> {
+                if(this.isComplete()) return;
                 if (condition.apply(param)) {
                     isFailed = () -> true;
                 }
