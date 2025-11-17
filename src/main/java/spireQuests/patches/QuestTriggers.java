@@ -25,6 +25,7 @@ public class QuestTriggers {
     public static final Trigger<AbstractCard> PLAY_CARD = new Trigger<>();
     public static final Trigger<Integer> DAMAGE_TAKEN = new Trigger<>();
     public static final Trigger<Void> TURN_START = new Trigger<>();
+    public static final Trigger<Void> TURN_END = new Trigger<>();
     public static final Trigger<Void> VICTORY = new Trigger<>();
     public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
 
@@ -139,6 +140,25 @@ public class QuestTriggers {
             @Override
             public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "applyStartOfTurnRelics");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+
+    // I genuinely don't know what I'm doing, please tell me if this needs to be changed to function properly
+    @SpirePatch2(clz = AbstractRoom.class, method = "endTurn")
+    public static class OnTurnEnd {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void turnEndPatch() {
+            if (disabled()) return;
+
+            TURN_END.trigger();
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "applyEndOfTurnTriggers");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
