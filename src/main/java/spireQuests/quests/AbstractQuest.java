@@ -379,7 +379,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     public abstract static class Tracker {
         public String text;
-        protected Supplier<Boolean> isFailed;
+        protected Supplier<Boolean> isFailed = () -> false;
         protected boolean hidden = false;
         protected Supplier<Boolean> condition = null;
         protected Consumer<Trigger<?>> trigger = null;
