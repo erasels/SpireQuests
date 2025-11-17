@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
+import spireQuests.quests.QuestManager;
 import spireQuests.util.TexLoader;
 
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class QuestBoardProp {
         this.drawX = drawX;
         this.drawY = drawY;
         this.quests = QuestGenerator.generateRandomQuests(fromNeow);
-        numQuestsPickable = 2;
+        // See comments in QuestGenerator for why the Neow case has special handling
+        numQuestsPickable = fromNeow ? Math.max(2 - QuestManager.quests().size(), 0) : 2;
         this.sprite = TexLoader.getTexture(questBoardPropImagePath);
         this.hb = new Hitbox(sprite.getWidth() * Settings.xScale, sprite.getHeight() * Settings.yScale);
         this.hb.move(drawX + ((float) sprite.getWidth() / 2) * Settings.xScale, drawY + ((float) sprite.getHeight() / 2) * Settings.yScale);
