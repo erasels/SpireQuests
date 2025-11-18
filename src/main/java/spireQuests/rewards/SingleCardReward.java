@@ -64,7 +64,7 @@ public class SingleCardReward extends CustomReward {
                     break;
                 default:
                     Anniv8Mod.logger.warn(String.format("Tried to generate a SingleCardReward with %d parameters.\nInput: %s", args.length, Arrays.toString(args)));
-                    card = CardLibrary.getCard(Madness.ID);
+                    card = CardLibrary.getCopy(Madness.ID);
             }
         }
         init();

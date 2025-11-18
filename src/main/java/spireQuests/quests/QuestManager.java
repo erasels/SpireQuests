@@ -116,7 +116,11 @@ public class QuestManager {
         questList.sort(null);
         quest.onStart();
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
-        questPickupPerFloor.get(questPickupPerFloor.size() - 1).add(quest.id);
+        if(!questPickupPerFloor.isEmpty()) {
+            questPickupPerFloor.get(questPickupPerFloor.size() - 1).add(quest.id);
+        } else {
+            Anniv8Mod.logger.error("questPickupPerFloor was empty, not adding quest to run history.");
+        }
     }
 
     public static void completeQuest(AbstractQuest quest) {
