@@ -1,4 +1,4 @@
-package spireQuests.quests.modargo;
+package spireQuests.quests.modargo.relics;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;

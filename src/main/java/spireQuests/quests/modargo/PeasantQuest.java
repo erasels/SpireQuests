@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.modargo.relics.PeasantsTunic;
 
 import java.util.ArrayList;
 

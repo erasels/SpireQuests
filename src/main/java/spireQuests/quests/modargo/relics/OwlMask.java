@@ -1,4 +1,4 @@
-package spireQuests.quests.modargo;
+package spireQuests.quests.modargo.relics;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
