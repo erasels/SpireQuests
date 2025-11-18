@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import javassist.CtBehavior;
@@ -27,6 +29,8 @@ public class QuestTriggers {
     public static final Trigger<Void> TURN_START = new Trigger<>();
     public static final Trigger<Void> VICTORY = new Trigger<>();
     public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
+    public static final Trigger<AbstractOrb> CHANNEL_ORB = new Trigger<>();
+    public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -151,6 +155,32 @@ public class QuestTriggers {
             if (disabled()) return;
 
             VICTORY.trigger();
+        }
+    }
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "evokeOrb")
+    public static class evokeOrb {
+        @SpirePrefixPatch
+        public static void evokePatch(AbstractPlayer __instance) {
+            if (disabled()) return;
+
+            if (!__instance.orbs.isEmpty() && !(__instance.orbs.get(0) instanceof EmptyOrbSlot)) {
+                EVOKE_ORB.trigger(__instance.orbs.get(0));
+            }
+
+        }
+    }
+    
+    @SpirePatch2(clz = AbstractPlayer.class, method = "channelOrb")
+    public static class channelOrb {
+        @SpirePrefixPatch
+        public static void channelPatch(AbstractPlayer __instance, AbstractOrb orbToSet) {
+            if (disabled()) return;
+
+            if (__instance.maxOrbs > 0){
+                CHANNEL_ORB.trigger(orbToSet);
+            }
+
         }
     }
 }

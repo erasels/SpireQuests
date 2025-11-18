@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import spireQuests.quests.AbstractQuest;
@@ -171,7 +172,8 @@ public class QuestUI {
 
                 if (hb.hovered) {
                     if (quest.needHoverTip && !quest.isCompleted() && !quest.isFailed()) {
-                        ImageHelper.tipBoxAtMousePos(quest.name, quest.getDescription());
+                        PowerTip tooltip = quest.getHoverTooltip();
+                        ImageHelper.tipBoxAtMousePos(tooltip.header, tooltip.body);
                     }
                 }
             }
