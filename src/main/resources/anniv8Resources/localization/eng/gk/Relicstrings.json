@@ -1,0 +1,9 @@
+{
+  "${ModID}:ProudBadge": {
+    "NAME": "Proud Badge",
+    "FLAVOR": "This shiny little badge shows your strength.",
+    "DESCRIPTIONS": [
+      "Whenever you use a potion, gain #b%s temporary #yStrength [REMOVE_SPACE]."
+    ]
+  }
+}
