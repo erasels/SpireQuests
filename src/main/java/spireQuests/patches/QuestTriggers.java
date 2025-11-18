@@ -147,19 +147,11 @@ public class QuestTriggers {
 
     @SpirePatch2(clz = AbstractRoom.class, method = "endTurn")
     public static class OnTurnEnd {
-        @SpireInsertPatch(locator = Locator.class)
+        @SpirePostfixPatch()
         public static void turnEndPatch() {
             if (disabled()) return;
 
             TURN_END.trigger();
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "applyEndOfTurnTriggers");
-                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
-            }
         }
     }
 
