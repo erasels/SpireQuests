@@ -7,7 +7,8 @@
     "Mindbomber",
     "Alchyr",
     "Pandemonium",
-    "Darkglade"
+    "Darkglade",
+    "Mangochicken"
   ],
   "description": "${project.description}",
   "version": "${project.version}",

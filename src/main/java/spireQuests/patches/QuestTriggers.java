@@ -30,6 +30,7 @@ public class QuestTriggers {
     public static final Trigger<AbstractCard> PLAY_CARD = new Trigger<>();
     public static final Trigger<Integer> DAMAGE_TAKEN = new Trigger<>();
     public static final Trigger<Void> TURN_START = new Trigger<>();
+    public static final Trigger<Void> TURN_END = new Trigger<>();
     public static final Trigger<Void> VICTORY = new Trigger<>();
     public static final Trigger<AbstractPotion> USE_POTION = new Trigger<>();
 
@@ -148,6 +149,16 @@ public class QuestTriggers {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "applyStartOfTurnRelics");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractRoom.class, method = "endTurn")
+    public static class OnTurnEnd {
+        @SpirePostfixPatch()
+        public static void turnEndPatch() {
+            if (disabled()) return;
+
+            TURN_END.trigger();
         }
     }
 
