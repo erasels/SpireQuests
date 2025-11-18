@@ -70,6 +70,8 @@ public class Anniv8Mod implements
     public static final String HARD_MODE_CONFIG = "hardModeConfig";
     public static boolean hardModeConfig = false;
     public static SpireConfig modConfig = null;
+    public static final String QUESTBOUND_CONFIG = "questboundConfig";
+    public static boolean questboundConfig = true;
 
     public static final String modID = "anniv8";
 
@@ -123,6 +125,7 @@ public class Anniv8Mod implements
         try {
             Properties defaults = new Properties();
             defaults.put(HARD_MODE_CONFIG, false);
+            defaults.put(QUESTBOUND_CONFIG, true);
             modConfig = new SpireConfig(modID, "anniv8Config", defaults);
         } catch (Exception e) {
             e.printStackTrace();
@@ -348,11 +351,23 @@ public class Anniv8Mod implements
                 });
         settingsPanel.addUIElement(toggleHardModeButton);
 
+        ModLabeledToggleButton toggleQuestboundButton = new ModLabeledToggleButton(configStrings.TEXT[4],
+                350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                questboundConfig,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+                    questboundConfig = button.enabled;
+                    saveConfig();
+                });
+        settingsPanel.addUIElement(toggleQuestboundButton);
+
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
 
     private void initializeSavedData() {
         hardModeConfig = modConfig.getBool(HARD_MODE_CONFIG);
+        questboundConfig = modConfig.getBool(QUESTBOUND_CONFIG);
     }
 
     public static void addSaveFields() {
@@ -368,9 +383,14 @@ public class Anniv8Mod implements
         return hardModeConfig;
     }
 
+    public static boolean questboundEnabled() {
+        return questboundConfig;
+    }
+
     public static void saveConfig() {
         try {
             modConfig.setBool(HARD_MODE_CONFIG, hardModeConfig);
+            modConfig.setBool(QUESTBOUND_CONFIG, questboundConfig);
             modConfig.save();
         } catch (Exception e) {
             e.printStackTrace();
