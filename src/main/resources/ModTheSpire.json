@@ -7,7 +7,8 @@
     "Mindbomber",
     "Alchyr",
     "Pandemonium",
-    "Darkglade"
+    "Darkglade",
+    "SoytheProton"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
