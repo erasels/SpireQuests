@@ -1,0 +1,12 @@
+{
+  "${ModID}:GrandFinaleQuest": {
+    "TEXT": [
+      "GRAND FINALE",
+      "At the start of combat, shuffle a #yGrand #yFinale into your draw pile. Play #yGrand #yFinale.",
+      "SoytheProton"
+    ],
+    "EXTRA_TEXT": [
+      "Grand Finale played"
+    ]
+  }
+}
