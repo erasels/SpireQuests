@@ -1,0 +1,13 @@
+{
+  "${ModID}:SelloutRelic": {
+    "NAME": "Ad Revenue",
+    "FLAVOR": "Everyone has a price.",
+    "DESCRIPTIONS": [
+      "Upon pickup, choose any number of cards to turn into #rAdvertisements [REMOVE_SPACE]. Gain #b",
+      " Gold after completing the quest.",
+      "Choose any number of cards to turn into Advertisements.",
+      " (Currently Stored: ",
+      " [REMOVE_SPACE])"
+    ]
+  }
+}

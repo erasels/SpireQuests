@@ -1,0 +1,42 @@
+{
+  "${ModID}:SelloutAdCard": {
+    "NAME": "Advertisement",
+    "DESCRIPTION": "Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "(Your Ad Here, contact The Merchant for details.)",
+      "(Ad Space For Rent, contact the Merchant for details.)",
+      "(Ad Space For Hire, contact the Merchant for details.)",
+      "(Your Ad Could Be Here, contact the Merchant for details.)",
+      "(Get Your Ads Seen By Spire Slayers, contact the Merchant for details.)",
+      "(This card text was sponsored by Design In-Spire. Improve your style today! Clean off your gross blood before coming.)",
+      "(This card text was sponsored by the Cult of Mazaleth. Join now, and fulfill your purpose.)",
+      "(This card text was sponsored by the Colosseum. Come see our champions fight! Buy your front-row tickets from your local merchant!)",
+      "(This card text was sponsored by Lee's Waffle. The tastiest treat you will find in all the Spire!)",
+      "(This card text was sponsored by the Merchant. Support small businesses!)",
+      "(This card text was sponsored by Blue's Brewery. Buy our potions. Now. Or else.)",
+      "(This card text was sponsored by the Gremlin Casino. Come play Match and Keep or Spin the Wheel! You might be a lucky winner!)",
+      "(This card text was sponsored by Raid: Apparition Legends. Come play with us, we don't bite!)",
+      "(This card text was sponsored by the Vampire Coven. Join us, and feel the warmth of the Spire.)",
+      "(This card text was sponsored by NeowVPN.)",
+      "(This card text was sponsored by Neow Life Insurance. I will bring you back as many times as it takes.)",
+      "(This card text was sponsored by Augmentor's Wares. Get JAXXED, grow your muscles, become the strongest!)",
+      "(This card text was sponsored by the Ironclad. I don't have any messages to push, I just want more Status cards for my deck.)",
+      "(This card text was sponsored by the Ironclad. The Merchant promised me Status cards, not Skill cards! After I'm done with the Heart, he's next.)",
+      "(This card text was sponsored by the Silent.)",
+      "(This card text was sponsored by the Defect. System.out.println(\"Hello world!\"))",
+      "(This card text was sponsored by the Watcher.)",
+      "(This card text was sponsored by the Hermit.)",
+      "(This card text was sponsored by the Packmaster. Will buy your rare cards for good price!)",
+      "(This card text was sponsored by the Cleric. CLERICALLY TALENTED CARD REMOVAL SERVICE! 100% OF PROFITS GO TO CHARITY.)",
+      "(This card text was sponsored by Ranwid.)",
+      "(This card text was sponsored by the SSSerpent. Need money? Apply for a loan today! Doubt-free, regret-free, guilt-free!)",
+      "(This card text was sponsored by Romeo and Gang. Need money? Yeah, me too. You should give us all your gold.)",
+      "(This card text was sponsored by the Face Trader. Need face? I have nice faces. Come trade.)",
+      "(This card text was sponsored by Frost Prime. Slay the Streamer every Monday!)",
+      "(This card text was sponsored by Slay the Spire 2. Wishlist now on Steam!)",
+      "(This card text was sponsored by Spire Cafe. Tired of climbing? Come in for a quick drink!)",
+      "(This card text was sponsored by Paul Goodgrem. Did you know you have rights? Better Call Paul!)",
+      "(This card text was sponsored by the Free Spire Society. Tired of doing menial labor for the Taskmaster? You may be entitled to financial compensation.)"
+    ]
+  }
+}
