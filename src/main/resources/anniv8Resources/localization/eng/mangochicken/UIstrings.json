@@ -1,0 +1,13 @@
+{
+  "${ModID}:HandicapQuest": {
+    "TEXT": [
+      "Handicap",
+      "I'm feeling a little strong here, have a free shot, to a fair fight!",
+      "Mangochicken"
+    ],
+    "EXTRA_TEXT": [
+      "Play 0 cards during the first turn of an elite combat in this act",
+      "Obtain Hearty Anchor"
+    ]
+  }
+}
