@@ -1,0 +1,59 @@
+package spireQuests.cardmods;
+
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
+import spireQuests.Anniv8Mod;
+import spireQuests.quests.AbstractQuest;
+import spireQuests.quests.QuestManager;
+
+import java.util.Collections;
+import java.util.List;
+
+public class QuestboundMod extends AbstractCardModifier {
+    public static String ID = Anniv8Mod.makeID(QuestboundMod.class.getSimpleName());
+    public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    public transient AbstractQuest boundQuest;
+    public String boundQuestID;
+    public int boundQuestIndex;
+
+    public QuestboundMod(AbstractQuest quest) {
+        boundQuest = quest;
+        boundQuestID = quest.id;
+        boundQuestIndex = QuestManager.currentQuests.get(AbstractDungeon.player).indexOf(quest);
+    }
+
+    public QuestboundMod(String questID, int questIndex) {
+        boundQuestID = questID;
+        boundQuestIndex = questIndex;
+    }
+
+    @Override
+    public String identifier(AbstractCard card) {
+        return ID;
+    }
+
+    @Override
+    public String modifyDescription(String rawDescription, AbstractCard card) {
+        if(Anniv8Mod.questboundConfig) return uiStrings.TEXT[0] + rawDescription;
+        return rawDescription;
+    }
+
+    @Override
+    public boolean shouldApply(AbstractCard card) {
+        return !CardModifierManager.hasModifier(card, ID);
+    }
+
+    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
+        return Collections.singletonList(new TooltipInfo(uiStrings.TEXT[1], CardCrawlGame.languagePack.getUIString(boundQuestID).TEXT[0]));
+    }
+
+    @Override
+    public AbstractCardModifier makeCopy() {
+        return new QuestboundMod(boundQuestID, boundQuestIndex);
+    }
+}
