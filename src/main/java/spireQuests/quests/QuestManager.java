@@ -115,6 +115,9 @@ public class QuestManager {
         questList.add(quest);
         questList.sort(null);
         quest.onStart();
+        if(quest.questboundCards != null) {
+            quest.questboundCards.forEach(c -> CardModifierManager.addModifier(c, new QuestboundMod(quest)));
+        }
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
         if(!questPickupPerFloor.isEmpty()) {
             questPickupPerFloor.get(questPickupPerFloor.size() - 1).add(quest.id);
