@@ -798,4 +798,10 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
             return "";
         }
     }
+
+    public ArrayList<AbstractCard> questboundCards;
+
+    public ArrayList<AbstractCard> overrideQuestboundCards() {
+        return null;
+    }
 }
