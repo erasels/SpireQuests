@@ -1,26 +1,24 @@
 package spireQuests.patches;
 
-import basemod.TopPanelItem;
-import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.CardSave;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import spireQuests.actions.ShowTempCardInDrawPileAction;
 import spireQuests.cardmods.QuestboundMod;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
@@ -28,7 +26,7 @@ import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import static spireQuests.Anniv8Mod.questboundEnabled;
@@ -127,9 +125,11 @@ public class QuestboundModPatch {
     public static class questboundCountTopPanel {
         @SpireInsertPatch(locator = Locator.class)
         public static void render(SpriteBatch sb, float ___DECK_X, float ___ICON_Y) {
-            if(getQuestbound().toArray().length > 0 && questboundEnabled())
+            AtomicInteger i = new AtomicInteger(0);
+            getQuestbound().forEach(q -> i.addAndGet(q.questboundCards.size()));
+            if(i.get() > 0 && questboundEnabled())
                 FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelAmountFont,
-                    Integer.toString(getQuestbound().toArray().length),
+                    Integer.toString(i.get()),
                     ___DECK_X + 58.0F * Settings.scale,
                     ___ICON_Y + 50.0F * Settings.scale,
                     Settings.GOLD_COLOR .cpy());
@@ -181,6 +181,21 @@ public class QuestboundModPatch {
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(CardHelper.class, "obtainedCards");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+
+    @SpirePatch2(clz= AbstractRoom.class,method ="update")
+    public static class applyStartOfCombatPreDrawLogic {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void update() {
+            if(!questboundEnabled()) getQuestbound().forEach(q -> q.questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c,true))));
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "applyStartOfCombatPreDrawLogic");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
