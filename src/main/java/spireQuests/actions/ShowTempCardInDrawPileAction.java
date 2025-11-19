@@ -13,9 +13,7 @@ public class ShowTempCardInDrawPileAction
         extends AbstractGameAction
 {
     private AbstractCard cardToMake;
-    private boolean randomSpot;
     private boolean autoPosition;
-    private boolean toBottom;
     private float x;
     private float y;
 
@@ -26,9 +24,7 @@ public class ShowTempCardInDrawPileAction
         this.startDuration = Settings.FAST_MODE ? Settings.ACTION_DUR_FAST : 0.5F;
         this.duration = this.startDuration;
         this.cardToMake = card;
-        this.randomSpot = false;
         this.autoPosition = autoPosition;
-        this.toBottom = false;
         this.x = cardX;
         this.y = cardY;
     }
@@ -40,23 +36,10 @@ public class ShowTempCardInDrawPileAction
 
     public void update() {
         if (this.duration == this.startDuration) {
-            if (this.amount < 6) {
-                for (int i = 0; i < this.amount; i++) {
-                    AbstractCard c = this.cardToMake.makeStatEquivalentCopy();
-
-                    AbstractDungeon.effectList.add(new ShowCardToDrawPileEffect(c, this.x, this.y, this.autoPosition));
-                }
-            } else {
-
-                for (int i = 0; i < this.amount; i++) {
-                    AbstractCard c = this.cardToMake.makeStatEquivalentCopy();
-
-                    AbstractDungeon.effectList.add(new ShowCardToDrawPileEffect(c));
-                }
-            }
+            AbstractCard c = this.cardToMake.makeStatEquivalentCopy();
+            AbstractDungeon.effectList.add(new ShowCardToDrawPileEffect(c, this.x, this.y, this.autoPosition));
             this.duration -= Gdx.graphics.getDeltaTime();
         }
-
         tickDuration();
     }
 }
