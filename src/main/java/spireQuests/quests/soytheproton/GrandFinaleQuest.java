@@ -42,13 +42,6 @@ public class GrandFinaleQuest extends AbstractQuest {
         questboundCards.add(new GrandFinale());
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(new GrandFinale(), (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));
-    }
-
     @Override
     public void makeTooltips(List<PowerTip> tipList) {
         super.makeTooltips(tipList);
@@ -57,7 +50,6 @@ public class GrandFinaleQuest extends AbstractQuest {
     }
     @Override
     public boolean canSpawn() {
-        if(AbstractDungeon.player instanceof TheSilent) return true;
-        return false;
+        return AbstractDungeon.player instanceof TheSilent;
     }
 }
