@@ -15,16 +15,7 @@ public class ShowCardToDrawPileEffect
     private static final float EFFECT_DUR = 1.5F;
     private AbstractCard card;
     private static final float PADDING = 30.0F * Settings.scale;
-
-
-
-    private boolean randomSpot = false;
-
-
     private boolean cardOffset = false;
-
-
-
     public ShowCardToDrawPileEffect(AbstractCard srcCard, float x, float y, boolean cardOffset) {
         this.card = srcCard.makeStatEquivalentCopy();
         this.cardOffset = cardOffset;
@@ -46,7 +37,6 @@ public class ShowCardToDrawPileEffect
     public ShowCardToDrawPileEffect(AbstractCard srcCard) {
         this.card = srcCard.makeStatEquivalentCopy();
         this.duration = 1.5F;
-        this.randomSpot = false;
         this.card.target_x = MathUtils.random(Settings.WIDTH * 0.1F, Settings.WIDTH * 0.9F);
         this.card.target_y = MathUtils.random(Settings.HEIGHT * 0.8F, Settings.HEIGHT * 0.2F);
         AbstractDungeon.effectsQueue.add(new CardPoofEffect(this.card.target_x, this.card.target_y));
@@ -101,7 +91,7 @@ public class ShowCardToDrawPileEffect
         if (this.duration < 0.0F) {
             this.isDone = true;
             this.card.shrink();
-            (AbstractDungeon.getCurrRoom()).souls.onToDeck(this.card, this.randomSpot, true);
+            (AbstractDungeon.getCurrRoom()).souls.onToDeck(this.card, false, true);
         }
     }
 
