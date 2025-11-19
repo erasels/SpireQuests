@@ -42,11 +42,15 @@ public class NuclearJuicePotion extends AbstractPotion {
                 throw new RuntimeException("Failed to access potion image fields.", e);
             }
         }
-    private static final String POTION_ID = makeID(NuclearJuicePotion.class.getSimpleName());
-    
-    private static final Color LIQUID_COLOR = Color.LIME;
-    private static final Color HYBRID_COLOR = Color.GREEN;
-    private static final Color SPOTS_COLOR = Color.LIME;
+    public static final String POTION_ID = makeID(NuclearJuicePotion.class.getSimpleName());
+
+    // private static final Color LIQUID_COLOR = Color.ORANGE;
+    // private static final Color HYBRID_COLOR = Color.RED;
+    // private static final Color SPOTS_COLOR = Color.ORANGE;
+
+    private static final Color LIQUID_COLOR = Color.CYAN;
+    private static final Color HYBRID_COLOR = Color.BLUE;
+    private static final Color SPOTS_COLOR = Color.CYAN;
 
     private static final Texture CONTAINER_TEXTURE = TexLoader.getTexture(makeContributionPath("coda", "potions/exploding_glass_2.png"));
     private static final Texture OUTLINE_TEXTURE = TexLoader.getTexture(makeContributionPath("coda", "potions/exploding_outline.png"));
@@ -57,7 +61,7 @@ public class NuclearJuicePotion extends AbstractPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     
     public NuclearJuicePotion() {
-        super(potionStrings.NAME, POTION_ID, PotionRarity.RARE, PotionSize.H, PotionEffect.OSCILLATE, LIQUID_COLOR, HYBRID_COLOR, SPOTS_COLOR);
+        super(potionStrings.NAME, POTION_ID, PotionRarity.PLACEHOLDER, PotionSize.SPHERE, PotionEffect.OSCILLATE, LIQUID_COLOR, HYBRID_COLOR, SPOTS_COLOR);
         try {
             outlineImg.set(this, OUTLINE_TEXTURE);
             containerImg.set(this, CONTAINER_TEXTURE);

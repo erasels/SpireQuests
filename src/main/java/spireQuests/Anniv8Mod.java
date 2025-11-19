@@ -34,6 +34,7 @@ import spireQuests.patches.QuestRunHistoryPatch;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
+import spireQuests.quests.coda.NuclearJuicePotion;
 import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.TexLoader;
@@ -175,6 +176,9 @@ public class Anniv8Mod implements
     }
 
     public static void addPotions() {
+
+        BaseMod.addPotion(NuclearJuicePotion.class, null, null, null, NuclearJuicePotion.POTION_ID);
+
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
         }

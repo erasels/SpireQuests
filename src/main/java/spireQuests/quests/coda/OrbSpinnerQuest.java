@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
@@ -23,11 +24,17 @@ public class OrbSpinnerQuest extends AbstractQuest {
 
         new TriggerEvent<AbstractOrb>(QuestTriggers.EVOKE_ORB, (orb) -> 
             {
+                // IDK how you evoked an empty orb or null orb, but you did it chief.
+                if (orb.ID == null || orb.ID == EmptyOrbSlot.ORB_ID) {
+                    return;
+                }
+
                 for (AbstractOrb o : evokedOrbs) {
-                    if (orb.getClass().isInstance(o.getClass())) {
+                    if (o.ID == orb.ID) {
                         return;
                     }
                 }
+                
                 evokedOrbs.add(orb.makeCopy());
             })
         .add(this);
@@ -35,7 +42,6 @@ public class OrbSpinnerQuest extends AbstractQuest {
         new TriggerEvent<>(QuestTriggers.TURN_START, (v) -> evokedOrbs.clear()).add(this);
         new TriggerEvent<>(QuestTriggers.LEAVE_ROOM, (node) -> evokedOrbs.clear()).add(this);
 
-        // rewardsText = localization.EXTRA_TEXT[1];
         needHoverTip = true;
         addReward(new PotionReward(new NuclearJuicePotion()));
         addReward(new RelicReward(new RadiationDispenserRelic()));
