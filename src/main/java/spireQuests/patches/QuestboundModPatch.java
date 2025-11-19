@@ -97,6 +97,24 @@ public class QuestboundModPatch {
         }
     }
 
+    @SpirePatch2(clz = MasterDeckViewScreen.class, method = "render")
+    public static class renderQuestboundTooltips {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void render(SpriteBatch sb) {
+            if(!questboundEnabled()) return;
+            getQuestbound().forEach(q ->
+                    q.questboundCards.forEach(c -> c.renderCardTip(sb))
+            );
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(FontHelper.class, "renderDeckViewTip");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+
     @SpirePatch2(clz = CardGroup.class, method = "initializeDeck")
     public static class initializeQuestboundCards {
         @SpireInsertPatch(locator = Locator.class, localvars = {"copy"})
