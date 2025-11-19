@@ -17,4 +17,9 @@ public class LeaveRoomTestQuest extends AbstractQuest {
 
         addReward(new QuestReward.RelicReward(new Courier()));
     }
+
+    @Override
+    public boolean canSpawn() {
+        return false;
+    }
 }

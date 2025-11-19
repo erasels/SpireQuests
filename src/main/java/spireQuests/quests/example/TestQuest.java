@@ -44,4 +44,9 @@ public class TestQuest extends AbstractQuest {
         super.makeTooltips(tipList);
         tipList.add(new CardPowerTip(new Bash()));
     }
+
+    @Override
+    public boolean canSpawn() {
+        return false;
+    }
 }

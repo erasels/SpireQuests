@@ -15,4 +15,9 @@ public class EnterRoomTestQuest extends AbstractQuest {
 
         addReward(new QuestReward.GoldReward(100));
     }
+
+    @Override
+    public boolean canSpawn() {
+        return false;
+    }
 }
