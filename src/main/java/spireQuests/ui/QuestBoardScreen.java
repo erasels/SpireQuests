@@ -57,8 +57,11 @@ public class QuestBoardScreen extends CustomScreen {
         AbstractDungeon.overlayMenu.proceedButton.hide();
         AbstractDungeon.overlayMenu.cancelButton.show(TEXT[0]);
 
-        if (MathUtils.randomBoolean()) { CardCrawlGame.sound.play("MAP_OPEN", 0.1f);
-        } else { CardCrawlGame.sound.play("MAP_OPEN_2", 0.1f); }
+        if (MathUtils.randomBoolean()) {
+            CardCrawlGame.sound.play("MAP_OPEN", 0.1f);
+        } else {
+            CardCrawlGame.sound.play("MAP_OPEN_2", 0.1f);
+        }
     }
 
     @Override
@@ -101,9 +104,11 @@ public class QuestBoardScreen extends CustomScreen {
     }
 
     protected static void updateBoard() {
-        if(boardY != 0.0F) {
+        if (boardY != 0.0F) {
             boardY = MathUtils.lerp(boardY, Settings.HEIGHT / 2.0F - 540.0F * Settings.yScale, Gdx.graphics.getDeltaTime() * 5.0F);
-            if (boardY < 0.5F) { boardY = 0.0F; }
+            if (boardY < 0.5F) {
+                boardY = 0.0F;
+            }
         }
     }
 
@@ -114,7 +119,7 @@ public class QuestBoardScreen extends CustomScreen {
         float x = (float) Settings.WIDTH / 10 - 45.0F * Settings.xScale;
         float y = (float) Settings.HEIGHT / 2;
         for (AbstractQuest quest : quests) {
-            QuestBoardQuest questBoardQuest = new QuestBoardQuest(quest, x ,y);
+            QuestBoardQuest questBoardQuest = new QuestBoardQuest(quest, x, y);
             questBoardQuests.add(questBoardQuest);
             x += xIncrease;
         }

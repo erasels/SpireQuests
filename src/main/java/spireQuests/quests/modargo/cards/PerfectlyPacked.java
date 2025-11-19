@@ -13,7 +13,7 @@ public class PerfectlyPacked extends AbstractSQCard {
     public static final String ID = makeID(PerfectlyPacked.class.getSimpleName());
 
     public PerfectlyPacked() {
-        super(ID,"modargo", 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, "modargo", 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
         this.exhaust = true;
     }
 

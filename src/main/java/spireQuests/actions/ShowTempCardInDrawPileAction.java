@@ -1,21 +1,20 @@
 package spireQuests.actions;
+
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import spireQuests.vfx.ShowCardToDrawPileEffect;
 
 
 public class ShowTempCardInDrawPileAction
-        extends AbstractGameAction
-{
-    private AbstractCard cardToMake;
-    private boolean autoPosition;
-    private float x;
-    private float y;
+        extends AbstractGameAction {
+    private final AbstractCard cardToMake;
+    private final boolean autoPosition;
+    private final float x;
+    private final float y;
 
     public ShowTempCardInDrawPileAction(AbstractCard card, boolean autoPosition, float cardX, float cardY) {
         UnlockTracker.markCardAsSeen(card.cardID);

@@ -9,6 +9,7 @@ import static spireQuests.Anniv8Mod.makeID;
 
 public class OwlMask extends AbstractSQRelic {
     public static final String ID = makeID(OwlMask.class.getSimpleName());
+
     public OwlMask() {
         super(ID, "modargo", RelicTier.SPECIAL, LandingSound.MAGICAL);
     }

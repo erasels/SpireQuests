@@ -13,9 +13,10 @@ import com.megacrit.cardcrawl.vfx.combat.CardPoofEffect;
 public class ShowCardToDrawPileEffect
         extends AbstractGameEffect {
     private static final float EFFECT_DUR = 1.5F;
-    private AbstractCard card;
+    private final AbstractCard card;
     private static final float PADDING = 30.0F * Settings.scale;
     private boolean cardOffset = false;
+
     public ShowCardToDrawPileEffect(AbstractCard srcCard, float x, float y, boolean cardOffset) {
         this.card = srcCard.makeStatEquivalentCopy();
         this.cardOffset = cardOffset;
@@ -82,8 +83,6 @@ public class ShowCardToDrawPileEffect
     }
 
 
-
-
     public void update() {
         this.duration -= Gdx.graphics.getDeltaTime();
         this.card.update();
@@ -101,5 +100,6 @@ public class ShowCardToDrawPileEffect
             this.card.render(sb);
     }
 
-    public void dispose() {}
+    public void dispose() {
+    }
 }

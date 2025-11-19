@@ -41,7 +41,7 @@ public class QuestboundModPatch {
     public static class renderQuestboundCards {
         @SpirePrefixPatch
         public static void render(SpriteBatch sb) {
-            if(!questboundEnabled()) return;
+            if (!questboundEnabled()) return;
             getQuestbound().forEach(q ->
                     q.questboundCards.forEach(c -> c.render(sb))
             );
@@ -52,7 +52,7 @@ public class QuestboundModPatch {
     public static class renderQuestboundCardsExceptOneCard {
         @SpirePrefixPatch
         public static void render(SpriteBatch sb, AbstractCard card) {
-            if(!questboundEnabled()) return;
+            if (!questboundEnabled()) return;
             getQuestbound().forEach(q ->
                     q.questboundCards.stream().filter(c -> c != card).forEach(c -> c.render(sb))
             );
@@ -63,15 +63,15 @@ public class QuestboundModPatch {
     public static class updateQuestboundCardPositions {
         @SpireInsertPatch(rloc = 3, localvars = {"cards"})
         public static void render(ArrayList<AbstractCard> cards) {
-            if(!questboundEnabled()) return;
+            if (!questboundEnabled()) return;
             getQuestbound().forEach(q ->
-                    cards.addAll(0,q.questboundCards)
+                    cards.addAll(0, q.questboundCards)
             );
         }
 
         @SpirePostfixPatch
         public static void remove() {
-            if(!questboundEnabled()) return;
+            if (!questboundEnabled()) return;
             getQuestbound().forEach(q ->
                     Wiz.adp().masterDeck.group.removeAll(q.questboundCards)
             );
@@ -82,15 +82,15 @@ public class QuestboundModPatch {
     public static class hideQuestboundCards {
         @SpireInsertPatch(rloc = 2, localvars = {"cards"})
         public static void render(ArrayList<AbstractCard> cards) {
-            if(!questboundEnabled()) return;
+            if (!questboundEnabled()) return;
             getQuestbound().forEach(q ->
-                    cards.addAll(0,q.questboundCards)
+                    cards.addAll(0, q.questboundCards)
             );
         }
 
         @SpirePostfixPatch
         public static void remove() {
-            if(!questboundEnabled()) return;
+            if (!questboundEnabled()) return;
             getQuestbound().forEach(q ->
                     Wiz.adp().masterDeck.group.removeAll(q.questboundCards)
             );
@@ -101,7 +101,7 @@ public class QuestboundModPatch {
     public static class renderQuestboundTooltips {
         @SpireInsertPatch(locator = Locator.class)
         public static void render(SpriteBatch sb) {
-            if(!questboundEnabled()) return;
+            if (!questboundEnabled()) return;
             getQuestbound().forEach(q ->
                     q.questboundCards.forEach(c -> c.renderCardTip(sb))
             );
@@ -120,14 +120,14 @@ public class QuestboundModPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = {"copy"})
         public static void initialize(CardGroup copy) {
             getQuestbound().forEach(q -> {
-                if(q.overrideQuestboundCards() != null)
-                    q.overrideQuestboundCards().forEach(c -> {
-                        CardModifierManager.addModifier(c, new QuestboundMod(q));
-                        copy.group.add(c.makeSameInstanceOf());
-                    });
-                else
-                    q.questboundCards.forEach(c -> copy.group.add(c.makeSameInstanceOf()));
-            }
+                        if (q.overrideQuestboundCards() != null)
+                            q.overrideQuestboundCards().forEach(c -> {
+                                CardModifierManager.addModifier(c, new QuestboundMod(q));
+                                copy.group.add(c.makeSameInstanceOf());
+                            });
+                        else
+                            q.questboundCards.forEach(c -> copy.group.add(c.makeSameInstanceOf()));
+                    }
             );
         }
 
@@ -145,12 +145,12 @@ public class QuestboundModPatch {
         public static void render(SpriteBatch sb, float ___DECK_X, float ___ICON_Y) {
             AtomicInteger i = new AtomicInteger(0);
             getQuestbound().forEach(q -> i.addAndGet(q.questboundCards.size()));
-            if(i.get() > 0 && questboundEnabled())
+            if (i.get() > 0 && questboundEnabled())
                 FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelAmountFont,
-                    Integer.toString(i.get()),
-                    ___DECK_X + 58.0F * Settings.scale,
-                    ___ICON_Y + 50.0F * Settings.scale,
-                    Settings.GOLD_COLOR .cpy());
+                        Integer.toString(i.get()),
+                        ___DECK_X + 58.0F * Settings.scale,
+                        ___ICON_Y + 50.0F * Settings.scale,
+                        Settings.GOLD_COLOR.cpy());
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -160,17 +160,19 @@ public class QuestboundModPatch {
             }
         }
     }
+
     @SpirePatch2(clz = CardCrawlGame.class, method = "loadPlayerSave")
     public static class loadQuestboundCards {
         @SpirePostfixPatch
         public static void loadPlayerSave() {
-            for(AbstractQuest q : QuestManager.currentQuests.get(AbstractDungeon.player)) {
-                if(q.questboundCards != null) q.questboundCards.clear();
+            for (AbstractQuest q : QuestManager.currentQuests.get(AbstractDungeon.player)) {
+                if (q.questboundCards != null) q.questboundCards.clear();
             }
-            for(Iterator<AbstractCard> iterator = Wiz.adp().masterDeck.group.iterator(); iterator.hasNext(); ) {
+            for (Iterator<AbstractCard> iterator = Wiz.adp().masterDeck.group.iterator(); iterator.hasNext(); ) {
                 AbstractCard c = iterator.next();
-                if(CardModifierManager.hasModifier(c, QuestboundMod.ID)) {
-                    QuestboundMod mod = (QuestboundMod) CardModifierManager.getModifiers(c, QuestboundMod.ID).get(0); AbstractQuest quest = QuestManager.currentQuests.get(AbstractDungeon.player).get(mod.boundQuestIndex);
+                if (CardModifierManager.hasModifier(c, QuestboundMod.ID)) {
+                    QuestboundMod mod = (QuestboundMod) CardModifierManager.getModifiers(c, QuestboundMod.ID).get(0);
+                    AbstractQuest quest = QuestManager.currentQuests.get(AbstractDungeon.player).get(mod.boundQuestIndex);
                     mod.boundQuest = quest;
                     quest.questboundCards.add(c);
                     iterator.remove();
@@ -184,7 +186,7 @@ public class QuestboundModPatch {
         @SpirePrefixPatch
         public static void savefile() {
             getQuestbound().forEach(q ->
-                    AbstractDungeon.player.masterDeck.group.addAll(0,q.questboundCards)
+                    AbstractDungeon.player.masterDeck.group.addAll(0, q.questboundCards)
             );
         }
 
@@ -204,11 +206,12 @@ public class QuestboundModPatch {
         }
     }
 
-    @SpirePatch2(clz= AbstractRoom.class,method ="update")
+    @SpirePatch2(clz = AbstractRoom.class, method = "update")
     public static class applyStartOfCombatPreDrawLogic {
         @SpireInsertPatch(locator = Locator.class)
         public static void update() {
-            if(!questboundEnabled()) getQuestbound().forEach(q -> q.questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c,true))));
+            if (!questboundEnabled())
+                getQuestbound().forEach(q -> q.questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c, true))));
         }
 
         private static class Locator extends SpireInsertLocator {

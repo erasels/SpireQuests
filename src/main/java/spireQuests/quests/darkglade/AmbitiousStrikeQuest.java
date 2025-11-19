@@ -17,7 +17,7 @@ public class AmbitiousStrikeQuest extends AbstractQuest {
         super(QuestType.SHORT, QuestDifficulty.HARD);
         new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 1, () -> {
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisCombat;
-            if(cardsPlayed == null || cardsPlayed.isEmpty()) return 0;
+            if (cardsPlayed == null || cardsPlayed.isEmpty()) return 0;
 
             AbstractCard lastCard = AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1);
             if (lastCard.hasTag(AbstractCard.CardTags.STARTER_STRIKE) && AbstractDungeon.getCurrRoom().eliteTrigger) {
@@ -35,7 +35,7 @@ public class AmbitiousStrikeQuest extends AbstractQuest {
     public void onComplete() {
         ArrayList<AbstractCard> upgradableCards = new ArrayList<>();
 
-        for(AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
             if (c.canUpgrade() && c.type == AbstractCard.CardType.ATTACK) {
                 upgradableCards.add(c);
             }
@@ -46,13 +46,13 @@ public class AmbitiousStrikeQuest extends AbstractQuest {
             upgradableCards.get(0).upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(0));
             AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(upgradableCards.get(0).makeStatEquivalentCopy()));
-            AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+            AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         }
     }
 
     @Override
     public boolean canSpawn() {
-        for(AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
             if (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE) && (AbstractDungeon.actNum == 1 || AbstractDungeon.actNum == 2)) {
                 return true;
             }

@@ -48,20 +48,20 @@ public class Trapshot extends AbstractBPCard {
     public boolean isDeadOn() {
         boolean conc = AbstractDungeon.player.hasPower("hermit:Concentration");
 
-        double hand_pos = (AbstractDungeon.player.hand.group.indexOf(this)+0.5);
+        double hand_pos = (AbstractDungeon.player.hand.group.indexOf(this) + 0.5);
         double hand_size = (AbstractDungeon.player.hand.size());
-        double relative = Math.abs(hand_pos-hand_size/2);
+        double relative = Math.abs(hand_pos - hand_size / 2);
 
-        return relative<1 || conc;
+        return relative < 1 || conc;
     }
 
     public boolean isDeadOnPos() {
         boolean conc = AbstractDungeon.player.hasPower("hermit:Concentration");
 
-        double hand_pos = (AbstractDungeon.player.hand.group.indexOf(this)+0.5);
+        double hand_pos = (AbstractDungeon.player.hand.group.indexOf(this) + 0.5);
         double hand_size = (AbstractDungeon.player.hand.size());
-        double relative = Math.abs(hand_pos-hand_size/2);
+        double relative = Math.abs(hand_pos - hand_size / 2);
 
-        return (relative<1 || conc);
+        return (relative < 1 || conc);
     }
 }

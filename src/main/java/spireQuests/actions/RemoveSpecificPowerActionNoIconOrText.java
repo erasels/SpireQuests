@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 public class RemoveSpecificPowerActionNoIconOrText extends AbstractGameAction {
     private String powerToRemove;
     private AbstractPower powerInstance;
+
     public RemoveSpecificPowerActionNoIconOrText(AbstractCreature target, AbstractCreature source, String powerToRemove) {
         this.setValues(target, source, this.amount);
         this.actionType = ActionType.DEBUFF;

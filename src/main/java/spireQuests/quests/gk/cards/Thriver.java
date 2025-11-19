@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import spireQuests.util.Wiz;
 
 import static spireQuests.Anniv8Mod.makeID;
 

@@ -23,7 +23,7 @@ public class DoomsdayCalendarQuest extends AbstractQuest {
     @Override
     public void onStart() {
         super.onStart();
-        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new ImpendingDay(), (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));
+        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new ImpendingDay(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
     }
 
     @Override

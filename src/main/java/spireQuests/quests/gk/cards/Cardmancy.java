@@ -10,7 +10,7 @@ import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.util.CompatUtil.PM_COLOR;
 
 public class Cardmancy extends AbstractBPCard {
-    public static final String ID= makeID(Cardmancy.class.getSimpleName());
+    public static final String ID = makeID(Cardmancy.class.getSimpleName());
 
     public Cardmancy() {
         super(ID, "gk", 0, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF, PM_COLOR);

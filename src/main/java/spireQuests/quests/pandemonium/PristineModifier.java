@@ -22,13 +22,13 @@ public class PristineModifier extends AbstractCardModifier {
     public static final String ID = makeID(PristineModifier.class.getSimpleName());
     private static final UIStrings strings = CardCrawlGame.languagePack.getUIString(ID);
     private static float shineTimer = 0f;
-    private static final Color SHINE_COLOR = new Color(0.85f,0.9f,1f,1f);
+    private static final Color SHINE_COLOR = new Color(0.85f, 0.9f, 1f, 1f);
     private static final float SHINE_FREQUENCY = 0.3f;
 
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tips = new ArrayList<>();
-        tips.add(new TooltipInfo(strings.TEXT[0],strings.TEXT[1]));
+        tips.add(new TooltipInfo(strings.TEXT[0], strings.TEXT[1]));
         return tips;
     }
 
@@ -41,13 +41,13 @@ public class PristineModifier extends AbstractCardModifier {
             AbstractGameEffect shineEffect =
                     new VfxBuilder(ImageMaster.ROOM_SHINE_2, shineX, shineY, 1.5f)
                             .setAlpha(0.7f)
-                            .setScale(0.6f*card.drawScale)
+                            .setScale(0.6f * card.drawScale)
                             .setColor(SHINE_COLOR)
                             .fadeIn(1f)
                             .fadeOut(1.5f)
                             .build();
             AbstractDungeon.topLevelEffectsQueue.add(shineEffect);
-            shineTimer = MathUtils.random(0f,0.25f);
+            shineTimer = MathUtils.random(0f, 0.25f);
         }
     }
 

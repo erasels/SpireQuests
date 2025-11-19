@@ -27,8 +27,7 @@ public class CallbackAction<T extends AbstractGameAction> extends AbstractGameAc
     public void update() {
         if (!this.action.isDone) {
             this.action.update();
-        }
-        else {
+        } else {
             isDone = true;
             onComplete.accept(this.action);
         }

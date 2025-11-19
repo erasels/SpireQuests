@@ -10,6 +10,7 @@ import static spireQuests.Anniv8Mod.makeID;
 
 public class PeasantsTunic extends AbstractSQRelic {
     public static final String ID = makeID(PeasantsTunic.class.getSimpleName());
+
     public PeasantsTunic() {
         super(ID, "modargo", RelicTier.SPECIAL, LandingSound.FLAT);
     }

@@ -14,13 +14,13 @@ public class ActUtil {
             try {
                 Class<?> clz = Class.forName("actlikeit.savefields.BehindTheScenesActNum");
                 Method m = clz.getMethod("getActNum");
-                return (int)m.invoke(null);
-            } catch (IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException e) {
+                return (int) m.invoke(null);
+            } catch (IllegalAccessException | ClassNotFoundException | NoSuchMethodException |
+                     InvocationTargetException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Failed when trying to call BehindTheScenesActNum.getActNum()", e);
             }
-        }
-        else {
+        } else {
             // If ActLikeIt isn't loaded, we can safely enumerate the possible acts and use that to determine the real act number
             switch (AbstractDungeon.id) {
                 case Exordium.ID:

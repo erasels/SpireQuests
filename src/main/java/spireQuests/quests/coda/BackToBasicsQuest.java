@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 
@@ -15,9 +14,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class BackToBasicsQuest  extends AbstractQuest {
+public class BackToBasicsQuest extends AbstractQuest {
 
-    public BackToBasicsQuest() {   
+    public BackToBasicsQuest() {
         super(QuestType.SHORT, QuestDifficulty.HARD);
 
         new TriggeredUpdateTracker<Integer, Void>(QuestTriggers.VICTORY, 0, 1, () -> {
@@ -26,38 +25,37 @@ public class BackToBasicsQuest  extends AbstractQuest {
             if (!(room.eliteTrigger || room instanceof MonsterRoomBoss)) {
                 return 0;
             }
-            if (cardsPlayed == null || cardsPlayed.isEmpty()){
+            if (cardsPlayed == null || cardsPlayed.isEmpty()) {
                 return 1;
             }
             for (AbstractCard c : cardsPlayed) {
-                if (c.rarity == CardRarity.UNCOMMON || c.rarity ==  CardRarity.RARE) {
+                if (c.rarity == CardRarity.UNCOMMON || c.rarity == CardRarity.RARE) {
                     return 0;
                 }
             }
             return 1;
-        })
-            {
-                @Override
-                public String progressString() {
-                    return "";
-                }
+        }) {
+            @Override
+            public String progressString() {
+                return "";
+            }
 
-                @Override
-                public boolean isDisabled() {
-                    AbstractRoom room = AbstractDungeon.getCurrRoom();
-                    if (!(room.eliteTrigger || room instanceof MonsterRoomBoss) || room.isBattleOver) {
+            @Override
+            public boolean isDisabled() {
+                AbstractRoom room = AbstractDungeon.getCurrRoom();
+                if (!(room.eliteTrigger || room instanceof MonsterRoomBoss) || room.isBattleOver) {
+                    return true;
+                }
+                ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisCombat;
+                for (AbstractCard c : cardsPlayed) {
+                    if (c.rarity == CardRarity.UNCOMMON || c.rarity == CardRarity.RARE) {
                         return true;
                     }
-                    ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisCombat;
-                    for (AbstractCard c : cardsPlayed) {
-                        if (c.rarity == CardRarity.UNCOMMON || c.rarity ==  CardRarity.RARE) {
-                            return true;
-                        }
-                    }
-                    return false;
-                };
+                }
+                return false;
             }
-            .add(this);
+        }
+                .add(this);
 
         useDefaultReward = false;
         rewardsText = localization.EXTRA_TEXT[1];

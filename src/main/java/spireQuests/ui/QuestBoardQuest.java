@@ -127,12 +127,14 @@ public class QuestBoardQuest {
         sb.setColor(lockAlpha);
 
         if (quest.usingGoldCost) {
-            sb.draw(ImageMaster.UI_GOLD,x + 240.0F * Settings.xScale,y - 405.0F * Settings.yScale + boardY, ImageMaster.UI_GOLD.getWidth(), ImageMaster.UI_GOLD.getHeight());
+            sb.draw(ImageMaster.UI_GOLD, x + 240.0F * Settings.xScale, y - 405.0F * Settings.yScale + boardY, ImageMaster.UI_GOLD.getWidth(), ImageMaster.UI_GOLD.getHeight());
         } else {
-            sb.draw(ImageMaster.TP_HP,x + 235.0F * Settings.xScale,y - 410.0F * Settings.yScale + boardY, ImageMaster.TP_HP.getWidth(), ImageMaster.TP_HP.getHeight());
+            sb.draw(ImageMaster.TP_HP, x + 235.0F * Settings.xScale, y - 410.0F * Settings.yScale + boardY, ImageMaster.TP_HP.getWidth(), ImageMaster.TP_HP.getHeight());
         }
 
-        if(!this.canBuy()) { fontColor = Color.RED.cpy(); }
+        if (!this.canBuy()) {
+            fontColor = Color.RED.cpy();
+        }
 
         fontColor.a = lockAlpha.a;
 

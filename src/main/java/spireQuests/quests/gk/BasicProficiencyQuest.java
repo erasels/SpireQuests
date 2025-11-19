@@ -26,6 +26,7 @@ import static spireQuests.util.CompatUtil.SNAPSHOT_ID;
 public class BasicProficiencyQuest extends AbstractQuest {
     public static final Color TITLE_PURPLE = new Color(183/255f, 95/255f, 245/255f, 1);
     private static final Map<String, List<String>> CHAR_MAP = new HashMap<>();
+
     static {
         CHAR_MAP.put("IRONCLAD", Arrays.asList(Bash.ID, Smash.ID));
         CHAR_MAP.put("THE_SILENT", Arrays.asList(Survivor.ID, Thriver.ID));
@@ -34,6 +35,7 @@ public class BasicProficiencyQuest extends AbstractQuest {
         CHAR_MAP.put("THE_PACKMASTER", Arrays.asList(CARDISTRY_ID, Cardmancy.ID));
         CHAR_MAP.put("HERMIT", Arrays.asList(SNAPSHOT_ID, Trapshot.ID));
     }
+
     private String cardToPlayId = Madness.ID;
     private String rewardCardId = Madness.ID;
 
@@ -41,7 +43,7 @@ public class BasicProficiencyQuest extends AbstractQuest {
         super(QuestType.SHORT, QuestDifficulty.EASY);
         needHoverTip = true;
 
-        if(Wiz.p() != null) {
+        if (Wiz.p() != null) {
             List<String> data = CHAR_MAP.get(Wiz.p().chosenClass.name());
             cardToPlayId = data.get(0);
             rewardCardId = data.get(1);

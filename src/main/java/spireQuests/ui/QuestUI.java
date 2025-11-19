@@ -81,7 +81,7 @@ public class QuestUI {
 
             if (hb.hovered) {
                 if (InputHelper.justClickedLeft) {
-                    if(quest.complete() || quest.fail()) QuestManager.completeQuest(quest);
+                    if (quest.complete() || quest.fail()) QuestManager.completeQuest(quest);
                 }
                 if (Settings.isDebug && InputHelper.justClickedRight) {
                     QuestManager.failQuest(quest);
@@ -103,8 +103,7 @@ public class QuestUI {
             questAlpha += Gdx.graphics.getDeltaTime() * 4f;
             if (dropdownAngle < 0) dropdownAngle = 0;
             if (questAlpha > 1) questAlpha = 1;
-        }
-        else {
+        } else {
             dropdownAngle += Gdx.graphics.getDeltaTime() * 360f;
             questAlpha -= Gdx.graphics.getDeltaTime() * 4f;
             if (dropdownAngle > 90) dropdownAngle = 90;
@@ -150,7 +149,7 @@ public class QuestUI {
 
                 quest.width = FontHelper.layout.width + rewardOffset;
 
-                if(!failed) {
+                if (!failed) {
                     for (int j = 0; j < quest.questRewards.size(); ++j) {
                         sb.draw(quest.questRewards.get(j).icon(), xPos - (32 * (quest.questRewards.size() - j)), yPos - (SMALL_SPACING * 1.1f), 32, 32);
                     }
@@ -163,14 +162,11 @@ public class QuestUI {
                     Color textColor = Color.LIGHT_GRAY;
                     if (hb.hovered) {
                         textColor = Color.WHITE;
-                    }
-                    else if (tracker.isFailed()) {
+                    } else if (tracker.isFailed()) {
                         textColor = Settings.RED_TEXT_COLOR;
-                    }
-                    else if (tracker.isComplete()) {
+                    } else if (tracker.isComplete()) {
                         textColor = Settings.GOLD_COLOR;
-                    }
-                    else if (tracker.isDisabled()) {
+                    } else if (tracker.isDisabled()) {
                         textColor = Color.GRAY;
                     }
                     FontHelper.renderFontRightAligned(sb, smallFont, tracker.toString(), xPos, yPos - SMALL_SPACING * 0.5f, textColor);

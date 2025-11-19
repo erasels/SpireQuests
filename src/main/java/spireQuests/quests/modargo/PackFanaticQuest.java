@@ -8,7 +8,6 @@ import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.modargo.cards.PerfectlyPacked;
-import spireQuests.quests.modargo.relics.PeasantsTunic;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -61,6 +60,6 @@ public class PackFanaticQuest extends AbstractQuest {
         if (currentPoolPacks == null) {
             return new HashSet<>();
         }
-        return currentPoolPacks.stream().map(p -> (String)ReflectionHacks.getPrivate(p, abstractCardPack, "packID")).collect(Collectors.toSet());
+        return currentPoolPacks.stream().map(p -> (String) ReflectionHacks.getPrivate(p, abstractCardPack, "packID")).collect(Collectors.toSet());
     }
 }

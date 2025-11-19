@@ -16,11 +16,8 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -41,14 +38,11 @@ import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.CompatUtil;
 import spireQuests.util.TexLoader;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
-
-import static spireQuests.rewards.RewardEnums.SQ_SINGLECARDREWARD;
 
 @SuppressWarnings({"unused"})
 @SpireInitializer
@@ -61,7 +55,7 @@ public class Anniv8Mod implements
         AddAudioSubscriber,
         PostDungeonInitializeSubscriber,
         StartGameSubscriber,
-        PostRenderSubscriber{
+        PostRenderSubscriber {
 
     public static final Logger logger = LogManager.getLogger("SpireQuests");
 
@@ -219,8 +213,7 @@ public class Anniv8Mod implements
         loadStrings("eng");
 
         loadQuestStrings(questPackages, "eng");
-        if (Settings.language != Settings.GameLanguage.ENG)
-        {
+        if (Settings.language != Settings.GameLanguage.ENG) {
             loadStrings(Settings.language.toString().toLowerCase());
             loadQuestStrings(questPackages, Settings.language.toString().toLowerCase());
         }
@@ -319,9 +312,10 @@ public class Anniv8Mod implements
     }
 
     public static SingleCardReward hoverRewardWorkaround;
+
     @Override
     public void receivePostRender(SpriteBatch sb) {
-        if(hoverRewardWorkaround != null) {
+        if (hoverRewardWorkaround != null) {
             hoverRewardWorkaround.renderCardOnHover(sb);
             hoverRewardWorkaround = null;
         }

@@ -17,7 +17,7 @@ public class CompatUtil {
 
     public static void postInit() {
         AbstractCard card = CardLibrary.getCard(CARDISTRY_ID);
-        if(card != null) {
+        if (card != null) {
             PM_COLOR = card.color;
         }
 
@@ -33,7 +33,7 @@ public class CompatUtil {
         try {
             Class<?> enumPatchClass = Class.forName("hermit.patches.EnumPatch");
             HERMIT_GUN_EFFECT = (AbstractGameAction.AttackEffect) enumPatchClass.getField("HERMIT_GUN").get(null);
-        } catch(ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
             Anniv8Mod.logger.warn("Couldn't get HERMIT_GUN attack effect");
         }
     }

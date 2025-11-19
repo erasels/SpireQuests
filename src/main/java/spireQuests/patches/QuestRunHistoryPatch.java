@@ -103,12 +103,12 @@ public class QuestRunHistoryPatch {
     @SpirePatch(clz = RunHistoryPath.class, method = "setRunData")
     public static class AddQuestDataPatch {
         @SuppressWarnings("rawtypes")
-        @SpireInsertPatch(locator = Locator.class, localvars = { "element", "i" })
+        @SpireInsertPatch(locator = Locator.class, localvars = {"element", "i"})
         public static void addQuestData(RunHistoryPath __instance, RunData newData, RunPathElement element, int i) throws NoSuchFieldException, IllegalAccessException {
             Field field1 = newData.getClass().getField("quest_pickup_per_floor");
             Field field2 = newData.getClass().getField("quest_completion_per_floor");
-            List quest_pickup_per_floor = (List)field1.get(newData);
-            List quest_completion_per_floor = (List)field2.get(newData);
+            List quest_pickup_per_floor = (List) field1.get(newData);
+            List quest_completion_per_floor = (List) field2.get(newData);
             // Element 0 of the quest data is what happened in the Neow room, but there's no RunPathElement for the Neow
             // room, so we show quests picked up from Neow on the first floor.
             // This means we ignore element 1 of the quest pickup data and element 0 of the quest completion data. This
@@ -120,9 +120,8 @@ public class QuestRunHistoryPatch {
                 List<String> s = null;
                 if (questIDs instanceof List) {
                     //noinspection unchecked
-                    s = (List<String>)questIDs;
-                }
-                else if (questIDs != null) {
+                    s = (List<String>) questIDs;
+                } else if (questIDs != null) {
                     logger.warn("Unrecognized quest_pickup_per_floor data: " + questIDs);
                 }
                 RunPathElementFields.questPickups.set(element, s);
@@ -132,9 +131,8 @@ public class QuestRunHistoryPatch {
                 List<String> s = null;
                 if (questIDs instanceof List) {
                     //noinspection unchecked
-                    s = (List<String>)questIDs;
-                }
-                else if (questIDs != null) {
+                    s = (List<String>) questIDs;
+                } else if (questIDs != null) {
                     logger.warn("Unrecognized quest_completion_per_floor data: " + questIDs);
                 }
                 RunPathElementFields.questCompletions.set(element, s);
@@ -152,7 +150,7 @@ public class QuestRunHistoryPatch {
 
     @SpirePatch(clz = RunPathElement.class, method = "getTipDescriptionText")
     public static class DisplayQuestDataPatch {
-        @SpireInsertPatch(locator = Locator.class, localvars = { "sb" })
+        @SpireInsertPatch(locator = Locator.class, localvars = {"sb"})
         public static void displayQuestData(RunPathElement __instance, StringBuilder sb) {
             List<String> questPickups = RunPathElementFields.questPickups.get(__instance);
             List<String> questCompletions = RunPathElementFields.questCompletions.get(__instance);
@@ -199,7 +197,7 @@ public class QuestRunHistoryPatch {
         }
     }
 
-    @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = { SaveFile.class })
+    @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = {SaveFile.class})
     public static class NextRoomTransitionAddEntriesPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static void nextRoomTransitionAddEntriesPatch(AbstractDungeon __instance, SaveFile saveFile) {

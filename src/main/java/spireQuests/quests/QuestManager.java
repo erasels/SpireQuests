@@ -36,13 +36,13 @@ public class QuestManager {
 
     //Called once in postInitialize
     public static void initialize() {
-        for(AbstractQuest.QuestDifficulty diff : AbstractQuest.QuestDifficulty.values()) {
+        for (AbstractQuest.QuestDifficulty diff : AbstractQuest.QuestDifficulty.values()) {
             questsByDifficulty.put(diff, new ArrayList<>());
         }
 
         new AutoAdd(modID)
-            .packageFilter(Anniv8Mod.class)
-            .any(AbstractQuest.class, QuestManager::registerQuest);
+                .packageFilter(Anniv8Mod.class)
+                .any(AbstractQuest.class, QuestManager::registerQuest);
 
         BaseMod.addSaveField(makeID("QuestManager"), new CustomSavable<QuestSave>() {
             @Override
@@ -120,14 +120,14 @@ public class QuestManager {
         questList.add(quest);
         questList.sort(null);
         quest.onStart();
-        if(quest.questboundCards != null) {
+        if (quest.questboundCards != null) {
             quest.questboundCards.forEach(c -> {
                 CardModifierManager.addModifier(c, new QuestboundMod(quest));
-                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(new GrandFinale(), (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));
+                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(new GrandFinale(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
             });
         }
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
-        if(!questPickupPerFloor.isEmpty()) {
+        if (!questPickupPerFloor.isEmpty()) {
             questPickupPerFloor.get(questPickupPerFloor.size() - 1).add(quest.id);
         } else {
             Anniv8Mod.logger.error("questPickupPerFloor was empty, not adding quest to run history.");
@@ -174,7 +174,8 @@ public class QuestManager {
 
 
     public void render(SpriteBatch sb) {
-        if (AbstractDungeon.player == null) return;
+        if (AbstractDungeon.player == null) {
+        }
         //quest ui
     }
 }

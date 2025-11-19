@@ -12,6 +12,7 @@ public class Trigger<T> {
     public void trigger() {
         trigger(null);
     }
+
     public void trigger(T obj) {
         param = obj;
         QuestManager.triggerTrackers(this);
@@ -19,9 +20,9 @@ public class Trigger<T> {
 
     public Consumer<Trigger<?>> getTriggerMethod(Consumer<T> method) {
         return (trigger -> {
-           if (trigger == this) {
-               method.accept(param);
-           }
+            if (trigger == this) {
+                method.accept(param);
+            }
         });
     }
 }
