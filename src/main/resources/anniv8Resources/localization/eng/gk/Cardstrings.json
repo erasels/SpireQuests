@@ -1,0 +1,26 @@
+{
+  "${ModID}:TripleCast": {
+    "NAME": "Triplecast",
+    "DESCRIPTION": "Evoke your next Orb thrice."
+  },
+  "${ModID}:Smash": {
+    "NAME": "Smash",
+    "DESCRIPTION": "Deal !D! damage and apply !M! Vulnerable to ALL enemies. NL Exhaust."
+  },
+  "${ModID}:Thriver": {
+    "NAME": "Thriver",
+    "DESCRIPTION": "{@@}Gain !B! Block. NL Draw !M! card{!M!|0,>1=s}. NL Discard !M! card{!M!|0,>1=s}."
+  },
+  "${ModID}:Cardmancy": {
+    "NAME": "Cardmancy",
+    "DESCRIPTION": "Gain !B! Block. NL The next card you play this turn is returned to the top of your draw pile and upgraded."
+  },
+  "${ModID}:Balance": {
+    "NAME": "Balance",
+    "DESCRIPTION": "Gain !B! Block. NL Enter Calm."
+  },
+  "${ModID}:Trapshot": {
+    "NAME": "Trapshot",
+    "DESCRIPTION": "Deal !D! damage. hermit:Dead_On: The target loses Strength this turn equal to unblocked damage dealt."
+  }
+}

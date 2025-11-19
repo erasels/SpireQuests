@@ -16,9 +16,11 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -36,6 +38,7 @@ import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
 import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.QuestBoardScreen;
+import spireQuests.util.CompatUtil;
 import spireQuests.util.TexLoader;
 
 import java.io.IOException;
@@ -70,17 +73,10 @@ public class Anniv8Mod implements
     public static final String HARD_MODE_CONFIG = "hardModeConfig";
     public static boolean hardModeConfig = false;
     public static SpireConfig modConfig = null;
+    public static final String QUESTBOUND_CONFIG = "questboundConfig";
+    public static boolean questboundConfig = true;
 
     public static final String modID = "anniv8";
-
-    private static final String ATTACK_S_ART = modID + "Resources/images/512/attack.png";
-    private static final String SKILL_S_ART = modID + "Resources/images/512/skill.png";
-    private static final String POWER_S_ART = modID + "Resources/images/512/power.png";
-    private static final String CARD_ENERGY_S = modID + "Resources/images/512/energy.png";
-    private static final String TEXT_ENERGY = modID + "Resources/images/512/text_energy.png";
-    private static final String ATTACK_L_ART = modID + "Resources/images/1024/attack.png";
-    private static final String SKILL_L_ART = modID + "Resources/images/1024/skill.png";
-    private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
 
     public static boolean initializedStrings = false;
 
@@ -123,6 +119,7 @@ public class Anniv8Mod implements
         try {
             Properties defaults = new Properties();
             defaults.put(HARD_MODE_CONFIG, false);
+            defaults.put(QUESTBOUND_CONFIG, true);
             modConfig = new SpireConfig(modID, "anniv8Config", defaults);
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,6 +169,8 @@ public class Anniv8Mod implements
 
         ConsoleCommand.addCommand("addquest", AddQuestCommand.class);
         ConsoleCommand.addCommand("spawnquest", SpawnQuestCommand.class);
+
+        CompatUtil.postInit();
     }
 
     public static void addPotions() {
@@ -348,11 +347,23 @@ public class Anniv8Mod implements
                 });
         settingsPanel.addUIElement(toggleHardModeButton);
 
+        ModLabeledToggleButton toggleQuestboundButton = new ModLabeledToggleButton(configStrings.TEXT[4],
+                350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                questboundConfig,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+                    questboundConfig = button.enabled;
+                    saveConfig();
+                });
+        settingsPanel.addUIElement(toggleQuestboundButton);
+
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
 
     private void initializeSavedData() {
         hardModeConfig = modConfig.getBool(HARD_MODE_CONFIG);
+        questboundConfig = modConfig.getBool(QUESTBOUND_CONFIG);
     }
 
     public static void addSaveFields() {
@@ -368,9 +379,14 @@ public class Anniv8Mod implements
         return hardModeConfig;
     }
 
+    public static boolean questboundEnabled() {
+        return questboundConfig;
+    }
+
     public static void saveConfig() {
         try {
             modConfig.setBool(HARD_MODE_CONFIG, hardModeConfig);
+            modConfig.setBool(QUESTBOUND_CONFIG, questboundConfig);
             modConfig.save();
         } catch (Exception e) {
             e.printStackTrace();

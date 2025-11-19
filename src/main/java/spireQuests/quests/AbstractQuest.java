@@ -1,5 +1,6 @@
 package spireQuests.quests;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -800,5 +801,14 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         public String progressString() {
             return "";
         }
+    }
+
+
+    // Creates Questbound cards that are handled automatically. Just need an array and add cards to it.
+    public ArrayList<AbstractCard> questboundCards;
+
+    // This is for situations where the Questbound cards in the deck would be replaced. Basically if they're a "Random Attack" or something similar.
+    public ArrayList<AbstractCard> overrideQuestboundCards() {
+        return null;
     }
 }

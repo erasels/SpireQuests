@@ -1,7 +1,6 @@
 package spireQuests.quests.pandemonium;
 
 import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;

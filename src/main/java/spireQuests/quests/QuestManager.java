@@ -3,14 +3,19 @@ package spireQuests.quests;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireQuests.Anniv8Mod;
+import spireQuests.cardmods.QuestboundMod;
 import spireQuests.patches.QuestRunHistoryPatch;
+import spireQuests.vfx.ShowCardandFakeObtainEffect;
 
 import java.util.*;
 
@@ -115,6 +120,12 @@ public class QuestManager {
         questList.add(quest);
         questList.sort(null);
         quest.onStart();
+        if(quest.questboundCards != null) {
+            quest.questboundCards.forEach(c -> {
+                CardModifierManager.addModifier(c, new QuestboundMod(quest));
+                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(new GrandFinale(), (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));
+            });
+        }
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
         if(!questPickupPerFloor.isEmpty()) {
             questPickupPerFloor.get(questPickupPerFloor.size() - 1).add(quest.id);

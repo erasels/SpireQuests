@@ -1,0 +1,9 @@
+{
+  "${ModID}:UpgradeNextPower": {
+    "NAME": "Cardmancy",
+    "DESCRIPTIONS": [
+      "#yUpgrade the next card you play.",
+      "#yUpgrade the next #b%s cards you play."
+    ]
+  }
+}
