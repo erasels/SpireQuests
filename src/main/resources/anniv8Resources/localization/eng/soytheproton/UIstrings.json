@@ -2,7 +2,7 @@
   "${ModID}:GrandFinaleQuest": {
     "TEXT": [
       "GRAND FINALE",
-      "Obtain a #yQuestbound #yGrand #yFinale. Play #yGrand #yFinale.",
+      "Obtain a #yQuestbound #yGrand #yFinale. NL Play #yGrand #yFinale.",
       "SoytheProton"
     ],
     "EXTRA_TEXT": [
