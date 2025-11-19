@@ -1,4 +1,4 @@
-package spireQuests.quests.modargo;
+package spireQuests.quests.modargo.relics;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -10,6 +10,7 @@ import static spireQuests.Anniv8Mod.makeID;
 
 public class PeasantsTunic extends AbstractSQRelic {
     public static final String ID = makeID(PeasantsTunic.class.getSimpleName());
+
     public PeasantsTunic() {
         super(ID, "modargo", RelicTier.SPECIAL, LandingSound.FLAT);
     }

@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.ui.DialogWord;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.SpeechTextEffect;
 
-public class TopLevelSpeechEffect extends AbstractGameEffect{
+public class TopLevelSpeechEffect extends AbstractGameEffect {
     private static final int RAW_W = 512;
     private static final float SHADOW_OFFSET = 16f * Settings.scale;
     private static final float WAVY_DISTANCE = 2f * Settings.scale;
@@ -21,17 +21,19 @@ public class TopLevelSpeechEffect extends AbstractGameEffect{
     private static final float FADE_TIME = 0.3f;
 
     private float shadow_offset = 0f;
-    private float x, y;
+    private final float x;
+    private final float y;
     private float wavy_y, wavyHelper;
     private float scaleTimer = 0.3f;
-    private boolean facingRight;
-    private Color shadowColor = new Color(0f, 0f, 0f, 0f);
+    private final boolean facingRight;
+    private final Color shadowColor = new Color(0f, 0f, 0f, 0f);
 
-    private SpeechTextEffect textEffect;
+    private final SpeechTextEffect textEffect;
 
     public TopLevelSpeechEffect(float x, float y, String msg, boolean isPlayer) {
         this(x, y, 2f, msg, isPlayer);
     }
+
     public TopLevelSpeechEffect(float x, float y, float duration, String msg, boolean isPlayer) {
         this(x, y, 2f, msg, isPlayer, new Color(0.8f, 0.9f, 0.9f, 0f));
     }
@@ -74,7 +76,7 @@ public class TopLevelSpeechEffect extends AbstractGameEffect{
             color.a = MathUtils.lerp(color.a, 0f, Gdx.graphics.getDeltaTime() * 12f);
         }
 
-        if(duration < FADE_TIME/2) {
+        if (duration < FADE_TIME / 2) {
             textEffect.duration = -1;
         }
 

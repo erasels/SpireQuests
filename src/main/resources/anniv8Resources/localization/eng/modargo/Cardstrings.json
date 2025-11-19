@@ -1,0 +1,8 @@
+{
+  "${ModID}:PerfectlyPacked": {
+    "NAME": "Perfectly Packed",
+    "DESCRIPTION": "Choose one of three cards from different packs in your draw pile to put into your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Choose one of three cards from different packs in your draw pile to put into your hand. Exhaust.",
+    "EXTENDED_DESCRIPTION": ["No cards with packs in draw pile."]
+  }
+}

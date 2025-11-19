@@ -10,8 +10,8 @@ public class SparkleEffect extends UncommonPotionParticleEffect {
     public SparkleEffect(Hitbox hb, Color col) {
         super(hb);
         color = col.cpy();
-        float xVariation = (hb.width/2f) * MathUtils.random(-0.5f, 0.5f);
-        float yVariation = (hb.height/2f) * MathUtils.random(-0.5f, 0.5f);
+        float xVariation = (hb.width / 2f) * MathUtils.random(-0.5f, 0.5f);
+        float yVariation = (hb.height / 2f) * MathUtils.random(-0.5f, 0.5f);
         ReflectionHacks.setPrivate(this, UncommonPotionParticleEffect.class, "oX", xVariation);
         ReflectionHacks.setPrivate(this, UncommonPotionParticleEffect.class, "oY", yVariation);
     }

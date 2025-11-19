@@ -13,8 +13,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
+import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import javassist.CtBehavior;
 import spireQuests.quests.Trigger;
 
@@ -22,12 +25,17 @@ public class QuestTriggers {
     public static final Trigger<Void> DECK_CHANGE = new Trigger<>();
     public static final Trigger<AbstractCard> REMOVE_CARD = new Trigger<>();
     public static final Trigger<AbstractCard> ADD_CARD = new Trigger<>();
+
     public static final Trigger<MapRoomNode> ENTER_ROOM = new Trigger<>();
     public static final Trigger<MapRoomNode> LEAVE_ROOM = new Trigger<>();
+
     public static final Trigger<AbstractCard> PLAY_CARD = new Trigger<>();
     public static final Trigger<Integer> DAMAGE_TAKEN = new Trigger<>();
     public static final Trigger<Void> TURN_START = new Trigger<>();
+    public static final Trigger<Void> TURN_END = new Trigger<>();
     public static final Trigger<Void> VICTORY = new Trigger<>();
+    public static final Trigger<AbstractPotion> USE_POTION = new Trigger<>();
+
     public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
     public static final Trigger<AbstractOrb> CHANNEL_ORB = new Trigger<>();
     public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
@@ -39,11 +47,11 @@ public class QuestTriggers {
     @SpirePatch(
             clz = CardGroup.class,
             method = "removeCard",
-            paramtypez = { AbstractCard.class }
+            paramtypez = {AbstractCard.class}
     )
     public static class OnRemoveCard {
         @SpireInsertPatch(
-                rloc=2
+                rloc = 2
         )
         public static void OnRemove(CardGroup __instance, AbstractCard c) {
             if (disabled()) return;
@@ -72,7 +80,7 @@ public class QuestTriggers {
     @SpirePatch(
             clz = AbstractDungeon.class,
             method = "nextRoomTransition",
-            paramtypez = { SaveFile.class }
+            paramtypez = {SaveFile.class}
     )
     public static class OnEnterRoom {
         @SpireInsertPatch(
@@ -82,7 +90,7 @@ public class QuestTriggers {
             if (!disabled() && AbstractDungeon.currMapNode != null) {
                 LEAVE_ROOM.trigger(AbstractDungeon.currMapNode);
             }
-            
+
             if (!disabled() && AbstractDungeon.nextRoom != null) {
                 ENTER_ROOM.trigger(AbstractDungeon.nextRoom);
             }
@@ -100,7 +108,7 @@ public class QuestTriggers {
     @SpirePatch2(
             clz = UseCardAction.class,
             method = SpirePatch.CONSTRUCTOR,
-            paramtypez = { AbstractCard.class, AbstractCreature.class }
+            paramtypez = {AbstractCard.class, AbstractCreature.class}
     )
     public static class OnPlayCard {
         @SpirePostfixPatch
@@ -148,6 +156,16 @@ public class QuestTriggers {
         }
     }
 
+    @SpirePatch2(clz = AbstractRoom.class, method = "endTurn")
+    public static class OnTurnEnd {
+        @SpirePostfixPatch()
+        public static void turnEndPatch() {
+            if (disabled()) return;
+
+            TURN_END.trigger();
+        }
+    }
+
     @SpirePatch2(clz = AbstractPlayer.class, method = "onVictory")
     public static class OnVictory {
         @SpirePrefixPatch
@@ -181,6 +199,28 @@ public class QuestTriggers {
                 CHANNEL_ORB.trigger(orbToSet);
             }
 
+    @SpirePatch2(clz = PotionPopUp.class, method = "updateInput")
+    @SpirePatch2(clz = PotionPopUp.class, method = "updateTargetMode")
+    public static class PotionUse {
+        @SpireInsertPatch(locator = DestroyPotionLocator.class, localvars = {"potion"})
+        public static void generalPotionPatch(AbstractPotion potion) {
+            USE_POTION.trigger(potion);
+        }
+    }
+
+    @SpirePatch(clz = AbstractPlayer.class, method = "damage")
+    public static class FairyPotionUse {
+        @SpireInsertPatch(locator = DestroyPotionLocator.class, localvars = {"p"})
+        public static void fairyPotPatch(AbstractPotion p) {
+            USE_POTION.trigger(p);
+        }
+    }
+
+    private static class DestroyPotionLocator extends SpireInsertLocator {
+        @Override
+        public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+            Matcher finalMatcher = new Matcher.MethodCallMatcher(TopPanel.class, "destroyPotion");
+            return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
         }
     }
 }

@@ -18,22 +18,21 @@ public class TestQuest extends AbstractQuest {
         super(QuestType.LONG, QuestDifficulty.HARD);
 
         new TriggerTracker<>(QuestTriggers.ADD_CARD, 5)
-            .triggerCondition((card)->card.rarity == AbstractCard.CardRarity.COMMON)
-            .setResetTrigger(QuestTriggers.ADD_CARD, (card)->card.rarity != AbstractCard.CardRarity.COMMON)
-            .add(this);
+                .triggerCondition((card) -> card.rarity == AbstractCard.CardRarity.COMMON)
+                .setResetTrigger(QuestTriggers.ADD_CARD, (card) -> card.rarity != AbstractCard.CardRarity.COMMON)
+                .add(this);
 
-        new TriggerTracker<AbstractCard>(QuestTriggers.ADD_CARD, 1)
-            {
-                @Override
-                public String progressString() {
-                    return "";
-                }
+        new TriggerTracker<AbstractCard>(QuestTriggers.ADD_CARD, 1) {
+            @Override
+            public String progressString() {
+                return "";
             }
-            .triggerCondition((card)->card.rarity == AbstractCard.CardRarity.RARE)
-            .add(this);
+        }
+                .triggerCondition((card) -> card.rarity == AbstractCard.CardRarity.RARE)
+                .add(this);
 
         new TriggerEvent<>(QuestTriggers.DECK_CHANGE,
-                (param)->AbstractDungeon.player.damage(new DamageInfo(null, 1, DamageInfo.DamageType.HP_LOSS))
+                (param) -> AbstractDungeon.player.damage(new DamageInfo(null, 1, DamageInfo.DamageType.HP_LOSS))
         );
 
         addReward(new QuestReward.GoldReward(100));

@@ -18,13 +18,13 @@ import java.util.function.Consumer;
 
 // This class is a near-copy of the BaseMod class, changed to use Settings.xScale and Settings.yScale
 public class FixedModLabeledButton implements IUIElement {
-    private Consumer<FixedModLabeledButton> click;
-    private Hitbox hb;
+    private final Consumer<FixedModLabeledButton> click;
+    private final Hitbox hb;
     private float x;
     private float y;
-    private float w;
-    private float middle_width;
-    private float h;
+    private final float w;
+    private final float middle_width;
+    private final float h;
 
     public BitmapFont font;
     public String label;
@@ -35,7 +35,9 @@ public class FixedModLabeledButton implements IUIElement {
     // looks a bit more balanced to the eye
     private static final float TEXT_OFFSET = 9F;
 
-    private Texture textureLeft, textureRight, textureMiddle;
+    private final Texture textureLeft;
+    private final Texture textureRight;
+    private final Texture textureMiddle;
 
     public FixedModLabeledButton(String label, float xPos, float yPos, ModPanel p, Consumer<FixedModLabeledButton> c) {
         this(label, xPos, yPos, Color.WHITE, Color.GREEN, FontHelper.buttonLabelFont, p, c);
@@ -63,7 +65,7 @@ public class FixedModLabeledButton implements IUIElement {
         middle_width = Math.max(0, FontHelper.getSmartWidth(font, label, 9999f, 0f) - 2 * TEXT_OFFSET * Settings.xScale);
         w = (this.textureLeft.getWidth() + this.textureRight.getWidth()) * Settings.xScale + middle_width;
         h = this.textureLeft.getHeight() * Settings.yScale;
-        hb = new Hitbox(this.x + 1F * Settings.xScale, this.y + 1F * Settings.yScale, this.w - 2F * Settings.xScale, this.h - 2F * Settings.yScale);
+        hb = new Hitbox(this.x + Settings.xScale, this.y + Settings.yScale, this.w - 2F * Settings.xScale, this.h - 2F * Settings.yScale);
 
         parent = p;
         click = c;
@@ -80,7 +82,7 @@ public class FixedModLabeledButton implements IUIElement {
 
         sb.setColor(Color.WHITE);
         if (hb.hovered)
-            FontHelper.renderFontCentered(sb, font, label, hb.cX, hb.cY, colorHover );
+            FontHelper.renderFontCentered(sb, font, label, hb.cX, hb.cY, colorHover);
         else
             FontHelper.renderFontCentered(sb, font, label, hb.cX, hb.cY, color);
     }
@@ -117,29 +119,29 @@ public class FixedModLabeledButton implements IUIElement {
 
     @Override
     public void set(float xPos, float yPos) {
-        x = xPos*Settings.xScale;
-        y = yPos*Settings.yScale;
+        x = xPos * Settings.xScale;
+        y = yPos * Settings.yScale;
 
-        UIElementModificationHelper.moveHitboxByOriginalParameters(hb, x + 1F * Settings.xScale, y + 1F * Settings.yScale);
+        UIElementModificationHelper.moveHitboxByOriginalParameters(hb, x + Settings.xScale, y + Settings.yScale);
     }
 
     @Override
     public void setX(float xPos) {
-        set(xPos, y/Settings.yScale);
+        set(xPos, y / Settings.yScale);
     }
 
     @Override
     public void setY(float yPos) {
-        set(x/Settings.xScale, yPos);
+        set(x / Settings.xScale, yPos);
     }
 
     @Override
     public float getX() {
-        return x/Settings.xScale;
+        return x / Settings.xScale;
     }
 
     @Override
     public float getY() {
-        return y/Settings.yScale;
+        return y / Settings.yScale;
     }
 }

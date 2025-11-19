@@ -15,7 +15,7 @@ public class GenericButton extends ClickableUIElement {
     protected Supplier<Boolean> condition;
     protected Color renderCol = BASE_COL;
     protected boolean draggable = true, isBeingDragged = false;
-    protected float initialDragOffsetX,  initialDragOffsetY;
+    protected float initialDragOffsetX, initialDragOffsetY;
 
     //x and y should be multiplied by Settings.scale
     public GenericButton(Texture tex, float x, float y) {
@@ -58,9 +58,9 @@ public class GenericButton extends ClickableUIElement {
 
     @Override
     protected void onHover() {
-        if(boxTitle != null)
+        if (boxTitle != null)
             //ImageHelper.tipBoxAtMousePos(boxTitle, boxDesc);
-        renderCol = HOVER_COL;
+            renderCol = HOVER_COL;
     }
 
     @Override

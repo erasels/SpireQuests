@@ -44,7 +44,7 @@ public class QuestGenerator {
         Random rng = new Random(Settings.seed + (9419L * (AbstractDungeon.floorNum + 1)));
 
         for (AbstractQuest.QuestDifficulty difficulty : rollDifficulties(fromNeow, rng)) {
-            AbstractQuest quest = rollQuestForDifficulty(difficulty, seenQuests.get(AbstractDungeon.player), rng);
+            AbstractQuest quest = rollQuestForDifficulty(difficulty, fromNeow ? new HashSet<>() : seenQuests.get(AbstractDungeon.player), rng);
             if (quest != null) {
                 quest.setCost();
                 generatedQuests.add(quest);
@@ -52,11 +52,21 @@ public class QuestGenerator {
             }
         }
 
+        // For quest generation in the Neow room, we have to handle the fact that the player can save and reload after
+        // picking some quests (because the game saves after picking a Neow bonus). Without special handling, this would
+        // give different quests (because the previously seen quests would be loaded from the save). To prevent that, we
+        // always use an empty set of seen quests for quest generation in the Neow room (above) and then filter out any
+        // quests the player already has. We also adjust the number of pickable quests in QuestBoardProp.
+        if (fromNeow) {
+            Set<String> currentQuests = QuestManager.quests().stream().map(q -> q.id).collect(Collectors.toSet());
+            generatedQuests.removeIf(q -> currentQuests.contains(q.id));
+        }
+
         return generatedQuests;
     }
 
     private static AbstractQuest.QuestDifficulty[] rollDifficulties(boolean fromNeow, Random rng) {
-        AbstractQuest.QuestDifficulty[] difficulties = new AbstractQuest.QuestDifficulty[] {
+        AbstractQuest.QuestDifficulty[] difficulties = new AbstractQuest.QuestDifficulty[]{
                 AbstractQuest.QuestDifficulty.EASY,
                 AbstractQuest.QuestDifficulty.NORMAL,
                 AbstractQuest.QuestDifficulty.HARD

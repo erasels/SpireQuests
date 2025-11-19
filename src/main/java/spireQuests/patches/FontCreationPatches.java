@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 public class FontCreationPatches {
     private static final float TIP_FONT = 18.0F;
     public static BitmapFont tipFont;
-    private static FreeTypeFontGenerator.FreeTypeFontParameter param = ReflectionHacks.getPrivateStatic(FontHelper.class, "param");
+    private static final FreeTypeFontGenerator.FreeTypeFontParameter param = ReflectionHacks.getPrivateStatic(FontHelper.class, "param");
 
     @SpirePatch(clz = FontHelper.class, method = "initialize")
     public static class AddMyFont {
@@ -23,7 +23,7 @@ public class FontCreationPatches {
         public static void patch() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
             Method method = FontHelper.class.getDeclaredMethod("prepFont", float.class, boolean.class);
             method.setAccessible(true);
-            tipFont = (BitmapFont)method.invoke(null, new Object[] {TIP_FONT, false});
+            tipFont = (BitmapFont) method.invoke(null, new Object[]{TIP_FONT, false});
         }
 
         private static class Locator extends SpireInsertLocator {

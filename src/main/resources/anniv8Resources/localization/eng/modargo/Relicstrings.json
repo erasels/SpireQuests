@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "Whenever you play a #yCommon card, gain #b1 #yBlock."
     ]
+  },
+  "${ModID}:OwlMask": {
+    "NAME": "Owl Mask",
+    "FLAVOR": "Hoot hoot.",
+    "DESCRIPTIONS": [
+      "Whenever you enter a #y? room, gain #b1 Max HP."
+    ]
   }
 }

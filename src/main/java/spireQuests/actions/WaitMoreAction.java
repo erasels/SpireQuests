@@ -10,9 +10,8 @@ public class WaitMoreAction extends AbstractGameAction {
         this.actionType = ActionType.WAIT;
 
         // Prevent them from stacking.
-        for(AbstractGameAction actcheck: AbstractDungeon.actionManager.actions) {
-            if (actcheck instanceof WaitMoreAction && actcheck != this)
-            {
+        for (AbstractGameAction actcheck : AbstractDungeon.actionManager.actions) {
+            if (actcheck instanceof WaitMoreAction && actcheck != this) {
                 actcheck.isDone = true;
                 duration += 0.15;
             }

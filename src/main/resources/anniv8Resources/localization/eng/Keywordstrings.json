@@ -6,5 +6,13 @@
         "Test"
       ],
       "DESCRIPTION": "Shouldn't be here."
+    },
+    {
+      "ID": "Questbound",
+      "PROPER_NAME": "Questbound",
+      "NAMES": [
+        "questbound"
+      ],
+      "DESCRIPTION": "Whenever you complete the bound quest, remove this from your deck. Cannot be modified or removed by any other means."
     }
   ]

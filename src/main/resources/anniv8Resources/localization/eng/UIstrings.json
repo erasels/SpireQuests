@@ -4,7 +4,8 @@
       "Spire Quests",
       "",
       "",
-      "Enable quests to have costs to pick up."
+      "Enable quests to have costs to pick up.",
+      "Enable Master Deck visuals for Questbound cards."
     ]
   },
   "${ModID}:QuestUI": {
@@ -52,5 +53,11 @@
       "Quests:",
       "Completed:"
     ]
-  }
+  },
+    "${ModID}:QuestboundMod": {
+      "TEXT": [
+        "${ModID}:Questbound. NL ",
+        "Whenever you complete %s, remove this from your deck. Cannot be modified or removed by any other means."
+      ]
+    }
 }

@@ -8,5 +8,25 @@
     "EXTRA_TEXT": [
       "Common surplus"
     ]
+  },
+  "${ModID}:ChartTheUnknownQuest": {
+    "TEXT": [
+      "Chart the Unknown",
+      "Visit 4 ? rooms.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "? rooms"
+    ]
+  },
+  "${ModID}:PackFanaticQuest": {
+    "TEXT": [
+      "Pack Fanatic",
+      "Have a card from each of your packs in your deck.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Packs in deck"
+    ]
   }
 }

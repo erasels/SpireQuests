@@ -29,13 +29,13 @@ public class StarOfExtinctionAction extends AbstractGameAction {
             if (this.p.hand.size() == 0) {
                 this.isDone = true;
             } else if (this.p.hand.size() <= this.amount) {
-                for(int i = 0; i < this.p.hand.size(); ++i) {
+                for (int i = 0; i < this.p.hand.size(); ++i) {
                     AbstractCard c = this.p.hand.getTopCard();
                     this.p.hand.moveToExhaustPile(c);
                     onExhaustedCard(c);
                 }
             } else if (this.isRandom) {
-                for(int i = 0; i < this.amount; ++i) {
+                for (int i = 0; i < this.amount; ++i) {
                     AbstractCard c = this.p.hand.getRandomCard(AbstractDungeon.cardRandomRng);
                     this.p.hand.moveToExhaustPile(c);
                     onExhaustedCard(c);

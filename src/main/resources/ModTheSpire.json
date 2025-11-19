@@ -7,7 +7,10 @@
     "Mindbomber",
     "Alchyr",
     "Pandemonium",
-    "Darkglade"
+    "Darkglade",
+    "coda",
+    "SoytheProton",
+    "Mangochicken"
   ],
   "description": "${project.description}",
   "version": "${project.version}",

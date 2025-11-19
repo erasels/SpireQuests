@@ -44,9 +44,9 @@ public class SingleCardReward extends CustomReward {
         super((Texture) null, "", SQ_SINGLECARDREWARD);
 
         //Loading save
-        if(args.length == 1 && args[0].contains("|")) {
+        if (args.length == 1 && args[0].contains("|")) {
             String[] params = args[0].split("\\|");
-            if(params.length < 3) {
+            if (params.length < 3) {
                 card = CardLibrary.getCopy(params[0], 0, 0);
             } else {
                 card = CardLibrary.getCopy(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2]));
@@ -64,14 +64,14 @@ public class SingleCardReward extends CustomReward {
                     break;
                 default:
                     Anniv8Mod.logger.warn(String.format("Tried to generate a SingleCardReward with %d parameters.\nInput: %s", args.length, Arrays.toString(args)));
-                    card = CardLibrary.getCard(Madness.ID);
+                    card = CardLibrary.getCopy(Madness.ID);
             }
         }
         init();
     }
 
     protected void init() {
-        for(AbstractRelic r: Wiz.p().relics)
+        for (AbstractRelic r : Wiz.p().relics)
             r.onPreviewObtainCard(card);
 
         renderCard = card.makeStatEquivalentCopy();
@@ -131,7 +131,7 @@ public class SingleCardReward extends CustomReward {
         FontHelper.renderSmartText(sb, FontCreationPatches.tipFont, tipText, REWARD_X_POS, this.y - FontHelper.getHeight(FontHelper.cardDescFont_N, text, Settings.scale) - 6f * Settings.scale, 1000.0f * Settings.scale, 0.0f, TIP_COL);
 
 
-        if(hb.hovered || hb.justHovered) {
+        if (hb.hovered || hb.justHovered) {
             Anniv8Mod.hoverRewardWorkaround = this;
         }
 

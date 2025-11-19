@@ -30,6 +30,7 @@ import static spireQuests.Anniv8Mod.makeUIPath;
 public abstract class QuestReward {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestReward")).TEXT;
     private static final Map<String, RewardLoader> rewardLoaders = new HashMap<>();
+
     static {
         addRewardSaver(new RewardLoader(GoldReward.class, (save) -> new GoldReward(Integer.parseInt(save.param))));
         addRewardSaver(new RewardLoader(RelicReward.class, (save) -> new RelicReward(RelicLibrary.getRelic(save.param).makeCopy())));
@@ -56,7 +57,6 @@ public abstract class QuestReward {
     }
 
 
-
     public String rewardText;
 
     public QuestReward(String rewardText) {
@@ -68,6 +68,7 @@ public abstract class QuestReward {
     }
 
     public abstract TextureRegion icon();
+
     protected abstract String saveParam();
 
     @Override
@@ -76,9 +77,11 @@ public abstract class QuestReward {
     }
 
     public abstract void obtainRewardItem();
+
     public abstract void obtainInstant();
 
-    public void addTooltip(List<PowerTip> previewTooltips) { }
+    public void addTooltip(List<PowerTip> previewTooltips) {
+    }
 
 
     public static class GoldReward extends QuestReward {

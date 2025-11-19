@@ -39,12 +39,15 @@ public abstract class AbstractSQMonster extends CustomMonster {
     protected void addMove(byte moveCode, Intent intent) {
         this.addMove(moveCode, intent, -1);
     }
+
     protected void addMove(byte moveCode, Intent intent, int baseDamage) {
         this.addMove(moveCode, intent, baseDamage, 0, false);
     }
+
     protected void addMove(byte moveCode, Intent intent, int baseDamage, int multiplier) {
         this.addMove(moveCode, intent, baseDamage, multiplier, multiplier > 0);
     }
+
     protected void addMove(byte moveCode, Intent intent, int baseDamage, int multiplier, boolean isMultiDamage) {
         this.moves.put(moveCode, new EnemyMoveInfo(moveCode, intent, baseDamage, multiplier, isMultiDamage));
     }
@@ -53,6 +56,7 @@ public abstract class AbstractSQMonster extends CustomMonster {
         EnemyMoveInfo info = this.moves.get(next);
         this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
     }
+
     public void setMoveShortcut(byte next) {
         this.setMoveShortcut(next, null);
     }
@@ -60,17 +64,17 @@ public abstract class AbstractSQMonster extends CustomMonster {
     protected int calcAscensionDamage(float base) {
         switch (this.type) {
             case BOSS:
-                if(AbstractDungeon.ascensionLevel >= 4) {
+                if (AbstractDungeon.ascensionLevel >= 4) {
                     base *= ASCENSION_DAMAGE_BUFF_PERCENT;
                 }
                 break;
             case ELITE:
-                if(AbstractDungeon.ascensionLevel >= 3) {
+                if (AbstractDungeon.ascensionLevel >= 3) {
                     base *= ASCENSION_DAMAGE_BUFF_PERCENT;
                 }
                 break;
             case NORMAL:
-                if(AbstractDungeon.ascensionLevel >= 2) {
+                if (AbstractDungeon.ascensionLevel >= 2) {
                     base *= ASCENSION_DAMAGE_BUFF_PERCENT;
                 }
                 break;
@@ -102,17 +106,17 @@ public abstract class AbstractSQMonster extends CustomMonster {
     protected int calcAscensionSpecial(float base) {
         switch (this.type) {
             case BOSS:
-                if(AbstractDungeon.ascensionLevel >= 19) {
+                if (AbstractDungeon.ascensionLevel >= 19) {
                     base *= ASCENSION_SPECIAL_BUFF_PERCENT;
                 }
                 break;
             case ELITE:
-                if(AbstractDungeon.ascensionLevel >= 18) {
+                if (AbstractDungeon.ascensionLevel >= 18) {
                     base *= ASCENSION_SPECIAL_BUFF_PERCENT;
                 }
                 break;
             case NORMAL:
-                if(AbstractDungeon.ascensionLevel >= 17) {
+                if (AbstractDungeon.ascensionLevel >= 17) {
                     base *= ASCENSION_SPECIAL_BUFF_PERCENT;
                 }
                 break;
