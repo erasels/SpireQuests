@@ -43,6 +43,7 @@ public class QuestManager {
         new AutoAdd(modID)
                 .packageFilter(Anniv8Mod.class)
                 .any(AbstractQuest.class, QuestManager::registerQuest);
+        Statistics.logStatistics(QuestManager.getAllQuests());
 
         BaseMod.addSaveField(makeID("QuestManager"), new CustomSavable<QuestSave>() {
             @Override
