@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.rewards.chests.AbstractChest;
+import com.megacrit.cardcrawl.rewards.chests.BossChest;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
@@ -41,6 +43,8 @@ public class QuestTriggers {
     public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
     public static final Trigger<AbstractOrb> CHANNEL_ORB = new Trigger<>();
     public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
+    public static final Trigger<Integer> ACT_CHANGE = new Trigger<>();
+    public static final Trigger<AbstractChest> CHEST_OPENED = new Trigger<>(); //NOTE: This includes both normal and boss chests.
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -216,6 +220,47 @@ public class QuestTriggers {
         }
     }
 
+    @SpirePatch2(
+            clz = AbstractDungeon.class,
+            method = "dungeonTransitionSetup"
+    )
+    public static class dungeonTransitionSetup {
+        @SpirePostfixPatch
+        public static void dungeonTransitionPostfix(){
+            if (disabled()) return;
+            ACT_CHANGE.trigger(AbstractDungeon.actNum);
+        }
+    }
+
+    @SpirePatch2(
+            clz = AbstractChest.class,
+            method = "open",
+            paramtypez = {boolean.class}
+    )
+
+    public static class Open{
+        @SpirePostfixPatch
+        public static void OpenChestPostfix(AbstractChest __instance, boolean bossChest){
+            if (disabled()) return;
+            CHEST_OPENED.trigger(__instance);
+        }
+    }
+
+    @SpirePatch2(
+            clz = BossChest.class,
+            method = "open",
+            paramtypez = {boolean.class}
+    )
+    public static class OpenBoss {
+        @SpirePostfixPatch
+        public static void OpenChestPostfix(AbstractChest __instance, boolean bossChest) {
+            if (disabled()) return;
+            CHEST_OPENED.trigger(__instance);
+        }
+    }
+
+    @SpirePatch2(clz= PotionPopUp.class, method = "updateInput")
+    @SpirePatch2(clz= PotionPopUp.class, method = "updateTargetMode")
     @SpirePatch2(clz = PotionPopUp.class, method = "updateInput")
     @SpirePatch2(clz = PotionPopUp.class, method = "updateTargetMode")
     public static class PotionUse {
