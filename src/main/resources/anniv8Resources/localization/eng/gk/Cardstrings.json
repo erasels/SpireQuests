@@ -26,5 +26,9 @@
   "${ModID}:Unrelenting": {
     "NAME": "Unrelenting",
     "DESCRIPTION": "Deal !D! damage. NL The next Attack you play costs 0."
+  },
+  "${ModID}:Taunt": {
+    "NAME": "Taunt",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable to ALL enemies."
   }
 }
