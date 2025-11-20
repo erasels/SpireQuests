@@ -26,6 +26,7 @@ public class Taunt extends AbstractSQCard {
 
     @Override
     public void upp() {
+        upgradeBlock(1);
         upgradeMagicNumber(1);
     }
 }
