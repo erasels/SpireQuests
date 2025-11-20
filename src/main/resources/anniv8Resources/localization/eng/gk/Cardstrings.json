@@ -30,5 +30,9 @@
   "${ModID}:Taunt": {
     "NAME": "Taunt",
     "DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable to ALL enemies."
+  },
+  "${ModID}:StoneArmor": {
+    "NAME": "Stone Armor",
+    "DESCRIPTION": "Gain !M! *Plated *Armor. NL Lose 1 Dexterity."
   }
 }
