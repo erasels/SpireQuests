@@ -2,21 +2,23 @@ package spireQuests.patches;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.neow.NeowRoom;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import spireQuests.ui.QuestBoardProp;
 import spireQuests.util.ActUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -74,9 +76,28 @@ public class NeowPatch {
     @SpirePatch(clz = Exordium.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractPlayer.class, SaveFile.class})
     public static class ConstructorPatch {
         @SpirePostfixPatch
-        public static void ConstructorPatch() {
+        public static void constructorPatch() {
             if (AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.room instanceof NeowRoom) {
                 QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 425.0F * Settings.xScale, AbstractDungeon.floorY + 189.0F * Settings.yScale, true);
+            }
+        }
+    }
+
+    // ActLikeIt special cases Exordium, so we need to patch where it creates NeowRoom too
+    @SpirePatch(cls = "actlikeit.events.GetForked", method = "buttonEffect", paramtypez = {int.class}, requiredModId = "actlikeit")
+    public static class ActLikeItExordiumPatch {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void actLikeItExordiumPatch() {
+            if (AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.room instanceof NeowRoom) {
+                QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 425.0F * Settings.xScale, AbstractDungeon.floorY + 189.0F * Settings.yScale, true);
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher firstMatcher = new Matcher.NewExprMatcher(NeowRoom.class);
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractRoom.class, "onPlayerEntry");
+                return LineFinder.findInOrder(ctMethodToPatch, Collections.singletonList(firstMatcher), finalMatcher);
             }
         }
     }
