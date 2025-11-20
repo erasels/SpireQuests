@@ -1,0 +1,145 @@
+package spireQuests.quests.gk;
+
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.BurningBlood;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.screens.CombatRewardScreen;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import spireQuests.patches.QuestTriggers;
+import spireQuests.quests.AbstractQuest;
+import spireQuests.quests.QuestManager;
+import spireQuests.quests.gk.cards.StoneArmor;
+import spireQuests.quests.gk.cards.Taunt;
+import spireQuests.quests.gk.cards.Unrelenting;
+import spireQuests.util.Wiz;
+
+import java.util.ArrayList;
+
+import static spireQuests.Anniv8Mod.makeID;
+
+public class BountyICQuest extends AbstractQuest {
+    private static final String ID = makeID(BountyICQuest.class.getSimpleName());
+
+    public BountyICQuest() {
+        super(QuestType.SHORT, QuestDifficulty.NORMAL);
+
+        new TriggerTracker<>(QuestTriggers.VICTORY, 1)
+                .triggerCondition((x) -> AbstractDungeon.getCurrRoom().eliteTrigger)
+                .setFailureTrigger(QuestTriggers.ACT_CHANGE)
+                .add(this);
+
+        /*new TriggeredUpdateTracker<Integer, Void>(QuestTriggers.VICTORY, 0, 1, () -> {
+            AbstractRoom room = AbstractDungeon.getCurrRoom();
+            if (!room.eliteTrigger) {
+                return 0;
+            }
+            return 1;
+        }) {
+            @Override
+            public String progressString() {
+                return "";
+            }
+
+            @Override
+            public boolean isDisabled() {
+                AbstractRoom room = AbstractDungeon.getCurrRoom();
+                return !room.eliteTrigger;
+            }
+        }
+                .add(this);*/
+
+        // TODO: Replace elite combat with Ironclad
+    }
+
+    @Override
+    public float getTitleScale() {
+        return 0.8f;
+    }
+
+    @Override
+    public String getRewardsText() {
+        return localization.TEXT[3];
+    }
+
+    @Override
+    public boolean canSpawn() {
+        return AbstractDungeon.actNum == 1;
+    }
+
+    @SpirePatch2(clz = CombatRewardScreen.class, method = "setupItemReward")
+    public static class RewardReplacementPatch {
+        @SpirePostfixPatch
+        public static void patch(CombatRewardScreen __instance) {
+            boolean replacedCards = false, replacedRelic = false;
+            BountyICQuest q = (BountyICQuest) QuestManager.quests().stream()
+                    .filter(quest -> ID.equals(quest.id) && quest.isCompleted())
+                    .findAny()
+                    .orElse(null);
+            if(q != null) {
+                for (RewardItem reward : __instance.rewards) {
+                    if (!replacedCards && reward.type == RewardItem.RewardType.CARD) {
+                        ArrayList<AbstractCard> icCards = new ArrayList<>();
+                        icCards.add(new Unrelenting());
+                        icCards.add(new Taunt());
+                        icCards.add(new StoneArmor());
+                        // Respect original upgrades
+                        for (int i = 0; i < icCards.size(); i++) {
+                            AbstractCard c = icCards.get(i);
+                            AbstractCard oC = reward.cards.get(Math.max(i, reward.cards.size()-1));
+                            if(oC.upgraded) {
+                                c.upgrade();
+                            }
+                            // We'll ignore cardmods for now, too unpredictable
+                            Wiz.p().relics.forEach(r -> r.onPreviewObtainCard(c));
+                        }
+                        reward.cards.clear();
+                        reward.cards.addAll(icCards);
+                        replacedCards = true;
+                    } else if (!replacedRelic && reward.type == RewardItem.RewardType.RELIC) {
+                        RewardItem newReward = new RewardItem(new BurningBlood());
+                        __instance.rewards.set(__instance.rewards.indexOf(reward), newReward);
+                        replacedRelic = true;
+                    }
+                }
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractDungeon.class, "loading_post_combat");
+                return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[3]};
+            }
+        }
+    }
+
+    // Remove quest once the room is left, needs this annoying time since card rewards are re-generated and I don't want to introduce a custom eward type
+    @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = {SaveFile.class})
+    public static class AutoCompleteQuestLater {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void enteringRoomPatch(AbstractDungeon __instance, SaveFile file) {
+            if (AbstractDungeon.currMapNode != null) {
+                BountyICQuest q = (BountyICQuest) QuestManager.quests().stream()
+                        .filter(quest -> ID.equals(quest.id) && quest.isCompleted())
+                        .findAny()
+                        .orElse(null);
+                if(q != null) {
+                    QuestManager.completeQuest(q);
+                }
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+}
