@@ -92,6 +92,9 @@ public class NuclearJuicePotion extends AbstractPotion {
     }
     @Override
     public void use(AbstractCreature target) {
+        if (this.potency < 1) {
+            return;
+        }
         AbstractCard card = new Fission();
         card.upgrade();
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {

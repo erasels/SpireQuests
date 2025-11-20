@@ -48,11 +48,6 @@ public class OrbSpinnerQuest extends AbstractQuest {
     }
 
     @Override
-    public void onComplete() {
-        super.onComplete();
-    }
-
-    @Override
     public PowerTip getHoverTooltip() {
         ArrayList<String> evokedOrbsStr = new ArrayList<>();
         for (AbstractOrb o : evokedOrbs) {

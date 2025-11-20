@@ -175,9 +175,10 @@ public class QuestUI {
                 }
 
                 if (hb.hovered) {
-                    if (quest.needHoverTip && !quest.isCompleted() && !quest.isFailed()) {
+                    if (quest.needHoverTip && !complete && !failed) {
                         PowerTip tooltip = quest.getHoverTooltip();
                         ImageHelper.tipBoxAtMousePos(tooltip.header, tooltip.body);
+                    }
                 }
             }
 

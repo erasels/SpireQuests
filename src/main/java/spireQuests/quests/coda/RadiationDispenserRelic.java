@@ -20,7 +20,7 @@ public class RadiationDispenserRelic extends AbstractSQRelic {
     @Override
     public void onVictory() {
         super.onVictory();
-        if (AbstractDungeon.miscRng.random() < chance) {
+        if (AbstractDungeon.potionRng.random() < chance) {
             AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(new NuclearJuicePotion()));
             chance = chanceBuff;
             return;
