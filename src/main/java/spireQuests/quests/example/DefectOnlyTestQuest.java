@@ -21,6 +21,6 @@ public class DefectOnlyTestQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.player.chosenClass == AbstractPlayer.PlayerClass.DEFECT;
+        return false && AbstractDungeon.player.chosenClass == AbstractPlayer.PlayerClass.DEFECT;
     }
 }

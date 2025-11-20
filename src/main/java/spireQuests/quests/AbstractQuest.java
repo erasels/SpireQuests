@@ -286,6 +286,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         for (Tracker t : trackers) {
             t.refreshState();
         }
+        for (QuestReward r : questRewards) {
+            r.init();
+        }
     }
 
     public void onComplete() {
@@ -311,27 +314,36 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
     }
 
-    public void loadSave(String[] questData) {
+    public void loadSave(String[] questData, QuestReward.QuestRewardSave[] questRewardSaves) {
+        boolean loadTrackers = true;
         if (questData.length == 1) {
             if (QuestCompleteTracker.COMPLETE_STRING.equals(questData[0])) {
                 complete = true;
                 trackers.clear();
                 triggers.clear();
                 trackers.add(new QuestCompleteTracker());
-                return;
+                loadTrackers = false;
             } else if (QuestFailedTracker.FAIL_STRING.equals(questData[0])) {
                 failed = true;
                 trackers.clear();
                 triggers.clear();
                 trackers.add(new QuestFailedTracker());
+                loadTrackers = false;
             }
         }
 
-        for (int i = 0; i < questData.length; ++i) {
-            if (i >= trackers.size()) {
-                Anniv8Mod.logger.warn("Saved tracker data for quest " + id + " does not match tracker count");
+        if (loadTrackers) {
+            for (int i = 0; i < questData.length; ++i) {
+                if (i >= trackers.size()) {
+                    Anniv8Mod.logger.warn("Saved tracker data for quest " + id + " does not match tracker count");
+                }
+                trackers.get(i).loadData(questData[i]);
             }
-            trackers.get(i).loadData(questData[i]);
+        }
+
+        questRewards.clear();
+        for (QuestReward.QuestRewardSave qrs : questRewardSaves) {
+            questRewards.add(QuestReward.fromSave(qrs));
         }
     }
 

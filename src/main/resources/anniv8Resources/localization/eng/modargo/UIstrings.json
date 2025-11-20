@@ -28,5 +28,15 @@
     "EXTRA_TEXT": [
       "Packs in deck"
     ]
+  },
+  "${ModID}:SuperiorEliteQuest": {
+    "TEXT": [
+      "Superior Elite",
+      "The next elite you fight is more dangerous, with additional HP, damage, and #yArtifact. Defeat it to claim a reward!",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Elites defeated"
+    ]
   }
 }

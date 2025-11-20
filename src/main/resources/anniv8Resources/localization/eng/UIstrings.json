@@ -39,7 +39,8 @@
       "Obtain %s.",
       "a random Common relic",
       "a random Uncommon relic",
-      "a random Rare relic"
+      "a random Rare relic",
+      "a random relic"
     ]
   },
   "${ModID}:SingleCardReward": {

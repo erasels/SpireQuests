@@ -31,9 +31,11 @@ public class QuestTriggers {
 
     public static final Trigger<AbstractCard> PLAY_CARD = new Trigger<>();
     public static final Trigger<Integer> DAMAGE_TAKEN = new Trigger<>();
+    public static final Trigger<Void> BEFORE_COMBAT_START = new Trigger<>();
     public static final Trigger<Void> TURN_START = new Trigger<>();
     public static final Trigger<Void> TURN_END = new Trigger<>();
-    public static final Trigger<Void> VICTORY = new Trigger<>();
+    public static final Trigger<Void> VICTORY = new Trigger<>(); //Excludes Smoke Bomb and other ways of escaping
+    public static final Trigger<Void> COMBAT_END = new Trigger<>();
     public static final Trigger<AbstractPotion> USE_POTION = new Trigger<>();
 
     public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
@@ -137,6 +139,16 @@ public class QuestTriggers {
         }
     }
 
+    @SpirePatch2(clz = AbstractPlayer.class, method = "preBattlePrep")
+    public static class BeforeCombatStart {
+        @SpirePostfixPatch
+        public static void beforeCombatStart() {
+            if (disabled()) return;
+
+            BEFORE_COMBAT_START.trigger();
+        }
+    }
+
     @SpirePatch2(clz = GameActionManager.class, method = "getNextAction")
     @SpirePatch2(clz = AbstractRoom.class, method = "update")
     public static class OnTurnStart {
@@ -167,12 +179,15 @@ public class QuestTriggers {
     }
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "onVictory")
-    public static class OnVictory {
+    public static class OnCombatEndOrVictory {
         @SpirePrefixPatch
-        public static void victoryPatch() {
+        public static void combatEndOrVictoryPatch() {
             if (disabled()) return;
 
-            VICTORY.trigger();
+            COMBAT_END.trigger();
+            if (!AbstractDungeon.getCurrRoom().smoked) {
+                VICTORY.trigger();
+            }
         }
     }
 

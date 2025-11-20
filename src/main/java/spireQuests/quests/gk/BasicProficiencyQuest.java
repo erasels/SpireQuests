@@ -51,7 +51,7 @@ public class BasicProficiencyQuest extends AbstractQuest {
 
         new TriggerTracker<>(QuestTriggers.PLAY_CARD, 3)
                 .triggerCondition((card) -> card.cardID.equals(cardToPlayId))
-                .setResetTrigger(QuestTriggers.VICTORY)
+                .setResetTrigger(QuestTriggers.COMBAT_END)
                 .add(this);
 
         addReward(new QuestReward.CardReward(CardLibrary.getCopy(rewardCardId)));

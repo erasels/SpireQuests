@@ -15,7 +15,7 @@ import java.util.Random;
 public class AmbitiousStrikeQuest extends AbstractQuest {
     public AmbitiousStrikeQuest() {
         super(QuestType.SHORT, QuestDifficulty.HARD);
-        new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 1, () -> {
+        new TriggeredUpdateTracker<>(QuestTriggers.COMBAT_END, 0, 1, () -> {
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisCombat;
             if (cardsPlayed == null || cardsPlayed.isEmpty()) return 0;
 

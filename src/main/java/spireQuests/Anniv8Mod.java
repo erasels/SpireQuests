@@ -2,7 +2,6 @@ package spireQuests;
 
 import basemod.AutoAdd;
 import basemod.BaseMod;
-import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
 import basemod.devcommands.ConsoleCommand;
 import basemod.helpers.RelicType;
@@ -35,6 +34,7 @@ import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.coda.NuclearJuicePotion;
 import spireQuests.rewards.SingleCardReward;
+import spireQuests.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.CompatUtil;
 import spireQuests.util.TexLoader;
@@ -334,7 +334,7 @@ public class Anniv8Mod implements
         Texture badge = TexLoader.getTexture(makeImagePath("ui/badge.png"));
 
         settingsPanel = new ModPanel();
-        ModLabeledToggleButton toggleHardModeButton = new ModLabeledToggleButton(configStrings.TEXT[3],
+        FixedModLabeledToggleButton toggleHardModeButton = new FixedModLabeledToggleButton(configStrings.TEXT[3],
                 350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 hardModeConfig,
                 settingsPanel,
@@ -345,7 +345,7 @@ public class Anniv8Mod implements
                 });
         settingsPanel.addUIElement(toggleHardModeButton);
 
-        ModLabeledToggleButton toggleQuestboundButton = new ModLabeledToggleButton(configStrings.TEXT[4],
+        FixedModLabeledToggleButton toggleQuestboundButton = new FixedModLabeledToggleButton(configStrings.TEXT[4],
                 350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 questboundConfig,
                 settingsPanel,
