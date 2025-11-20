@@ -22,5 +22,9 @@
   "${ModID}:Trapshot": {
     "NAME": "Trapshot",
     "DESCRIPTION": "Deal !D! damage. hermit:Dead_On: The target loses Strength this turn equal to unblocked damage dealt."
+  },
+  "${ModID}:Unrelenting": {
+    "NAME": "Unrelenting",
+    "DESCRIPTION": "Deal !D! damage. NL The next Attack you play costs 0."
   }
 }
