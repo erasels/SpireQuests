@@ -11,6 +11,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.rewards.chests.AbstractChest;
+import com.megacrit.cardcrawl.rewards.chests.BossChest;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
@@ -29,12 +33,18 @@ public class QuestTriggers {
 
     public static final Trigger<AbstractCard> PLAY_CARD = new Trigger<>();
     public static final Trigger<Integer> DAMAGE_TAKEN = new Trigger<>();
+    public static final Trigger<Void> BEFORE_COMBAT_START = new Trigger<>();
     public static final Trigger<Void> TURN_START = new Trigger<>();
     public static final Trigger<Void> TURN_END = new Trigger<>();
-    public static final Trigger<Void> VICTORY = new Trigger<>();
+    public static final Trigger<Void> VICTORY = new Trigger<>(); //Excludes Smoke Bomb and other ways of escaping
+    public static final Trigger<Void> COMBAT_END = new Trigger<>();
     public static final Trigger<AbstractPotion> USE_POTION = new Trigger<>();
 
     public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
+    public static final Trigger<AbstractOrb> CHANNEL_ORB = new Trigger<>();
+    public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
+    public static final Trigger<Integer> ACT_CHANGE = new Trigger<>();
+    public static final Trigger<AbstractChest> CHEST_OPENED = new Trigger<>(); //NOTE: This includes both normal and boss chests.
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -43,11 +53,11 @@ public class QuestTriggers {
     @SpirePatch(
             clz = CardGroup.class,
             method = "removeCard",
-            paramtypez = { AbstractCard.class }
+            paramtypez = {AbstractCard.class}
     )
     public static class OnRemoveCard {
         @SpireInsertPatch(
-                rloc=2
+                rloc = 2
         )
         public static void OnRemove(CardGroup __instance, AbstractCard c) {
             if (disabled()) return;
@@ -76,7 +86,7 @@ public class QuestTriggers {
     @SpirePatch(
             clz = AbstractDungeon.class,
             method = "nextRoomTransition",
-            paramtypez = { SaveFile.class }
+            paramtypez = {SaveFile.class}
     )
     public static class OnEnterRoom {
         @SpireInsertPatch(
@@ -86,7 +96,7 @@ public class QuestTriggers {
             if (!disabled() && AbstractDungeon.currMapNode != null) {
                 LEAVE_ROOM.trigger(AbstractDungeon.currMapNode);
             }
-            
+
             if (!disabled() && AbstractDungeon.nextRoom != null) {
                 ENTER_ROOM.trigger(AbstractDungeon.nextRoom);
             }
@@ -104,7 +114,7 @@ public class QuestTriggers {
     @SpirePatch2(
             clz = UseCardAction.class,
             method = SpirePatch.CONSTRUCTOR,
-            paramtypez = { AbstractCard.class, AbstractCreature.class }
+            paramtypez = {AbstractCard.class, AbstractCreature.class}
     )
     public static class OnPlayCard {
         @SpirePostfixPatch
@@ -130,6 +140,16 @@ public class QuestTriggers {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractDungeon.class, "effectList");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "preBattlePrep")
+    public static class BeforeCombatStart {
+        @SpirePostfixPatch
+        public static void beforeCombatStart() {
+            if (disabled()) return;
+
+            BEFORE_COMBAT_START.trigger();
         }
     }
 
@@ -163,27 +183,96 @@ public class QuestTriggers {
     }
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "onVictory")
-    public static class OnVictory {
+    public static class OnCombatEndOrVictory {
         @SpirePrefixPatch
-        public static void victoryPatch() {
+        public static void combatEndOrVictoryPatch() {
             if (disabled()) return;
 
-            VICTORY.trigger();
+            COMBAT_END.trigger();
+            if (!AbstractDungeon.getCurrRoom().smoked) {
+                VICTORY.trigger();
+            }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "evokeOrb")
+    public static class evokeOrb {
+        @SpirePrefixPatch
+        public static void evokePatch(AbstractPlayer __instance) {
+            if (disabled()) return;
+
+            if (!__instance.orbs.isEmpty() && !(__instance.orbs.get(0) instanceof EmptyOrbSlot)) {
+                EVOKE_ORB.trigger(__instance.orbs.get(0));
+            }
+
+        }
+    }
+    
+    @SpirePatch2(clz = AbstractPlayer.class, method = "channelOrb")
+    public static class channelOrb {
+        @SpirePrefixPatch
+        public static void channelPatch(AbstractPlayer __instance, AbstractOrb orbToSet) {
+            if (disabled()) return;
+
+            if (__instance.maxOrbs > 0){
+                CHANNEL_ORB.trigger(orbToSet);
+            }
+        }
+    }
+
+    @SpirePatch2(
+            clz = AbstractDungeon.class,
+            method = "dungeonTransitionSetup"
+    )
+    public static class dungeonTransitionSetup {
+        @SpirePostfixPatch
+        public static void dungeonTransitionPostfix(){
+            if (disabled()) return;
+            ACT_CHANGE.trigger(AbstractDungeon.actNum);
+        }
+    }
+
+    @SpirePatch2(
+            clz = AbstractChest.class,
+            method = "open",
+            paramtypez = {boolean.class}
+    )
+
+    public static class Open{
+        @SpirePostfixPatch
+        public static void OpenChestPostfix(AbstractChest __instance, boolean bossChest){
+            if (disabled()) return;
+            CHEST_OPENED.trigger(__instance);
+        }
+    }
+
+    @SpirePatch2(
+            clz = BossChest.class,
+            method = "open",
+            paramtypez = {boolean.class}
+    )
+    public static class OpenBoss {
+        @SpirePostfixPatch
+        public static void OpenChestPostfix(AbstractChest __instance, boolean bossChest) {
+            if (disabled()) return;
+            CHEST_OPENED.trigger(__instance);
         }
     }
 
     @SpirePatch2(clz= PotionPopUp.class, method = "updateInput")
     @SpirePatch2(clz= PotionPopUp.class, method = "updateTargetMode")
+    @SpirePatch2(clz = PotionPopUp.class, method = "updateInput")
+    @SpirePatch2(clz = PotionPopUp.class, method = "updateTargetMode")
     public static class PotionUse {
-        @SpireInsertPatch(locator = DestroyPotionLocator.class, localvars={"potion"})
+        @SpireInsertPatch(locator = DestroyPotionLocator.class, localvars = {"potion"})
         public static void generalPotionPatch(AbstractPotion potion) {
             USE_POTION.trigger(potion);
         }
     }
 
-    @SpirePatch(clz=AbstractPlayer.class, method="damage")
+    @SpirePatch(clz = AbstractPlayer.class, method = "damage")
     public static class FairyPotionUse {
-        @SpireInsertPatch(locator=DestroyPotionLocator.class, localvars={"p"})
+        @SpireInsertPatch(locator = DestroyPotionLocator.class, localvars = {"p"})
         public static void fairyPotPatch(AbstractPotion p) {
             USE_POTION.trigger(p);
         }

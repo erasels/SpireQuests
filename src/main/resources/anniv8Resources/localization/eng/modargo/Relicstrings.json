@@ -12,5 +12,26 @@
     "DESCRIPTIONS": [
       "Whenever you enter a #y? room, gain #b1 Max HP."
     ]
+  },
+  "${ModID}:FloralGarland": {
+    "NAME": "Floral Garland",
+    "FLAVOR": "Blessed by one pure of heart.",
+    "DESCRIPTIONS": [
+      "The first time you draw a #rCurse each combat, draw #b1 card."
+    ]
+  },
+  "${ModID}:SpireAlloyHelmet": {
+    "NAME": "Spire Alloy Helmet",
+    "FLAVOR": "Made from an unusual mix of metals.",
+    "DESCRIPTIONS": [
+      "Whenever you receive #yWeak or #yFrail, reduce the amount by #b1."
+    ]
+  },
+  "${ModID}:JewelledBauble": {
+    "NAME": "Jewelled Bauble",
+    "FLAVOR": "Holding this charm is said to invite new ideas.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, choose #b1 of #b3 #yUncommon cards to add into your hand."
+    ]
   }
 }

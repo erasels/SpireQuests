@@ -18,5 +18,15 @@
     "EXTRA_TEXT": [
       "Combats without potions"
     ]
+  },
+  "${ModID}:BasicProficiencyQuest": {
+    "TEXT": [
+      "Basic Proficiency",
+      "Play %s 3 times in one combat.",
+      "Gk"
+    ],
+    "EXTRA_TEXT": [
+      "Played"
+    ]
   }
 }

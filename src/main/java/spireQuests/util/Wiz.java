@@ -62,7 +62,7 @@ public class Wiz {
     }
 
     public static boolean isPlayerTurn(boolean beforeEndTurnEvents) {
-        return  !AbstractDungeon.actionManager.turnHasEnded && !AbstractDungeon.player.isEndingTurn;
+        return !AbstractDungeon.actionManager.turnHasEnded && !AbstractDungeon.player.isEndingTurn;
     }
 
     public static boolean canAcceptInput() {
@@ -115,7 +115,9 @@ public class Wiz {
         return knownTiers.contains(tier);
     }
 
-    public static int asc() { return AbstractDungeon.ascensionLevel; }
+    public static int asc() {
+        return AbstractDungeon.ascensionLevel;
+    }
 
     public static void forAllCardsInList(Consumer<AbstractCard> consumer, ArrayList<AbstractCard> cardsList) {
         for (AbstractCard c : cardsList) {
@@ -497,9 +499,9 @@ public class Wiz {
         return pow.amount;
     }
 
-    public static int countDebuffs(AbstractCreature c){
+    public static int countDebuffs(AbstractCreature c) {
         return (int) c.powers.stream()
-                .filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF )
+                .filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF)
                 .count();
     }
 

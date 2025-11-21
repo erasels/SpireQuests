@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.rooms.EventRoom;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.modargo.relics.OwlMask;
 
 public class ChartTheUnknownQuest extends AbstractQuest {
     public ChartTheUnknownQuest() {

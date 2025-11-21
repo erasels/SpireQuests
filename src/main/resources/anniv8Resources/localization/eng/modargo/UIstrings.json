@@ -18,5 +18,41 @@
     "EXTRA_TEXT": [
       "? rooms"
     ]
+  },
+  "${ModID}:PackFanaticQuest": {
+    "TEXT": [
+      "Pack Fanatic",
+      "Have a card from each of your packs in your deck.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Packs in deck"
+    ]
+  },
+  "${ModID}:SuperiorEliteQuest": {
+    "TEXT": [
+      "Superior Elite",
+      "The next elite you fight is more dangerous, with additional HP, damage, and #yArtifact. Defeat it to claim a reward!",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Elites defeated"
+    ]
+  },
+  "${ModID}:GatheringExpeditionQuest": {
+    "TEXT": [
+      "Gathering Expedition",
+      "New flowers/minerals/gems can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a relic.",
+      "modargo",
+      "New #rflowers can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a #yFloral #yGarland.",
+      "New #yminerals can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a #ySpire #yAlloy #yHelmet.",
+      "New #bgems can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a #yJewelled #yBauble."
+    ],
+    "EXTRA_TEXT": [
+      "Items gathered",
+      "Flowers gathered",
+      "Minerals gathered",
+      "Gems gathered"
+    ]
   }
 }

@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.BlightStrings;
-import spireQuests.util.TexLoader;
 import spireQuests.Anniv8Mod;
+import spireQuests.util.TexLoader;
 
 @AutoAdd.Ignore
 public abstract class AbstractSQBlight extends AbstractBlight {

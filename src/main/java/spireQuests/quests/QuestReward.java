@@ -30,6 +30,7 @@ import static spireQuests.Anniv8Mod.makeUIPath;
 public abstract class QuestReward {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestReward")).TEXT;
     private static final Map<String, RewardLoader> rewardLoaders = new HashMap<>();
+
     static {
         addRewardSaver(new RewardLoader(GoldReward.class, (save) -> new GoldReward(Integer.parseInt(save.param))));
         addRewardSaver(new RewardLoader(RelicReward.class, (save) -> new RelicReward(RelicLibrary.getRelic(save.param).makeCopy())));
@@ -56,7 +57,6 @@ public abstract class QuestReward {
     }
 
 
-
     public String rewardText;
 
     public QuestReward(String rewardText) {
@@ -68,6 +68,7 @@ public abstract class QuestReward {
     }
 
     public abstract TextureRegion icon();
+
     protected abstract String saveParam();
 
     @Override
@@ -76,9 +77,11 @@ public abstract class QuestReward {
     }
 
     public abstract void obtainRewardItem();
+
     public abstract void obtainInstant();
 
     public void addTooltip(List<PowerTip> previewTooltips) { }
+    public void init() { } // Any randomization or calls that rely on being in a run should happen here
 
 
     public static class GoldReward extends QuestReward {
@@ -152,18 +155,28 @@ public abstract class QuestReward {
 
     public static class RandomRelicReward extends QuestReward {
         private final AbstractRelic.RelicTier tier;
-        private final AbstractRelic relic;
+        private AbstractRelic relic;
+
+        public RandomRelicReward() {
+            this((AbstractRelic.RelicTier)null);
+        }
 
         public RandomRelicReward(AbstractRelic.RelicTier tier) {
             super(text(tier));
             this.tier = tier;
-            this.relic = AbstractDungeon.returnRandomScreenlessRelic(tier); //roll immediately to avoid weirdness with manipulating rng when claiming reward
         }
 
         private RandomRelicReward(AbstractRelic relic) {
             super(text(relic.tier));
             this.tier = relic.tier;
             this.relic = relic;
+        }
+
+        @Override
+        public void init() {
+            // We roll on pickup to avoid weirdness with manipulating rng when claiming reward
+            AbstractRelic.RelicTier t = this.tier == null ? AbstractDungeon.returnRandomRelicTier() : this.tier;
+            this.relic = AbstractDungeon.returnRandomScreenlessRelic(t);
         }
 
         @Override
@@ -184,21 +197,26 @@ public abstract class QuestReward {
 
         @Override
         protected String saveParam() {
-            return tier.name();
+            return relic.relicId;
         }
 
         private static String text(AbstractRelic.RelicTier tier) {
             String relicTier;
-            switch (tier) {
-                case COMMON:
-                    relicTier = TEXT[2];
-                    break;
-                case UNCOMMON:
-                    relicTier = TEXT[3];
-                    break;
-                default:
-                    relicTier = TEXT[4];
-                    break;
+            if (tier == null) {
+                relicTier = TEXT[5];
+            }
+            else {
+                switch (tier) {
+                    case COMMON:
+                        relicTier = TEXT[2];
+                        break;
+                    case UNCOMMON:
+                        relicTier = TEXT[3];
+                        break;
+                    default:
+                        relicTier = TEXT[4];
+                        break;
+                }
             }
             return String.format(TEXT[1], relicTier);
         }

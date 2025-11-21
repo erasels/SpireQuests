@@ -11,7 +11,7 @@ public class AbstinenceQuest extends AbstractQuest {
     public AbstinenceQuest() {
         super(QuestType.SHORT, QuestDifficulty.EASY);
 
-        new TriggerTracker<>(QuestTriggers.VICTORY, COMBATS)
+        new TriggerTracker<>(QuestTriggers.COMBAT_END, COMBATS)
                 .setFailureTrigger(QuestTriggers.USE_POTION)
                 .add(this);
 

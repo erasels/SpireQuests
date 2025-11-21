@@ -1,5 +1,6 @@
 package spireQuests.quests;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -130,6 +131,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     //override if you want to set up the text differently
     protected String rewardsText = null;
+
     public String getRewardsText() {
         if (rewardsText == null) {
             StringBuilder sb = new StringBuilder();
@@ -152,6 +154,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     /**
      * To add custom tips to a quest, override this method.
+     *
      * @param tipList
      */
     public void makeTooltips(List<PowerTip> tipList) {
@@ -163,6 +166,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     /**
      * This allows customizing the PowerTip that is shown if needsHoverToolip is true and the quets is hovered in the UI
+     *
      * @return PowerTip that will be displayed on hover
      */
     public PowerTip getHoverTooltip() {
@@ -171,6 +175,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     /**
      * Adds an objective tracker to a quest. Should be used in the constructor. Can also call Tracker.add
+     *
      * @param questTracker
      * @return
      */
@@ -216,8 +221,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     public boolean fail() {
-        if(complete) return false;
-        if(failed) return true;
+        if (complete) return false;
+        if (failed) return true;
 
         boolean notFailed = true;
         for (Tracker tracker : trackers) {
@@ -234,7 +239,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     public void forceFail() {
-        if(complete) Anniv8Mod.logger.warn("Forcefully failed quest that was complete {}", this.id);
+        if (complete) Anniv8Mod.logger.warn("Forcefully failed quest that was complete {}", this.id);
 
         failed = true;
         trackers.clear();
@@ -266,8 +271,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
             for (QuestReward reward : questRewards) {
                 reward.obtainRewardItem();
             }
-        }
-        else {
+        } else {
             for (QuestReward reward : questRewards) {
                 reward.obtainInstant();
             }
@@ -281,6 +285,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public void onStart() {
         for (Tracker t : trackers) {
             t.refreshState();
+        }
+        for (QuestReward r : questRewards) {
+            r.init();
         }
     }
 
@@ -307,27 +314,36 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
     }
 
-    public void loadSave(String[] questData) {
+    public void loadSave(String[] questData, QuestReward.QuestRewardSave[] questRewardSaves) {
+        boolean loadTrackers = true;
         if (questData.length == 1) {
-            if(QuestCompleteTracker.COMPLETE_STRING.equals(questData[0])) {
+            if (QuestCompleteTracker.COMPLETE_STRING.equals(questData[0])) {
                 complete = true;
                 trackers.clear();
                 triggers.clear();
                 trackers.add(new QuestCompleteTracker());
-                return;
+                loadTrackers = false;
             } else if (QuestFailedTracker.FAIL_STRING.equals(questData[0])) {
                 failed = true;
                 trackers.clear();
                 triggers.clear();
                 trackers.add(new QuestFailedTracker());
+                loadTrackers = false;
             }
         }
 
-        for (int i = 0; i < questData.length; ++i) {
-            if (i >= trackers.size()) {
-                Anniv8Mod.logger.warn("Saved tracker data for quest " + id + " does not match tracker count");
+        if (loadTrackers) {
+            for (int i = 0; i < questData.length; ++i) {
+                if (i >= trackers.size()) {
+                    Anniv8Mod.logger.warn("Saved tracker data for quest " + id + " does not match tracker count");
+                }
+                trackers.get(i).loadData(questData[i]);
             }
-            trackers.get(i).loadData(questData[i]);
+        }
+
+        questRewards.clear();
+        for (QuestReward.QuestRewardSave qrs : questRewardSaves) {
+            questRewards.add(QuestReward.fromSave(qrs));
         }
     }
 
@@ -338,6 +354,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
         return data;
     }
+
     public QuestReward.QuestRewardSave[] rewardSaves() {
         QuestReward.QuestRewardSave[] rewardSaves = new QuestReward.QuestRewardSave[questRewards.size()];
         for (int i = 0; i < rewardSaves.length; ++i) {
@@ -351,7 +368,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         AbstractQuest quest;
         try {
             quest = this.getClass().getDeclaredConstructor().newInstance();
-        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException |
+                 InvocationTargetException e) {
             throw new RuntimeException("Failed to auto-generate makeCopy for quest " + getClass().getName(), e);
         }
 
@@ -383,8 +401,13 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         protected ArrayList<Consumer<Trigger<?>>> failTriggers = new ArrayList<>();
 
         public abstract boolean isComplete();
+
         public boolean isFailed() {
             return isFailed.get();
+        }
+
+        public boolean isDisabled() {
+            return false;
         }
 
         public boolean hidden() {
@@ -395,8 +418,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
             if (this.condition != null) {
                 Supplier<Boolean> oldCondition = this.condition;
                 this.condition = () -> oldCondition.get() && condition.get();
-            }
-            else {
+            } else {
                 this.condition = condition;
             }
         }
@@ -417,6 +439,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Sets a trigger that will fail (the quest) when the condition is met.
+         *
          * @param trigger
          */
         public final <A> Tracker setFailureTrigger(Trigger<A> trigger) {
@@ -425,12 +448,13 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Sets a trigger that will fail (the quest) when the condition is met.
+         *
          * @param trigger
          * @param condition Receives the trigger parameter and only fails the quest if true is returned.
          */
         public final <A> Tracker setFailureTrigger(Trigger<A> trigger, Function<A, Boolean> condition) {
             this.failTriggers.add(trigger.getTriggerMethod((param) -> {
-                if(this.isComplete()) return;
+                if (this.isComplete()) return;
                 if (condition.apply(param)) {
                     isFailed = () -> true;
                 }
@@ -440,6 +464,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Sets a trigger that will reset this tracker's progress. No effect by default on passive trackers, but the reset method can be overridden.
+         *
          * @param trigger
          */
         public final <A> Tracker setResetTrigger(Trigger<A> trigger) {
@@ -448,6 +473,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Sets a trigger that will reset this tracker's progress. No effect by default on passive trackers, but the reset method can be overridden.
+         *
          * @param trigger
          * @param condition Receives the trigger parameter and only resets the tracker if true is returned and the trigger is incomplete.
          */
@@ -457,12 +483,13 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Sets a trigger that will reset this tracker's progress. No effect by default on passive trackers, but the reset method can be overridden.
+         *
          * @param trigger
-         * @param condition Receives the trigger parameter and only resets the tracker if true is returned.
+         * @param condition      Receives the trigger parameter and only resets the tracker if true is returned.
          * @param lockCompletion If true, the reset trigger will be ignored once this tracker is completed.
          */
         public final <A> Tracker setResetTrigger(Trigger<A> trigger, Function<A, Boolean> condition, boolean lockCompletion) {
-            this.reset.add(trigger.getTriggerMethod((param)->{
+            this.reset.add(trigger.getTriggerMethod((param) -> {
                 if (lockCompletion && this.isComplete()) return;
                 if (condition.apply(param)) {
                     this.reset();
@@ -485,6 +512,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Add a condition for the provided tracker to be complete before this tracker begins to function.
+         *
          * @param other
          * @return
          */
@@ -495,6 +523,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Add a condition for this tracker to be complete before the provided tracker begins to function.
+         *
          * @param other
          * @return
          */
@@ -524,6 +553,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     /**
      * A tracker checking an easily accessible value and comparing it against a target value.
+     *
      * @param <T>
      */
     public static class PassiveTracker<T> extends Tracker {
@@ -532,11 +562,11 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         private final BiFunction<T, T, Boolean> comparer;
 
         public PassiveTracker(Supplier<T> getProgress, T target) {
-            this(getProgress, target, Object::equals, ()->false);
+            this(getProgress, target, Object::equals, () -> false);
         }
 
         public PassiveTracker(Supplier<T> getProgress, T target, BiFunction<T, T, Boolean> comparer) {
-            this(getProgress, target, comparer, ()->false);
+            this(getProgress, target, comparer, () -> false);
         }
 
         public PassiveTracker(Supplier<T> getProgress, T target, Supplier<Boolean> isFailed) {
@@ -580,8 +610,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         private int count;
 
         public TriggerTracker(Trigger<T> trigger, int count) {
-            this(trigger, count, ()->false);
+            this(trigger, count, () -> false);
         }
+
         public TriggerTracker(Trigger<T> trigger, int count, Supplier<Boolean> isFailed) {
             this.count = 0;
             this.targetCount = count;
@@ -629,8 +660,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         public void loadData(String data) {
             try {
                 count = Integer.parseInt(data);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Anniv8Mod.logger.error("Failed to load tracker data for '" + text + "'", e);
             }
         }
@@ -638,6 +668,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     /**
      * A tracker checking a value only when a specific trigger occurs (recommended for stuff that could potentially be costly if checked every frame to display quest state and has a clear update event)
+     *
      * @param <T>
      */
     public static class TriggeredUpdateTracker<T, U> extends Tracker {
@@ -645,8 +676,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         private final Supplier<T> getState;
         private final Supplier<Boolean> isFailed;
 
-        public TriggeredUpdateTracker(Trigger<U> trigger, T start, T target,  Supplier<T> getProgress) {
-            this(trigger, start, target, getProgress, ()->false);
+        public TriggeredUpdateTracker(Trigger<U> trigger, T start, T target, Supplier<T> getProgress) {
+            this(trigger, start, target, getProgress, () -> false);
         }
 
         public TriggeredUpdateTracker(Trigger<U> trigger, T start, T target, Supplier<T> getState, Supplier<Boolean> isFailed) {
@@ -773,13 +804,14 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         /**
          * Runs code when a trigger occurs. If trigger count is omitted it will trigger any number of times.
+         *
          * @param trigger
          * @param onTrigger
          * @param triggerCount
          */
         public TriggerEvent(Trigger<T> trigger, Consumer<T> onTrigger, int triggerCount) {
             this.triggerCount = triggerCount;
-            setTrigger(trigger, (param)->{
+            setTrigger(trigger, (param) -> {
                 if (this.triggerCount != 0) {
                     --this.triggerCount; //theoretically this limits the triggers of "infinite" to like 2 billion
                     onTrigger.accept(param);
@@ -797,5 +829,14 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         public String progressString() {
             return "";
         }
+    }
+
+
+    // Creates Questbound cards that are handled automatically. Just need an array and add cards to it.
+    public ArrayList<AbstractCard> questboundCards;
+
+    // This is for situations where the Questbound cards in the deck would be replaced. Basically if they're a "Random Attack" or something similar.
+    public ArrayList<AbstractCard> overrideQuestboundCards() {
+        return null;
     }
 }

@@ -13,14 +13,14 @@ public class DefectOnlyTestQuest extends AbstractQuest {
         super(QuestType.SHORT, QuestDifficulty.EASY);
 
         new TriggerTracker<>(QuestTriggers.ENTER_ROOM, 1)
-            .triggerCondition((node) -> node.room instanceof MonsterRoomBoss)
-            .add(this);
+                .triggerCondition((node) -> node.room instanceof MonsterRoomBoss)
+                .add(this);
 
         addReward(new QuestReward.RelicReward(new CrackedCore()));
     }
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.player.chosenClass == AbstractPlayer.PlayerClass.DEFECT;
+        return false && AbstractDungeon.player.chosenClass == AbstractPlayer.PlayerClass.DEFECT;
     }
 }

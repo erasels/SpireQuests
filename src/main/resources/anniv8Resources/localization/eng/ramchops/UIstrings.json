@@ -1,0 +1,13 @@
+{
+  "${ModID}:CeaselessHungerQuest": {
+    "TEXT": [
+      "Ceaseless Hunger",
+      "Upon pickup, obtain #yN'loth's #yFace [REMOVE_SPACE]. Obtain another #yN'loth's #yFace at the start of Act 2. Open a chest in Act 3 to complete this Quest.",
+      "RamChops Games"
+    ],
+    "EXTRA_TEXT": [
+      "Open an Act 3 Chest",
+      "Remove all #yN'loth's #yFaces and obtain #b2 random #yRelics for each #yN'loth's #yFace removed."
+    ]
+  }
+}

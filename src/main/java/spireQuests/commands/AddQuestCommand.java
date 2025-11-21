@@ -2,7 +2,6 @@ package spireQuests.commands;
 
 import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
-import spireQuests.Anniv8Mod;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
 

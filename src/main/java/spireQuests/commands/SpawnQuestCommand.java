@@ -72,7 +72,7 @@ public class SpawnQuestCommand extends ConsoleCommand {
             result.clear();
             List<String> allQuestIds = QuestManager.getAllQuests().stream().map(q -> q.id).map(s -> s.replace(modID + ":", "")).collect(Collectors.toCollection(ArrayList::new));
             result.addAll(allQuestIds);
-            if(result.contains(tokens[depth + 1])) {
+            if (result.contains(tokens[depth + 1])) {
                 complete = true;
             }
         }

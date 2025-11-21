@@ -10,9 +10,14 @@ public class EnterRoomTestQuest extends AbstractQuest {
         super(QuestType.SHORT, QuestDifficulty.EASY);
 
         new TriggerTracker<>(QuestTriggers.ENTER_ROOM, 5)
-            .triggerCondition((node) -> node.room instanceof EventRoom)
-            .add(this);
+                .triggerCondition((node) -> node.room instanceof EventRoom)
+                .add(this);
 
         addReward(new QuestReward.GoldReward(100));
+    }
+
+    @Override
+    public boolean canSpawn() {
+        return false;
     }
 }

@@ -1,0 +1,9 @@
+{
+  "${ModID}:NuclearJuicePotion": {
+    "NAME": "Nuclear Juice",
+    "DESCRIPTIONS": [
+      "Add #b",
+      " #yFission+ to your hand."
+    ]
+  }
+}

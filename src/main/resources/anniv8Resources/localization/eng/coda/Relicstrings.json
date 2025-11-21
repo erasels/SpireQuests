@@ -1,0 +1,9 @@
+{
+  "${ModID}:RadiationDispenserRelic": {
+    "NAME": "Radiation Dispenser",
+    "FLAVOR": "Zap that thirst!",
+    "DESCRIPTIONS": [
+      "Combat rewards have a chance to include a #yNuclear #yJuice."
+    ]
+  }
+}

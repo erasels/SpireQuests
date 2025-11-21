@@ -18,7 +18,7 @@ public class ProudBadge extends AbstractSQRelic {
 
     @Override
     public void onUsePotion() {
-        if(Wiz.isInCombat()) {
+        if (Wiz.isInCombat()) {
             flash();
             Wiz.applyToSelf(new StrengthPower(Wiz.p(), STR_AMT));
             Wiz.applyToSelf(new LoseStrengthPower(Wiz.p(), STR_AMT));

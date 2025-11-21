@@ -11,9 +11,11 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class GlowParticle extends AbstractGameEffect {
     private static final float DURATION = 3f;
-    private float scale = 0.01f, maxScale;
-    private Texture img;
-    private float x, y;
+    private float scale = 0.01f;
+    private final float maxScale;
+    private final Texture img;
+    private final float x;
+    private final float y;
 
     public GlowParticle(Texture img, float x, float y, float angle, float maxScale) {
         this.duration = DURATION;
@@ -73,11 +75,11 @@ public class GlowParticle extends AbstractGameEffect {
     //Lights out custom lights support - BEGIN
     public float[] _lightsOutGetXYRI() {
         float imageWidth = img.getWidth() * Settings.scale, imageHeight = img.getHeight() * Settings.scale;
-        return new float[] {x - imageWidth / 2f, y - imageHeight / 2f, scale * 1000f* Settings.scale, color.a};
+        return new float[]{x - imageWidth / 2f, y - imageHeight / 2f, scale * 1000f * Settings.scale, color.a};
     }
 
     public Color[] _lightsOutGetColor() {
-        return new Color[] {color};
+        return new Color[]{color};
     }
     //Lights out custom lights support - END
 }

@@ -66,7 +66,7 @@ public class QuestGenerator {
     }
 
     private static AbstractQuest.QuestDifficulty[] rollDifficulties(boolean fromNeow, Random rng) {
-        AbstractQuest.QuestDifficulty[] difficulties = new AbstractQuest.QuestDifficulty[] {
+        AbstractQuest.QuestDifficulty[] difficulties = new AbstractQuest.QuestDifficulty[]{
                 AbstractQuest.QuestDifficulty.EASY,
                 AbstractQuest.QuestDifficulty.NORMAL,
                 AbstractQuest.QuestDifficulty.HARD
