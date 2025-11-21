@@ -41,5 +41,12 @@
       "Combat reward screens contain cards from another character. Whenever you add one of their cards to your deck, gain #b%d #yGold.",
       "Combat reward screens contain cards from %s. Whenever you add a card from %s to your deck, gain #b%d #yGold."
     ]
+  },
+  "${ModID}:CustomerAppreciationAward": {
+    "NAME": "Customer Appreciation Award",
+    "FLAVOR": "For the best of customers.",
+    "DESCRIPTIONS": [
+      "Upon pickup, gain #b10 gold, gain #b1 Max HP, and #yUpgrade #b1 random #yCommon card."
+    ]
   }
 }

@@ -66,5 +66,17 @@
     "EXTRA_TEXT": [
       "Cards added"
     ]
+  },
+  "${ModID}:PlatinumCafeMemberQuest": {
+    "TEXT": [
+      "Platinum Cafe Member",
+      "The Cafe is running a special! Customers who buy out the bartender's offerings and finish a conversation with each Cafe patron will receive a small gift.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Cafe entered",
+      "Bartender",
+      "Patrons"
+    ]
   }
 }

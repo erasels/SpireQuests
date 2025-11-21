@@ -424,10 +424,18 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         /**
-         * Causes a tracker to not be displayed. This should be done for a subcondition, like "be in a shop" before "obtain x cards"
+         * Causes a tracker to not be displayed. This should be done for a subcondition, like "be in a shop" before "buy x cards"
          */
         public final Tracker hide() {
             this.hidden = true;
+            return this;
+        }
+
+        /**
+         * Shows a hidden tracker. This should be called once a condition has been fulfilled, like showing "buy x cards" after achieving "be in a shop"
+         */
+        public final Tracker show() {
+            this.hidden = false;
             return this;
         }
 
