@@ -24,8 +24,8 @@
   "${ModID}:UnbreakableQuest": {
     "TEXT": [
       "Unbreakable",
-      "coda",
       "Take damage equal to your base Max HP within 17 floors.",
+      "coda",
       "Take ",
       " damage within 17 floors."
     ],

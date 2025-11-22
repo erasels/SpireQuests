@@ -16,7 +16,7 @@ public class UnbreakableQuest extends AbstractQuest {
     private int damageTaken = 0;
 
     public UnbreakableQuest() {
-        super(QuestType.LONG, QuestDifficulty.NORMAL);
+        super(QuestType.LONG, QuestDifficulty.HARD);
         if (AbstractDungeon.player != null) {
             this.damageGoal = AbstractDungeon.player.startingMaxHP;
         }
@@ -43,13 +43,6 @@ public class UnbreakableQuest extends AbstractQuest {
 
         addReward(new RelicReward(new GrapefruitRelic()));
         
-    }
-
-    @Override
-    protected void setText() {
-        name = localization.TEXT[0];
-        author = localization.TEXT[1];
-        description = localization.TEXT[2];
     }
 
     @Override
