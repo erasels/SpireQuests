@@ -1,0 +1,9 @@
+{
+  "${modID}:HeartyAnchor": {
+    "NAME": "HeartyAnchor",
+    "FLAVOR": "May not actually be a good anchor",
+    "DESCRIPTIONS": [
+      "At the start of turn 1, gain #b6 #yTemp HP."
+    ]
+  }
+}
