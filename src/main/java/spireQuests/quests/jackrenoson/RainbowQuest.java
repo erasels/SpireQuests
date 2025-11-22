@@ -1,52 +1,65 @@
 package spireQuests.quests.jackrenoson;
 
-import basemod.helpers.CardPowerTip;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.red.Bash;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.relics.BurningBlood;
+import com.megacrit.cardcrawl.relics.PrismaticShard;
+import com.megacrit.cardcrawl.relics.QuestionCard;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RainbowQuest extends AbstractQuest {
+    ArrayList<AbstractCard.CardColor> colorsAdded = new ArrayList<>();
+    int req = 3;
+
     public RainbowQuest() {
-        super(QuestType.LONG, QuestDifficulty.HARD);
+        super(QuestType.SHORT, QuestDifficulty.EASY);
+        rewardScreenOnly = true;
+        needHoverTip = true;
 
-        new TriggerTracker<>(QuestTriggers.ADD_CARD, 5)
-                .triggerCondition((card) -> card.rarity == AbstractCard.CardRarity.COMMON)
-                .setResetTrigger(QuestTriggers.ADD_CARD, (card) -> card.rarity != AbstractCard.CardRarity.COMMON)
+        Tracker tracker = new TriggerTracker<>(QuestTriggers.ADD_CARD, req)
+                .triggerCondition((card) -> !colorsAdded.contains(card.color))
                 .add(this);
+        tracker.text = localization.EXTRA_TEXT[0] + req + localization.EXTRA_TEXT[1];
 
-        new TriggerTracker<AbstractCard>(QuestTriggers.ADD_CARD, 1) {
-            @Override
-            public String progressString() {
-                return "";
+        new TriggerEvent<>(QuestTriggers.ADD_CARD, c -> {
+            if(!colorsAdded.contains(c.color)){
+                colorsAdded.add(c.color);
             }
+        }).add(this);
+
+        addReward(new QuestReward.RelicReward(new QuestionCard()));
+        addReward(new QuestReward.RelicReward(new PrismaticShard()));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.95F, Settings.HEIGHT / 2.0F, new PrismaticShard());
+    }
+
+    @Override
+    public void onComplete() {
+        AbstractDungeon.player.loseRelic(new PrismaticShard().relicId);
+    }
+
+    @Override
+    protected void setText() {
+        name = localization.TEXT[0];
+        description = localization.TEXT[1] + req + localization.TEXT[2];
+        author = localization.TEXT[3];
+    }
+
+    @Override
+    public PowerTip getHoverTooltip() {
+        ArrayList<String> colorNames = new ArrayList<>();
+        for (AbstractCard.CardColor c : colorsAdded) {
+            colorNames.add(c.name().toLowerCase());
         }
-                .triggerCondition((card) -> card.rarity == AbstractCard.CardRarity.RARE)
-                .add(this);
-
-        new TriggerEvent<>(QuestTriggers.DECK_CHANGE,
-                (param) -> AbstractDungeon.player.damage(new DamageInfo(null, 1, DamageInfo.DamageType.HP_LOSS))
-        );
-
-        addReward(new QuestReward.GoldReward(100));
-        addReward(new QuestReward.RelicReward(new BurningBlood()));
-    }
-
-    @Override
-    public void makeTooltips(List<PowerTip> tipList) {
-        super.makeTooltips(tipList);
-        tipList.add(new CardPowerTip(new Bash()));
-    }
-
-    @Override
-    public boolean canSpawn() {
-        return false;
+        return new PowerTip(localization.EXTRA_TEXT[2], String.join(" NL ", colorNames));
     }
 }
