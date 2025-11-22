@@ -62,7 +62,7 @@ public class PlatinumCafeMemberQuest extends AbstractQuest {
     public static final Trigger<Object> CAFE_ENTRY = new Trigger<>();
     public static final Trigger<Boolean> CAFE_DONE_WITH_NPC = new Trigger<>();
 
-    @SpirePatch2(cls = "spireCafe.CafeRoom", method = "onEnterRoom")
+    @SpirePatch2(cls = "spireCafe.CafeRoom", method = "onEnterRoom", requiredModId = "anniv7")
     public static class CafeEntryTriggerPatch {
         @SpirePostfixPatch
         public static void cafeEntry(Object __instance) {
@@ -70,12 +70,12 @@ public class PlatinumCafeMemberQuest extends AbstractQuest {
         }
     }
 
-    @SpirePatch2(cls = "spireCafe.abstracts.AbstractNPC", method = SpirePatch.CLASS)
+    @SpirePatch2(cls = "spireCafe.abstracts.AbstractNPC", method = SpirePatch.CLASS, requiredModId = "anniv7")
     public static class CafeNPCFields {
         public static SpireField<Boolean> previousAlreadyPerformedTransaction = new SpireField<>(() -> false);
     }
 
-    @SpirePatch2(cls = "spireCafe.abstracts.AbstractCutscene", method = "endCutscene")
+    @SpirePatch2(cls = "spireCafe.abstracts.AbstractCutscene", method = "endCutscene", requiredModId = "anniv7")
     public static class EndCutsceneTrigger {
         @SpirePostfixPatch
         public static void endCutscene(Object __instance) {
