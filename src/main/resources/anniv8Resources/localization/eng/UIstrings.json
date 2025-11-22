@@ -60,5 +60,12 @@
         "${ModID}:Questbound. NL ",
         "Whenever you complete %s, remove this from your deck. Cannot be modified or removed by any other means."
       ]
-    }
+    },
+  "${ModID}:QuestManager": {
+    "TEXT": [
+      "I cannot claim this quest right now.",
+      "I cannot claim quests during combat.",
+      "I can only claim this quest at a reward screen."
+    ]
+  }
 }
