@@ -147,9 +147,10 @@ public class QuestManager {
             return;
         }
 
-        if (AbstractDungeon.currMapNode == null) return;
+        if (AbstractDungeon.currMapNode == null) return; //TODO: Add player saying that they cannot claim the quest right now if visible
         if (AbstractDungeon.currMapNode.room == null) return;
         if (AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT) return;
+        if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.COMBAT_REWARD && quest.rewardScreenOnly) return;
 
         quests().remove(quest);
         quest.obtainRewards();

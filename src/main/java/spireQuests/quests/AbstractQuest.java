@@ -46,6 +46,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     public boolean useDefaultReward;
     public List<QuestReward> questRewards;
+    public boolean rewardScreenOnly = false;
 
     private int trackerTextIndex = 0;
 
