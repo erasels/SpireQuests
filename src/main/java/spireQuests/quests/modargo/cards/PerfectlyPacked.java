@@ -1,5 +1,6 @@
 package spireQuests.quests.modargo.cards;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -30,6 +31,9 @@ public class PerfectlyPacked extends AbstractSQCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (!super.canUse(p, m)) {
+            return false;
+        }
+        if (!Loader.isModLoaded("anniv5")) {
             return false;
         }
         long packCardCount = AbstractDungeon.player.drawPile.group.stream()
