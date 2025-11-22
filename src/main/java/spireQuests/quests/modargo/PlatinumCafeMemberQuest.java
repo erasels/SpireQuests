@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
@@ -54,7 +55,8 @@ public class PlatinumCafeMemberQuest extends AbstractQuest {
                 && cafeRoom != null
                 && abstractCutscene != null
                 && abstractNPC != null
-                && abstractBartender != null;
+                && abstractBartender != null
+                && AbstractDungeon.actNum < 3;
     }
 
     public static final Trigger<Object> CAFE_ENTRY = new Trigger<>();
