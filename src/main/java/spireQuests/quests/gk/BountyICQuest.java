@@ -39,28 +39,6 @@ public class BountyICQuest extends AbstractQuest {
                 .triggerCondition((x) -> AbstractDungeon.getCurrRoom().eliteTrigger)
                 .setFailureTrigger(QuestTriggers.ACT_CHANGE)
                 .add(this);
-
-        /*new TriggeredUpdateTracker<Integer, Void>(QuestTriggers.VICTORY, 0, 1, () -> {
-            AbstractRoom room = AbstractDungeon.getCurrRoom();
-            if (!room.eliteTrigger) {
-                return 0;
-            }
-            return 1;
-        }) {
-            @Override
-            public String progressString() {
-                return "";
-            }
-
-            @Override
-            public boolean isDisabled() {
-                AbstractRoom room = AbstractDungeon.getCurrRoom();
-                return !room.eliteTrigger;
-            }
-        }
-                .add(this);*/
-
-        // TODO: Replace elite combat with Ironclad
     }
 
     @Override
