@@ -36,7 +36,8 @@ public class BountyICQuest extends AbstractQuest {
         super(QuestType.SHORT, QuestDifficulty.NORMAL);
 
         new TriggerTracker<>(QuestTriggers.VICTORY, 1)
-                .triggerCondition((x) -> AbstractDungeon.getCurrRoom().eliteTrigger)
+                .triggerCondition((x) -> AbstractDungeon.getCurrRoom().eliteTrigger &&
+                        ICEliteMonster.ID.equals(AbstractDungeon.lastCombatMetricKey))
                 .setFailureTrigger(QuestTriggers.ACT_CHANGE)
                 .add(this);
     }
