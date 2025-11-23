@@ -155,7 +155,7 @@ public class BountyICQuest extends AbstractQuest {
         public static SpireReturn<MonsterGroup> replacementPatch() {
             // if this quest exists
             BountyICQuest q = (BountyICQuest) QuestManager.quests().stream()
-                    .filter(quest -> ID.equals(quest.id) && !quest.isCompleted())
+                    .filter(quest -> ID.equals(quest.id) && !quest.isCompleted() && !quest.isFailed())
                     .findAny()
                     .orElse(null);
             if(q != null) {
