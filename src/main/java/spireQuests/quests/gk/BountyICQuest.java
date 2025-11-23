@@ -1,13 +1,11 @@
 package spireQuests.quests.gk;
 
-import basemod.BaseMod;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.relics.BurningBlood;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -23,7 +21,6 @@ import spireQuests.quests.gk.cards.StoneArmor;
 import spireQuests.quests.gk.cards.Taunt;
 import spireQuests.quests.gk.cards.Unrelenting;
 import spireQuests.quests.gk.monsters.ICEliteMonster;
-import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
 
@@ -69,22 +66,10 @@ public class BountyICQuest extends AbstractQuest {
             if(q != null) {
                 for (RewardItem reward : __instance.rewards) {
                     if (!replacedCards && reward.type == RewardItem.RewardType.CARD) {
-                        ArrayList<AbstractCard> icCards = new ArrayList<>();
-                        icCards.add(new Unrelenting());
-                        icCards.add(new Taunt());
-                        icCards.add(new StoneArmor());
-                        // Respect original upgrades
-                        for (int i = 0; i < icCards.size(); i++) {
-                            AbstractCard c = icCards.get(i);
-                            AbstractCard oC = reward.cards.get(Math.max(i, reward.cards.size()-1));
-                            if(oC.upgraded) {
-                                c.upgrade();
-                            }
-                            // We'll ignore cardmods for now, too unpredictable
-                            Wiz.p().relics.forEach(r -> r.onPreviewObtainCard(c));
-                        }
-                        reward.cards.clear();
-                        reward.cards.addAll(icCards);
+                        PredefinedCardReward.skip_rolling_cards = true;
+                        RewardItem newReward = new RewardItem();
+                        PredefinedCardReward.skip_rolling_cards = false;
+                        __instance.rewards.set(__instance.rewards.indexOf(reward), newReward);
                         replacedCards = true;
                     } else if (!replacedRelic && reward.type == RewardItem.RewardType.RELIC) {
                         RewardItem newReward = new RewardItem(new BurningBlood());
@@ -99,6 +84,30 @@ public class BountyICQuest extends AbstractQuest {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractDungeon.class, "loading_post_combat");
                 return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[3]};
+            }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractDungeon.class, method = "getRewardCards")
+    @SpirePatch2(clz = AbstractDungeon.class, method = "getColorlessRewardCards")
+    public static class PredefinedCardReward {
+        public static boolean skip_rolling_cards = false;
+
+        @SpireInsertPatch(locator = PostNumCardsLocator.class, localvars = {"retVal", "numCards"})
+        public static void patch(ArrayList<AbstractCard> retVal, @ByRef int[] numCards) {
+            if(skip_rolling_cards) {
+                numCards[0] = -1;
+                retVal.clear();
+                retVal.add(new Unrelenting());
+                retVal.add(new Taunt());
+                retVal.add(new StoneArmor());
+            }
+        }
+
+        private static class PostNumCardsLocator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(ModHelper.class, "isModEnabled");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
     }
