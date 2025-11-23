@@ -1,5 +1,7 @@
 package spireQuests.quests.gk.monsters;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -16,10 +18,14 @@ import com.megacrit.cardcrawl.cards.red.DemonForm;
 import com.megacrit.cardcrawl.cards.red.IronWave;
 import com.megacrit.cardcrawl.cards.red.TwinStrike;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.BufferPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.FossilizedHelix;
 import spireQuests.abstracts.AbstractSQMonster;
 import spireQuests.quests.gk.powers.FakeDemonFormPower;
 import spireQuests.quests.gk.vfx.FakePlayCardEffect;
@@ -36,6 +42,7 @@ public class ICEliteMonster extends AbstractSQMonster {
 
     private static final Byte DEMON_FORM = 0, IRON_WAVE = 1, BASH = 2, TWIN_STRIKE = 3;
 
+    private AbstractRelic relic;
     private int demonFormAmt = 2;
 
     public ICEliteMonster() {
@@ -61,6 +68,8 @@ public class ICEliteMonster extends AbstractSQMonster {
         stateData.setMix("Hit", "Idle", 0.1f);
         e.setTimeScale(0.6f);
         flipHorizontal = true;
+
+        relic = new FossilizedHelix();
     }
 
     @Override
@@ -124,6 +133,26 @@ public class ICEliteMonster extends AbstractSQMonster {
         } else if(lastMove(BASH)) {
             setMoveShortcut(TWIN_STRIKE, MOVES[TWIN_STRIKE]);
         }
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        relic.currentX = relic.targetX = hb.x + hb.width + (100f* Settings.xScale);
+        relic.currentY = relic.targetY = hb.y;
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        addToBot(new ApplyPowerAction(this, this, new BufferPower(this, 1), 1));
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        Color transparent = Color.WHITE.cpy();
+        transparent.a = 0;
+        relic.renderWithoutAmount(sb, transparent);
     }
 
     @Override
