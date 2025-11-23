@@ -4,13 +4,9 @@
     "DESCRIPTION": "{@@}{!Upgrades!|>0=Innate. NL }Choose one of three cards from different packs in your draw pile to put into your hand. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["No cards with packs in draw pile."]
   },
-  "${ModID}:CallTheBlackstaff": {
-    "NAME": "Call the Blackstaff",
-    "DESCRIPTION": "Fill your hand with *Voids. NL Put *The *Blackstaff on top of your draw pile. NL Exhaust."
-  },
   "${ModID}:TheBlackstaff": {
     "NAME": "The Blackstaff",
-    "DESCRIPTION": "Gain !M! Temporary_HP. NL Apply !M! ${ModID}:Ignite. NL Increase these values by !${ModID}:m2!."
+    "DESCRIPTION": "Gain !M! Temporary_HP. NL Apply !M! ${ModID}:Ignite. NL Shuffle this card into your draw pile."
   },
   "${ModID}:BloodInTheChalice": {
     "NAME": "Blood in the Chalice",

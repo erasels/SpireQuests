@@ -1,9 +1,7 @@
 package spireQuests.quests.modargo;
 
-import basemod.helpers.CardPowerTip;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
@@ -21,16 +19,10 @@ public class BloodfireRitualQuest extends AbstractQuest {
                 .triggerCondition(card -> card instanceof BloodfireRitualCard)
                 .add(this);
 
-        addReward(new QuestReward.CardReward(new CallTheBlackstaff()));
+        addReward(new QuestReward.CardReward(new TheBlackstaff()));
 
         questboundCards = new ArrayList<>();
         questboundCards.add(new BloodfireRitualQuestboundPlaceholder());
-    }
-
-    @Override
-    public void makeTooltips(List<PowerTip> tipList) {
-        super.makeTooltips(tipList);
-        tipList.add(new CardPowerTip(new TheBlackstaff()));
     }
 
     @Override

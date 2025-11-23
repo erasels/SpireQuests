@@ -17,14 +17,13 @@ import static spireQuests.Anniv8Mod.makeImagePath;
 
 public class TheBlackstaff extends AbstractSQCard {
     public static final String ID = makeID(TheBlackstaff.class.getSimpleName());
-    private static final int IGNITE_HP = 9;
-    private static final int INCREASE = 1;
-    private static final int UPGRADE_INCREASE = 1;
+    private static final int IGNITE_HP = 10;
+    private static final int UPGRADE_IGNITE_HP = 3;
 
     public TheBlackstaff() {
-        super(ID, "modargo", 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, "modargo", 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY);
         this.magicNumber = this.baseMagicNumber = IGNITE_HP;
-        this.secondMagic = this.baseSecondMagic = INCREASE;
+        this.shuffleBackIntoDrawPile = true;
         setBannerTexture(makeImagePath("modargo/BlackstaffCardBanner.png"), makeImagePath("modargo/BlackstaffCardBanner_p.png"));
         setBackgroundTexture(makeImagePath("modargo/BlackstaffCardBackground.png"), makeImagePath("modargo/BlackstaffCardBackground_p.png"));
     }
@@ -36,17 +35,10 @@ public class TheBlackstaff extends AbstractSQCard {
         this.addToBot(new VFXAction(new BlackstaffCurseEffect(m.hb.cX, m.hb.cY), 0.5F));
         this.addToBot(new ApplyPowerAction(m, p, IgnitePower.create(m, this.magicNumber)));
         this.addToBot(new VFXAction(p, new FlashAtkImgEffect(m.hb.cX, m.hb.cY, AbstractGameAction.AttackEffect.FIRE), 0.1F));
-        this.addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                TheBlackstaff.this.magicNumber = TheBlackstaff.this.baseMagicNumber += TheBlackstaff.this.secondMagic;
-                this.isDone = true;
-            }
-        });
     }
 
     @Override
     public void upp() {
-        this.upgradeSecondMagic(UPGRADE_INCREASE);
+        this.upgradeMagicNumber(UPGRADE_IGNITE_HP);
     }
 }
