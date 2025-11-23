@@ -20,5 +20,18 @@
       "Defeat an Elite or Boss without playing uncommon or rare cards.",
       "Upgrade three random starter or common cards."
     ]
+  },
+  "${ModID}:UnbreakableQuest": {
+    "TEXT": [
+      "Unbreakable",
+      "Take damage equal to your base Max HP within 17 floors.",
+      "coda",
+      "Take ",
+      " damage within 17 floors."
+    ],
+    "EXTRA_TEXT": [
+      "Damage remaining: ",
+      "Floors remaining: "
+    ]
   }
 }

@@ -612,10 +612,10 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
      * A reset trigger can be added to set the count back to 0
      */
     public static class TriggerTracker<T> extends Tracker {
-        private final int targetCount;
+        protected final int targetCount;
         private Function<T, Boolean> triggerCondition = null;
 
-        private int count;
+        protected int count;
 
         public TriggerTracker(Trigger<T> trigger, int count) {
             this(trigger, count, () -> false);

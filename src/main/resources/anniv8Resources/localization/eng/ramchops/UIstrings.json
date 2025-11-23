@@ -1,4 +1,18 @@
 {
+  "${ModID}:SelloutQuest": {
+    "TEXT": [
+      "Sellout",
+      "Upon pickup, add #b3 #yAdvertisements to your deck. Remove #b1 #yAdvertisement from your deck every #b5 combats won. Remove ALL #yAdvertisements from your deck to complete the quest.\n\n",
+      "RamChops Games"
+    ],
+    "EXTRA_TEXT": [
+      "Ad Revenue Owed",
+      "Combats Won",
+      "Remove Ads",
+      "Gain #b10 Gold for every #yAdvertisement played."
+    ]
+  },
+
   "${ModID}:CeaselessHungerQuest": {
     "TEXT": [
       "Ceaseless Hunger",
