@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.relics.BurningBlood;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 
 public class BalatroQuest extends AbstractQuest {
     public static int BLIND_FIGHTS_COMPLETED = 0;
@@ -16,6 +17,8 @@ public class BalatroQuest extends AbstractQuest {
             return BLIND_FIGHTS_COMPLETED;
         }).add(this);
 
+        // if (QuestManager.quests().stream().anyMatch(x -> x instanceof BalatroQuest))
+
         addReward(new QuestReward.RelicReward(new BurningBlood()));
         needHoverTip = true;
     }
@@ -23,15 +26,7 @@ public class BalatroQuest extends AbstractQuest {
     @Override
     public void onStart() {
         super.onStart();
-
-        StickersInRewardsPatch.ENABLED = true;
-    }
-
-    @Override
-    public void loadSave(String[] questData, QuestReward.QuestRewardSave[] questRewardSaves) {
-        super.loadSave(questData, questRewardSaves);
-
-        StickersInRewardsPatch.ENABLED = true;
+        (new GoldStakeRelic()).instantObtain();
     }
 
 }

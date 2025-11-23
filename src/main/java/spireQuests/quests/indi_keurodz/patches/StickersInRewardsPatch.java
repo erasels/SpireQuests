@@ -1,24 +1,25 @@
-package spireQuests.quests.indi_keurodz;
+package spireQuests.quests.indi_keurodz.patches;
 
 import java.util.ArrayList;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.helpers.CardModifierManager;
+import spireQuests.quests.indi_keurodz.EternalStickerModifier;
+import spireQuests.quests.indi_keurodz.PerishableStickerModifier;
+import spireQuests.quests.indi_keurodz.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 
 public class StickersInRewardsPatch {
-    public static boolean ENABLED = false;
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "getRewardCards")
     public static class StickerModifiers {
         @SpirePostfixPatch
         public static void patch(ArrayList<AbstractCard> __result) {
-            if (!ENABLED) {
+            if (!AbstractDungeon.player.hasRelic(GoldStakeRelic.ID)) {
                 return;
             }
 
@@ -40,14 +41,6 @@ public class StickersInRewardsPatch {
             }
         }
 
-    }
-
-    @SpirePatch2(clz = CardCrawlGame.class, method = "createCharacter")
-    public static class DisableOnStartGame {
-        @SpirePrefixPatch
-        public static void patch() {
-            ENABLED = false;
-        }
     }
 
 }

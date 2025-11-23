@@ -1,0 +1,9 @@
+{
+  "${ModID}:GoldStakeRelic": {
+    "NAME": "Gold Stake",
+    "FLAVOR": "Jimbo is watching",
+    "DESCRIPTIONS": [
+      "Card rewards can have Eternal, Perishable, or Rental stickers."
+    ]
+  }
+}

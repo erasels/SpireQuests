@@ -1,6 +1,5 @@
 package spireQuests.quests.indi_keurodz;
 
-import basemod.interfaces.AddAudioSubscriber;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
