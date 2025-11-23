@@ -1,5 +1,6 @@
 package spireQuests.quests.gk.cards;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ReboundPower;
@@ -15,9 +16,11 @@ public class Cardmancy extends AbstractBPCard {
     public Cardmancy() {
         super(ID, "gk", 0, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF, PM_COLOR);
 
-        setBackgroundTexture(
-                "anniv5Resources/images/512/coreset/skill.png",
-                "anniv5Resources/images/1024/coreset/skill.png");
+        if (Loader.isModLoaded("anniv5")) {
+            setBackgroundTexture(
+                    "anniv5Resources/images/512/coreset/skill.png",
+                    "anniv5Resources/images/1024/coreset/skill.png");
+        }
 
         baseBlock = block = 2;
     }

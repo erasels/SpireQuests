@@ -78,5 +78,15 @@
       "Bartender",
       "Patrons"
     ]
+  },
+  "${ModID}:BloodfireRitualQuest": {
+    "TEXT": [
+      "Bloodfire Ritual",
+      "Complete a long ritual to gain the #pBlackstaff. Each combat, shuffle a special #b2-cost #ySkill with #yEthereal, #yExhaust, and a small negative effect into your draw pile. Play these special cards #b20 times to complete the ritual.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Ritual steps"
+    ]
   }
 }

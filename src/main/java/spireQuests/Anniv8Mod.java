@@ -263,7 +263,12 @@ public class Anniv8Mod implements
     private void loadStringsFile(String key, Class<?> stringType) {
         String filepath = modID + "Resources/localization/" + key + "/" + stringType.getSimpleName().replace("Strings", "strings") + ".json";
         if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(stringType, filepath);
+            try {
+                BaseMod.loadCustomStringsFile(stringType, filepath);
+            }
+            catch (Exception e) {
+                throw new RuntimeException("Error loading strings file " + filepath, e);
+            }
         }
     }
 

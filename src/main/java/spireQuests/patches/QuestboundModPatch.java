@@ -26,15 +26,21 @@ import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static spireQuests.Anniv8Mod.questboundEnabled;
 
 public class QuestboundModPatch {
-
     private static Stream<AbstractQuest> getQuestbound() {
-        return QuestManager.currentQuests.get(AbstractDungeon.player).stream().filter(q -> q.questboundCards != null && !q.isCompleted());
+        return QuestManager.quests().stream().filter(q -> q.questboundCards != null && !q.isCompleted());
+    }
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = SpirePatch.CLASS)
+    public static class QuestboundCardsToShowField {
+        public static SpireField<List<AbstractCard>> cards = new SpireField<>(ArrayList::new);
     }
 
     @SpirePatch2(clz = CardGroup.class, method = "renderMasterDeck")
@@ -120,15 +126,21 @@ public class QuestboundModPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = {"copy"})
         public static void initialize(CardGroup copy) {
             getQuestbound().forEach(q -> {
-                        if (q.overrideQuestboundCards() != null)
-                            q.overrideQuestboundCards().forEach(c -> {
-                                CardModifierManager.addModifier(c, new QuestboundMod(q));
-                                copy.group.add(c.makeSameInstanceOf());
-                            });
-                        else
-                            q.questboundCards.forEach(c -> copy.group.add(c.makeSameInstanceOf()));
-                    }
-            );
+                List<AbstractCard> overrides = q.overrideQuestboundCards();
+                if (overrides != null) {
+                    overrides = overrides.stream().map(AbstractCard::makeSameInstanceOf).collect(Collectors.toList());
+                    overrides.forEach(c -> {
+                        CardModifierManager.addModifier(c, new QuestboundMod(q));
+                        copy.group.add(c);
+                    });
+                    QuestboundCardsToShowField.cards.get(AbstractDungeon.player).addAll(overrides);
+                }
+                else {
+                    List<AbstractCard> questboundCards = q.questboundCards.stream().map(AbstractCard::makeSameInstanceOf).collect(Collectors.toList());
+                    copy.group.addAll(questboundCards);
+                    QuestboundCardsToShowField.cards.get(AbstractDungeon.player).addAll(questboundCards);
+                }
+            });
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -210,8 +222,11 @@ public class QuestboundModPatch {
     public static class applyStartOfCombatPreDrawLogic {
         @SpireInsertPatch(locator = Locator.class)
         public static void update() {
-            if (!questboundEnabled())
-                getQuestbound().forEach(q -> q.questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c, true))));
+            if (!questboundEnabled()) {
+                List<AbstractCard> questboundCards = QuestboundCardsToShowField.cards.get(AbstractDungeon.player);
+                questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c, true)));
+                questboundCards.clear();
+            }
         }
 
         private static class Locator extends SpireInsertLocator {
