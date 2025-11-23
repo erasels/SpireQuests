@@ -138,7 +138,7 @@ public class BountyICQuest extends AbstractQuest {
                     .orElse(null);
             if(q != null) {
                 Anniv8Mod.logger.info("Replacing ELITE with Ironclad");
-                AbstractDungeon.lastCombatMetricKey = CardCrawlGame.languagePack.getUIString(ID).TEXT[4];
+                AbstractDungeon.lastCombatMetricKey = ICEliteMonster.ID;
                 return SpireReturn.Return(new MonsterGroup(new ICEliteMonster()));
             }
             return SpireReturn.Continue();
