@@ -1,0 +1,6 @@
+{
+  "${ModID}:balatrotestcard": {
+    "NAME": "test card",
+    "DESCRIPTION": "jimbo"
+  }
+}
