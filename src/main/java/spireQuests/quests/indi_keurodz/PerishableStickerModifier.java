@@ -7,9 +7,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.AbstractCardModifier;
 import spireQuests.Anniv8Mod;
-import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
-import spireQuests.quests.indi_keurodz.Patches.BattleEndPatch;
+import spireQuests.quests.indi_keurodz.patches.BattleEndPatch;
 import spireQuests.util.TexLoader;
 
 public class PerishableStickerModifier extends AbstractCardModifier {
@@ -42,11 +41,11 @@ public class PerishableStickerModifier extends AbstractCardModifier {
     }
 
     public PerishableStickerModifier() {
-//        REMAINING_TURNS = 5;
-//        new AbstractQuest.TriggeredUpdateTracker<>(QuestTriggers.COMBAT_END, 0, 5, () -> {
-//            return --REMAINING_TURNS;
-//        }).add(this);
-
+        // REMAINING_TURNS = 5;
+        // new AbstractQuest.TriggeredUpdateTracker<>(QuestTriggers.COMBAT_END, 0, 5, ()
+        // -> {
+        // return --REMAINING_TURNS;
+        // }).add(this);
 
     }
 
