@@ -1,0 +1,9 @@
+{
+  "${ModID}:FriendSentry": {
+    "NAME": "Friendly Sentry",
+    "FLAVOR": "\"The answer? Use a laser. And if that don't work...use more lasers.\" - The Architect",
+    "DESCRIPTIONS": [
+      "At the start of odd turns, shuffle an #yInsight into your discard pile. At the start of even turns, deal #b%s damage to the enemy with the lowest HP."
+    ]
+  }
+}

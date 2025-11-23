@@ -1,5 +1,5 @@
 {
-  "Sentry": {
+  "${ModID}:EvilSentry": {
     "MOVES": [
       "Bamboozle"
     ],
