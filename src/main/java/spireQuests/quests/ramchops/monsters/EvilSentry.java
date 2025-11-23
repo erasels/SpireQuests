@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package spireQuests.quests.ramchops;
+package spireQuests.quests.ramchops.monsters;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -25,8 +25,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
-import com.megacrit.cardcrawl.monsters.AbstractMonster.Intent;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
@@ -35,7 +33,6 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect.ShockWaveType;
 
 import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.util.Wiz.adp;
-import static spireQuests.util.Wiz.atb;
 
 public class EvilSentry extends AbstractMonster {
     public static final String ID = makeID("EvilSentry");
@@ -62,9 +59,9 @@ public class EvilSentry extends AbstractMonster {
         super(NAME, "Sentry", 42, 0.0F, -5.0F, 180.0F, 310.0F, (String)null, x, y);
         this.type = EnemyType.ELITE;
         if (AbstractDungeon.ascensionLevel >= 8) {
-            this.setHp(HP_MIN, HP_MAX);
-        } else {
             this.setHp(A_2_HP_MIN, A_2_HP_MAX);
+        } else {
+            this.setHp(HP_MIN, HP_MAX);
         }
 
         if (AbstractDungeon.ascensionLevel >= 3) {
@@ -74,14 +71,14 @@ public class EvilSentry extends AbstractMonster {
         }
 
         if (AbstractDungeon.ascensionLevel >= 18) {
-            this.dazedAmt = DAZED_AMT;
-        } else {
             this.dazedAmt = A_18_DAZED_AMT;
+        } else {
+            this.dazedAmt = DAZED_AMT;
         }
 
         this.damage.add(new DamageInfo(this, this.beamDmg));
         this.damage.add(new DamageInfo(this, BAMBOO_DMG));
-        this.loadAnimation("images/monsters/theBottom/sentry/skeleton.atlas", "images/monsters/theBottom/sentry/skeleton.json", 1.0F);
+        this.loadAnimation("anniv8Resources/images/ramchops/evil_sentry/skeleton.atlas", "anniv8Resources/images/ramchops/evil_sentry/skeleton.json", 1.0F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "idle", true);
         e.setTimeScale(2.0F);
         e.setTime(e.getEndTime() * MathUtils.random());
@@ -118,11 +115,12 @@ public class EvilSentry extends AbstractMonster {
                     AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, this.hb.cX, this.hb.cY), 0.3F));
                 }
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, (DamageInfo)this.damage.get(0), AttackEffect.NONE, Settings.FAST_MODE));
+                break;
             case BAMBOOZLE:
 
                 AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(this, "ATTACK"));
                 addToBot(new VFXAction(new LightningEffect(adp().hb.cX, adp().hb.cY)));
-                addToBot(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.5F));
+                addToBot(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5F));
                 addToBot(new ApplyPowerAction(adp(), this, new DrawReductionPower(adp(), 1)));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, (DamageInfo)this.damage.get(1), AttackEffect.NONE, Settings.FAST_MODE));
 
@@ -160,7 +158,7 @@ public class EvilSentry extends AbstractMonster {
                     this.setMove(BEAM, Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
                     break;
                 case 2:
-                    this.setMove(MOVES[0], BAMBOOZLE, Intent.ATTACK_BUFF, ((DamageInfo)this.damage.get(1)).base);
+                    this.setMove(MOVES[0], BAMBOOZLE, Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(1)).base);
                     break;
             }
 
@@ -169,7 +167,7 @@ public class EvilSentry extends AbstractMonster {
             if (this.lastMove(BOLT)){
                 this.setMove(BEAM, Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
             }else if(this.lastMove(BEAM)){
-                this.setMove(MOVES[0], BAMBOOZLE, Intent.ATTACK_BUFF, ((DamageInfo)this.damage.get(1)).base);
+                this.setMove(MOVES[0], BAMBOOZLE, Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(1)).base);
             }else{
                 this.setMove(BOLT, Intent.DEBUFF);
             }

@@ -1,11 +1,8 @@
-package spireQuests.quests.ramchops;
+package spireQuests.quests.ramchops.cards;
 
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import spireQuests.abstracts.AbstractSQCard;
 
 import static spireQuests.Anniv8Mod.makeID;
