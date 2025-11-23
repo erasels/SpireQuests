@@ -47,6 +47,26 @@ public class testcard extends AbstractSQCard {
             }
 
         }
+
+        for (AbstractCard card : p.masterDeck.group) {
+            int mod = rand.nextInt(3);
+
+            switch (mod) {
+                case 0:
+                    CardModifierManager.addModifier(card, new EternalStickerModifier());
+                    break;
+
+                case 1:
+                    CardModifierManager.addModifier(card, new PerishableStickerModifier());
+                    break;
+
+                case 2:
+                    CardModifierManager.addModifier(card, new RentalStickerModifier());
+                    break;
+
+            }
+
+        }
     }
 
 }
