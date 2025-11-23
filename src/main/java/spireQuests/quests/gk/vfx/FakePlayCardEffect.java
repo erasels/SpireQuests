@@ -22,7 +22,7 @@ public class FakePlayCardEffect extends AbstractGameEffect {
     public FakePlayCardEffect(AbstractCreature playSource, AbstractCard toShow) {
         this.playSource = playSource;
         this.card = toShow.makeStatEquivalentCopy();
-        this.startingDuration = this.duration = 2f; // 2 seconds, not using Settings.DUR so fast mode doesn't affect it
+        this.startingDuration = this.duration = 1.75f; // 1.75 seconds, not using Settings.DUR so fast mode doesn't affect it
     }
 
     @Override
@@ -69,6 +69,7 @@ public class FakePlayCardEffect extends AbstractGameEffect {
             float alpha = MathUtils.clamp(t * 2f, 0f, 1f);
             float scale = MathUtils.lerp(START_SCALE, END_SCALE, alpha);
             card.drawScale = scale;
+            card.transparency = card.targetTransparency = MathUtils.lerp(1, 0, t);
 
             // Start and end positions (center of source hitbox)
             float sx = startX;
@@ -78,7 +79,7 @@ public class FakePlayCardEffect extends AbstractGameEffect {
 
             // Control point for the arc
             float cx = (sx + ex) / 2f;
-            float cy = Math.min(sy, ey) - 80f * Settings.scale;
+            float cy = Math.min(sy, ey) - 100f * Settings.scale;
 
             // Math shit, Bezier curve or something
             float u = 1.0f - t;
@@ -104,6 +105,7 @@ public class FakePlayCardEffect extends AbstractGameEffect {
     @Override
     public void render(SpriteBatch spriteBatch) {
         if (!isDone) {
+            card.update();
             card.render(spriteBatch);
         }
     }
