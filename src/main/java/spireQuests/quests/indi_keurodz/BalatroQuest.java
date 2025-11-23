@@ -1,6 +1,5 @@
 package spireQuests.quests.indi_keurodz;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.BurningBlood;
 
 import spireQuests.patches.QuestTriggers;
@@ -19,6 +18,20 @@ public class BalatroQuest extends AbstractQuest {
 
         addReward(new QuestReward.RelicReward(new BurningBlood()));
         needHoverTip = true;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        StickersInRewardsPatch.ENABLED = true;
+    }
+
+    @Override
+    public void loadSave(String[] questData, QuestReward.QuestRewardSave[] questRewardSaves) {
+        super.loadSave(questData, questRewardSaves);
+
+        StickersInRewardsPatch.ENABLED = true;
     }
 
 }
