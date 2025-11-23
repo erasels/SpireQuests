@@ -1,10 +1,7 @@
 package spireQuests.quests.gk.monsters;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -18,14 +15,11 @@ import com.megacrit.cardcrawl.cards.red.TwinStrike;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.DemonFormPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import spireQuests.abstracts.AbstractSQMonster;
 import spireQuests.quests.gk.powers.FakeDemonFormPower;
 import spireQuests.quests.gk.vfx.FakePlayCardEffect;
 import spireQuests.quests.gk.vfx.MonsterIronWaveEffect;
-import spireQuests.util.TexLoader;
 import spireQuests.util.Wiz;
 
 import static spireQuests.Anniv8Mod.makeID;
@@ -35,7 +29,6 @@ public class ICEliteMonster extends AbstractSQMonster {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final Byte DEMON_FORM = 0, IRON_WAVE = 1, BASH = 2, TWIN_STRIKE = 3;
 
@@ -73,22 +66,42 @@ public class ICEliteMonster extends AbstractSQMonster {
         switch (nextMove) {
             case 0: // Demon form
                 doFakePlay(new DemonForm(), 18);
+                Wiz.atb(new AbstractGameAction() {
+                    public void update() {
+                        useFastShakeAnimation(0.25f);
+                        isDone = true;
+                    }
+                });
                 addToBot(new ApplyPowerAction(this, this, new FakeDemonFormPower(this, demonFormAmt)));
                 break;
             case 1: //Ironwave
                 doFakePlay(new IronWave(), 3);
+                useHopAnimation();
                 Wiz.vfx(new MonsterIronWaveEffect(this.hb.cX, this.hb.cY, Wiz.p().hb.cX), 0.5f);
                 addToBot(new GainBlockAction(this, calcAscensionDamage(5)));
                 addToBot(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.NONE));
                 break;
             case 2: // Bash
                 doFakePlay(new Bash(), Integer.MAX_VALUE); // Don't visually upgrade because vuln amount would be weird
+                useSlowAttackAnimation();
                 addToBot(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 addToBot(new ApplyPowerAction(Wiz.p(), this, new VulnerablePower(Wiz.p(), 2, true)));
                 break;
             case 3: // Twin Strike
                 doFakePlay(new TwinStrike(), 3);
+                Wiz.atb(new AbstractGameAction() {
+                    public void update() {
+                        useFastAttackAnimation();
+                        isDone = true;
+                    }
+                });
                 addToBot(new DamageAction(Wiz.p(), info, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                Wiz.atb(new AbstractGameAction() {
+                    public void update() {
+                        useFastAttackAnimation();
+                        isDone = true;
+                    }
+                });
                 addToBot(new DamageAction(Wiz.p(), info, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
         addToBot(new RollMoveAction(this));
