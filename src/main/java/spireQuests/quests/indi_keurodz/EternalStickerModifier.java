@@ -2,6 +2,7 @@ package spireQuests.quests.indi_keurodz;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
@@ -34,6 +35,11 @@ public class EternalStickerModifier extends AbstractCardModifier {
     @Override
     public AbstractCardModifier makeCopy() {
         return new EternalStickerModifier();
+    }
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        SoulboundField.soulbound.set(card, true);
     }
 
 }

@@ -7,11 +7,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.AbstractCardModifier;
 import spireQuests.Anniv8Mod;
+import spireQuests.patches.QuestTriggers;
+import spireQuests.quests.AbstractQuest;
+import spireQuests.quests.indi_keurodz.Patches.BattleEndPatch;
 import spireQuests.util.TexLoader;
 
 public class PerishableStickerModifier extends AbstractCardModifier {
 
     public static String MODIFIER_ID = Anniv8Mod.makeID("PerishableSticker");
+
+    public static int REMAINING_TURNS;
 
     private static final Texture icon = TexLoader
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/PerishableStickerIcon.png");
@@ -34,6 +39,15 @@ public class PerishableStickerModifier extends AbstractCardModifier {
     @Override
     public AbstractCardModifier makeCopy() {
         return new PerishableStickerModifier();
+    }
+
+    public PerishableStickerModifier() {
+//        REMAINING_TURNS = 5;
+//        new AbstractQuest.TriggeredUpdateTracker<>(QuestTriggers.COMBAT_END, 0, 5, () -> {
+//            return --REMAINING_TURNS;
+//        }).add(this);
+
+
     }
 
 }
