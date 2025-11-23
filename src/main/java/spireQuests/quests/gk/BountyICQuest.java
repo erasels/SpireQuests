@@ -1,22 +1,28 @@
 package spireQuests.quests.gk;
 
+import basemod.BaseMod;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.MonsterHelper;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.relics.BurningBlood;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.gk.cards.StoneArmor;
 import spireQuests.quests.gk.cards.Taunt;
 import spireQuests.quests.gk.cards.Unrelenting;
+import spireQuests.quests.gk.monsters.ICEliteMonster;
 import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
@@ -140,6 +146,24 @@ public class BountyICQuest extends AbstractQuest {
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractDungeon.class, method = "getEliteMonsterForRoomCreation")
+    public static class SpawnElite {
+        @SpirePrefixPatch
+        public static SpireReturn<MonsterGroup> replacementPatch() {
+            // if this quest exists
+            BountyICQuest q = (BountyICQuest) QuestManager.quests().stream()
+                    .filter(quest -> ID.equals(quest.id) && !quest.isCompleted())
+                    .findAny()
+                    .orElse(null);
+            if(q != null) {
+                Anniv8Mod.logger.info("Replacing ELITE with Ironclad");
+                AbstractDungeon.lastCombatMetricKey = CardCrawlGame.languagePack.getUIString(ID).TEXT[4];
+                return SpireReturn.Return(new MonsterGroup(new ICEliteMonster()));
+            }
+            return SpireReturn.Continue();
         }
     }
 }
