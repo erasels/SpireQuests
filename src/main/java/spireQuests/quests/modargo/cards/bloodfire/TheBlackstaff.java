@@ -12,8 +12,7 @@ import spireQuests.quests.modargo.powers.IgnitePower;
 import spireQuests.quests.modargo.vfx.BlackstaffCurseEffect;
 import spireQuests.quests.modargo.vfx.BlackstaffSuctionEffect;
 
-import static spireQuests.Anniv8Mod.makeID;
-import static spireQuests.Anniv8Mod.makeImagePath;
+import static spireQuests.Anniv8Mod.*;
 
 public class TheBlackstaff extends AbstractSQCard {
     public static final String ID = makeID(TheBlackstaff.class.getSimpleName());
@@ -24,8 +23,8 @@ public class TheBlackstaff extends AbstractSQCard {
         super(ID, "modargo", 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ENEMY);
         this.magicNumber = this.baseMagicNumber = IGNITE_HP;
         this.shuffleBackIntoDrawPile = true;
-        setBannerTexture(makeImagePath("modargo/BlackstaffCardBanner.png"), makeImagePath("modargo/BlackstaffCardBanner_p.png"));
-        setBackgroundTexture(makeImagePath("modargo/BlackstaffCardBackground.png"), makeImagePath("modargo/BlackstaffCardBackground_p.png"));
+        setBannerTexture(makeContributionPath("modargo", "BlackstaffCardBanner.png"), makeContributionPath("modargo", "BlackstaffCardBanner_p.png"));
+        setBackgroundTexture(makeContributionPath("modargo", "BlackstaffCardBackground.png"), makeContributionPath("modargo", "BlackstaffCardBackground_p.png"));
     }
 
     @Override

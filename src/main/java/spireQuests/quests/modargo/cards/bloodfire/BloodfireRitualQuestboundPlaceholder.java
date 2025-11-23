@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireQuests.abstracts.AbstractSQCard;
 
-import static spireQuests.Anniv8Mod.makeID;
-import static spireQuests.Anniv8Mod.makeImagePath;
+import static spireQuests.Anniv8Mod.*;
 
 public class BloodfireRitualQuestboundPlaceholder extends AbstractSQCard {
     public static final String ID = makeID(BloodfireRitualQuestboundPlaceholder.class.getSimpleName());
@@ -15,7 +14,7 @@ public class BloodfireRitualQuestboundPlaceholder extends AbstractSQCard {
     public BloodfireRitualQuestboundPlaceholder() {
         super(ID, "modargo", 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
         MultiCardPreview.add(this, new FocusedTrance(), new BloodInTheChalice(), new PrimordialFlux(), new EssenceOfFlame(), new PowerFromTheDark());
-        setBackgroundTexture(makeImagePath("modargo/BloodfireCardBackground.png"), makeImagePath("modargo/BloodfireCardBackground_p.png"));
+        setBackgroundTexture(makeContributionPath("modargo", "BloodfireCardBackground.png"), makeContributionPath("modargo", "BloodfireCardBackground_p.png"));
 
     }
 
