@@ -9,18 +9,28 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 
+import java.util.Objects;
+
 public class GennGreymaneQuest extends AbstractQuest {
+    private static final int QUEST_EVEN = 7;
+
     public GennGreymaneQuest() {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
-        new TriggeredUpdateTracker<Integer, Void>(QuestTriggers.DECK_CHANGE, 0, 1, () -> {
-            if (getOddCards() > 0 || getEvenCards() < 10) return 0;
-            else return 1;
-        }){
+        new TriggeredUpdateTracker<Integer, Void>(QuestTriggers.DECK_CHANGE, 0, 1, () -> getEvenCards() >= QUEST_EVEN ? 1 : 0){
             @Override
             public String progressString() {
                 return String.format(
-                        " (%d/10) %s (%d/0)",
-                        getEvenCards(), localization.EXTRA_TEXT[1], getOddCards()
+                        " (%d/%d)",
+                        getEvenCards(), QUEST_EVEN
+                );
+            }
+        }.add(this);
+        new TriggeredUpdateTracker<Integer, Void>(QuestTriggers.DECK_CHANGE, 1, 1, ()-> getOddCards() > 0 ? 0 : 1){
+            @Override
+            public String progressString() {
+                return String.format(
+                        " (%d/%d)",
+                        getOddCards(), getOddCards()
                 );
             }
         }.add(this);
@@ -32,7 +42,7 @@ public class GennGreymaneQuest extends AbstractQuest {
     private int getEvenCards() {
         int cards = 0;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 != 1) {
+            if (!Objects.equals(c.cardID, "AscendersBane") && c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 != 1) {
                 cards += 1;
             }
         }
@@ -42,7 +52,7 @@ public class GennGreymaneQuest extends AbstractQuest {
     private int getOddCards() {
         int cards = 0;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 == 1) {
+            if (!Objects.equals(c.cardID, "AscendersBane") && c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 == 1) {
                 cards += 1;
             }
         }

@@ -2,11 +2,11 @@
   "${ModID}:GennGreymaneQuest": {
     "TEXT": [
       "Genn Greymane",
-      "Build your deck with at least 10 non-odd-cost cards and no odd-cost cards (excluding starter cards).",
+      "Build your deck with at least 10 even/X-cost cards and no odd-cost cards (excluding starter cards).",
       "snumodder"
     ],
     "EXTRA_TEXT": [
-      "Non-odd-cost",
+      "Even/X-cost",
       "Odd-cost",
       "Upgrade all starter cards."
     ]
