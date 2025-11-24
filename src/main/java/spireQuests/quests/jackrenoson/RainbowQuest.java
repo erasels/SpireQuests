@@ -44,16 +44,18 @@ public class RainbowQuest extends AbstractQuest {
     @Override
     public boolean canSpawn(){
         for(AbstractQuest q : QuestManager.getAllQuests()){
-            if (Objects.equals(q.id, new MulticlassQuest().id))
+            if (q instanceof MulticlassQuest)
                 return false;
         }
-        return !AbstractDungeon.player.hasRelic(PrismaticShard.ID) && !AbstractDungeon.player.hasRelic(MulticlassEmblem.ID);
+        return AbstractCard.CardColor.values().length<30 && !AbstractDungeon.player.hasRelic(PrismaticShard.ID) && !AbstractDungeon.player.hasRelic(QuestionCard.ID) &&!AbstractDungeon.player.hasRelic(MulticlassEmblem.ID);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.95F, Settings.HEIGHT / 2.0F, new PrismaticShard());
+        AbstractDungeon.shopRelicPool.remove(PrismaticShard.ID);
+        AbstractDungeon.uncommonRelicPool.remove(QuestionCard.ID);
     }
 
     @Override
@@ -79,12 +81,9 @@ public class RainbowQuest extends AbstractQuest {
 
     private int determineReq(){
         int totalColors = AbstractCard.CardColor.values().length-1; //-1 to not count Curses
-        double i = 2;
-        int r = 0;
-        while (totalColors > i){ //Dynamically determine the required number of unique cards based on amount of colors, increasing threshold by 50% each time.
-            i *= 1.5;
-            r++;
-        } //5-6 is 3, 7-10 is 4, 11-15 is 5, 16-22 is 6 etc. Function r(c) = log{1.5}(0.5c), rounding up
+        int r = 4;
+        if (totalColors>=9) r = 5;
+        if (totalColors>=15) r = 6;
         return r;
     }
 }
