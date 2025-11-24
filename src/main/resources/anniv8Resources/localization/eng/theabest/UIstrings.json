@@ -1,0 +1,52 @@
+{
+  "${ModID}:ClawQuest": {
+    "TEXT": [
+      "CLAW",
+      "Play #yClaw #b30 times.",
+      "Theabest"
+    ],
+    "EXTRA_TEXT": [
+      "Claws played"
+    ]
+  },
+  "${ModID}:HealthyQuest": {
+    "TEXT": [
+      "Healthy",
+      "Heal to full HP before the next boss.",
+      "Theabest"
+    ],
+    "EXTRA_TEXT": [
+      "Reached Max HP"
+    ]
+  },
+  "${ModID}:WaitForItQuest": {
+    "TEXT": [
+      "Wait For It",
+      "End #b10 turns without playing any cards.",
+      "Theabest"
+    ],
+    "EXTRA_TEXT": [
+      "Turns waited"
+    ]
+  },
+  "${ModID}:BolsterQuest": {
+    "TEXT": [
+      "Bolster",
+      "Increase your Max HP by #b25.",
+      "Theabest"
+    ],
+    "EXTRA_TEXT": [
+      "Max HP gained"
+    ]
+  },
+  "${ModID}:UnchangedQuest": {
+    "TEXT": [
+      "Unchanged",
+      "Do not modify your Max HP. Beat the Act 2 Boss.",
+      "Theabest"
+    ],
+    "EXTRA_TEXT": [
+      "Beat the Act 2 boss without modifying your Max HP"
+    ]
+  }
+}

@@ -46,6 +46,12 @@ public class QuestTriggers {
     public static final Trigger<Integer> ACT_CHANGE = new Trigger<>();
     public static final Trigger<AbstractChest> CHEST_OPENED = new Trigger<>(); //NOTE: This includes both normal and boss chests.
 
+
+    public static final Trigger<Integer> HEALTH_HEALED = new Trigger<>();
+    public static final Trigger<Void> MAX_HEALTH_CHANGED = new Trigger<>();
+    public static final Trigger<Integer> MAX_HEALTH_INCREASED = new Trigger<>();
+    public static final Trigger<Integer> MAX_HEALTH_DECREASED = new Trigger<>();
+
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
     }
@@ -283,6 +289,43 @@ public class QuestTriggers {
         public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
             Matcher finalMatcher = new Matcher.MethodCallMatcher(TopPanel.class, "destroyPotion");
             return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class, method = "heal", paramtypez = {int.class, boolean.class})
+    public static class OnHealHealth {
+        @SpirePostfixPatch
+        public static void onHeal(AbstractCreature __instance, int healAmount) {
+            if (disabled()) return;
+
+            if (__instance instanceof AbstractPlayer && healAmount > 0)
+                HEALTH_HEALED.trigger(healAmount);
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class, method = "increaseMaxHp")
+    public static class OnIncreaseMaxHealth {
+        @SpirePostfixPatch
+        public static void onIncrease(AbstractCreature __instance, int amount) {
+            if (disabled()) return;
+
+            if (__instance instanceof AbstractPlayer && amount > 0) {
+                MAX_HEALTH_INCREASED.trigger(amount);
+                MAX_HEALTH_CHANGED.trigger();
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class, method = "decreaseMaxHealth")
+    public static class OnDecreaseMaxHealth {
+        @SpirePostfixPatch
+        public static void onDecrease(AbstractCreature __instance, int amount) {
+            if (disabled()) return;
+
+            if (__instance instanceof AbstractPlayer && amount > 0) {
+                MAX_HEALTH_DECREASED.trigger(amount);
+                MAX_HEALTH_CHANGED.trigger();
+            }
         }
     }
 }
