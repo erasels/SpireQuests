@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.relics.Boot;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
@@ -37,6 +38,7 @@ public class QuestTriggers {
     public static final Trigger<AbstractPotion> USE_POTION = new Trigger<>();
 
     public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
+    public static final Trigger<Void> BOOT_TRIGGER = new Trigger<>();
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -211,4 +213,20 @@ public class QuestTriggers {
             return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
         }
     }
+    @SpirePatch(clz = Boot.class, method = "onAttackToChangeDamage")
+    public static class BootTracker {
+        @SpireInsertPatch(locator = BootLocator.class)
+        public static void bootin() {
+            BOOT_TRIGGER.trigger();
+        }
+    }
+
+    private static class BootLocator extends SpireInsertLocator {
+        @Override
+        public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+            Matcher finalMatcher = new Matcher.MethodCallMatcher(Boot.class, "flash");
+            return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+        }
+    }
+
 }

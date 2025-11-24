@@ -8,5 +8,25 @@
     "EXTRA_TEXT": [
       "Grand Finale played"
     ]
+  },
+  "${ModID}:LuckyNumberQuest": {
+    "TEXT": [
+      "Lucky Number",
+      "Obtain a #yQuestbound #yThe #yBoot. NL Trigger #yThe #yBoot 7 times in one combat.",
+      "SoytheProton"
+    ],
+    "EXTRA_TEXT": [
+      "Boots booted"
+    ]
+  },
+  "${ModID}:DebugQuest": {
+    "TEXT": [
+      "Debug Quest",
+      "This localization exists when I need a debug quest.",
+      "SoytheProton"
+    ],
+    "EXTRA_TEXT": [
+      "de's bugged"
+    ]
   }
 }

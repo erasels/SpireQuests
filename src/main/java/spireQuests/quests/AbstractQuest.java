@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import spireQuests.Anniv8Mod;
 
 import java.lang.reflect.InvocationTargetException;
@@ -212,6 +213,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         for (Tracker tracker : trackers) {
             if (!tracker.isComplete()) return false;
         }
+
+
+
         complete = true;
         trackers.clear();
         triggers.clear();
@@ -839,4 +843,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public ArrayList<AbstractCard> overrideQuestboundCards() {
         return null;
     }
+
+    // Similar to Questbound cards, but for Relics!
+    public ArrayList<AbstractRelic> questboundRelics;
+    // Setting removeQBDup to true will make it default to replacing the relic if you already have it, in addition to removing from pools when obtained.
+    // Setting returnQPRelics to true adds them to the pool again once the Quest is complete. (Ignored if the first boolean is set to false)
+
+    public boolean removeQuestboundDuplicate = true;
+    public boolean returnQuestboundRelics = true;
 }

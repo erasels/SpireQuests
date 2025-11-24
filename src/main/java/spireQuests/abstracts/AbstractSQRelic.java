@@ -1,6 +1,7 @@
 package spireQuests.abstracts;
 
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import spireQuests.util.TexLoader;
@@ -18,6 +19,8 @@ public abstract class AbstractSQRelic extends CustomRelic {
     public AbstractSQRelic(String setId, String packageName, AbstractRelic.RelicTier tier, AbstractRelic.LandingSound sfx) {
         super(setId, TexLoader.getTexture(makeContributionPath(packageName, setId.replace(modID + ":", "") + ".png")), tier, sfx);
         outlineImg = TexLoader.getTexture(makeContributionPath(packageName, setId.replace(modID + ":", "") + "Outline.png"));
+        Texture large = TexLoader.getTexture(makeContributionPath(packageName, setId.replace(modID + ":", "") + "Large.png"));
+        if(large != null) largeImg = large;
     }
 
     public String getUpdatedDescription() {

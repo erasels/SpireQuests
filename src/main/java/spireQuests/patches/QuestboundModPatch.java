@@ -210,8 +210,7 @@ public class QuestboundModPatch {
     public static class applyStartOfCombatPreDrawLogic {
         @SpireInsertPatch(locator = Locator.class)
         public static void update() {
-            if (!questboundEnabled())
-                getQuestbound().forEach(q -> q.questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c, true))));
+            getQuestbound().filter(q -> !questboundEnabled() || q.overrideQuestboundCards() != null).forEach(q -> q.questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c, true))));
         }
 
         private static class Locator extends SpireInsertLocator {

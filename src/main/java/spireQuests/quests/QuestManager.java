@@ -7,20 +7,25 @@ import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import spireQuests.Anniv8Mod;
 import spireQuests.cardmods.QuestboundMod;
 import spireQuests.patches.QuestRunHistoryPatch;
+import spireQuests.patches.QuestboundRelicFields;
+import spireQuests.util.RelicMiscUtil;
+import spireQuests.util.Wiz;
 import spireQuests.vfx.ShowCardandFakeObtainEffect;
 
 import java.util.*;
 
-import static spireQuests.Anniv8Mod.makeID;
-import static spireQuests.Anniv8Mod.modID;
+import static spireQuests.Anniv8Mod.*;
 
 @SpirePatch(
         clz = AbstractPlayer.class,
@@ -59,6 +64,22 @@ public class QuestManager {
                     if (quest == null) continue;
                     quest.refreshState();
                     quest.loadSave(questSave.questData[i], questSave.questRewards[i]);
+                    if(!quest.complete() && !quest.fail()) {
+                        for(int y = 0; y < questSave.questRelicIndex[i].length; ++y) {
+                            AbstractRelic r = null;
+                            try {
+                                r = Wiz.adp().relics.get(questSave.questRelicIndex[i][y]);
+                            }
+                            catch (ArrayIndexOutOfBoundsException e) {
+                                Anniv8Mod.logger.warn("Relic was not found for Quest ({})", quest.name);
+                            }
+                            if(r != null) {
+                                QuestboundRelicFields.isQuestbound.set(r, quest);
+                                String questName = FontHelper.colorString(CardCrawlGame.languagePack.getUIString(quest.id).TEXT[0], "y");
+                                r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID("Questbound")).TEXT[2],questName)));
+                            }
+                        }
+                    }
                     currentQuests.get(AbstractDungeon.player).add(quest);
                 }
             }
@@ -121,10 +142,21 @@ public class QuestManager {
         questList.add(quest);
         questList.sort(null);
         quest.onStart();
-        if (quest.questboundCards != null) {
+        if (quest.questboundCards != null && questboundEnabled()) {
             quest.questboundCards.forEach(c -> {
                 CardModifierManager.addModifier(c, new QuestboundMod(quest));
-                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(new GrandFinale(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(c.makeStatEquivalentCopy(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+            });
+        }
+        if (quest.questboundRelics != null) {
+            quest.questboundRelics.forEach(r -> {
+                QuestboundRelicFields.isQuestbound.set(r, quest);
+                if(quest.removeQuestboundDuplicate) {
+                    RelicMiscUtil.removeRelicFromPool(r);
+                }
+                String questName = FontHelper.colorString(CardCrawlGame.languagePack.getUIString(quest.id).TEXT[0], "y");
+                r.instantObtain();
+                r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID(QuestboundMod.class.getSimpleName())).TEXT[2],questName)));
             });
         }
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
@@ -179,4 +211,5 @@ public class QuestManager {
         }
         //quest ui
     }
+
 }
