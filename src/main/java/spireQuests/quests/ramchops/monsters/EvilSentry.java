@@ -31,7 +31,7 @@ import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.util.Wiz.adp;
 
 public class EvilSentry extends AbstractMonster {
-    public static final String ID = makeID(EvilSentry.class.getName());
+    public static final String ID = makeID(EvilSentry.class.getSimpleName());
     private static final MonsterStrings monsterStrings;
     public static final String NAME;
     public static final String[] MOVES;

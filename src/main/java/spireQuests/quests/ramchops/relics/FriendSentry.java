@@ -16,7 +16,7 @@ import static spireQuests.util.Wiz.*;
 
 public class FriendSentry extends AbstractSQRelic {
 
-    public static String ID = makeID(FriendSentry.class.getName());
+    public static String ID = makeID(FriendSentry.class.getSimpleName());
 
     public FriendSentry() {
         super(ID, "ramchops", RelicTier.SPECIAL, LandingSound.HEAVY);
