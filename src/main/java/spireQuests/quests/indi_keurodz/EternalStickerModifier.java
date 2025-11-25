@@ -18,11 +18,6 @@ public class EternalStickerModifier extends AbstractCardModifier {
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/EternalStickerIcon.png");
 
     @Override
-    public boolean isInherent(AbstractCard card) {
-        return true;
-    }
-
-    @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         ExtraIcons.icon(icon).render(card);
     }

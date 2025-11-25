@@ -17,11 +17,6 @@ public class RentalStickerModifier extends AbstractCardModifier {
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/RentalStickerIcon.png");
 
     @Override
-    public boolean isInherent(AbstractCard card) {
-        return true;
-    }
-
-    @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
         ExtraIcons.icon(icon).render(card);
     }
