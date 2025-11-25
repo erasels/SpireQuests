@@ -40,7 +40,8 @@
       "a random Common relic",
       "a random Uncommon relic",
       "a random Rare relic",
-      "a random relic"
+      "a random relic",
+      "Gain #b%d Max HP."
     ]
   },
   "${ModID}:SingleCardReward": {

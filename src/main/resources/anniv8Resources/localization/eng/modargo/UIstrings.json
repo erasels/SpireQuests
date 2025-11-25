@@ -98,5 +98,15 @@
     "EXTRA_TEXT": [
       "Devil slain"
     ]
+  },
+  "${ModID}:BiomeSamplerQuest": {
+    "TEXT": [
+      "Biome Sampler",
+      "Enter a biome 5 times.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Biomes entered"
+    ]
   }
 }
