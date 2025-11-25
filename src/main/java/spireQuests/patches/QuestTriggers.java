@@ -301,7 +301,7 @@ public class QuestTriggers {
             if (AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
                 MONEY_SPENT_AT_SHOP.trigger(goldAmount);
             }
-            
+
         }
     }
 

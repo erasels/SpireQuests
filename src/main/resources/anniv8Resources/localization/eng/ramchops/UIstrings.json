@@ -34,5 +34,16 @@
     "EXTRA_TEXT": [
       "Defeat Evil Sentries"
     ]
+  },
+
+  "${ModID}:WindowShoppingQuest": {
+    "TEXT": [
+      "Window Shopping",
+      "Leave 3 shops without spending Gold in any of them.",
+      "RamChops Games"
+    ],
+    "EXTRA_TEXT": [
+      "Leave Shops Without Spending Gold"
+    ]
   }
 }
