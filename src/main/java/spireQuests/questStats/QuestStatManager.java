@@ -1,5 +1,8 @@
 package spireQuests.questStats;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,39 +22,58 @@ public class QuestStatManager {
     public static final String TAKEN = "taken";
     private static final String[] STAT_ENTRIES = {SEEN, TAKEN, COMPLETED, FAILED};
     
-    private static SpireConfig config;
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static JsonObject rootJson;
+    private static String FILE_PATH = SpireConfig.makeFilePath(Anniv8Mod.modID, "questStats", "json");
+
     private static Logger logger = new Logger(QuestStatManager.class.getSimpleName());
     
     private static ArrayList<String> seenBuffer = new ArrayList<>();
     private static ArrayList<String> takenBuffer = new ArrayList<>();
     private static ArrayList<String> failedBuffer = new ArrayList<>();
     private static ArrayList<String> completedBuffer = new ArrayList<>();
+    private static File file;
+    private static boolean doNotLog = false;
+    
 
     public static void initialize() {
-        try {
-            config = new SpireConfig(Anniv8Mod.modID, "questStats");
-            if (!config.has("questData")) {
-                config.setString("questData", "{}");
-                config.save();
-            }
+
+        file = new File(FILE_PATH);
+
+        if (!file.exists()) {
+            rootJson = new JsonObject();
+            saveRoot();
+        } else {
+            loadRoot();
+        }
+    }
+
+    private static void loadRoot() {
+        try (FileReader reader = new FileReader(file)){
+            rootJson = gson.fromJson(reader, JsonObject.class);
         } catch (IOException e) {
             e.printStackTrace();
+            logger.info("Error loading Quest Stats json. Creating new JsonObject. Stats will not log...");
+            doNotLog = true;
+            rootJson = new JsonObject();
+        }
+    }
+
+    private static void saveRoot() {
+        if (doNotLog) {
+            logger.error("ERROR: Cannot load Quest Stats json. Will not log quest data for this session...");
+            return;
+        }
+        try (FileWriter writer = new FileWriter(file)){
+            gson.toJson(rootJson, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error("Error saving Quest Stats json, skipping ...");
         }
     }
 
     private static JsonObject getRoot() {
-        return gson.fromJson(config.getString("questData"), JsonObject.class);
-    }
-
-    private static void saveRoot(JsonObject root) {
-        config.setString("questData", gson.toJson(root));
-        try {
-            config.save();
-        } catch (IOException e) {
-            logger.info("Can't save Quest Stats root, skipping ...");
-            e.printStackTrace();
-        }
+        return rootJson;
     }
 
     private static JsonObject getSaveJson(JsonObject root) {
@@ -59,7 +81,7 @@ public class QuestStatManager {
     }
 
     private static JsonObject getSaveJson(JsonObject root, int saveSlot) {
-        String key = Integer.toString(saveSlot);
+        String key = "save" + Integer.toString(saveSlot);
         if (!root.has(key)) {
             root.add(key, new JsonObject());
         }
@@ -95,8 +117,7 @@ public class QuestStatManager {
     }
     
     public static void commitStats() {
-        JsonObject root = getRoot();
-        JsonObject save = getSaveJson(root);
+        JsonObject save = getSaveJson(rootJson);
 
         for (String q : seenBuffer) {
             JsonObject obj = getAndValidateQuestObject(save, q);
@@ -115,7 +136,7 @@ public class QuestStatManager {
             obj.addProperty(FAILED, obj.get(FAILED).getAsInt() + 1);
         }
 
-        saveRoot(root);
+        saveRoot();
         resetBuffers();
     }
 
