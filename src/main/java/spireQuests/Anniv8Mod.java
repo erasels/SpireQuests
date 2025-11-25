@@ -33,6 +33,8 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.coda.potions.NuclearJuicePotion;
+import spireQuests.quests.gk.monsters.ICEliteMonster;
+import spireQuests.quests.modargo.monsters.DefectEliteMonster;
 import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireQuests.ui.QuestBoardScreen;
@@ -156,6 +158,7 @@ public class Anniv8Mod implements
         QuestGenerator.initialize();
         QuestRunHistoryPatch.initialize();
         addPotions();
+        addMonsters();
         addSaveFields();
         initializeSavedData();
         initializeConfig();
@@ -176,6 +179,11 @@ public class Anniv8Mod implements
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
         }
 
+    }
+
+    public static void addMonsters() {
+        BaseMod.addMonster(ICEliteMonster.ID, () -> new ICEliteMonster());
+        BaseMod.addMonster(DefectEliteMonster.ID, () -> new DefectEliteMonster());
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -263,7 +271,12 @@ public class Anniv8Mod implements
     private void loadStringsFile(String key, Class<?> stringType) {
         String filepath = modID + "Resources/localization/" + key + "/" + stringType.getSimpleName().replace("Strings", "strings") + ".json";
         if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(stringType, filepath);
+            try {
+                BaseMod.loadCustomStringsFile(stringType, filepath);
+            }
+            catch (Exception e) {
+                throw new RuntimeException("Error loading strings file " + filepath, e);
+            }
         }
     }
 

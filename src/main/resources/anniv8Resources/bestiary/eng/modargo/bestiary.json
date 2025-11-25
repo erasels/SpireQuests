@@ -1,0 +1,448 @@
+{
+	"monsters": [
+		{
+			"name": "Defect",
+			"id": "${ModID}:DefectEliteMonster",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wCore #wSurge / #wBiased #wCognition / #wRainbow -> #wCapacitor / #wElectrodynamics / #wDefragment. Afterwards, if none of the moves that summon two or more minions have been used in the past two turns, has a chance of using #wZap / #wCoolheaded / #wDarkness based on the number of living minions (0: 100%, 1: 50%, 2: 25%, 3+: 0%). If 5+ minions are alive, uses #wThunder #wStrike / #wLeap / #wForce #wField. Otherwise, equal chance of using #wThunder #wStrike / #wLeap / #wForce #wField (can't be used twice in a row) or #wBall #wLightning / #wCompile #wDriver / #wDefragment (can't be used three times in a row).",
+					"notes": "#wThunder #wStrike hits once for each Lightning summoned during combat.",
+					"hp": "(250 HP)",
+					"moves": [
+						{
+							"name": "Core Surge",
+							"effects": [
+								{
+									"name": "11",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Focus 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Capacitor",
+							"effects": [
+								{
+									"name": "Focus 1",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 2 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Thunder Strike",
+							"effects": [
+								{
+									"name": "7xN",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "21",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Ball Lightning",
+							"effects": [
+								{
+									"name": "7x2",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Summon 1 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Zap",
+							"effects": [
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wCore #wSurge / #wBiased #wCognition / #wRainbow -> #wCapacitor / #wElectrodynamics / #wDefragment. Afterwards, if none of the moves that summon two or more minions have been used in the past two turns, has a chance of using #wZap / #wCoolheaded / #wDarkness based on the number of living minions (0: 100%, 1: 50%, 2: 25%, 3+: 0%). If 5+ minions are alive, uses #wThunder #wStrike / #wLeap / #wForce #wField. Otherwise, equal chance of using #wThunder #wStrike / #wLeap / #wForce #wField (can't be used twice in a row) or #wBall #wLightning / #wCompile #wDriver / #wDefragment (can't be used three times in a row).",
+					"notes": "#wThunder #wStrike hits once for each Lightning summoned during combat.",
+					"hp": "(250 HP)",
+					"moves": [
+						{
+							"name": "Core Surge",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Focus 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Capacitor",
+							"effects": [
+								{
+									"name": "Focus 1",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 2 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Thunder Strike",
+							"effects": [
+								{
+									"name": "8xN",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "21",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Ball Lightning",
+							"effects": [
+								{
+									"name": "8x2",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Summon 1 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Zap",
+							"effects": [
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wCore #wSurge / #wBiased #wCognition / #wRainbow -> #wCapacitor / #wElectrodynamics / #wDefragment. Afterwards, if none of the moves that summon two or more minions have been used in the past two turns, has a chance of using #wZap / #wCoolheaded / #wDarkness based on the number of living minions (0: 100%, 1: 50%, 2: 25%, 3+: 0%). If 5+ minions are alive, uses #wThunder #wStrike / #wLeap / #wForce #wField. Otherwise, equal chance of using #wThunder #wStrike / #wLeap / #wForce #wField (can't be used twice in a row) or #wBall #wLightning / #wCompile #wDriver / #wDefragment (can't be used three times in a row).",
+					"notes": "#wThunder #wStrike hits once for each Lightning summoned during combat.",
+					"hp": "(275 HP)",
+					"moves": [
+						{
+							"name": "Core Surge",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Focus 4",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Capacitor",
+							"effects": [
+								{
+									"name": "Focus 1",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 2 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Thunder Strike",
+							"effects": [
+								{
+									"name": "8xN",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "28",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Ball Lightning",
+							"effects": [
+								{
+									"name": "8x2",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Summon 1 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Zap",
+							"effects": [
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wCore #wSurge / #wBiased #wCognition / #wRainbow -> #wCapacitor / #wElectrodynamics / #wDefragment. Afterwards, if none of the moves that summon two or more minions have been used in the past two turns, has a chance of using #wZap / #wCoolheaded / #wDarkness based on the number of living minions (0: 100%, 1: 50%, 2: 25%, 3+: 0%). If 5+ minions are alive, uses #wThunder #wStrike / #wLeap / #wForce #wField. Otherwise, equal chance of using #wThunder #wStrike / #wLeap / #wForce #wField (can't be used twice in a row) or #wBall #wLightning / #wCompile #wDriver / #wDefragment (can't be used three times in a row).",
+					"notes": "#wThunder #wStrike hits once for each Lightning summoned during combat.",
+					"hp": "(275 HP)",
+					"moves": [
+						{
+							"name": "Core Surge",
+							"effects": [
+								{
+									"name": "12",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Focus 5",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Capacitor",
+							"effects": [
+								{
+									"name": "Focus 2",
+									"color": "BUFF"
+								},
+								{
+									"name": "Summon 2 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Thunder Strike",
+							"effects": [
+								{
+									"name": "8xN",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "28",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Ball Lightning",
+							"effects": [
+								{
+									"name": "8x2",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Summon 1 Lightning",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Zap",
+							"effects": [
+								{
+									"name": "Summon 1 Lightning/Frost/Dark",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Lightning Orb",
+			"id": "${ModID}:LightningOrbMinion",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wLightning.",
+					"notes": "Damage is increased by the Defect's #uFocus.",
+					"hp": "(23 - 26 HP)",
+					"moves": [
+						{
+							"name": "Lightning",
+							"effects": [
+								{
+									"name": "3",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Repeats #wLightning.",
+					"notes": "Damage is increased by the Defect's #uFocus.",
+					"hp": "(25 - 28 HP)",
+					"moves": [
+						{
+							"name": "Lightning",
+							"effects": [
+								{
+									"name": "3",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Frost Orb",
+			"id": "${ModID}:FrostOrbMinion",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Repeats #wFrost.",
+					"notes": "Block is increased by the Defect's #uFocus.",
+					"hp": "(23 - 26 HP)",
+					"moves": [
+						{
+							"name": "Frost",
+							"effects": [
+								{
+									"name": "Party Block 2",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Repeats #wFrost.",
+					"notes": "Block is increased by the Defect's #uFocus.",
+					"hp": "(25 - 28 HP)",
+					"moves": [
+						{
+							"name": "Frost",
+							"effects": [
+								{
+									"name": "Party Block 2",
+									"color": "BLOCK"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dark Orb",
+			"id": "${ModID}:DarkOrbMinion",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wGather twice, then #wEvoke.",
+					"notes": "Store damage amount from #wGather is increased by the Defect's #uFocus.",
+					"hp": "(23 - 26 HP)",
+					"moves": [
+						{
+							"name": "Gather",
+							"effects": [
+								{
+									"name": "Store Damage 6",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Evoke",
+							"effects": [
+								{
+									"name": "Deal Stored Damage",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dies",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wGather twice, then #wEvoke.",
+					"notes": "Store damage amount from #wGather is increased by the Defect's #uFocus.",
+					"hp": "(25 - 28 HP)",
+					"moves": [
+						{
+							"name": "Gather",
+							"effects": [
+								{
+									"name": "Store Damage 6",
+									"color": "SPECIAL"
+								}
+							]
+						},
+						{
+							"name": "Evoke",
+							"effects": [
+								{
+									"name": "Deal Stored Damage",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Dies",
+									"color": "SPECIAL"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

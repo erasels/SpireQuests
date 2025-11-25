@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import spireQuests.Anniv8Mod;
 import spireQuests.util.Wiz;
 
 import java.lang.reflect.Field;
@@ -20,6 +21,8 @@ public final class HermitCompatUtil {
     private static final String COMBO_ID = "hermit:ComboPower";
     private static final String SNIPE_ID = "hermit:SnipePower";
     private static final String BLACKPOWDER_ID = "hermit:BlackPowder";
+
+    public static AbstractGameAction.AttackEffect HERMIT_GUN_EFFECT = AbstractGameAction.AttackEffect.NONE;
 
     // VigorPatch.isActive
     private static Field vigorIsActive;
@@ -33,6 +36,15 @@ public final class HermitCompatUtil {
             vigorIsActive = Class.forName("hermit.patches.VigorPatch").getDeclaredField("isActive");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void initGunEffect() {
+        try {
+            Class<?> enumPatchClass = Class.forName("hermit.patches.EnumPatch");
+            HERMIT_GUN_EFFECT = (AbstractGameAction.AttackEffect) enumPatchClass.getField("HERMIT_GUN").get(null);
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+            Anniv8Mod.logger.warn("Couldn't get HERMIT_GUN attack effect");
         }
     }
 

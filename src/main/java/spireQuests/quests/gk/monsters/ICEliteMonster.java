@@ -3,9 +3,6 @@ package spireQuests.quests.gk.monsters;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.spine.AnimationState;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -20,7 +17,6 @@ import com.megacrit.cardcrawl.cards.red.TwinStrike;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.BufferPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -169,17 +165,5 @@ public class ICEliteMonster extends AbstractSQMonster {
     private void doFakePlay(AbstractCard c, int ascLevelToUpgrade) {
         if(AbstractDungeon.ascensionLevel >= ascLevelToUpgrade) c.upgrade();
         Wiz.vfx(new FakePlayCardEffect(this, c));
-    }
-
-    @SpirePatch2(clz = MonsterHelper.class, method = "getEncounterName")
-    public static class FixRunHistory {
-        @SpirePrefixPatch
-        public static SpireReturn<String> patch(String key) {
-            if(ID.equals(key)) {
-                return SpireReturn.Return(NAME);
-            }
-
-            return SpireReturn.Continue();
-        }
     }
 }

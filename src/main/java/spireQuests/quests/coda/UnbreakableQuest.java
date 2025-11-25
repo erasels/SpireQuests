@@ -13,7 +13,6 @@ public class UnbreakableQuest extends AbstractQuest {
 
     private static final int FLOOR_MAX = 17;
     private int damageGoal = -1;
-    private int damageTaken = 0;
 
     public UnbreakableQuest() {
         super(QuestType.LONG, QuestDifficulty.HARD);
@@ -21,7 +20,13 @@ public class UnbreakableQuest extends AbstractQuest {
             this.damageGoal = AbstractDungeon.player.startingMaxHP;
         }
 
-        new PassiveTracker<Integer>(() -> this.damageTaken, this.damageGoal)
+        new TriggeredUpdateTracker<Integer, Integer>(QuestTriggers.DAMAGE_TAKEN,
+            0, this.damageGoal, Integer::sum, ()->false) {
+                @Override
+                public boolean isComplete() {
+                    return (condition == null || condition.get()) && state >= target;
+                }
+            }
             .add(this);
 
         new TriggerTracker<MapRoomNode>(QuestTriggers.LEAVE_ROOM, FLOOR_MAX)
@@ -36,10 +41,6 @@ public class UnbreakableQuest extends AbstractQuest {
                 }
             }
         .add(this);
-
-        new TriggerEvent<Integer>(QuestTriggers.DAMAGE_TAKEN, (damage) -> {
-            this.damageTaken += damage;
-        }).add(this);
 
         addReward(new RelicReward(new GrapefruitRelic()));
         
