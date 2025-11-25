@@ -65,6 +65,7 @@ public class QuestManager {
                     quest.refreshState();
                     quest.loadSave(questSave.questData[i], questSave.questRewards[i]);
                     if(!quest.complete() && !quest.fail()) {
+                        quest.questboundRelics = new ArrayList<>();
                         for(int y = 0; y < questSave.questRelicIndex[i].length; ++y) {
                             AbstractRelic r = null;
                             try {
@@ -74,6 +75,7 @@ public class QuestManager {
                                 Anniv8Mod.logger.warn("Relic was not found for Quest ({})", quest.name);
                             }
                             if(r != null) {
+                                quest.questboundRelics.add(r);
                                 QuestboundRelicFields.isQuestbound.set(r, quest);
                                 String questName = FontHelper.colorString(CardCrawlGame.languagePack.getUIString(quest.id).TEXT[0], "y");
                                 r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID("Questbound")).TEXT[2],questName)));
@@ -156,7 +158,7 @@ public class QuestManager {
                 }
                 String questName = FontHelper.colorString(CardCrawlGame.languagePack.getUIString(quest.id).TEXT[0], "y");
                 r.instantObtain();
-                r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID(QuestboundMod.class.getSimpleName())).TEXT[2],questName)));
+                r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID("Questbound")).TEXT[2],questName)));
             });
         }
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);

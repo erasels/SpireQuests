@@ -846,7 +846,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     // Similar to Questbound cards, but for Relics!
     public ArrayList<AbstractRelic> questboundRelics;
-    // Setting removeQBDup to true will make it default to replacing the relic if you already have it, in addition to removing from pools when obtained.
+    // Setting removeQBDup to true will make it remove from pools when obtained.
     // Setting returnQPRelics to true adds them to the pool again once the Quest is complete. (Ignored if the first boolean is set to false)
 
     public boolean removeQuestboundDuplicate = true;

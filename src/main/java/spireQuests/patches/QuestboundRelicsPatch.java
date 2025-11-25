@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.helpers.ShaderHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -33,9 +34,14 @@ public class QuestboundRelicsPatch {
     public static class renderSB {
         @SpireInsertPatch(locator = Locator.class)
         public static void render(AbstractRelic __instance, SpriteBatch sb) {
-            if(QuestboundRelicFields.isQuestbound.get(__instance) != null)
+            if(QuestboundRelicFields.isQuestbound.get(__instance) != null) {
+                if (QuestboundRelicFields.isQuestbound.get(__instance).fail() || QuestboundRelicFields.isQuestbound.get(__instance).complete()) {
+                    ShaderHelper.setShader(sb, ShaderHelper.Shader.GRAYSCALE);
+                }
                 sb.draw(tex, __instance.currentX + offsetX(__instance), __instance.currentY - 10.0F, 32.0F, 32.0F, 64.0F, 64.0F,
-                    __instance.scale * 0.5F, __instance.scale * 0.5F, rotation(__instance), 0, 0, 64, 64, false, false);
+                        __instance.scale * 0.5F, __instance.scale * 0.5F, rotation(__instance), 0, 0, 64, 64, false, false);
+                ShaderHelper.setShader(sb, ShaderHelper.Shader.DEFAULT);
+            }
         }
 
         private static class Locator extends SpireInsertLocator {

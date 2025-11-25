@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Boot;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
@@ -36,6 +37,12 @@ public class LuckyNumberQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
+        if(AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
+            ShopRoom shop = (ShopRoom) AbstractDungeon.getCurrRoom();
+            for(AbstractRelic r : shop.relics) {
+                if(r.relicId == Boot.ID) return false;
+            }
+        }
         return !AbstractDungeon.player.hasRelic(Boot.ID);
     }
 }
