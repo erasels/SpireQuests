@@ -13,10 +13,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.chests.AbstractChest;
 import com.megacrit.cardcrawl.rewards.chests.BossChest;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
@@ -45,6 +47,9 @@ public class QuestTriggers {
     public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
     public static final Trigger<Integer> ACT_CHANGE = new Trigger<>();
     public static final Trigger<AbstractChest> CHEST_OPENED = new Trigger<>(); //NOTE: This includes both normal and boss chests.
+
+    public static final Trigger<Integer> LOSE_MONEY = new Trigger<>(); //NOTE: This counts all instances of losing money, including events
+    public static final Trigger<Integer> MONEY_SPENT_AT_SHOP = new Trigger<>(); //NOTE: This counts only money spent at shop and not money lost through events.
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -285,4 +290,19 @@ public class QuestTriggers {
             return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
         }
     }
+
+    @SpirePatch(clz = AbstractPlayer.class, method = "loseGold", paramtypez = int.class)
+    public static class SpendGoldPatch{
+        @SpirePrefixPatch
+        public void LoseGoldPatch(AbstractPlayer __instance, int goldAmount){
+
+            LOSE_MONEY.trigger(goldAmount);
+
+            if (AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
+                MONEY_SPENT_AT_SHOP.trigger(goldAmount);
+            }
+            
+        }
+    }
+
 }
