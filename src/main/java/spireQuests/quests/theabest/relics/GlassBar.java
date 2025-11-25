@@ -1,13 +1,8 @@
 package spireQuests.quests.theabest.relics;
 
-import com.evacipated.cardcrawl.mod.stslib.patches.bothInterfaces.OnCreateCardInterface;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.Claw;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.abstracts.AbstractSQRelic;
-
-import java.util.Objects;
 
 import static spireQuests.Anniv8Mod.makeID;
 

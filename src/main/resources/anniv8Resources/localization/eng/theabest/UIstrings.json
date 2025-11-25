@@ -22,7 +22,7 @@
   "${ModID}:WaitForItQuest": {
     "TEXT": [
       "Wait For It",
-      "End #b10 turns without playing any cards.",
+      "In #b5 different combats, end a turn without playing any cards.",
       "Theabest"
     ],
     "EXTRA_TEXT": [
@@ -32,11 +32,11 @@
   "${ModID}:BolsterQuest": {
     "TEXT": [
       "Bolster",
-      "Increase your Max HP by #b25.",
+      "Increase your Max HP.",
       "Theabest"
     ],
     "EXTRA_TEXT": [
-      "Max HP gained"
+      "Gained Max HP"
     ]
   },
   "${ModID}:UnchangedQuest": {

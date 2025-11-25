@@ -1,24 +1,28 @@
 package spireQuests.quests.theabest;
 
-import basemod.helpers.CardPowerTip;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.Claw;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.theabest.relics.GlassBar;
-import spireQuests.quests.theabest.relics.NailPolish;
-
-import java.util.List;
-import java.util.Objects;
 
 public class WaitForItQuest extends AbstractQuest {
+    private boolean progressThisCombat = false;
+
     public WaitForItQuest() {
         super(QuestType.LONG, QuestDifficulty.NORMAL);
-        new TriggerTracker<>(QuestTriggers.TURN_END, 10)
-                .triggerCondition((x) -> AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
+        new TriggerTracker<>(QuestTriggers.TURN_END, 5)
+                .triggerCondition((x) -> {
+                    if (progressThisCombat)
+                        return false;
+                    if (AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty()) {
+                        progressThisCombat = true;
+                        return true;
+                    }
+                    return false;
+                })
+                .add(this);
+        new TriggerEvent<>(QuestTriggers.COMBAT_END, (x) -> progressThisCombat = false)
                 .add(this);
         addReward(new QuestReward.RelicReward(new GlassBar()));
     }
