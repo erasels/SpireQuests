@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package spireQuests.quests.ramchops.monsters;
 
 import com.badlogic.gdx.graphics.Color;
@@ -31,11 +26,12 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.*;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect.ShockWaveType;
 
+import static spireQuests.Anniv8Mod.makeContributionPath;
 import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.util.Wiz.adp;
 
 public class EvilSentry extends AbstractMonster {
-    public static final String ID = makeID("EvilSentry");
+    public static final String ID = makeID(EvilSentry.class.getName());
     private static final MonsterStrings monsterStrings;
     public static final String NAME;
     public static final String[] MOVES;
@@ -48,15 +44,15 @@ public class EvilSentry extends AbstractMonster {
     private static final byte BOLT = 3;
     private static final byte BEAM = 4;
     private static final byte BAMBOOZLE = 5;
-    private static final int BAMBOO_DMG = 5;
     private int beamDmg;
     private int dazedAmt;
+    private int bambooDmg;
     private static final int DAZED_AMT = 2;
     private static final int A_18_DAZED_AMT = 3;
     private boolean firstMove = true;
 
     public EvilSentry(float x, float y) {
-        super(NAME, "Sentry", 42, 0.0F, -5.0F, 180.0F, 310.0F, (String)null, x, y);
+        super(NAME, ID, 42, 0.0F, -5.0F, 180.0F, 310.0F, (String)null, x, y);
         this.type = EnemyType.ELITE;
         if (AbstractDungeon.ascensionLevel >= 8) {
             this.setHp(A_2_HP_MIN, A_2_HP_MAX);
@@ -66,8 +62,10 @@ public class EvilSentry extends AbstractMonster {
 
         if (AbstractDungeon.ascensionLevel >= 3) {
             this.beamDmg = 10;
+            this.bambooDmg = 6;
         } else {
             this.beamDmg = 9;
+            this.bambooDmg = 5;
         }
 
         if (AbstractDungeon.ascensionLevel >= 18) {
@@ -77,8 +75,8 @@ public class EvilSentry extends AbstractMonster {
         }
 
         this.damage.add(new DamageInfo(this, this.beamDmg));
-        this.damage.add(new DamageInfo(this, BAMBOO_DMG));
-        this.loadAnimation("anniv8Resources/images/ramchops/evil_sentry/skeleton.atlas", "anniv8Resources/images/ramchops/evil_sentry/skeleton.json", 1.0F);
+        this.damage.add(new DamageInfo(this, this.bambooDmg));
+        this.loadAnimation(makeContributionPath("ramchops", "evil_sentry/skeleton.atlas"), "anniv8Resources/images/ramchops/evil_sentry/skeleton.json", 1.0F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "idle", true);
         e.setTimeScale(2.0F);
         e.setTime(e.getEndTime() * MathUtils.random());
