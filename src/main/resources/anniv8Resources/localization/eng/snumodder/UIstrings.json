@@ -10,5 +10,15 @@
       "No odd-cost",
       "Upgrade all starter cards."
     ]
+  },
+  "${ModID}:GaronaHalforcenQuest": {
+    "TEXT": [
+      "Garona Halforcen",
+      "Obtain #yQuestbound #yKing #yLlane. NL Prevent it from exhausting for 3 combats.",
+      "snumodder"
+    ],
+    "EXTRA_TEXT": [
+      "King Llane survived"
+    ]
   }
 }
