@@ -1,8 +1,9 @@
-package spireQuests.quests.ramchops;
+package spireQuests.quests.ramchops.trackers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.OptionalTriggerTracker;
+import spireQuests.quests.ramchops.cards.SelloutAdvertisementCard;
 
 
 public class AdsPlayedQuestTracker extends OptionalTriggerTracker<AbstractCard> {
