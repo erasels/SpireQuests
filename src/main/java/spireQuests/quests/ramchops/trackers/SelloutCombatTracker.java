@@ -1,4 +1,4 @@
-package spireQuests.quests.ramchops;
+package spireQuests.quests.ramchops.trackers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.OptionalTriggerTracker;
+import spireQuests.quests.ramchops.cards.SelloutAdvertisementCard;
 
 public class SelloutCombatTracker extends OptionalTriggerTracker<Void> {
 

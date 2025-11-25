@@ -78,5 +78,25 @@
       "Bartender",
       "Patrons"
     ]
+  },
+  "${ModID}:BloodfireRitualQuest": {
+    "TEXT": [
+      "Bloodfire Ritual",
+      "Complete a long ritual to gain the #pBlackstaff. Each combat, shuffle a special #b2-cost #ySkill with #yEthereal, #yExhaust, and a small negative effect into your draw pile. Play these special cards #b20 times to complete the ritual.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Ritual steps"
+    ]
+  },
+  "${ModID}:BountyDefectQuest": {
+    "TEXT": [
+      "Bounty: Blue Devil",
+      "A devil of metal stalks these halls. The next elite this act is replaced by the #bDefect.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Devil slain"
+    ]
   }
 }

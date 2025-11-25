@@ -13,6 +13,8 @@
     "SoytheProton",
     "JackRenoson",
     "Mangochicken"
+    "Mangochicken",
+    "snumodder"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
