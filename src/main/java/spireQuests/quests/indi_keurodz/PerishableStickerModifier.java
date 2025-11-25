@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.AbstractCardModifier;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.Anniv8Mod;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.indi_keurodz.patches.BattleEndPatch;
@@ -15,15 +16,10 @@ public class PerishableStickerModifier extends AbstractCardModifier {
 
     public static String MODIFIER_ID = Anniv8Mod.makeID("PerishableSticker");
 
-    public static int REMAINING_TURNS;
+    public int REMAINING_TURNS;
 
     private static final Texture icon = TexLoader
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/PerishableStickerIcon.png");
-
-    @Override
-    public boolean isInherent(AbstractCard card) {
-        return true;
-    }
 
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
@@ -40,13 +36,17 @@ public class PerishableStickerModifier extends AbstractCardModifier {
         return new PerishableStickerModifier();
     }
 
-    public PerishableStickerModifier() {
-        // REMAINING_TURNS = 5;
-        // new AbstractQuest.TriggeredUpdateTracker<>(QuestTriggers.COMBAT_END, 0, 5, ()
-        // -> {
-        // return --REMAINING_TURNS;
-        // }).add(this);
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        REMAINING_TURNS = 5;
+    }
 
+    /*
+        Ticks remaining turns down by 1
+        @returns true if the remaining turns is 0 or less than 0
+     */
+    public boolean tickRemainingTurns() {
+        return --REMAINING_TURNS <= 0;
     }
 
 }
