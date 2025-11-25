@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Array;
@@ -45,9 +44,7 @@ public class BalatroQuest extends AbstractQuest {
         BossBlinds = new TextureAtlas(
                 Gdx.files.internal(Anniv8Mod.makeContributionPath("indi_keurodz", "BossBlinds.atlas")));
 
-        new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 10, () -> {
-            return BLIND_FIGHTS_COMPLETED;
-        }).add(this);
+        new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
 
         addReward(new QuestReward.RelicReward(new BurningBlood()));
         needHoverTip = true;
@@ -58,6 +55,16 @@ public class BalatroQuest extends AbstractQuest {
         super.onStart();
         (new GoldStakeRelic()).instantObtain();
         markNodes();
+        BLIND_FIGHTS_COMPLETED = 0;
+    }
+
+    public static int getBlindBattlesCompleted() {
+        MapRoomNode node = AbstractDungeon.currMapNode;
+        if (node != null && ShowBossBlindsOnMapPatch.BossBlindField.frames.get(node) != null) {
+            BLIND_FIGHTS_COMPLETED++;
+        }
+
+        return BLIND_FIGHTS_COMPLETED;
     }
 
     public static void markNodesIfQuestActive() {
