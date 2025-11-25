@@ -1,0 +1,166 @@
+{
+	"monsters": [
+      {
+        "name": "Evil Sentry",
+        "id": "${ModID}:EvilSentry",
+        "ai": [
+          {
+            "min_asc": 0,
+            "desc": "From left to right, the sentries start with #wBolt / #wBeam / #wBamboozle. Then, they cycle their intents as so: #wBolt -> #wBeam -> #wBamboozle -> #wBolt.",
+            "hp": "(38 - 42 HP)",
+            "notes": "Innate #uArtifact #u1",
+            "moves": [
+              {
+                "name": "Beam",
+                "effects": [
+                  {
+                    "name": "9",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "Bolt",
+                "effects": [
+                  {
+                    "name": "Daze 2",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "Bamboozle",
+                "effects": [
+                  {
+                    "name": "5",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "Draw Reduction 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min_asc": 3,
+            "desc": "In the 3-Sentry act 1 elite encounter, the Sentries (from left to right) begin with #wBolt / #wBeam / #wBolt. In the act 2 Sentry + Spheric Guardian encounter, the Sentry starts with #wBolt. Afterwards, they always alternate between the two moves.",
+            "hp": "(38 - 42 HP)",
+            "notes": "Innate #uArtifact #u1",
+            "moves": [
+              {
+                "name": "Beam",
+                "effects": [
+                  {
+                    "name": "10",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "Bolt",
+                "effects": [
+                  {
+                    "name": "Daze 2",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "Bamboozle",
+                "effects": [
+                  {
+                    "name": "6",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "Draw Reduction 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min_asc": 8,
+            "desc": "In the 3-Sentry act 1 elite encounter, the Sentries (from left to right) begin with #wBolt / #wBeam / #wBolt. In the act 2 Sentry + Spheric Guardian encounter, the Sentry starts with #wBolt. Afterwards, they always alternate between the two moves.",
+            "hp": "(39 - 45 HP)",
+            "notes": "Innate #uArtifact #u1",
+            "moves": [
+              {
+                "name": "Beam",
+                "effects": [
+                  {
+                    "name": "10",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "Bolt",
+                "effects": [
+                  {
+                    "name": "Daze 2",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "Bamboozle",
+                "effects": [
+                  {
+                    "name": "6",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "Draw Reduction 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min_asc": 18,
+            "desc": "In the 3-Sentry act 1 elite encounter, the Sentries (from left to right) begin with #wBolt / #wBeam / #wBolt. In the act 2 Sentry + Spheric Guardian encounter, the Sentry starts with #wBolt. Afterwards, they always alternate between the two moves.",
+            "hp": "(39 - 45 HP)",
+            "notes": "Innate #uArtifact #u1",
+            "moves": [
+              {
+                "name": "Beam",
+                "effects": [
+                  {
+                    "name": "10",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "Bolt",
+                "effects": [
+                  {
+                    "name": "Daze 3",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "Bamboozle",
+                "effects": [
+                  {
+                    "name": "6",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "Draw Reduction 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+	]
+}
