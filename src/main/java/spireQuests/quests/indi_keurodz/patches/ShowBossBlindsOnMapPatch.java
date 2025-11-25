@@ -42,7 +42,7 @@ public class ShowBossBlindsOnMapPatch {
 
                 sb.setColor(Color.WHITE);
                 sb.draw(image,
-                        (float) __instance.x * spacingX + offsetX - 60.0F + __instance.offsetX + imgWidth * scale,
+                        (float) __instance.x * spacingX + offsetX - 68.0F + __instance.offsetX + imgWidth * scale,
                         (float) __instance.y * Settings.MAP_DST_Y + offsetY + DungeonMapScreen.offsetY - 68.0F
                                 + __instance.offsetY + 68.0F * scale,
                         68f, 68f, 68f, 68f, scale * Settings.scale, scale * Settings.scale, 0f);
