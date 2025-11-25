@@ -18,7 +18,7 @@ import static spireQuests.Anniv8Mod.makeID;
 
 public class EvilSentryQuest extends AbstractQuest {
 
-    private static final String ID = makeID("EvilSentryQuest");
+    private static final String ID = makeID(EvilSentryQuest.class.getSimpleName());
 
     public EvilSentryQuest() {
         super(QuestType.SHORT, QuestDifficulty.NORMAL);
