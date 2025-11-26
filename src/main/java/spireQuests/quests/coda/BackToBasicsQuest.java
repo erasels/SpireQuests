@@ -58,7 +58,6 @@ public class BackToBasicsQuest extends AbstractQuest {
                 .add(this);
 
         useDefaultReward = false;
-        rewardsText = localization.EXTRA_TEXT[1];
     }
 
     @Override

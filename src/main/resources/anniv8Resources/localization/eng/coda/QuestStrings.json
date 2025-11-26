@@ -12,9 +12,22 @@
     "TITLE": "Keep it Simple",
     "DESCRIPTION": "Defeat an Elite or Boss without playing uncommon or rare cards.",
     "AUTHOR": "coda",
+    "REWARD": "Upgrade three random starter or common cards.",
     "TRACKER_TEXT": [
       "Defeat an Elite or Boss without playing uncommon or rare cards.",
-      "Upgrade three random starter or common cards."
+    ]
+  },
+  "${ModID}:UnbreakableQuest": {
+    "TITLE": "Unbreakable",
+    "DESCRIPTION": "Take damage equal to your base Max HP within 17 floors.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Damage remaining: ",
+      "Floors remaining: "
+    ],
+    "EXTRA_TEXT": [
+      "Take ",
+      " damage within 17 floors."
     ]
   }
 }
