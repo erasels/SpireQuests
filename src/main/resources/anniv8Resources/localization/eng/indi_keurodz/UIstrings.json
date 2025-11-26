@@ -8,5 +8,23 @@
     "EXTRA_TEXT": [
       "Blind battles completed"
     ]
+  },
+  "${ModID}:PerishableSticker": {
+    "TEXT": [
+      "Perishable",
+      "Purged from deck after #b%d #b combats"
+    ]
+  },
+  "${ModID}:EternalSticker": {
+    "TEXT": [
+      "Eternal",
+      "#rCannot be removed from deck"
+    ]
+  },
+  "${ModID}:RentalSticker": {
+    "TEXT": [
+      "Rental",
+      "Lose #y3 #ygold at the end of combat "
+    ]
   }
 }
