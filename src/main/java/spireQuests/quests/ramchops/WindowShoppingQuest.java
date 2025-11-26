@@ -9,10 +9,10 @@ import spireQuests.quests.QuestReward;
 
 public class WindowShoppingQuest extends AbstractQuest {
 
-    private final int SHOP_VISITS = 3;
+    private final int SHOP_VISITS = 2;
 
     public WindowShoppingQuest() {
-        super(QuestType.SHORT, QuestDifficulty.EASY);
+        super(QuestType.LONG, QuestDifficulty.HARD);
 
         new TriggerTracker<>(QuestTriggers.LEAVE_ROOM, SHOP_VISITS)
                 .triggerCondition((mapRoomNode) ->
