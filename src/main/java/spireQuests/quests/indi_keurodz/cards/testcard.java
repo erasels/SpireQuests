@@ -10,6 +10,7 @@ import basemod.helpers.CardModifierManager;
 import spireQuests.Anniv8Mod;
 import spireQuests.abstracts.AbstractSQCard;
 import spireQuests.quests.indi_keurodz.EternalStickerModifier;
+import spireQuests.quests.indi_keurodz.FaceDownModifier;
 import spireQuests.quests.indi_keurodz.PerishableStickerModifier;
 import spireQuests.quests.indi_keurodz.RentalStickerModifier;
 
@@ -29,7 +30,7 @@ public class testcard extends AbstractSQCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         Random rand = new Random();
         for (AbstractCard card : p.hand.group) {
-            int mod = rand.nextInt(3);
+            int mod = rand.nextInt(4);
 
             switch (mod) {
                 case 0:
@@ -42,6 +43,10 @@ public class testcard extends AbstractSQCard {
 
                 case 2:
                     CardModifierManager.addModifier(card, new RentalStickerModifier());
+                    break;
+
+                case 3:
+                    CardModifierManager.addModifier(card, new FaceDownModifier());
                     break;
 
             }
