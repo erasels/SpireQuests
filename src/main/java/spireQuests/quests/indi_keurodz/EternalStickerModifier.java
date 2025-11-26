@@ -1,5 +1,6 @@
 package spireQuests.quests.indi_keurodz;
 
+import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
@@ -7,12 +8,18 @@ import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.AbstractCardModifier;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import spireQuests.Anniv8Mod;
 import spireQuests.util.TexLoader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EternalStickerModifier extends AbstractCardModifier {
 
     public static String MODIFIER_ID = Anniv8Mod.makeID("EternalSticker");
+    private static final UIStrings strings = CardCrawlGame.languagePack.getUIString(MODIFIER_ID);
 
     private static final Texture icon = TexLoader
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/EternalStickerIcon.png");
@@ -35,6 +42,13 @@ public class EternalStickerModifier extends AbstractCardModifier {
     @Override
     public void onInitialApplication(AbstractCard card) {
         SoulboundField.soulbound.set(card, true);
+    }
+
+    @Override
+    public List<TooltipInfo> additionalTooltips(AbstractCard card) {
+        List<TooltipInfo> tips = new ArrayList<>();
+        tips.add(new TooltipInfo(strings.TEXT[0], strings.TEXT[1]));
+        return tips;
     }
 
 }
