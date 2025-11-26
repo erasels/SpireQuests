@@ -20,6 +20,7 @@ public class HandicapQuest extends AbstractQuest {
                 && GameActionManager.turn == 1)
             .setResetTrigger(QuestTriggers.PLAY_CARD)
             .setResetTrigger(QuestTriggers.VICTORY)
+            .setFailureTrigger(QuestTriggers.ACT_CHANGE)
             .add(this);
 
         addReward(new QuestReward.RelicReward(new HeartyAnchor()));
