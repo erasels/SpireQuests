@@ -6,7 +6,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.beyond.Reptomancer;
 import com.megacrit.cardcrawl.monsters.beyond.SnakeDagger;
@@ -16,10 +15,7 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.Trigger;
-import spireQuests.quests.ramchops.monsters.EvilSentry;
-import spireQuests.quests.ramchops.relics.FriendSentry;
 import spireQuests.quests.ramchops.relics.SnakeSlough;
-import spireQuests.util.Wiz;
 
 import static spireQuests.Anniv8Mod.makeID;
 

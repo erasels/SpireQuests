@@ -1,16 +1,8 @@
 package spireQuests.quests.ramchops.relics;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.FastShakeAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.tempCards.Insight;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import spireQuests.abstracts.AbstractSQRelic;
 
 import static spireQuests.Anniv8Mod.makeID;
