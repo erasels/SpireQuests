@@ -1,8 +1,11 @@
 package spireQuests.quests.indi_keurodz;
 
+import static spireQuests.Anniv8Mod.makeID;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -22,6 +25,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 
+import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
@@ -31,17 +35,60 @@ import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch;
 import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 
 public class BalatroQuest extends AbstractQuest {
-    private static TextureAtlas BossBlinds;
-    private static String[] BlindNames = { "AmberAcorn", "Arm", "CeruleanBell", "Club", "CrimsonHeart", "Eye", "Fish",
-            "Flint", "Goad", "Head", "Hook", "House", "Manacle", "Mark", "Mouth", "Needle", "Ox", "Pillar", "Plant",
-            "Psychic", "Serpent", "Tooth", "VerdantLeaf", "VioletVessel", "Wall", "Water", "Wheel", "Window" };
+    private static TextureAtlas BossBlindsAtlas;
+    public static final String BLIND_STRINGS_ID = makeID("BalatroBlinds");
+
+    private static Map<String, String> blindStrings = CardCrawlGame.languagePack
+            .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
+
+    public static enum BossBlind {
+        AmberAcorn,
+        Arm,
+        CeruleanBell,
+        Club,
+        CrimsonHeart,
+        Eye,
+        Fish,
+        Flint,
+        Goad,
+        Head,
+        Hook,
+        House,
+        Manacle,
+        Mark,
+        Mouth,
+        Needle,
+        Ox,
+        Pillar,
+        Plant,
+        Psychic,
+        Serpent,
+        Tooth,
+        VerdantLeaf,
+        VioletVessel,
+        Wall,
+        Water,
+        Wheel,
+        Window;
+
+        public final TooltipInfo tooltip;
+        public final Array<AtlasRegion> frames;
+
+        BossBlind() {
+            this.tooltip = new TooltipInfo(blindStrings.get(this.toString()),
+                    blindStrings.get(this.toString() + "1"));
+
+            this.frames = BossBlindsAtlas.findRegions(this.toString());
+        }
+
+    }
 
     public static int BLIND_FIGHTS_COMPLETED = 0;
 
     public BalatroQuest() {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
 
-        BossBlinds = new TextureAtlas(
+        BossBlindsAtlas = new TextureAtlas(
                 Gdx.files.internal(Anniv8Mod.makeContributionPath("indi_keurodz", "BossBlinds.atlas")));
 
         new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
@@ -60,7 +107,7 @@ public class BalatroQuest extends AbstractQuest {
 
     public static int getBlindBattlesCompleted() {
         MapRoomNode node = AbstractDungeon.currMapNode;
-        if (node != null && ShowBossBlindsOnMapPatch.BossBlindField.frames.get(node) != null) {
+        if (node != null && ShowBossBlindsOnMapPatch.BossBlindField.blind.get(node) != null) {
             BLIND_FIGHTS_COMPLETED++;
         }
 
@@ -93,8 +140,8 @@ public class BalatroQuest extends AbstractQuest {
         int n = possibleNodes.size() / 2;
         for (int i = 0; i < n; i++) {
             MapRoomNode node = possibleNodes.get(i);
-            Array<AtlasRegion> frames = BossBlinds.findRegions(BlindNames[rng.random(21)]);
-            ShowBossBlindsOnMapPatch.BossBlindField.frames.set(node, frames);
+            BossBlind randomBlind = BossBlind.values()[rng.random(BossBlind.values().length)];
+            ShowBossBlindsOnMapPatch.BossBlindField.blind.set(node, randomBlind);
         }
     }
 
