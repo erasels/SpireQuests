@@ -6,21 +6,26 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.utils.Array;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import javassist.CtBehavior;
+import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 
 public class ShowBossBlindsOnMapPatch {
 
     private static final float FRAME_TIME = 0.08f;
 
+    private static final float OFFSET_Y = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_Y");
+    private static final float OFFSET_X = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_X");
+    private static final float SPACING_X = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "SPACING_X");
+
     @SpirePatch(clz = MapRoomNode.class, method = SpirePatch.CLASS)
     public static class BossBlindField {
         // 21 frames of animation
-        public static final SpireField<Array<AtlasRegion>> frames = new SpireField<>(() -> null);
+        public static final SpireField<BossBlind> blind = new SpireField<>(() -> null);
         public static final SpireField<Integer> current_frame = new SpireField<>(() -> 0);
         public static final SpireField<Float> elapsed_time = new SpireField<>(() -> 0f);
     }
@@ -30,20 +35,17 @@ public class ShowBossBlindsOnMapPatch {
 
         @SpireInsertPatch(locator = Locator.class)
         public static void renderImage(MapRoomNode __instance, SpriteBatch sb) {
-            Array<AtlasRegion> frames = BossBlindField.frames.get(__instance);
+            BossBlind blind = BossBlindField.blind.get(__instance);
             int current_frame = BossBlindField.current_frame.get(__instance);
-            if (frames != null) {
-                AtlasRegion image = frames.get(current_frame);
+            if (blind != null) {
+                AtlasRegion image = blind.frames.get(current_frame);
                 int imgWidth = ReflectionHacks.getPrivate(__instance, MapRoomNode.class, "IMG_WIDTH");
                 float scale = ReflectionHacks.getPrivate(__instance, MapRoomNode.class, "scale");
-                float offsetX = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_X");
-                float offsetY = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_Y");
-                float spacingX = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "SPACING_X");
 
                 sb.setColor(Color.WHITE);
                 sb.draw(image,
-                        (float) __instance.x * spacingX + offsetX - 68.0F + __instance.offsetX + imgWidth * scale,
-                        (float) __instance.y * Settings.MAP_DST_Y + offsetY + DungeonMapScreen.offsetY - 68.0F
+                        __instance.x * SPACING_X + OFFSET_X - 68.0F + __instance.offsetX + imgWidth * scale,
+                        __instance.y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - 68.0F
                                 + __instance.offsetY + 68.0F * scale,
                         68f, 68f, 68f, 68f, scale * Settings.scale, scale * Settings.scale, 0f);
             }
@@ -65,5 +67,29 @@ public class ShowBossBlindsOnMapPatch {
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
+    }
+
+    @SpirePatch(clz = MapRoomNode.class, method = "render", paramtypez = { SpriteBatch.class })
+    public static class RenderTooltipsOnHoverPatch {
+
+        @SpirePostfixPatch()
+        public static void renderTooltip(MapRoomNode __instance, SpriteBatch sb) {
+            BossBlind blind = BossBlindField.blind.get(__instance);
+
+            if (blind != null && __instance.hb.hovered) {
+                int imgWidth = ReflectionHacks.getPrivate(__instance, MapRoomNode.class, "IMG_WIDTH");
+                float scale = ReflectionHacks.getPrivate(__instance, MapRoomNode.class, "scale");
+
+                TipHelper.renderGenericTip(
+                        __instance.x * SPACING_X + OFFSET_X - 64f + __instance.offsetX + imgWidth * 1.75f,
+                        __instance.y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - 64f
+                                + __instance.offsetY + 64f * scale,
+                        blind.tooltip.title,
+                        blind.tooltip.description);
+
+            }
+
+        }
+
     }
 }
