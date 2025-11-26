@@ -8,5 +8,13 @@
       "Even/X-cost",
       "No odd-cost"
     ]
+  },
+  "${ModID}:GaronaHalforcenQuest": {
+    "TITLE": "Garona Halforcen",
+    "DESCRIPTION": "Obtain #yQuestbound #yKing #yLlane. NL Prevent it from exhausting for 3 combats.",
+    "AUTHOR": "snumodder",
+    "TRACKER_TEXT": [
+      "King Llane survived"
+    ]
   }
 }

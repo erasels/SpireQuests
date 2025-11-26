@@ -29,7 +29,7 @@ public class RainbowQuest extends AbstractQuest {
         Tracker tracker = new TriggerTracker<>(QuestTriggers.ADD_CARD, req)
                 .triggerCondition((card) -> !colorsAdded.contains(card.color))
                 .add(this);
-        tracker.text = localization.EXTRA_TEXT[0] + req + localization.EXTRA_TEXT[1];
+        tracker.text = questStrings.TRACKER_TEXT[0] + req + questStrings.TRACKER_TEXT[1];
 
         new TriggerEvent<>(QuestTriggers.ADD_CARD, c -> {
             if(!colorsAdded.contains(c.color)){
@@ -65,9 +65,9 @@ public class RainbowQuest extends AbstractQuest {
 
     @Override
     protected void setText() {
-        name = localization.TEXT[0];
-        description = localization.TEXT[1] + determineReq() + localization.TEXT[2];
-        author = localization.TEXT[3];
+        name = questStrings.TITLE;
+        description = questStrings.EXTRA_TEXT[0] + determineReq() + questStrings.EXTRA_TEXT[1];
+        author = questStrings.AUTHOR;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class RainbowQuest extends AbstractQuest {
         for (AbstractCard.CardColor c : colorsAdded) {
             colorNames.add(c.name().toLowerCase());
         }
-        return new PowerTip(localization.EXTRA_TEXT[2], String.join(" NL ", colorNames));
+        return new PowerTip(questStrings.EXTRA_TEXT[2], String.join(" NL ", colorNames));
     }
 
     private int determineReq(){
