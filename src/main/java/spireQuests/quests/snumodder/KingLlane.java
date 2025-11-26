@@ -13,7 +13,7 @@ public class KingLlane extends AbstractSQCard {
     private static final int MAGIC = 1;
 
     public KingLlane() {
-        super(ID, "snumodder", 1, CardType.CURSE, CardRarity.CURSE, CardTarget.NONE, CardColor.CURSE);
+        super(ID, "snumodder", 1, CardType.CURSE, CardRarity.SPECIAL, CardTarget.NONE, CardColor.CURSE);
         magicNumber = baseMagicNumber = MAGIC;
         shuffleBackIntoDrawPile = true;
         isEthereal = true;
