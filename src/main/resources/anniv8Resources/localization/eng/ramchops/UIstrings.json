@@ -1,4 +1,18 @@
 {
+  "${ModID}:SelloutQuest": {
+    "TEXT": [
+      "Sellout",
+      "Upon pickup, add #b3 #yAdvertisements to your deck. Remove #b1 #yAdvertisement from your deck every #b5 combats won. Remove ALL #yAdvertisements from your deck to complete the quest.\n\n",
+      "RamChops Games"
+    ],
+    "EXTRA_TEXT": [
+      "Ad Revenue Owed",
+      "Combats Won",
+      "Remove Ads",
+      "Gain #b10 Gold for every #yAdvertisement played."
+    ]
+  },
+
   "${ModID}:CeaselessHungerQuest": {
     "TEXT": [
       "Ceaseless Hunger",
@@ -8,6 +22,17 @@
     "EXTRA_TEXT": [
       "Open an Act 3 Chest",
       "Remove all #yN'loth's #yFaces and obtain #b2 random #yRelics for each #yN'loth's #yFace removed."
+    ]
+  },
+
+  "${ModID}:EvilSentryQuest": {
+    "TEXT": [
+      "Evil Sentries",
+      "Your next Elite this act will be three Sentries. In addition to their normal actions, they can also perform a special action (Deal #b5 damage and apply #b1 Draw Reduction). Defeat them.",
+      "RamChops Games"
+    ],
+    "EXTRA_TEXT": [
+      "Defeat Evil Sentries"
     ]
   }
 }

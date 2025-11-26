@@ -29,7 +29,8 @@
   },
   "${ModID}:AbstractQuest": {
     "TEXT": [
-      "Quest Complete! Click to claim.",
+      "Quest Complete! Click outside of combat to claim.",
+      "Quest Complete! Click at a Reward Screen to claim.",
       "Quest Failed! Click to remove."
     ]
   },
@@ -60,5 +61,12 @@
         "${ModID}:Questbound. NL ",
         "Whenever you complete %s, remove this from your deck. Cannot be modified or removed by any other means."
       ]
-    }
+    },
+  "${ModID}:QuestManager": {
+    "TEXT": [
+      "I cannot claim this quest right now.",
+      "I cannot claim quests during combat.",
+      "I can only claim this quest at a reward screen."
+    ]
+  }
 }

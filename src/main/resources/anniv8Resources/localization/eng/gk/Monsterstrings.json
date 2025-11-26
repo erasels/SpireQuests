@@ -1,0 +1,11 @@
+{
+  "${ModID}:ICEliteMonster": {
+    "MOVES": [
+      "Demon Form",
+      "Ironwave",
+      "Bash",
+      "Twin Strike"
+    ],
+    "NAME": "Red Menace"
+  }
+}

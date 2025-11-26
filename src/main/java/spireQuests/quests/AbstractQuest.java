@@ -9,7 +9,9 @@ import spireQuests.Anniv8Mod;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -46,6 +48,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     public boolean useDefaultReward;
     public List<QuestReward> questRewards;
+    public boolean rewardScreenOnly = false;
 
     private int trackerTextIndex = 0;
 
@@ -424,10 +427,18 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         /**
-         * Causes a tracker to not be displayed. This should be done for a subcondition, like "be in a shop" before "obtain x cards"
+         * Causes a tracker to not be displayed. This should be done for a subcondition, like "be in a shop" before "buy x cards"
          */
         public final Tracker hide() {
             this.hidden = true;
+            return this;
+        }
+
+        /**
+         * Shows a hidden tracker. This should be called once a condition has been fulfilled, like showing "buy x cards" after achieving "be in a shop"
+         */
+        public final Tracker show() {
+            this.hidden = false;
             return this;
         }
 
@@ -604,10 +615,10 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
      * A reset trigger can be added to set the count back to 0
      */
     public static class TriggerTracker<T> extends Tracker {
-        private final int targetCount;
+        protected final int targetCount;
         private Function<T, Boolean> triggerCondition = null;
 
-        private int count;
+        protected int count;
 
         public TriggerTracker(Trigger<T> trigger, int count) {
             this(trigger, count, () -> false);
@@ -672,8 +683,15 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
      * @param <T>
      */
     public static class TriggeredUpdateTracker<T, U> extends Tracker {
+        private static final Map<Class<?>, Function<String, Object>> loaders = new HashMap<>();
+        static {
+            loaders.put(String.class, (s)->s);
+            loaders.put(Integer.class, Integer::parseInt);
+        }
+
         protected T start, state, target;
-        private final Supplier<T> getState;
+        private final BiFunction<U, T, T> getState;
+        private boolean autoRefresh;
         private final Supplier<Boolean> isFailed;
 
         public TriggeredUpdateTracker(Trigger<U> trigger, T start, T target, Supplier<T> getProgress) {
@@ -681,17 +699,23 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         }
 
         public TriggeredUpdateTracker(Trigger<U> trigger, T start, T target, Supplier<T> getState, Supplier<Boolean> isFailed) {
+            this(trigger, start, target, (triggerParam, state) -> getState.get(), isFailed);
+            autoRefresh = true;
+        }
+
+        public TriggeredUpdateTracker(Trigger<U> trigger, T start, T target, BiFunction<U, T, T> getState, Supplier<Boolean> isFailed) {
             this.start = start;
             this.state = start;
             this.target = target;
             this.getState = getState;
             this.isFailed = isFailed;
+            autoRefresh = false;
 
             setTrigger(trigger, this::trigger);
         }
 
         public void trigger(U param) {
-            refreshState();
+            state = getState.apply(param, state);
         }
 
         @Override
@@ -719,16 +743,32 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
             return String.valueOf(state);
         }
 
+        @SuppressWarnings("unchecked")
+        @Override
+        public void loadData(String data) {
+            Function<String, Object> loader = loaders.get(state.getClass());
+            if (loader != null && data != null) {
+                try {
+                    state = (T) loader.apply(data);
+                }
+                catch (Exception e) {
+                    Anniv8Mod.logger.warn("Exception occurred loading saved tracker data \"" + data + "\"", e);
+                }
+            }
+        }
+
         @Override
         public void refreshState() {
-            state = getState.get();
+            if (autoRefresh) {
+                state = getState.apply(null, state);
+            }
         }
     }
 
     /**
      * A tracker used to mark a quest as completed to avoid having the state change afterward
      */
-    private static class QuestCompleteTracker extends Tracker {
+    private class QuestCompleteTracker extends Tracker {
         public static final String COMPLETE_STRING = "COMPLETE";
 
         public QuestCompleteTracker() {
@@ -742,12 +782,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public String progressString() {
-            return TEXT[0];
+            return TEXT[rewardScreenOnly?1:0];
         }
 
         @Override
         public String toString() {
-            return TEXT[0];
+            return TEXT[rewardScreenOnly?1:0];
         }
 
         @Override
@@ -778,12 +818,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public String progressString() {
-            return TEXT[1];
+            return TEXT[2];
         }
 
         @Override
         public String toString() {
-            return TEXT[1];
+            return TEXT[2];
         }
 
         @Override

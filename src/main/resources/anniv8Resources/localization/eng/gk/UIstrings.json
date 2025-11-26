@@ -28,5 +28,16 @@
     "EXTRA_TEXT": [
       "Played"
     ]
+  },
+  "${ModID}:BountyICQuest": {
+    "TEXT": [
+      "Bounty: Red Menace",
+      "A menace of fire and iron threatens this place. The next elite this act is replaced by the #rIronclad.",
+      "Gk",
+      "Replace the rewards with good #rIronclad themed ones."
+    ],
+    "EXTRA_TEXT": [
+      "Menace slain"
+    ]
   }
 }

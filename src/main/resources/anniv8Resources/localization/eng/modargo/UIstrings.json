@@ -54,5 +54,49 @@
       "Minerals gathered",
       "Gems gathered"
     ]
+  },
+  "${ModID}:MulticlassQuest": {
+    "TEXT": [
+      "Multiclass",
+      "Cards from another character will show up in your card rewards. Add #b3 of their cards to your deck to embrace your new techniques.",
+      "modargo",
+      "Multiclass: %s",
+      "Cards from %s will show up in your card rewards. Add #b3 of their cards to your deck to embrace your new techniques."
+    ],
+    "EXTRA_TEXT": [
+      "Cards added"
+    ]
+  },
+  "${ModID}:PlatinumCafeMemberQuest": {
+    "TEXT": [
+      "Platinum Cafe Member",
+      "The Cafe is running a special! Customers who buy out the bartender's offerings and finish a conversation with each Cafe patron will receive a small gift.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Cafe entered",
+      "Bartender",
+      "Patrons"
+    ]
+  },
+  "${ModID}:BloodfireRitualQuest": {
+    "TEXT": [
+      "Bloodfire Ritual",
+      "Complete a long ritual to gain the #pBlackstaff. Each combat, shuffle a special #b2-cost #ySkill with #yEthereal, #yExhaust, and a small negative effect into your draw pile. Play these special cards #b20 times to complete the ritual.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Ritual steps"
+    ]
+  },
+  "${ModID}:BountyDefectQuest": {
+    "TEXT": [
+      "Bounty: Blue Devil",
+      "A devil of metal stalks these halls. The next elite this act is replaced by the #bDefect.",
+      "modargo"
+    ],
+    "EXTRA_TEXT": [
+      "Devil slain"
+    ]
   }
 }

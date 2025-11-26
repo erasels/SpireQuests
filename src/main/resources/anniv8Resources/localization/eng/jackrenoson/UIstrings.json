@@ -1,0 +1,15 @@
+{
+  "${ModID}:RainbowQuest": {
+    "TEXT": [
+      "Chase a Rainbow",
+      "Upon pickup, obtain #yPrismatic #yShard. Add cards from #b",
+      " unique colors to your deck.",
+      "JackRenoson"
+    ],
+    "EXTRA_TEXT": [
+      "Add cards from #b",
+      " unique colors to your deck.",
+      "Colors added:"
+    ]
+  }
+}

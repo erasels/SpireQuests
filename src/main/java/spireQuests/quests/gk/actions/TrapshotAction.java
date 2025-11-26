@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import spireQuests.util.Wiz;
 
-import static spireQuests.util.CompatUtil.HERMIT_GUN_EFFECT;
+import static spireQuests.quests.gk.util.HermitCompatUtil.HERMIT_GUN_EFFECT;
 
 public class TrapshotAction extends AbstractGameAction {
     private DamageInfo info;

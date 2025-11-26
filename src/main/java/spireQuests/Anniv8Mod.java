@@ -19,6 +19,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +35,9 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.coda.potions.NuclearJuicePotion;
+import spireQuests.quests.gk.monsters.ICEliteMonster;
+import spireQuests.quests.modargo.monsters.DefectEliteMonster;
+import spireQuests.quests.ramchops.monsters.EvilSentry;
 import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireQuests.ui.QuestBoardScreen;
@@ -156,6 +161,7 @@ public class Anniv8Mod implements
         QuestGenerator.initialize();
         QuestRunHistoryPatch.initialize();
         addPotions();
+        addMonsters();
         addSaveFields();
         initializeSavedData();
         initializeConfig();
@@ -176,6 +182,16 @@ public class Anniv8Mod implements
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
         }
 
+    }
+
+    public static void addMonsters() {
+        BaseMod.addMonster(ICEliteMonster.ID, () -> new ICEliteMonster());
+        BaseMod.addMonster(DefectEliteMonster.ID, () -> new DefectEliteMonster());
+        BaseMod.addMonster(EvilSentry.ID, EvilSentry.ENC_NAME, () -> new MonsterGroup(new AbstractMonster[]{
+                new EvilSentry(-330.0F, 25.0F),
+                new EvilSentry(-85.0F, 10.0F),
+                new EvilSentry(140.0F, 30.0F)
+        }));
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -263,7 +279,12 @@ public class Anniv8Mod implements
     private void loadStringsFile(String key, Class<?> stringType) {
         String filepath = modID + "Resources/localization/" + key + "/" + stringType.getSimpleName().replace("Strings", "strings") + ".json";
         if (Gdx.files.internal(filepath).exists()) {
-            BaseMod.loadCustomStringsFile(stringType, filepath);
+            try {
+                BaseMod.loadCustomStringsFile(stringType, filepath);
+            }
+            catch (Exception e) {
+                throw new RuntimeException("Error loading strings file " + filepath, e);
+            }
         }
     }
 

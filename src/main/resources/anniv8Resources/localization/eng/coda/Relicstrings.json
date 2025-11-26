@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "Combat rewards have a chance to include a #yNuclear #yJuice."
     ]
+  },
+  "${ModID}:GrapefruitRelic": {
+    "NAME": "Grapefruit",
+    "FLAVOR": "Talk to your mystic before consuming, as grapefruit can interact with a variety of potions.",
+    "DESCRIPTIONS": [
+      "Upon pickup, raise your Max HP by #b20%."
+    ]
   }
 }
