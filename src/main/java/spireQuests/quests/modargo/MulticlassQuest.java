@@ -46,7 +46,7 @@ public class MulticlassQuest extends AbstractQuest {
 
     @Override
     public String getDescription() {
-        return this.playerClass == null ? localization.TEXT[1] : String.format(localization.TEXT[4], FontHelper.colorString(getCharacter(this.playerClass).getTitle(this.playerClass), "y"));
+        return this.playerClass == null ? questStrings.EXTRA_TEXT[0] : String.format(questStrings.EXTRA_TEXT[1], FontHelper.colorString(getCharacter(this.playerClass).getTitle(this.playerClass), "y"));
     }
 
     @Override

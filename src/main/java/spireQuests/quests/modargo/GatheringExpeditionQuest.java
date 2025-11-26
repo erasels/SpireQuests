@@ -59,21 +59,21 @@ public class GatheringExpeditionQuest extends AbstractQuest {
             return super.getDescription();
         }
         switch (flavor) {
-            case Flowers: return localization.TEXT[3];
-            case Minerals: return localization.TEXT[4];
-            default: return localization.TEXT[5];
+            case Flowers: return questStrings.EXTRA_TEXT[0];
+            case Minerals: return questStrings.EXTRA_TEXT[1];
+            default: return questStrings.EXTRA_TEXT[2];
         }
     }
 
     private String getTrackerText() {
         ExpeditionFlavor flavor = getFlavor();
         if (flavor == null) {
-            return localization.EXTRA_TEXT[0];
+            return questStrings.TRACKER_TEXT[0];
         }
         switch (flavor) {
-            case Flowers: return localization.EXTRA_TEXT[1];
-            case Minerals: return localization.EXTRA_TEXT[2];
-            default: return localization.EXTRA_TEXT[3];
+            case Flowers: return questStrings.TRACKER_TEXT[1];
+            case Minerals: return questStrings.TRACKER_TEXT[2];
+            default: return questStrings.TRACKER_TEXT[3];
         }
     }
 

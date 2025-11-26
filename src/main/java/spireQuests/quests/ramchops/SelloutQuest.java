@@ -26,7 +26,6 @@ public class SelloutQuest extends AbstractQuest implements CustomSavable<Integer
         super(QuestType.SHORT, QuestDifficulty.EASY);
 
         useDefaultReward = false;
-        rewardsText = localization.EXTRA_TEXT[3];
 
         new AdsPlayedQuestTracker().add(this);
         new SelloutCombatTracker().add(this);

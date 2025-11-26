@@ -4,7 +4,7 @@ public class QuestStrings {
     public String TITLE;
     public String DESCRIPTION;
     public String AUTHOR;
-    public String REWARD;
+    public String REWARD = null;
     public String[] TRACKER_TEXT = new String[]{};
     public String[] EXTRA_TEXT = new String[]{};
 

@@ -1,0 +1,22 @@
+{
+  "${ModID}:SelloutQuest": {
+    "TITLE": "Sellout",
+    "DESCRIPTION": "Upon pickup, add #b3 #yAdvertisements to your deck. Remove #b1 #yAdvertisement from your deck every #b5 combats won. Remove ALL #yAdvertisements from your deck to complete the quest.\n\n",
+    "AUTHOR": "RamChops Games",
+    "REWARD": "Gain #b10 Gold for every #yAdvertisement played.",
+    "TRACKER_TEXT": [
+      "Ad Revenue Owed",
+      "Combats Won",
+      "Remove Ads"
+    ]
+  },
+  "${ModID}:CeaselessHungerQuest": {
+    "TITLE": "Ceaseless Hunger",
+    "DESCRIPTION": "Upon pickup, obtain #yN\u0027loth\u0027s #yFace [REMOVE_SPACE]. Obtain another #yN\u0027loth\u0027s #yFace at the start of Act 2. Open a chest in Act 3 to complete this Quest.",
+    "AUTHOR": "RamChops Games",
+    "REWARD": "Remove all #yN\u0027loth\u0027s #yFaces and obtain #b2 random #yRelics for each #yN\u0027loth\u0027s #yFace removed.",
+    "TRACKER_TEXT": [
+      "Open an Act 3 Chest"
+    ]
+  }
+}

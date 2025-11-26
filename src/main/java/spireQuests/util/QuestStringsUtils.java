@@ -28,10 +28,6 @@ public class QuestStringsUtils {
     }
 
     public static QuestStrings getQuestString(String questId) {
-        if (quests.containsKey(questId)) {
-            return quests.get(questId);
-        } else {
-            return QuestStrings.DEFAULT;
-        }
+        return quests.getOrDefault(questId, null);
     }
 }

@@ -1,0 +1,19 @@
+{
+  "${ModID}:AmbitiousStrikeQuest": {
+    "TITLE": "Ambitious Strike",
+    "DESCRIPTION": "End an Elite encounter with your last played card being a starter #yStrike.",
+    "AUTHOR": "Darkglade",
+    "REWARD": "Upgrade a random #yAttack.",
+    "TRACKER_TEXT": [
+      "Elite encounter with last played card being a starter Strike"
+    ]
+  },
+  "${ModID}:DoomsdayCalendarQuest": {
+    "TITLE": "Doomsday Calendar",
+    "DESCRIPTION": "Upon pickup, obtain #yImpending #yDay. NL #yFatally kill enemies with #yImpending #yDay #b12 times.",
+    "AUTHOR": "Darkglade",
+    "TRACKER_TEXT": [
+      "Number of Sacrifices"
+    ]
+  }
+}

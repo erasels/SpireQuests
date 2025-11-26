@@ -1,0 +1,14 @@
+{
+  "${ModID}:CardRemoveQuest": {
+    "TITLE": "Distillation",
+    "DESCRIPTION": "Remove 5 starter cards.",
+    "AUTHOR": "Blank The Evil",
+    "REWARD": "Receive a #yRare card reward.",
+    "TRACKER_TEXT": [
+      "Starter cards removed"
+    ],
+    "EXTRA_TEXT": [
+      "in case you want it"
+    ]
+  }
+}

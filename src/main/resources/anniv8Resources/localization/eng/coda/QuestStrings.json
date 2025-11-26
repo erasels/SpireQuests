@@ -1,0 +1,20 @@
+{
+  "${ModID}:OrbSpinnerQuest": {
+    "TITLE": "Orb Spinner",
+    "DESCRIPTION": "Evoke 4 unique orb types in one turn.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Evoke 4 unique orb types in one turn.",
+      "Orbs Evoked"
+    ]
+  },
+  "${ModID}:BackToBasicsQuest": {
+    "TITLE": "Keep it Simple",
+    "DESCRIPTION": "Defeat an Elite or Boss without playing uncommon or rare cards.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Defeat an Elite or Boss without playing uncommon or rare cards.",
+      "Upgrade three random starter or common cards."
+    ]
+  }
+}

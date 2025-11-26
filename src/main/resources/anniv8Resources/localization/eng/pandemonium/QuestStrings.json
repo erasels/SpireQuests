@@ -1,0 +1,16 @@
+{
+  "${ModID}:PristineCardsQuest": {
+    "TITLE": "Pristine Cards",
+    "DESCRIPTION": "Obtain 3 #yPristine cards that now appear in card rewards.",
+    "AUTHOR": "Pandemonium",
+    "REWARD": "#yUpgrade your #yPristine cards.",
+    "TRACKER_TEXT": [
+      "Pristine cards"
+    ]
+  },
+  "${ModID}:PristineModifier": {
+    "TITLE": "Pristine",
+    "DESCRIPTION": "So new it\u0027s shiny! Appears randomly in card rewards while the quest is active.",
+    "AUTHOR": "Pandemonium"
+  }
+}

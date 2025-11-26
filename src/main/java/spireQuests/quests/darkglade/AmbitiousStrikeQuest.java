@@ -27,7 +27,6 @@ public class AmbitiousStrikeQuest extends AbstractQuest {
         }).add(this);
 
         useDefaultReward = false;
-        rewardsText = localization.EXTRA_TEXT[1];
         titleScale = 1.0f;
     }
 
