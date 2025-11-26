@@ -1,6 +1,7 @@
 package spireQuests.quests.ramchops;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,6 +19,7 @@ import spireQuests.quests.Trigger;
 import spireQuests.quests.ramchops.monsters.EvilSentry;
 import spireQuests.quests.ramchops.relics.FriendSentry;
 import spireQuests.quests.ramchops.relics.SnakeSlough;
+import spireQuests.util.Wiz;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -33,8 +35,7 @@ public class StabWoundsQuest extends AbstractQuest {
 
         new TriggerTracker<>(DAGGER_EXPLODE, DAGGERS_COUNT)
                 .setFailureTrigger(QuestTriggers.LEAVE_ROOM, (room)->
-                        room.getRoom().eliteTrigger
-                && Reptomancer.ID.equals(AbstractDungeon.lastCombatMetricKey))
+                        Reptomancer.ID.equals(AbstractDungeon.lastCombatMetricKey))
                 .add(this);
 
         new TriggerTracker<>(QuestTriggers.VICTORY, 1)
@@ -53,7 +54,7 @@ public class StabWoundsQuest extends AbstractQuest {
 
     @SpirePatch2(clz = SnakeDagger.class, method = "takeTurn")
     public static class DaggerExplodePatch{
-        @SpirePrefixPatch
+        @SpirePostfixPatch
         public static void takeTurnPatch(SnakeDagger __instance){
             if (__instance.nextMove == 2){
                 DAGGER_EXPLODE.trigger();
@@ -73,7 +74,7 @@ public class StabWoundsQuest extends AbstractQuest {
                     .orElse(null);
             if(q != null) {
                 Anniv8Mod.logger.info("Replacing ELITE with Reptomancer");
-                AbstractDungeon.lastCombatMetricKey = EvilSentry.ID;
+                AbstractDungeon.lastCombatMetricKey = Reptomancer.ID;
                 return SpireReturn.Return(MonsterHelper.getEncounter(Reptomancer.ID));
             }
             return SpireReturn.Continue();
