@@ -42,6 +42,7 @@ import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.CompatUtil;
+import spireQuests.util.QuestStringsUtils;
 import spireQuests.util.TexLoader;
 
 import java.lang.reflect.InvocationTargetException;
@@ -273,6 +274,7 @@ public class Anniv8Mod implements
             loadStringsFile(languageAndFolder, PotionStrings.class);
             loadStringsFile(languageAndFolder, MonsterStrings.class);
             loadStringsFile(languageAndFolder, BlightStrings.class);
+            QuestStringsUtils.registerQuestStrings(filepath);
         }
     }
 

@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import spireQuests.Anniv8Mod;
+import spireQuests.util.QuestStrings;
+import spireQuests.util.QuestStringsUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public final QuestDifficulty difficulty;
 
     protected final UIStrings localization;
+    protected final QuestStrings questStrings;
     public String name;
     public String description;
     public String author;
@@ -90,6 +93,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         complete = false;
 
         localization = CardCrawlGame.languagePack.getUIString(id);
+        questStrings = QuestStringsUtils.getQuestString(id);
         if (localization == null) {
             throw new RuntimeException("Localization for the quest " + id + " not found!");
         }
@@ -122,9 +126,15 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     //override if you want to set up the text differently
     protected void setText() {
-        name = localization.TEXT[0];
-        description = localization.TEXT[1];
-        author = localization.TEXT[2];
+        if (questStrings != null) {
+            name = questStrings.TITLE;
+            description = questStrings.DESCRIPTION;
+            author = questStrings.AUTHOR;
+        } else {
+            name = localization.TEXT[0];
+            description = localization.TEXT[1];
+            author = localization.TEXT[2];
+        }
     }
 
     //override if you want to set up the text differently
@@ -185,12 +195,21 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     protected final Tracker addTracker(Tracker questTracker) {
         trackers.add(questTracker);
 
-        if (!questTracker.hidden) {
-            if (trackerTextIndex >= localization.EXTRA_TEXT.length) {
-                throw new RuntimeException("Quest " + id + " needs more entries in EXTRA_TEXT for its trackers");
+        if (questStrings != null) {
+            if (!questTracker.hidden) {
+                if (trackerTextIndex >= questStrings.TRACKER_TEXT.length) {
+                    throw new RuntimeException("Quest " + id + " needs more entries in TRACKER_TEXT for its trackers");
+                }
+                questTracker.text = questStrings.TRACKER_TEXT[trackerTextIndex];
             }
-            questTracker.text = localization.EXTRA_TEXT[trackerTextIndex];
-            ++trackerTextIndex;
+        } else {
+            if (!questTracker.hidden) {
+                if (trackerTextIndex >= localization.EXTRA_TEXT.length) {
+                    throw new RuntimeException("Quest " + id + " needs more entries in EXTRA_TEXT for its trackers");
+                }
+                questTracker.text = localization.EXTRA_TEXT[trackerTextIndex];
+                ++trackerTextIndex;
+            }
         }
 
         if (questTracker.trigger != null) triggers.add(questTracker.trigger);
