@@ -28,6 +28,11 @@ public class GaronaHalforcenQuest extends AbstractQuest {
     }
 
     @Override
+    public boolean canSpawn() {
+        return AbstractDungeon.floorNum < 43;
+    }
+
+    @Override
     public void makeTooltips(List<PowerTip> tipList) {
         super.makeTooltips(tipList);
         tipList.add(new CardPowerTip(new KingLlane()));
