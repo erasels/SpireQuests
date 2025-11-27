@@ -2,12 +2,11 @@
   "${ModID}:HandicapQuest": {
     "TEXT": [
       "Handicap",
-      "Play 0 cards on the first turn of an Elite combat during this act NL ''I'm feeling a little strong here, have a free shot, to a fair fight!''",
+      "Play #b0 cards on the first turn of an Elite combat during this act. NL ''I'm feeling a little strong here, have a free shot, to a fair fight!''",
       "Mangochicken"
     ],
     "EXTRA_TEXT": [
-      "Play 0 cards during the first turn of an elite combat in this act",
-      "Obtain Hearty Anchor"
+      "0 card first turn elite"
     ]
   }
 }

@@ -13,10 +13,11 @@ public class HandicapQuest extends AbstractQuest {
     public HandicapQuest() {
         super(QuestType.SHORT, QuestDifficulty.NORMAL);
 
+        needHoverTip = true;
 
         new TriggerTracker<>(QuestTriggers.TURN_END, 1)
             .triggerCondition((x)-> AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty()
-                && AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite
+                && AbstractDungeon.getCurrRoom().eliteTrigger
                 && GameActionManager.turn == 1)
             .setResetTrigger(QuestTriggers.PLAY_CARD)
             .setResetTrigger(QuestTriggers.VICTORY)

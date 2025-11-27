@@ -27,4 +27,9 @@ public class HeartyAnchor extends AbstractSQRelic {
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;
     }
+
+    @Override
+    public void onVictory() {
+        this.grayscale = false;
+    }
 }
