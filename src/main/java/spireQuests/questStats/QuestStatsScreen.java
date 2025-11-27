@@ -73,17 +73,26 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private static final float BANNER_X = X_ANCHOR + (660.0F * Settings.yScale);
 
     private static final float BADGE_X = X_ANCHOR + (713.0F * Settings.yScale);
-    private static final float BADGE_Y = Y_ANCHOR - (445.0F * Settings.yScale);
+    private static final float BADGE_Y = Y_ANCHOR - (455.0F * Settings.yScale);
     private static final float BADGE_WIDTH = 100.0F * Settings.xScale;
     private static final float BADGE_HEIGHT = 100.0F * Settings.yScale;
     private static final int BADGES_PER_ROW = 3;
 
+    private static final float TROPHY_Y = Y_ANCHOR - (335.0F * Settings.yScale);
+    private static final float TROPHY_WIDTH = 218.0F * Settings.xScale;
+    private static final float TROPHY_HEIGHT = 265.0F * Settings.yScale;
 
     private static final Texture BG = TexLoader.getTexture(makeUIPath("stats/background.png"));
     private static final Texture BANNER_TOP = TexLoader.getTexture(makeUIPath("stats/banner_top.png"));
     private static final Texture BANNER_BOT = TexLoader.getTexture(makeUIPath("stats/banner_bottom.png"));
     private static final Texture BANNER_EXTRA = TexLoader.getTexture(makeUIPath("stats/banner_middle.png"));
-
+    private static final Texture TROPHY_OUTLINE = TexLoader.getTexture(makeUIPath("stats/trophy/outline.png"));
+    private static final Texture TROPHY_HIDDEN = TexLoader.getTexture(makeUIPath("stats/trophy/locked.png"));
+    private static final Texture TROPHY_BRONZE = TexLoader.getTexture(makeUIPath("stats/trophy/bronze.png"));
+    private static final Texture TROPHY_SILVER = TexLoader.getTexture(makeUIPath("stats/trophy/silver.png"));
+    private static final Texture TROPHY_GOLD = TexLoader.getTexture(makeUIPath("stats/trophy/gold.png"));
+    
+    private static final Color OUTLINE_COLOR = new Color(0.0F, 0.0F, 0.0F, 0.33F);
 
     private MenuCancelButton cancelButton = new MenuCancelButton();
     private DropdownMenu questDropdown;
@@ -157,7 +166,9 @@ public class QuestStatsScreen implements DropdownMenuListener {
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE);
         renderBG(sb);
-        renderTrophy(sb);
+        if (selectedQuest != null){
+            renderTrophy(sb);
+        }
         renderStats(sb);
         renderRewards(sb);
         questDropdown.render(sb, LEFT_ALIGN, DROPDOWN_Y);
@@ -179,6 +190,22 @@ public class QuestStatsScreen implements DropdownMenuListener {
     }
 
     private void renderTrophy(SpriteBatch sb) {
+        
+        float trophy_X = ((BADGE_X) + (BADGES_PER_ROW * BADGE_WIDTH) / 2.0F) - (TROPHY_WIDTH / 2.0F);
+
+        sb.setColor(OUTLINE_COLOR);
+        sb.draw(new TextureRegion(TROPHY_OUTLINE), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
+        sb.setColor(Color.WHITE);
+
+        if (selectedQuestStats.timesComplete >= 25) {
+            sb.draw(new TextureRegion(TROPHY_GOLD), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
+        } else if (selectedQuestStats.timesComplete >= 10) {
+            sb.draw(new TextureRegion(TROPHY_SILVER), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
+        } else if (selectedQuestStats.timesComplete >= 1) {
+            sb.draw(new TextureRegion(TROPHY_BRONZE), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
+        } else {
+            sb.draw(new TextureRegion(TROPHY_HIDDEN), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
+        }
 
         for (int i = 0; i < badgesToDraw.size(); i++) {
             Texture t = badgesToDraw.get(i);
