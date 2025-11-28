@@ -69,5 +69,24 @@
       "I cannot claim quests during combat.",
       "I can only claim this quest at a reward screen."
     ]
+  },
+  "${ModID}:QuestStatsScreen": {
+    "TEXT": [
+      "Quest Statistics",
+      "Times Seen",
+      "Times Taken",
+      "Times Completed",
+      "Times Failed",
+      "Quest Summary",
+      "Return",
+      "Complete quests to earn and upgrade trophies. NL NL • 1 Completion — Bronze Trophy NL • 10 Completions — Silver Trophy NL • 25 Completions — Gold Trophy NL NL Each time you complete a quest as a new character, you'll earn a badge that's displayed under your trophy." 
+    ]
+  },
+  "${ModID}:StatRewardBox": {
+    "TEXT": [
+      "Random Relic Reward",
+      "Gold Reward",
+      "Other Reward"
+    ]
   }
 }

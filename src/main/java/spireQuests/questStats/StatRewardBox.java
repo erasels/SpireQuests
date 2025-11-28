@@ -1,5 +1,6 @@
 package spireQuests.questStats;
 
+import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.Anniv8Mod.makeUIPath;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
@@ -33,6 +35,9 @@ public class StatRewardBox implements IUIElement {
     private static final Texture POTION_TEX = TexLoader.getTexture(makeUIPath("stats/potion.png"));
     private static final Texture RANDOM_RELIC_TEX = TexLoader.getTexture(makeUIPath("stats/relic.png"));
     private static final Texture GOLD_TEX = TexLoader.getTexture(makeUIPath("stats/gold.png"));
+
+    private static final String ID = makeID(StatRewardBox.class.getSimpleName());
+    private UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
     public static final float FRAME_X = 125.0F * Settings.xScale;
     public static final float FRAME_Y = 125.0F * Settings.yScale;
@@ -69,11 +74,11 @@ public class StatRewardBox implements IUIElement {
             this.img = new TextureRegion(POTION_TEX);
         }
         if (reward instanceof RandomRelicReward) {
-            this.header = "TEXT[RANDOM_RELIC]";
+            this.header = uiStrings.TEXT[0];
             this.img = new TextureRegion(RANDOM_RELIC_TEX);
         }
         if (reward instanceof GoldReward) {
-            this.header = "TEXT[GOLD REWARD]";
+            this.header = uiStrings.TEXT[1];
             this.img = new TextureRegion(GOLD_TEX);
         }
 
@@ -82,7 +87,7 @@ public class StatRewardBox implements IUIElement {
     public StatRewardBox(AbstractQuest q, float xPos, float yPos) {
         this(xPos, yPos);
         this.img = new TextureRegion(CUSTOM_REWARD_IMG);
-        this.header = "TEXT[OTHER_REWARD]";
+        this.header = uiStrings.TEXT[2];
         this.body = q.getRewardsText();
     }
 

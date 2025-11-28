@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MenuCancelButton;
@@ -27,6 +28,7 @@ import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.util.TexLoader;
 
+import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.Anniv8Mod.makeUIPath;
 
 import java.util.ArrayList;
@@ -84,6 +86,10 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private static final float TROPHY_WIDTH = 218.0F * Settings.xScale;
     private static final float TROPHY_HEIGHT = 265.0F * Settings.yScale;
 
+    private static final float TROPHY_HELP_X = BANNER_X + (55.0F * Settings.xScale);
+    private static final float TROPHY_HELP_Y = BANNER_TOP_Y + (275.0F * Settings.yScale);
+    private static final float TROPHY_HELP_LENGTH = 300.0F * Settings.xScale;
+
     private static final Texture BG = TexLoader.getTexture(makeUIPath("stats/background.png"));
     private static final Texture BANNER_TOP = TexLoader.getTexture(makeUIPath("stats/banner_top.png"));
     private static final Texture BANNER_BOT = TexLoader.getTexture(makeUIPath("stats/banner_bottom.png"));
@@ -96,8 +102,13 @@ public class QuestStatsScreen implements DropdownMenuListener {
     
     private static final Color OUTLINE_COLOR = new Color(0.0F, 0.0F, 0.0F, 0.33F);
 
+    
     private MenuCancelButton cancelButton = new MenuCancelButton();
     private DropdownMenu questDropdown;
+    
+    public static final String ID = makeID(QuestStatsScreen.class.getSimpleName());
+
+    public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
     private Collection<AbstractQuest> allQuests;
     private Map<String, AbstractQuest> allQuestsMap;
@@ -126,7 +137,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
         nameIDMap = allQuests.stream().collect(Collectors.toMap(q -> q.name, q -> q.id));
         allQuestList = new ArrayList<>(allQuestsMap.values().stream().map(q -> q.name).collect(Collectors.toList()));
         allQuestList.sort(null);
-        allQuestList.add(0, "TEXT[ALL_QUESTS]");
+        allQuestList.add(0, uiStrings.TEXT[5]);
         questDropdown = new DropdownMenu(this, allQuestList, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
         selectedQuestStats = QuestStats.getAllStats();
         refreshData();
@@ -135,7 +146,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
     public void open() {
         CardCrawlGame.mainMenuScreen.screen = Enum.QUEST_STATS_SCREEN;
         CardCrawlGame.mainMenuScreen.darken();
-        cancelButton.show("TEXT[CANCEL]");
+        cancelButton.show(uiStrings.TEXT[6]);
         this.selectedQuest = null;
         questDropdown = new DropdownMenu(this, allQuestList, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
         refreshData();
@@ -168,7 +179,9 @@ public class QuestStatsScreen implements DropdownMenuListener {
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE);
         renderBG(sb);
-        if (selectedQuest != null){
+        if (selectedQuest == null){
+            renderTrophyHelp(sb);
+        } else {
             renderTrophy(sb);
         }
         renderStats(sb);
@@ -229,11 +242,21 @@ public class QuestStatsScreen implements DropdownMenuListener {
         }
     }
 
+    private void renderTrophyHelp(SpriteBatch sb) {
+        FontHelper.renderSmartText(
+            sb, FontHelper.tipBodyFont, 
+            uiStrings.TEXT[7], 
+            TROPHY_HELP_X, TROPHY_HELP_Y, TROPHY_HELP_LENGTH,
+            FontHelper.tipBodyFont.getLineHeight(),
+            Settings.CREAM_COLOR
+        );
+    }
+
     private void renderStats(SpriteBatch sb) {
         String nameText;
         // Name
         if (selectedQuest == null) {
-            nameText = "TEXT[ALL_QUESTS]";
+            nameText = uiStrings.TEXT[5];
         } else {
             nameText = selectedQuest.name;
         }
@@ -259,15 +282,15 @@ public class QuestStatsScreen implements DropdownMenuListener {
         }
         // Stats
         strbuild.setLength(0);
-        strbuild.append(String.format("%s: %d NL ", "TEXT[SEEN]", timesSeen));
-        strbuild.append(String.format("%s: %d/%d (%.2f%%) NL ", "TEXT[TAKEN]", timesTaken, timesSeen, getPercent(timesTaken, timesSeen)));
-        strbuild.append(String.format("%s: %d/%d (%.2f%%) NL ", "TEXT[COMPLETE]", timesCompleted, timesTaken, getPercent(timesCompleted, timesTaken)));
-        strbuild.append(String.format("%s: %d/%d (%.2f%%) NL ", "TEXT[FAILED]", timesFailed, timesTaken, getPercent(timesFailed, timesTaken)));
+        strbuild.append(String.format("%s: %d NL ", uiStrings.TEXT[1], timesSeen));
+        strbuild.append(String.format("%s: %d/%d (%.2f%%) NL ", uiStrings.TEXT[2], timesTaken, timesSeen, getPercent(timesTaken, timesSeen)));
+        strbuild.append(String.format("%s: %d/%d (%.2f%%) NL ", uiStrings.TEXT[3], timesCompleted, timesTaken, getPercent(timesCompleted, timesTaken)));
+        strbuild.append(String.format("%s: %d/%d (%.2f%%) NL ", uiStrings.TEXT[4], timesFailed, timesTaken, getPercent(timesFailed, timesTaken)));
 
         FontHelper.renderSmartText(
-            sb, FontHelper.cardDescFont_N, strbuild.toString(), 
+            sb, FontHelper.tipBodyFont, strbuild.toString(), 
             LEFT_ALIGN, QUEST_STAT_Y, QUEST_DESCRIPTION_LENGTH,
-            FontHelper.cardDescFont_N.getLineHeight(),
+            FontHelper.tipBodyFont.getLineHeight(),
             Settings.CREAM_COLOR
         );
     }

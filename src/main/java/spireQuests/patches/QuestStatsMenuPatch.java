@@ -57,7 +57,7 @@ public class QuestStatsMenuPatch {
         @SpirePostfixPatch
         public static void setLabel(MenuButton __instance, @ByRef String[] ___label) {
             if (__instance.result == QUEST_STATS_BUTTON) {
-                ___label[0] = "TEXT[QUEST_STATS]";
+                ___label[0] = QuestStatsScreen.uiStrings.TEXT[0];
             }
         }
     }
