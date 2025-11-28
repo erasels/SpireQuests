@@ -93,7 +93,7 @@ public class StatRewardBox implements IUIElement {
         this.body = q.getRewardsText();
     }
 
-    public StatRewardBox(float xPos, float yPos) {
+    private StatRewardBox(float xPos, float yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.hb = new Hitbox(xPos, yPos, FRAME_X, FRAME_Y);

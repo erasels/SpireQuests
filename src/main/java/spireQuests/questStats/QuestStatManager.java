@@ -26,7 +26,7 @@ public class QuestStatManager {
     public static final String SEEN = "seen";
     public static final String TAKEN = "taken";
     public static final String CHARACTERS = "characters";
-    private static final String[] STAT_ENTRIES = {SEEN, TAKEN, COMPLETED, FAILED};
+    private static final String[] INT_STATS = {SEEN, TAKEN, COMPLETED, FAILED};
     
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private static JsonObject rootJson;
@@ -106,7 +106,7 @@ public class QuestStatManager {
         }
         JsonObject obj = saveJson.getAsJsonObject(questId);
 
-        for (String e : STAT_ENTRIES) {
+        for (String e : INT_STATS) {
             if (!obj.has(e)) {
                 obj.addProperty(e, 0);
             }
@@ -178,6 +178,7 @@ public class QuestStatManager {
         takenBuffer.clear();
         completedBuffer.clear();
         failedBuffer.clear();
+        charBuffer.clear();
     }
 
     public static JsonObject getStatsForQuest(String questID) {

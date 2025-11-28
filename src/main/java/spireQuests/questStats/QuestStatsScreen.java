@@ -38,7 +38,6 @@ import org.apache.logging.log4j.Logger;
 
 public class QuestStatsScreen implements DropdownMenuListener {
     
-
     public static class Enum {
         @SpireEnum
         public static MainMenuScreen.CurScreen QUEST_STATS_SCREEN;
@@ -47,10 +46,8 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private static final Logger logger = LogManager.getLogger(QuestStatsScreen.class.getName());
 
     private static final float X_ANCHOR = 440.0F * Settings.xScale;
-    // private static final float X_ANCHOR = Settings.WIDTH * 0.23F;
     private static final float Y_ANCHOR = (1080.0F - 195.0F) * Settings.yScale; // 885
-    // private static final float Y_ANCHOR = Settings.HEIGHT * 0.82F; // 885
-    
+
     private static final float LEFT_ALIGN = X_ANCHOR + (25.0F * Settings.xScale);
     private static final float DROPDOWN_Y = Y_ANCHOR - (75.0F * Settings.yScale);
 
@@ -97,12 +94,10 @@ public class QuestStatsScreen implements DropdownMenuListener {
     
     private static final Color OUTLINE_COLOR = new Color(0.0F, 0.0F, 0.0F, 0.33F);
 
-    
     private MenuCancelButton cancelButton = new MenuCancelButton();
     private DropdownMenu questDropdown;
     
     public static final String ID = makeID(QuestStatsScreen.class.getSimpleName());
-
     public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
     private Collection<AbstractQuest> allQuests;
@@ -124,7 +119,6 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private StringBuilder strbuild = new StringBuilder();
 
     private int extraRows;
-
     
     public QuestStatsScreen() {
         allQuests = QuestManager.getAllQuests();
@@ -308,7 +302,6 @@ public class QuestStatsScreen implements DropdownMenuListener {
 
     @Override
     public void changedSelectionTo(DropdownMenu dropdownMenu, int i, String s) {
-        logger.warn("Changed dropdown detected");
         if (i == 0) {
             selectedQuestStats = QuestStats.getAllStats();
             selectedQuest = null;
