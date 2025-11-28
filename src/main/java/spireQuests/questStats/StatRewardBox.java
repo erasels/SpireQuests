@@ -118,6 +118,9 @@ public class StatRewardBox implements IUIElement {
 
     public void update() {
         this.hb.update();
+        if (this.hb.justHovered) {
+            CardCrawlGame.sound.play("UI_HOVER");
+        }
         if (this.hb.hovered && InputHelper.justClickedRight) {
             if (card != null) {
                 CardCrawlGame.cardPopup.open(card);
