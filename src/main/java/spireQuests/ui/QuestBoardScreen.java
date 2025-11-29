@@ -123,7 +123,6 @@ public class QuestBoardScreen extends CustomScreen {
         for (AbstractQuest quest : quests) {
             QuestBoardQuest questBoardQuest = new QuestBoardQuest(quest, x, y);
             questBoardQuests.add(questBoardQuest);
-            QuestStatManager.markSeen(quest.id);
             x += xIncrease;
         }
     }
