@@ -231,11 +231,11 @@ public class QuestStatsScreen implements DropdownMenuListener {
         sb.draw(new TextureRegion(TROPHY_OUTLINE), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
         sb.setColor(Color.WHITE);
 
-        if (selectedQuestStats.golds >= 1) {
+        if (selectedQuestStats.hasGold()) {
             sb.draw(new TextureRegion(TROPHY_GOLD), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
-        } else if (selectedQuestStats.silvers >= 1) {
+        } else if (selectedQuestStats.hasSilver()) {
             sb.draw(new TextureRegion(TROPHY_SILVER), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
-        } else if (selectedQuestStats.bronzes >= 1) {
+        } else if (selectedQuestStats.hasBronze()) {
             sb.draw(new TextureRegion(TROPHY_BRONZE), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
         } else {
             sb.draw(new TextureRegion(TROPHY_HIDDEN), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.gson.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
 
 import spireQuests.quests.QuestManager;
 
@@ -20,6 +21,8 @@ public class QuestStats {
     public int timesFailed = 0;
     public ArrayList<String> charactersCompleted = new ArrayList<>();
 
+    // We're using ints and not booleans here because
+    // AllQuestStats is just a QuestStats object as well.
     public int bronzes = 0;
     public int silvers = 0;
     public int golds = 0;
@@ -46,6 +49,34 @@ public class QuestStats {
         if (this.timesComplete >= GOLD_THRESH){
             this.golds = 1;
         }
+    }
+
+    public boolean hasBadge(PlayerClass playerClass) {
+        if (this.charactersCompleted.contains(playerClass.toString())) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasBronze() {
+        if (this.bronzes >= 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasSilver() {
+        if (this.silvers >= 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasGold() {
+        if (this.golds >= 1) {
+            return true;
+        }
+        return false;
     }
 
     public static QuestStats getAllStats() {
