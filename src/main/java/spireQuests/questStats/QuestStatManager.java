@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 import com.badlogic.gdx.utils.Logger;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -20,7 +19,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import spireQuests.Anniv8Mod;
-import spireQuests.quests.QuestManager;
 
 public class QuestStatManager {
     public static final String FAILED = "failed";
