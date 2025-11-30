@@ -72,13 +72,13 @@ public class QuestStatsScreen implements DropdownMenuListener {
 
     private static final float BADGE_X = X_ANCHOR + (713.0F * Settings.xScale);
     private static final float BADGE_Y = Y_ANCHOR - (455.0F * Settings.yScale);
-    private static final float BADGE_WIDTH = 100.0F * Settings.xScale;
-    private static final float BADGE_HEIGHT = 100.0F * Settings.yScale;
+    private static final float BADGE_WIDTH = 100.0F * Settings.scale;
+    private static final float BADGE_HEIGHT = 100.0F * Settings.scale;
     private static final int BADGES_PER_ROW = 3;
 
     private static final float TROPHY_Y = Y_ANCHOR - (335.0F * Settings.yScale);
-    private static final float TROPHY_WIDTH = 218.0F * Settings.xScale;
-    private static final float TROPHY_HEIGHT = 265.0F * Settings.yScale;
+    private static final float TROPHY_WIDTH = 218.0F * Settings.scale;
+    private static final float TROPHY_HEIGHT = 265.0F * Settings.scale;
 
     private static final float TROPHY_HELP_X = BANNER_X + (55.0F * Settings.xScale);
     private static final float TROPHY_HELP_Y = BANNER_TOP_Y + (275.0F * Settings.yScale);

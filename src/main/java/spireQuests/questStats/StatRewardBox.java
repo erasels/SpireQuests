@@ -42,10 +42,10 @@ public class StatRewardBox implements IUIElement {
     private static final String ID = makeID(StatRewardBox.class.getSimpleName());
     private UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
-    public static final float FRAME_X = 125.0F * Settings.xScale;
-    public static final float FRAME_Y = 125.0F * Settings.yScale;
-    public static float HEIGHT = 100.0F * Settings.yScale;
-    public static float WIDTH = 100.0F * Settings.xScale;
+    public static final float FRAME_X = 125.0F * Settings.scale;
+    public static final float FRAME_Y = 125.0F * Settings.scale;
+    public static float HEIGHT = 100.0F * Settings.scale;
+    public static float WIDTH = 100.0F * Settings.scale;
     public Hitbox hb;
     public TextureRegion img;
     private String header = "";
@@ -147,26 +147,26 @@ public class StatRewardBox implements IUIElement {
         hybridImg.setAccessible(true);
         spotsImg.setAccessible(true);
 
-        Texture x;
+        Texture potionTex;
         if (this.potion.liquidColor != null) {
-            x = (Texture) liquidImg.get(this.potion);
+            potionTex = (Texture) liquidImg.get(this.potion);
             sb.setColor(this.potion.liquidColor);
-            sb.draw(x, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, 100.0F, 100.0F);
+            sb.draw(potionTex, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, WIDTH, HEIGHT);
         }
         if (this.potion.hybridColor != null) {
-            x = (Texture) hybridImg.get(this.potion);
+            potionTex = (Texture) hybridImg.get(this.potion);
             sb.setColor(this.potion.hybridColor);
-            sb.draw(x, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, 100.0F, 100.0F);
+            sb.draw(potionTex, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, WIDTH, HEIGHT);
         }
         if (this.potion.spotsColor != null) {
-            x = (Texture) spotsImg.get(this.potion);
+            potionTex = (Texture) spotsImg.get(this.potion);
             sb.setColor(this.potion.spotsColor);
-            sb.draw(x, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, 100.0F, 100.0F);
+            sb.draw(potionTex, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, WIDTH, HEIGHT);
         }
         
         sb.setColor(Color.WHITE);
-        x = (Texture) containerImg.get(this.potion);
-        sb.draw(x, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, 100.0F, 100.0F);
+        potionTex = (Texture) containerImg.get(this.potion);
+        sb.draw(potionTex, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, WIDTH, HEIGHT);
     }
 
     public void update() {
