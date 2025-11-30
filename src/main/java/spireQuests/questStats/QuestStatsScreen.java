@@ -45,12 +45,32 @@ public class QuestStatsScreen implements DropdownMenuListener {
     }
 
     private static final Logger logger = LogManager.getLogger(QuestStatsScreen.class.getName());
+    
+    private static final Texture BG = TexLoader.getTexture(makeUIPath("stats/background.png"));
+    private static final Texture BANNER_TOP = TexLoader.getTexture(makeUIPath("stats/banner_top.png"));
+    private static final Texture BANNER_BOT = TexLoader.getTexture(makeUIPath("stats/banner_bottom.png"));
+    private static final Texture BANNER_EXTRA = TexLoader.getTexture(makeUIPath("stats/banner_middle.png"));
+    private static final Texture TROPHY_OUTLINE = TexLoader.getTexture(makeUIPath("stats/trophy/outline.png"));
+    private static final Texture TROPHY_HIDDEN = TexLoader.getTexture(makeUIPath("stats/trophy/locked.png"));
+    private static final Texture TROPHY_BRONZE = TexLoader.getTexture(makeUIPath("stats/trophy/bronze.png"));
+    private static final Texture TROPHY_SILVER = TexLoader.getTexture(makeUIPath("stats/trophy/silver.png"));
+    private static final Texture TROPHY_GOLD = TexLoader.getTexture(makeUIPath("stats/trophy/gold.png"));
+    private static final Texture PROGRESS_BORDER = TexLoader.getTexture(makeUIPath("stats/progress_border.png"));
+    private static final Texture PROGRESS_BAR = TexLoader.getTexture(makeUIPath("stats/progress_bar.png"));
 
     private static final float X_ANCHOR = 440.0F * Settings.xScale;
     private static final float Y_ANCHOR = (1080.0F - 195.0F) * Settings.yScale; // 885
 
     private static final float LEFT_ALIGN = X_ANCHOR + (25.0F * Settings.xScale);
     private static final float DROPDOWN_Y = Y_ANCHOR - (75.0F * Settings.yScale);
+
+    private static final float BG_X = X_ANCHOR;
+    private static final float BG_Y = 225.0F * Settings.yScale;
+    
+    private static final float BANNER_TOP_Y = Y_ANCHOR - (345.0F * Settings.yScale);
+    private static final float BANNER_X = (X_ANCHOR + (BG.getWidth() * Settings.xScale))
+        - (BANNER_TOP.getWidth() * Settings.scale / 2.0F)
+        - 100.0F * Settings.xScale;
 
     private static final float QUEST_NAME_Y = Y_ANCHOR - (130.0F * Settings.yScale);
     private static final float QUEST_AUTHOR_Y = Y_ANCHOR - (170.0F * Settings.yScale);
@@ -63,14 +83,8 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private static final float REWARD_X = LEFT_ALIGN + (35.0F * Settings.xScale);
     private static final float REWARD_OFFSET = 150.0F * Settings.xScale;
     private static final float REWARD_Y = Y_ANCHOR - (375.0F * Settings.yScale);
-
-    private static final float BG_X = X_ANCHOR;
-    private static final float BG_Y = 225.0F * Settings.yScale;
-
-    private static final float BANNER_TOP_Y = Y_ANCHOR - (345.0F * Settings.yScale);
-    private static final float BANNER_X = X_ANCHOR + (660.0F * Settings.xScale);
-
-    private static final float BADGE_X = X_ANCHOR + (713.0F * Settings.xScale);
+    
+    private static final float BADGE_X = BANNER_X + (53.0F * Settings.scale);
     private static final float BADGE_Y = Y_ANCHOR - (455.0F * Settings.yScale);
     private static final float BADGE_WIDTH = 100.0F * Settings.scale;
     private static final float BADGE_HEIGHT = 100.0F * Settings.scale;
@@ -80,29 +94,20 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private static final float TROPHY_WIDTH = 218.0F * Settings.scale;
     private static final float TROPHY_HEIGHT = 265.0F * Settings.scale;
 
-    private static final float TROPHY_HELP_X = BANNER_X + (55.0F * Settings.xScale);
-    private static final float TROPHY_HELP_Y = BANNER_TOP_Y + (275.0F * Settings.yScale);
-    private static final float TROPHY_HELP_LENGTH = 300.0F * Settings.xScale;
+    private static final float TROPHY_HELP_X = BANNER_X + (55.0F * Settings.scale);
+    private static final float TROPHY_HELP_Y = BANNER_TOP_Y + (275.0F * Settings.scale);
+    private static final float TROPHY_HELP_LENGTH = 300.0F * Settings.scale;
 
     private static final float PROGRESS_BORDER_X = LEFT_ALIGN;
     private static final float PROGRESS_BORDER_Y = Y_ANCHOR - (275.0F * Settings.yScale);
     private static final float PROGRESS_TEXT_Y = Y_ANCHOR - (185.0F * Settings.yScale);
 
-    private static final float PROGRESS_BAR_X = PROGRESS_BORDER_X + (5.0F * Settings.xScale);
-    private static final float PROGRESS_BAR_Y = PROGRESS_BORDER_Y + (5.0F * Settings.yScale);
-    private static final float PROGRESS_BAR_WIDTH = (625.0F * Settings.xScale);
+    private static final float PROGRESS_PADDING_X = 5.0F * Settings.xScale;
+    private static final float PROGRESS_PADDING_Y = 5.0F * Settings.yScale;
 
-    private static final Texture BG = TexLoader.getTexture(makeUIPath("stats/background.png"));
-    private static final Texture BANNER_TOP = TexLoader.getTexture(makeUIPath("stats/banner_top.png"));
-    private static final Texture BANNER_BOT = TexLoader.getTexture(makeUIPath("stats/banner_bottom.png"));
-    private static final Texture BANNER_EXTRA = TexLoader.getTexture(makeUIPath("stats/banner_middle.png"));
-    private static final Texture TROPHY_OUTLINE = TexLoader.getTexture(makeUIPath("stats/trophy/outline.png"));
-    private static final Texture TROPHY_HIDDEN = TexLoader.getTexture(makeUIPath("stats/trophy/locked.png"));
-    private static final Texture TROPHY_BRONZE = TexLoader.getTexture(makeUIPath("stats/trophy/bronze.png"));
-    private static final Texture TROPHY_SILVER = TexLoader.getTexture(makeUIPath("stats/trophy/silver.png"));
-    private static final Texture TROPHY_GOLD = TexLoader.getTexture(makeUIPath("stats/trophy/gold.png"));
-    private static final Texture PROGRESS_BORDER = TexLoader.getTexture(makeUIPath("stats/progress_border.png"));
-    private static final Texture PROGRESS_BAR = TexLoader.getTexture(makeUIPath("stats/progress_bar.png"));
+    private static final float PROGRESS_BAR_X = PROGRESS_BORDER_X + PROGRESS_PADDING_X;
+    private static final float PROGRESS_BAR_Y = PROGRESS_BORDER_Y + PROGRESS_PADDING_Y;
+    private static final float PROGRESS_BAR_WIDTH = BANNER_X - PROGRESS_BAR_X - (50.0F * Settings.xScale);
     
     private static final Color OUTLINE_COLOR = new Color(0.0F, 0.0F, 0.0F, 0.33F);
     private static final Color LOCK_COLOR = Color.valueOf("#2d2d2d");
@@ -159,6 +164,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
         CardCrawlGame.mainMenuScreen.darken();
         cancelButton.show(uiStrings.TEXT[6]);
         this.selectedQuest = null;
+        selectedQuestStats = QuestStats.getAllStats();
         questDropdown = new DropdownMenu(this, dropdownList, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
         refreshData();
     }
@@ -210,22 +216,23 @@ public class QuestStatsScreen implements DropdownMenuListener {
     }
 
     private void renderBG(SpriteBatch sb) {
-        sb.draw(BG, BG_X, BG_Y, BG.getWidth() * Settings.xScale, BG.getHeight() * Settings.yScale);
-        sb.draw(BANNER_TOP, BANNER_X, BANNER_TOP_Y, BANNER_TOP.getWidth() * Settings.xScale, BANNER_TOP.getHeight() * Settings.yScale);
+        sb.draw(BG, BG_X, BG_Y, BG.getWidth() * Settings.xScale, BG.getHeight() * Settings.scale);
+        sb.draw(BANNER_TOP, BANNER_X, BANNER_TOP_Y, BANNER_TOP.getWidth() * Settings.scale, BANNER_TOP.getHeight() * Settings.scale);
 
         float midDraw = BANNER_TOP_Y;
         for (int i = 0; i < extraRows; i++) {
-            midDraw -= (i + 1) * BANNER_EXTRA.getHeight() * Settings.yScale;
-            sb.draw(BANNER_EXTRA, BANNER_X, midDraw, BANNER_EXTRA.getWidth() * Settings.xScale, BANNER_EXTRA.getHeight() * Settings.yScale);
+            midDraw -= (i + 1) * BANNER_EXTRA.getHeight() * Settings.scale;
+            sb.draw(BANNER_EXTRA, BANNER_X, midDraw, BANNER_EXTRA.getWidth() * Settings.scale, BANNER_EXTRA.getHeight() * Settings.scale);
         }
 
-        float botDraw = midDraw - BANNER_BOT.getHeight()* Settings.yScale;
-        sb.draw(BANNER_BOT, BANNER_X, botDraw, BANNER_BOT.getWidth() * Settings.xScale, BANNER_BOT.getHeight() * Settings.yScale);
+        float botDraw = midDraw - BANNER_BOT.getHeight()* Settings.scale;
+        sb.draw(BANNER_BOT, BANNER_X, botDraw, BANNER_BOT.getWidth() * Settings.scale, BANNER_BOT.getHeight() * Settings.scale);
     }
 
     private void renderTrophy(SpriteBatch sb) {
         
-        float trophy_X = ((BADGE_X) + (BADGES_PER_ROW * BADGE_WIDTH) / 2.0F) - (TROPHY_WIDTH / 2.0F);
+        // float trophy_X = ((BADGE_X) + (BADGES_PER_ROW * BADGE_WIDTH) / 2.0F) - (TROPHY_WIDTH / 2.0F);
+        float trophy_X = (BANNER_X + (BANNER_TOP.getWidth() * Settings.scale / 2.0F)) - (TROPHY_WIDTH / 2.0F);
 
         sb.setColor(OUTLINE_COLOR);
         sb.draw(new TextureRegion(TROPHY_OUTLINE), trophy_X, TROPHY_Y, TROPHY_WIDTH, TROPHY_HEIGHT);
@@ -274,15 +281,13 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private void renderSummary(SpriteBatch sb) {
         FontHelper.renderFont(sb, FontHelper.losePowerFont, uiStrings.TEXT[5], LEFT_ALIGN, QUEST_NAME_Y, Settings.CREAM_COLOR);
 
-        sb.setColor(LOCK_COLOR);
-        sb.draw(PROGRESS_BAR, PROGRESS_BAR_X, PROGRESS_BAR_Y, PROGRESS_BAR_WIDTH, PROGRESS_BAR.getHeight() * Settings.yScale);
-
+        renderProgressBarBG(sb, LOCK_COLOR, allQuests.size());
         renderProgressBarBG(sb, BRONZE_COLOR, this.selectedQuestStats.bronzes);
         renderProgressBarBG(sb, SILVER_COLOR, this.selectedQuestStats.silvers);
         renderProgressBarBG(sb, GOLD_COLOR, this.selectedQuestStats.golds);
 
         sb.setColor(Color.WHITE);
-        sb.draw(PROGRESS_BORDER, PROGRESS_BORDER_X, PROGRESS_BORDER_Y, PROGRESS_BORDER.getWidth() * Settings.xScale, PROGRESS_BORDER.getHeight() * Settings.yScale);
+        sb.draw(PROGRESS_BORDER, PROGRESS_BORDER_X, PROGRESS_BORDER_Y, PROGRESS_BAR_WIDTH, PROGRESS_BORDER.getHeight() * Settings.yScale);
 
         FontHelper.renderFont(sb, FontHelper.tipBodyFont, uiStrings.TEXT[8], LEFT_ALIGN, PROGRESS_TEXT_Y, Settings.CREAM_COLOR);
 
@@ -322,7 +327,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
 
     private void renderProgressBarBG(SpriteBatch sb, Color color, int completed) {
         float percent = (float) completed / (float) allQuests.size();
-        float width = PROGRESS_BAR_WIDTH * percent;
+        float width = (PROGRESS_BAR_WIDTH * percent) - (PROGRESS_PADDING_X * 2.0F);
 
         sb.setColor(color);
         sb.draw(PROGRESS_BAR, PROGRESS_BAR_X, PROGRESS_BAR_Y, width, PROGRESS_BAR.getHeight() * Settings.yScale);
