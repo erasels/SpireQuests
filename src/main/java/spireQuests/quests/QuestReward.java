@@ -152,6 +152,10 @@ public abstract class QuestReward {
         protected String saveParam() {
             return relic.relicId;
         }
+
+        public AbstractRelic getRelic() {
+            return relic;
+        }
     }
 
     public static class RandomRelicReward extends QuestReward {
@@ -262,6 +266,10 @@ public abstract class QuestReward {
         protected String saveParam() {
             return potion.ID;
         }
+
+        public AbstractPotion getPotion() {
+            return potion;
+        }
     }
 
     public static class CardReward extends QuestReward {
@@ -308,6 +316,10 @@ public abstract class QuestReward {
             CardSave s = save.card;
             AbstractCard loaded = CardLibrary.getCopy(s.id, s.upgrades, s.misc);
             return new CardReward(loaded);
+        }
+
+        public AbstractCard getCard() {
+            return card;
         }
     }
 

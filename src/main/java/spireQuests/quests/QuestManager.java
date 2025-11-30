@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import spireQuests.Anniv8Mod;
 import spireQuests.cardmods.QuestboundMod;
 import spireQuests.patches.QuestRunHistoryPatch;
+import spireQuests.questStats.QuestStatManager;
 import spireQuests.vfx.ShowCardandFakeObtainEffect;
 
 import java.util.*;
@@ -130,6 +131,7 @@ public class QuestManager {
                 AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(c.makeCopy(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
             });
         }
+        QuestStatManager.markTaken(quest.id);
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
         if (!questPickupPerFloor.isEmpty()) {
             questPickupPerFloor.get(questPickupPerFloor.size() - 1).add(quest.id);
@@ -147,6 +149,10 @@ public class QuestManager {
         if (quest.fail()) {
             quests().remove(quest);
             quest.onFail();
+
+            QuestStatManager.markFailed(quest.id);
+            List<List<String>> questFailurePerFloor = QuestRunHistoryPatch.questFailurePerFloorLog.get(AbstractDungeon.player);
+            questFailurePerFloor.get(questFailurePerFloor.size() - 1).add(quest.id);
             return;
         }
 
@@ -162,6 +168,7 @@ public class QuestManager {
 
         quests().remove(quest);
         quest.obtainRewards();
+        QuestStatManager.markComplete(quest.id);
         List<List<String>> questCompletionPerFloor = QuestRunHistoryPatch.questCompletionPerFloorLog.get(AbstractDungeon.player);
         questCompletionPerFloor.get(questCompletionPerFloor.size() - 1).add(quest.id);
     }
@@ -170,6 +177,10 @@ public class QuestManager {
         quest.forceFail();
         quest.onFail();
         completeQuest(quest);
+
+        QuestStatManager.markFailed(quest.id);
+        List<List<String>> questFailurePerFloor = QuestRunHistoryPatch.questFailurePerFloorLog.get(AbstractDungeon.player);
+        questFailurePerFloor.get(questFailurePerFloor.size() - 1).add(quest.id);
     }
 
     public void update() {
@@ -187,5 +198,11 @@ public class QuestManager {
         if (AbstractDungeon.player == null) {
         }
         //quest ui
+    }
+
+    public static void failAllActiveQuests() {
+        for (AbstractQuest q : quests()) {
+            q.forceFail();
+        }
     }
 }

@@ -35,6 +35,7 @@ public class QuestRunHistoryPatch {
 
     public static SpireField<List<List<String>>> questPickupPerFloorLog = new SpireField<>(ArrayList::new);
     public static SpireField<List<List<String>>> questCompletionPerFloorLog = new SpireField<>(ArrayList::new);
+    public static SpireField<List<List<String>>> questFailurePerFloorLog = new SpireField<>(ArrayList::new);
 
     public static void initialize() {
         BaseMod.addSaveField(Anniv8Mod.makeID("QuestPickupPerFloor"), new CustomSavable<List<List<String>>>() {
@@ -49,6 +50,20 @@ public class QuestRunHistoryPatch {
                     return;
                 }
                 questPickupPerFloorLog.get(AbstractDungeon.player).addAll(list);
+            }
+        });
+        BaseMod.addSaveField(Anniv8Mod.makeID("QuestFailurePerFloor"), new CustomSavable<List<List<String>>>() {
+            @Override
+            public List<List<String>> onSave() {
+                return questFailurePerFloorLog.get(AbstractDungeon.player);
+            }
+
+            @Override
+            public void onLoad(List<List<String>> list) {
+                if (list == null) {
+                    return;
+                }
+                questFailurePerFloorLog.get(AbstractDungeon.player).addAll(list);
             }
         });
         BaseMod.addSaveField(Anniv8Mod.makeID("QuestCompletionPerFloor"), new CustomSavable<List<List<String>>>() {
@@ -80,6 +95,10 @@ public class QuestRunHistoryPatch {
             String fieldSource2 = "public java.util.List quest_completion_per_floor;";
             CtField field2 = CtField.make(fieldSource2, runData);
             runData.addField(field2);
+
+            String fieldSource3 = "public java.util.List quest_failure_per_floor;";
+            CtField field3 = CtField.make(fieldSource3, runData);
+            runData.addField(field3);
         }
     }
 
@@ -91,6 +110,8 @@ public class QuestRunHistoryPatch {
                     .invoke(__instance, "quest_pickup_per_floor", questPickupPerFloorLog.get(AbstractDungeon.player));
             ReflectionHacks.privateMethod(Metrics.class, "addData", Object.class, Object.class)
                     .invoke(__instance, "quest_completion_per_floor", questCompletionPerFloorLog.get(AbstractDungeon.player));
+            ReflectionHacks.privateMethod(Metrics.class, "addData", Object.class, Object.class)
+                    .invoke(__instance, "quest_failure_per_floor", questFailurePerFloorLog.get(AbstractDungeon.player));
         }
     }
 
@@ -98,6 +119,7 @@ public class QuestRunHistoryPatch {
     public static class RunPathElementFields {
         public static final SpireField<List<String>> questPickups = new SpireField<>(() -> null);
         public static final SpireField<List<String>> questCompletions = new SpireField<>(() -> null);
+        public static final SpireField<List<String>> questFailures = new SpireField<>(() -> null);
     }
 
     @SpirePatch(clz = RunHistoryPath.class, method = "setRunData")
@@ -107,8 +129,10 @@ public class QuestRunHistoryPatch {
         public static void addQuestData(RunHistoryPath __instance, RunData newData, RunPathElement element, int i) throws NoSuchFieldException, IllegalAccessException {
             Field field1 = newData.getClass().getField("quest_pickup_per_floor");
             Field field2 = newData.getClass().getField("quest_completion_per_floor");
+            Field field3 = newData.getClass().getField("quest_failure_per_floor");
             List quest_pickup_per_floor = (List) field1.get(newData);
             List quest_completion_per_floor = (List) field2.get(newData);
+            List quest_failure_per_floor = (List) field3.get(newData);
             // Element 0 of the quest data is what happened in the Neow room, but there's no RunPathElement for the Neow
             // room, so we show quests picked up from Neow on the first floor.
             // This means we ignore element 1 of the quest pickup data and element 0 of the quest completion data. This
@@ -137,6 +161,17 @@ public class QuestRunHistoryPatch {
                 }
                 RunPathElementFields.questCompletions.set(element, s);
             }
+            if (quest_failure_per_floor != null && i + 1 < quest_failure_per_floor.size()) {
+                Object questIDs = quest_failure_per_floor.get(i + 1);
+                List<String> s = null;
+                if (questIDs instanceof List) {
+                    //noinspection unchecked
+                    s = (List<String>) questIDs;
+                } else if (questIDs != null) {
+                    logger.warn("Unrecognized quest_failure_per_floor data: " + questIDs);
+                }
+                RunPathElementFields.questFailures.set(element, s);
+            }
         }
 
         public static class Locator extends SpireInsertLocator {
@@ -154,6 +189,7 @@ public class QuestRunHistoryPatch {
         public static void displayQuestData(RunPathElement __instance, StringBuilder sb) {
             List<String> questPickups = RunPathElementFields.questPickups.get(__instance);
             List<String> questCompletions = RunPathElementFields.questCompletions.get(__instance);
+            List<String> questFailures = RunPathElementFields.questFailures.get(__instance);
             Map<String, AbstractQuest> allQuests = QuestManager.getAllQuests().stream().collect(Collectors.toMap(q -> q.id, q -> q));
             if (questPickups != null && !questPickups.isEmpty()) {
                 String questNames = questPickups.stream()
@@ -187,6 +223,22 @@ public class QuestRunHistoryPatch {
                     sb.append(questNames);
                 }
             }
+            if (questFailures != null && !questFailures.isEmpty()) {
+                String questNames = questFailures.stream()
+                        .map(id -> allQuests.getOrDefault(id, null))
+                        .filter(q -> q != null)
+                        .map(q -> q.name)
+                        .map(s -> FontHelper.colorString(s, "b"))
+                        .collect(Collectors.joining(" NL TAB "));
+                if (!questNames.isEmpty()) {
+                    if (sb.length() > 0) {
+                        sb.append(" NL ");
+                    }
+                    sb.append(FontHelper.colorString(QUEST_TEXT[2], "y"));
+                    sb.append(" NL TAB ");
+                    sb.append(questNames);
+                }
+            }
         }
 
         public static class Locator extends SpireInsertLocator {
@@ -203,6 +255,7 @@ public class QuestRunHistoryPatch {
         public static void nextRoomTransitionAddEntriesPatch(AbstractDungeon __instance, SaveFile saveFile) {
             questPickupPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
             questCompletionPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
+            questFailurePerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -222,6 +275,7 @@ public class QuestRunHistoryPatch {
             if (!CardCrawlGame.loadingSave) {
                 questPickupPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
                 questCompletionPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
+                questFailurePerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
             }
         }
     }

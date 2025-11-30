@@ -31,6 +31,7 @@ import spireQuests.cardvars.SecondMagicNumber;
 import spireQuests.commands.AddQuestCommand;
 import spireQuests.commands.SpawnQuestCommand;
 import spireQuests.patches.QuestRunHistoryPatch;
+import spireQuests.questStats.QuestStatManager;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
@@ -62,7 +63,8 @@ public class Anniv8Mod implements
         AddAudioSubscriber,
         PostDungeonInitializeSubscriber,
         StartGameSubscriber,
-        PostRenderSubscriber {
+        PostRenderSubscriber,
+        PostDeathSubscriber {
 
     public static final Logger logger = LogManager.getLogger("SpireQuests");
 
@@ -161,6 +163,7 @@ public class Anniv8Mod implements
         QuestManager.initialize();
         QuestGenerator.initialize();
         QuestRunHistoryPatch.initialize();
+        QuestStatManager.initialize();
         addPotions();
         addMonsters();
         addSaveFields();
@@ -412,6 +415,12 @@ public class Anniv8Mod implements
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    public void receivePostDeath() {
+        QuestManager.failAllActiveQuests();
     }
 
 }

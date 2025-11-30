@@ -54,7 +54,8 @@
   "${ModID}:RunHistoryScreen": {
     "TEXT": [
       "Quests:",
-      "Completed:"
+      "Completed:",
+      "Failed:"
     ]
   },
     "${ModID}:QuestboundMod": {
@@ -68,6 +69,33 @@
       "I cannot claim this quest right now.",
       "I cannot claim quests during combat.",
       "I can only claim this quest at a reward screen."
+    ]
+  },
+  "${ModID}:QuestStatsScreen": {
+    "TEXT": [
+      "Quest Statistics",
+      "Times Seen",
+      "Times Taken",
+      "Times Completed",
+      "Times Failed",
+      "Quest Summary",
+      "Return",
+      "Complete quests to earn and upgrade medals. NL NL • 1 Completion — Bronze Medal NL • 5 Completions — Silver Medal NL • 10 Completions — Gold Medal NL NL Each time you complete a quest as a new character, you'll earn a badge that's displayed under your medal." ,
+      "Medal Progress",
+      "Bronze Medals",
+      "Silver Medals",
+      "Gold Medals",
+      "Quests Seen",
+      "Quests Taken",
+      "Quests Completed",
+      "Quests Failed"
+    ]
+  },
+  "${ModID}:StatRewardBox": {
+    "TEXT": [
+      "Random Relic Reward",
+      "Gold Reward",
+      "Other Reward"
     ]
   }
 }
