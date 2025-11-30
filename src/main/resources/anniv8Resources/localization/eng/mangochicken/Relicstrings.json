@@ -1,0 +1,9 @@
+{
+  "${ModID}:HeartyAnchor": {
+    "NAME": "Hearty Anchor",
+    "FLAVOR": "May not actually be good as an anchor, could be good in a stew though!",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b6 #yTemp #yHP."
+    ]
+  }
+}

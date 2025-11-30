@@ -11,8 +11,10 @@
     "RamChops Games",
     "coda",
     "SoytheProton",
+    "JackRenoson",
     "Mangochicken",
-    "snumodder"
+    "snumodder",
+    "Blank The Evil"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
@@ -23,4 +25,3 @@
     "stslib"
   ]
 }
-

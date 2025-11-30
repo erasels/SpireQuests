@@ -51,6 +51,6 @@ public class UnbreakableQuest extends AbstractQuest {
         if (!CardCrawlGame.isInARun()) {
             return super.getDescription();
         }
-        return localization.TEXT[3] + this.damageGoal + localization.TEXT[4];
+        return questStrings.EXTRA_TEXT[0] + this.damageGoal + questStrings.EXTRA_TEXT[1];
     }
 }

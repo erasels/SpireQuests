@@ -1,0 +1,99 @@
+{
+  "${ModID}:PeasantQuest": {
+    "TITLE": "Peasant",
+    "DESCRIPTION": "Have the number of commons in your deck, minus the number of uncommons and rares, be at least 10.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Common surplus"
+    ]
+  },
+  "${ModID}:ChartTheUnknownQuest": {
+    "TITLE": "Chart the Unknown",
+    "DESCRIPTION": "Visit 4 ? rooms.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "? rooms"
+    ]
+  },
+  "${ModID}:PackFanaticQuest": {
+    "TITLE": "Pack Fanatic",
+    "DESCRIPTION": "Have a card from each of your packs in your deck.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Packs in deck"
+    ]
+  },
+  "${ModID}:SuperiorEliteQuest": {
+    "TITLE": "Superior Elite",
+    "DESCRIPTION": "The next elite you fight is more dangerous, with additional HP, damage, and #yArtifact. Defeat it to claim a reward!",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Elites defeated"
+    ]
+  },
+  "${ModID}:GatheringExpeditionQuest": {
+    "TITLE": "Gathering Expedition",
+    "DESCRIPTION": "New flowers/minerals/gems can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a relic.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Items gathered",
+      "Flowers gathered",
+      "Minerals gathered",
+      "Gems gathered"
+    ],
+    "EXTRA_TEXT": [
+      "New #rflowers can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a #yFloral #yGarland.",
+      "New #yminerals can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a #ySpire #yAlloy #yHelmet.",
+      "New #bgems can be found throughout the Spire! Looked for specially marked rooms on the map and visit #b9 of them to craft a #yJewelled #yBauble."
+    ]
+  },
+  "${ModID}:MulticlassQuest": {
+    "TITLE": "Multiclass",
+    "DESCRIPTION": "Cards from another character will show up in your card rewards. Add #b3 of their cards to your deck to embrace your new techniques.",
+    "AUTHOR": "modargo",
+    "REWARD": "Multiclass: %s",
+    "TRACKER_TEXT": [
+      "Cards added"
+    ],
+    "EXTRA_TEXT": [
+      "Multiclass",
+      "Multiclass: %s",
+      "Cards from another character will show up in your card rewards. Add #b3 of their cards to your deck to embrace your new techniques.",
+      "Cards from %s will show up in your card rewards. Add #b3 of their cards to your deck to embrace your new techniques."
+    ]
+  },
+  "${ModID}:PlatinumCafeMemberQuest": {
+    "TITLE": "Platinum Cafe Member",
+    "DESCRIPTION": "The Cafe is running a special! Customers who buy out the bartender's offerings and finish a conversation with each Cafe patron will receive a small gift.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Cafe entered",
+      "Bartender",
+      "Patrons"
+    ]
+  },
+  "${ModID}:BloodfireRitualQuest": {
+    "TITLE": "Bloodfire Ritual",
+    "DESCRIPTION": "Complete a long ritual to gain the #pBlackstaff. Each combat, shuffle a special #b2-cost #ySkill with #yEthereal, #yExhaust, and a small negative effect into your draw pile. Play these special cards #b20 times to complete the ritual.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Ritual steps"
+    ]
+  },
+  "${ModID}:BountyDefectQuest": {
+    "TITLE": "Bounty: Blue Devil",
+    "DESCRIPTION": "A devil of metal stalks these halls. The next elite this act is replaced by the #bDefect.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Devil slain"
+    ]
+  },
+  "${ModID}:BiomeSamplerQuest": {
+    "TITLE": "Biome Sampler",
+    "DESCRIPTION": "Enter a biome 5 times.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Biomes entered"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "${ModID}:HandicapQuest": {
+    "TITLE": "Handicap",
+    "DESCRIPTION": "Play #b0 cards on the first turn of an Elite combat during this act. NL ''I'm feeling a little strong here, have a free shot, to a fair fight!",
+    "AUTHOR": "Mangochicken",
+    "TRACKER_TEXT": [
+      "0 card first turn elite"
+    ]
+  }
+}

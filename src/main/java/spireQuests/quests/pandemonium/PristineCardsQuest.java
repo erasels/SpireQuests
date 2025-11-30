@@ -28,7 +28,6 @@ public class PristineCardsQuest extends AbstractQuest {
 
 
         useDefaultReward = false;
-        rewardsText = localization.EXTRA_TEXT[1];
     }
 
     @Override
@@ -44,6 +43,4 @@ public class PristineCardsQuest extends AbstractQuest {
             i++;
         }
     }
-
-
 }

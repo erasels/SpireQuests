@@ -36,7 +36,6 @@ public class GennGreymaneQuest extends AbstractQuest {
         }.add(this);
 
         useDefaultReward = false;
-        rewardsText = localization.EXTRA_TEXT[2];
     }
 
     private int getEvenCards() {

@@ -11,9 +11,10 @@ import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
-import spireQuests.quests.Trigger;
+import spireQuests.quests.ramchops.cards.SelloutAdvertisementCard;
+import spireQuests.quests.ramchops.trackers.AdsPlayedQuestTracker;
+import spireQuests.quests.ramchops.trackers.SelloutCombatTracker;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SelloutQuest extends AbstractQuest implements CustomSavable<Integer>{
@@ -25,7 +26,6 @@ public class SelloutQuest extends AbstractQuest implements CustomSavable<Integer
         super(QuestType.SHORT, QuestDifficulty.EASY);
 
         useDefaultReward = false;
-        rewardsText = localization.EXTRA_TEXT[3];
 
         new AdsPlayedQuestTracker().add(this);
         new SelloutCombatTracker().add(this);

@@ -45,11 +45,6 @@ public class BountyICQuest extends AbstractQuest {
     }
 
     @Override
-    public String getRewardsText() {
-        return localization.TEXT[3];
-    }
-
-    @Override
     public boolean canSpawn() {
         return AbstractDungeon.actNum == 1;
     }

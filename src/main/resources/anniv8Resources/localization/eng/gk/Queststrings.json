@@ -1,0 +1,35 @@
+{
+  "${ModID}:RagerQuest": {
+    "TITLE": "Rager",
+    "DESCRIPTION": "Play 5 Attacks in a turn.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "Attacks played this turn"
+    ]
+  },
+  "${ModID}:AbstinenceQuest": {
+    "TITLE": "Abstinence",
+    "DESCRIPTION":"Don't use potions for the next 4 combats.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "Combats without potions"
+    ]
+  },
+  "${ModID}:BasicProficiencyQuest": {
+    "TITLE": "Basic Proficiency",
+    "DESCRIPTION":"Play %s 3 times in one combat.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "Played"
+    ]
+  },
+  "${ModID}:BountyICQuest": {
+    "TITLE": "Bounty: Red Menace",
+    "DESCRIPTION": "A menace of fire and iron threatens this place. The next elite this act is replaced by the #rIronclad.",
+    "AUTHOR": "Gk",
+    "REWARD": "Replace the rewards with good #rIronclad themed ones.",
+    "TRACKER_TEXT": [
+      "Menace slain"
+    ]
+  }
+}
