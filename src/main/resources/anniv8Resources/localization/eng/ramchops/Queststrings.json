@@ -1,0 +1,38 @@
+{
+  "${ModID}:SelloutQuest": {
+    "TITLE": "Sellout",
+    "DESCRIPTION": "Upon pickup, add #b3 #yAdvertisements to your deck. Remove #b1 #yAdvertisement from your deck every #b5 combats won. Remove ALL #yAdvertisements from your deck to complete the quest.\n\n",
+    "AUTHOR": "RamChops Games",
+    "REWARD": "Gain #b10 Gold for every #yAdvertisement played.",
+    "TRACKER_TEXT": [
+      "Ad Revenue Owed",
+      "Combats Won",
+      "Remove Ads"
+    ]
+  },
+  "${ModID}:CeaselessHungerQuest": {
+    "TITLE": "Ceaseless Hunger",
+    "DESCRIPTION": "Upon pickup, obtain #yN'loth's #yFace [REMOVE_SPACE]. Obtain another #yN'loth's #yFace at the start of Act 2. Open a chest in Act 3 to complete this Quest.",
+    "AUTHOR": "RamChops Games",
+    "REWARD": "Remove all #yN'loth's #yFaces and obtain #b2 random #yRelics for each #yN'loth's #yFace removed.",
+    "TRACKER_TEXT": [
+      "Open an Act 3 Chest"
+    ]
+  },
+  "${ModID}:EvilSentryQuest": {
+    "TITLE": "Evil Sentries",
+    "DESCRIPTION": "Your next Elite this act will be three Sentries. In addition to their normal actions, they can also perform a special action (Deal #b5 damage and apply #b1 Draw Reduction). Defeat them.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "Defeat Evil Sentries"
+    ]
+  },
+  "${ModID}:WindowShoppingQuest": {
+    "TITLE": "Window Shopping",
+    "DESCRIPTION": "Leave #b2 shops without spending Gold in any of them.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "Leave Shops Without Spending Gold"
+    ]
+  }
+}

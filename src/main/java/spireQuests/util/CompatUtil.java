@@ -1,9 +1,10 @@
 package spireQuests.util;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import spireQuests.Anniv8Mod;
+
+import static spireQuests.quests.gk.util.HermitCompatUtil.initGunEffect;
 
 public class CompatUtil {
     public static final String CARDISTRY_ID = "anniv5:Cardistry";
@@ -13,7 +14,6 @@ public class CompatUtil {
     public static AbstractCard.CardColor HERMIT_COLOR = AbstractCard.CardColor.COLORLESS;
 
     public static AbstractCard.CardTags DEADON_TAG = AbstractCard.CardTags.EMPTY;
-    public static AbstractGameAction.AttackEffect HERMIT_GUN_EFFECT = AbstractGameAction.AttackEffect.NONE;
 
     public static void postInit() {
         AbstractCard card = CardLibrary.getCard(CARDISTRY_ID);
@@ -29,12 +29,7 @@ public class CompatUtil {
         }
     }
 
-    public static void initGunEffect() {
-        try {
-            Class<?> enumPatchClass = Class.forName("hermit.patches.EnumPatch");
-            HERMIT_GUN_EFFECT = (AbstractGameAction.AttackEffect) enumPatchClass.getField("HERMIT_GUN").get(null);
-        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
-            Anniv8Mod.logger.warn("Couldn't get HERMIT_GUN attack effect");
-        }
+    public static boolean pmLoaded() {
+        return Loader.isModLoaded("anniv5");
     }
 }

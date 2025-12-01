@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.rewards.chests.AbstractChest;
 import com.megacrit.cardcrawl.rewards.chests.BossChest;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
@@ -51,6 +52,8 @@ public class QuestTriggers {
     public static final Trigger<Void> MAX_HEALTH_CHANGED = new Trigger<>();
     public static final Trigger<Integer> MAX_HEALTH_INCREASED = new Trigger<>();
     public static final Trigger<Integer> MAX_HEALTH_DECREASED = new Trigger<>();
+    public static final Trigger<Integer> LOSE_MONEY = new Trigger<>(); //NOTE: This counts all instances of losing money, including events
+    public static final Trigger<Integer> MONEY_SPENT_AT_SHOP = new Trigger<>(); //NOTE: This counts only money spent at shop and not money lost through events.
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -328,4 +331,21 @@ public class QuestTriggers {
             }
         }
     }
+    @SpirePatch2(
+            clz = AbstractPlayer.class,
+            method = "loseGold",
+            paramtypez = int.class)
+    public static class SpendGoldPatch{
+        @SpirePrefixPatch
+        public static void LoseGoldPatch(AbstractPlayer __instance, int goldAmount){
+
+            LOSE_MONEY.trigger(goldAmount);
+
+            if (AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
+                MONEY_SPENT_AT_SHOP.trigger(goldAmount);
+            }
+
+        }
+    }
+
 }

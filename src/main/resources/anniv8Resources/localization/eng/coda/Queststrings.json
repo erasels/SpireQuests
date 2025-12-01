@@ -1,0 +1,33 @@
+{
+  "${ModID}:OrbSpinnerQuest": {
+    "TITLE": "Orb Spinner",
+    "DESCRIPTION": "Evoke 4 unique orb types in one turn.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Evoke 4 unique orb types in one turn.",
+      "Orbs Evoked"
+    ]
+  },
+  "${ModID}:BackToBasicsQuest": {
+    "TITLE": "Keep it Simple",
+    "DESCRIPTION": "Defeat an Elite or Boss without playing uncommon or rare cards.",
+    "AUTHOR": "coda",
+    "REWARD": "Upgrade three random starter or common cards.",
+    "TRACKER_TEXT": [
+      "Defeat an Elite or Boss without playing uncommon or rare cards."
+    ]
+  },
+  "${ModID}:UnbreakableQuest": {
+    "TITLE": "Unbreakable",
+    "DESCRIPTION": "Take damage equal to your base Max HP within 17 floors.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Damage remaining: ",
+      "Floors remaining: "
+    ],
+    "EXTRA_TEXT": [
+      "Take ",
+      " damage within 17 floors."
+    ]
+  }
+}

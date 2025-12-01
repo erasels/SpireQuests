@@ -1,8 +1,35 @@
 {
   "${ModID}:PerfectlyPacked": {
     "NAME": "Perfectly Packed",
-    "DESCRIPTION": "Choose one of three cards from different packs in your draw pile to put into your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Choose one of three cards from different packs in your draw pile to put into your hand. Exhaust.",
+    "DESCRIPTION": "{@@}{!Upgrades!|>0=Innate. NL }Choose one of three cards from different packs in your draw pile to put into your hand. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["No cards with packs in draw pile."]
+  },
+  "${ModID}:TheBlackstaff": {
+    "NAME": "The Blackstaff",
+    "DESCRIPTION": "Gain !M! Temporary_HP. NL Apply !M! ${ModID}:Ignite. NL Shuffle this card into your draw pile."
+  },
+  "${ModID}:BloodInTheChalice": {
+    "NAME": "Blood in the Chalice",
+    "DESCRIPTION": "Ethereal. NL Lose !M! HP. NL Exhaust."
+  },
+  "${ModID}:FocusedTrance": {
+    "NAME": "Focused Trance",
+    "DESCRIPTION": "Ethereal. NL Gain !M! Frail. NL Exhaust."
+  },
+  "${ModID}:PrimordialFlux": {
+    "NAME": "Primordial Flux",
+    "DESCRIPTION": "Ethereal. NL Shuffle 1 *Slimed into your draw pile. NL Exhaust."
+  },
+  "${ModID}:EssenceOfFlame": {
+    "NAME": "Essence of Flame",
+    "DESCRIPTION": "Ethereal. NL Add 1 *Burn into your hand. NL Exhaust."
+  },
+  "${ModID}:PowerFromTheDark": {
+    "NAME": "Power from the Dark",
+    "DESCRIPTION": "Ethereal. NL Put 1 *Void on the bottom of your draw pile. NL Exhaust."
+  },
+  "${ModID}:BloodfireRitualQuestboundPlaceholder": {
+    "NAME": "Bloodfire Ritual",
+    "DESCRIPTION": "At start of combat, becomes one of the quest's special cards."
   }
 }

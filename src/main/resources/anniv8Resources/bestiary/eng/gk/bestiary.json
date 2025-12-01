@@ -1,0 +1,218 @@
+{
+	"monsters": [
+		{
+			"name": "Ironclad",
+			"id": "${ModID}:ICEliteMonster",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "Starts with #wDemon #wForm, then cycles #wIron #wWave -> #wBash -> #wTwin #wStrike.",
+					"notes": "Innate #uBuffer #b1.",
+					"hp": "(80 - 87 HP)",
+					"moves": [
+						{
+							"name": "Demon Form",
+							"effects": [
+								{
+									"name": "Demon Form 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Iron Wave",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "5",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Bash",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Twin Strike",
+							"effects": [
+								{
+									"name": "5x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "Starts with #wDemon #wForm, then cycles #wIron #wWave -> #wBash -> #wTwin #wStrike.",
+					"notes": "Innate #uBuffer #b1.",
+					"hp": "(80 - 87 HP)",
+					"moves": [
+						{
+							"name": "Demon Form",
+							"effects": [
+								{
+									"name": "Demon Form 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Iron Wave",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Bash",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Twin Strike",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "Starts with #wDemon #wForm, then cycles #wIron #wWave -> #wBash -> #wTwin #wStrike.",
+					"notes": "Innate #uBuffer #b1.",
+					"hp": "(88 - 95 HP)",
+					"moves": [
+						{
+							"name": "Demon Form",
+							"effects": [
+								{
+									"name": "Demon Form 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Iron Wave",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Bash",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Twin Strike",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "Starts with #wDemon #wForm, then cycles #wIron #wWave -> #wBash -> #wTwin #wStrike.",
+					"notes": "Innate #uBuffer #b1.",
+					"hp": "(88 - 95 HP)",
+					"moves": [
+						{
+							"name": "Demon Form",
+							"effects": [
+								{
+									"name": "Demon Form 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "Iron Wave",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "Bash",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "Vulnerable 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "Twin Strike",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

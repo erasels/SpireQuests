@@ -1,0 +1,10 @@
+{
+  "${ModID}:GrandFinaleQuest": {
+    "TITLE": "GRAND FINALE",
+    "DESCRIPTION": "Obtain a #yQuestbound #yGrand #yFinale. NL Play #yGrand #yFinale.",
+    "AUTHOR": "SoytheProton",
+    "TRACKER_TEXT": [
+      "Grand Finale played"
+    ]
+  }
+}

@@ -9,6 +9,7 @@ import spireQuests.quests.gk.actions.TrapshotAction;
 import spireQuests.quests.gk.util.HermitCompatUtil;
 
 import static spireQuests.Anniv8Mod.makeID;
+import static spireQuests.quests.gk.util.HermitCompatUtil.HERMIT_GUN_EFFECT;
 import static spireQuests.util.CompatUtil.*;
 
 public class Trapshot extends AbstractBPCard {

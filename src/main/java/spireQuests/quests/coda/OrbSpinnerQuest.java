@@ -55,7 +55,7 @@ public class OrbSpinnerQuest extends AbstractQuest {
         for (AbstractOrb o : evokedOrbs) {
             evokedOrbsStr.add(o.name);
         }
-        PowerTip ret = new PowerTip(localization.EXTRA_TEXT[1], String.join("; ", evokedOrbsStr));
+        PowerTip ret = new PowerTip(questStrings.TRACKER_TEXT[1], String.join("; ", evokedOrbsStr));
         return ret;
     }
 

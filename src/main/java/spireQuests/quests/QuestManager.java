@@ -7,11 +7,12 @@ import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import spireQuests.Anniv8Mod;
 import spireQuests.cardmods.QuestboundMod;
 import spireQuests.patches.QuestRunHistoryPatch;
@@ -27,6 +28,8 @@ import static spireQuests.Anniv8Mod.modID;
         method = SpirePatch.CLASS
 )
 public class QuestManager {
+    private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestManager")).TEXT;
+
     public static final int QUEST_LIMIT = 5;
 
     private static final Map<String, AbstractQuest> quests = new HashMap<>();
@@ -124,7 +127,7 @@ public class QuestManager {
         if (quest.questboundCards != null) {
             quest.questboundCards.forEach(c -> {
                 CardModifierManager.addModifier(c, new QuestboundMod(quest));
-                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(new GrandFinale(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(c.makeCopy(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
             });
         }
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
@@ -147,9 +150,15 @@ public class QuestManager {
             return;
         }
 
-        if (AbstractDungeon.currMapNode == null) return;
-        if (AbstractDungeon.currMapNode.room == null) return;
-        if (AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT) return;
+        int complainCode = -1;
+        if (AbstractDungeon.currMapNode == null) complainCode = 0;
+        else if (AbstractDungeon.currMapNode.room == null) complainCode = 0;
+        else if (AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT) complainCode = 1;
+        if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.COMBAT_REWARD && quest.rewardScreenOnly) complainCode = 2;
+        if(complainCode > -1) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[complainCode], true));
+            return;
+        }
 
         quests().remove(quest);
         quest.obtainRewards();

@@ -2,7 +2,6 @@ package spireQuests.quests.modargo;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.Loader;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -33,9 +32,9 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class GatheringExpeditionQuest extends AbstractQuest {
-    private static final Texture FLOWERS_IMAGE = TexLoader.getTexture(Anniv8Mod.makeImagePath("modargo/FlowersMapIcon.png"));
-    private static final Texture MINERALS_IMAGE = TexLoader.getTexture(Anniv8Mod.makeImagePath("modargo/MineralsMapIcon.png"));
-    private static final Texture GEMS_IMAGE = TexLoader.getTexture(Anniv8Mod.makeImagePath("modargo/GemsMapIcon.png"));
+    private static final Texture FLOWERS_IMAGE = TexLoader.getTexture(Anniv8Mod.makeContributionPath("modargo", "FlowersMapIcon.png"));
+    private static final Texture MINERALS_IMAGE = TexLoader.getTexture(Anniv8Mod.makeContributionPath("modargo", "MineralsMapIcon.png"));
+    private static final Texture GEMS_IMAGE = TexLoader.getTexture(Anniv8Mod.makeContributionPath("modargo", "GemsMapIcon.png"));
 
     public GatheringExpeditionQuest() {
         super(QuestType.LONG, QuestDifficulty.NORMAL);
@@ -60,21 +59,21 @@ public class GatheringExpeditionQuest extends AbstractQuest {
             return super.getDescription();
         }
         switch (flavor) {
-            case Flowers: return localization.TEXT[3];
-            case Minerals: return localization.TEXT[4];
-            default: return localization.TEXT[5];
+            case Flowers: return questStrings.EXTRA_TEXT[0];
+            case Minerals: return questStrings.EXTRA_TEXT[1];
+            default: return questStrings.EXTRA_TEXT[2];
         }
     }
 
     private String getTrackerText() {
         ExpeditionFlavor flavor = getFlavor();
         if (flavor == null) {
-            return localization.EXTRA_TEXT[0];
+            return questStrings.TRACKER_TEXT[0];
         }
         switch (flavor) {
-            case Flowers: return localization.EXTRA_TEXT[1];
-            case Minerals: return localization.EXTRA_TEXT[2];
-            default: return localization.EXTRA_TEXT[3];
+            case Flowers: return questStrings.TRACKER_TEXT[1];
+            case Minerals: return questStrings.TRACKER_TEXT[2];
+            default: return questStrings.TRACKER_TEXT[3];
         }
     }
 

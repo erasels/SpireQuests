@@ -1,0 +1,20 @@
+{
+  "${ModID}:GennGreymaneQuest": {
+    "TITLE": "Genn Greymane",
+    "DESCRIPTION": "Build your deck with at least 10 even/X-cost cards and no odd-cost cards (excluding starter cards).",
+    "AUTHOR": "snumodder",
+    "REWARD": "Upgrade all starter cards.",
+    "TRACKER_TEXT": [
+      "Even/X-cost",
+      "No odd-cost"
+    ]
+  },
+  "${ModID}:GaronaHalforcenQuest": {
+    "TITLE": "Garona Halforcen",
+    "DESCRIPTION": "Obtain #yQuestbound #yKing #yLlane. NL Prevent it from exhausting for 3 combats.",
+    "AUTHOR": "snumodder",
+    "TRACKER_TEXT": [
+      "King Llane survived"
+    ]
+  }
+}

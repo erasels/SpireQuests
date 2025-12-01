@@ -46,7 +46,7 @@ public class MulticlassQuest extends AbstractQuest {
 
     @Override
     public String getDescription() {
-        return this.playerClass == null ? localization.TEXT[1] : String.format(localization.TEXT[4], FontHelper.colorString(getCharacter(this.playerClass).getTitle(this.playerClass), "y"));
+        return this.playerClass == null ? questStrings.EXTRA_TEXT[2] : String.format(questStrings.EXTRA_TEXT[3], FontHelper.colorString(getCharacter(this.playerClass).getTitle(this.playerClass), "y"));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MulticlassQuest extends AbstractQuest {
 
     public void setPlayerClass(AbstractPlayer.PlayerClass playerClass) {
         this.playerClass = playerClass;
-        this.name = this.playerClass == null ? localization.TEXT[0] : String.format(localization.TEXT[3], getCharacter(this.playerClass).getTitle(this.playerClass));
+        this.name = this.playerClass == null ? questStrings.EXTRA_TEXT[0] : String.format(questStrings.EXTRA_TEXT[1], getCharacter(this.playerClass).getTitle(this.playerClass));
         this.getPlayerClassTracker().playerClass = playerClass;
         MulticlassEmblem relic = new MulticlassEmblem();
         relic.setPlayerClass(this.playerClass);

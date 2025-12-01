@@ -12,16 +12,22 @@ public class FakePlayCardEffect extends AbstractGameEffect {
     private static final float START_SCALE = 0.75f, END_SCALE = 0.15f;
     private static final float POPIN = 0.25f;
 
-    private AbstractCard card;
-    private AbstractCreature playSource;
+    private final AbstractCard card;
+    private final AbstractCreature playSource;
+    private final float xOffset;
 
     // Cache the starting position for the card
     private float startX;
     private float startY;
 
     public FakePlayCardEffect(AbstractCreature playSource, AbstractCard toShow) {
+        this(playSource, toShow, 0f);
+    }
+
+    public FakePlayCardEffect(AbstractCreature playSource, AbstractCard toShow, float xOffset) {
         this.playSource = playSource;
         this.card = toShow.makeStatEquivalentCopy();
+        this.xOffset = xOffset;
         this.startingDuration = this.duration = 1.75f; // 1.75 seconds, not using Settings.DUR so fast mode doesn't affect it
     }
 
@@ -29,12 +35,13 @@ public class FakePlayCardEffect extends AbstractGameEffect {
     public void update() {
         if (startingDuration == duration) {
             // Decide which side of the screen to display the card on
-            int displayPosition = Settings.WIDTH / 2;
+            float displayPosition = Settings.WIDTH / 2f;
             if (playSource.hb_x > displayPosition) {
                 displayPosition *= 0.9f;
             } else {
                 displayPosition *= 1.1f;
             }
+            displayPosition += xOffset * Settings.xScale;
 
             // Initial card position and scale (before it starts moving)
             startX = displayPosition;

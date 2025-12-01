@@ -12,6 +12,8 @@ import spireQuests.quests.modargo.cards.PerfectlyPacked;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static spireQuests.util.CompatUtil.pmLoaded;
+
 public class PackFanaticQuest extends AbstractQuest {
     public static Class<?> anniv5;
     public static Class<?> abstractCardPack;
@@ -19,7 +21,7 @@ public class PackFanaticQuest extends AbstractQuest {
 
     public PackFanaticQuest() {
         super(QuestType.LONG, QuestDifficulty.NORMAL);
-        if (Loader.isModLoaded("anniv5")) {
+        if (pmLoaded()) {
             try {
                 anniv5 = Class.forName("thePackmaster.SpireAnniversary5Mod");
                 abstractCardPack = Class.forName("thePackmaster.packs.AbstractCardPack");
@@ -47,7 +49,7 @@ public class PackFanaticQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return Loader.isModLoaded("anniv5")
+        return pmLoaded()
                 && anniv5 != null
                 && abstractCardPack != null
                 && cardParentMap != null

@@ -48,5 +48,12 @@
     "DESCRIPTIONS": [
       "Upon pickup, gain #b10 gold, gain #b1 Max HP, and #yUpgrade #b1 random #yCommon card."
     ]
+  },
+  "${ModID}:VolatileStardust": {
+    "NAME": "Volatile Stardust",
+    "FLAVOR": "Extracted from a fallen star.",
+    "DESCRIPTIONS": [
+      "Whenever you fully block attack damage, deal #b8 damage back."
+    ]
   }
 }

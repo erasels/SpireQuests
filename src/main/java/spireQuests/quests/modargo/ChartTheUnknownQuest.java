@@ -19,6 +19,11 @@ public class ChartTheUnknownQuest extends AbstractQuest {
     }
 
     @Override
+    public float getTitleScale() {
+        return 0.8f;
+    }
+
+    @Override
     public boolean canSpawn() {
         return AbstractDungeon.actNum == 1;
     }

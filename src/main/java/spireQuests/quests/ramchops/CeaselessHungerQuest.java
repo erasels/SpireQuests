@@ -35,7 +35,6 @@ public class CeaselessHungerQuest extends AbstractQuest {
         new TriggeredUpdateTracker<>(QuestTriggers.CHEST_OPENED, 0, 1, ()-> AbstractDungeon.actNum == 3 ? 1 : 0).add(this);
 
         useDefaultReward = false;
-        rewardsText = localization.EXTRA_TEXT[1];
 
         addReward(new QuestReward.RandomRelicReward(AbstractRelic.RelicTier.COMMON));
         addReward(new QuestReward.RandomRelicReward(AbstractRelic.RelicTier.COMMON));
