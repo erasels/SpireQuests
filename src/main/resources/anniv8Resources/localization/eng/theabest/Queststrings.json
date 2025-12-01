@@ -23,14 +23,6 @@
       "Turns waited"
     ]
   },
-  "${ModID}:BolsterQuest": {
-    "TITLE": "Bolster",
-    "DESCRIPTION": "Increase your Max HP.",
-    "AUTHOR": "Theabest",
-    "TRACKER_TEXT": [
-      "Gained Max HP"
-    ]
-  },
   "${ModID}:UnchangedQuest": {
     "TITLE": "Unchanged",
     "DESCRIPTION": "Do not modify your Max HP. Beat the Act 2 Boss.",
