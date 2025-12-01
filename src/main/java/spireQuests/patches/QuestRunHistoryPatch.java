@@ -27,13 +27,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @SpirePatch(clz = AbstractPlayer.class, method = SpirePatch.CLASS)
 public class QuestRunHistoryPatch {
     private static final Logger logger = Anniv8Mod.logger;
+    private static final String[] RUN_HISTORY_TEXT = CardCrawlGame.languagePack.getUIString("RunHistoryPathNodes").TEXT;
     private static final String[] QUEST_TEXT = CardCrawlGame.languagePack.getUIString(Anniv8Mod.makeID("RunHistoryScreen")).TEXT;
 
+    public static final String NO_COST = "0";
+    public static final String GOLD = "gold";
+    public static final String HP = "hp";
+
     public static SpireField<List<List<String>>> questPickupPerFloorLog = new SpireField<>(ArrayList::new);
+    public static SpireField<List<List<String>>> questCostPerFloorLog = new SpireField<>(ArrayList::new);
     public static SpireField<List<List<String>>> questCompletionPerFloorLog = new SpireField<>(ArrayList::new);
     public static SpireField<List<List<String>>> questFailurePerFloorLog = new SpireField<>(ArrayList::new);
 
@@ -50,6 +57,20 @@ public class QuestRunHistoryPatch {
                     return;
                 }
                 questPickupPerFloorLog.get(AbstractDungeon.player).addAll(list);
+            }
+        });
+        BaseMod.addSaveField(Anniv8Mod.makeID("QuestCostPerFloor"), new CustomSavable<List<List<String>>>() {
+            @Override
+            public List<List<String>> onSave() {
+                return questCostPerFloorLog.get(AbstractDungeon.player);
+            }
+
+            @Override
+            public void onLoad(List<List<String>> list) {
+                if (list == null) {
+                    return;
+                }
+                questCostPerFloorLog.get(AbstractDungeon.player).addAll(list);
             }
         });
         BaseMod.addSaveField(Anniv8Mod.makeID("QuestCompletionPerFloor"), new CustomSavable<List<List<String>>>() {
@@ -92,6 +113,10 @@ public class QuestRunHistoryPatch {
             CtField field1 = CtField.make(fieldSource1, runData);
             runData.addField(field1);
 
+            String fieldSourceCost = "public java.util.List quest_cost_per_floor;";
+            CtField fieldCost = CtField.make(fieldSourceCost, runData);
+            runData.addField(fieldCost);
+
             String fieldSource2 = "public java.util.List quest_completion_per_floor;";
             CtField field2 = CtField.make(fieldSource2, runData);
             runData.addField(field2);
@@ -109,6 +134,8 @@ public class QuestRunHistoryPatch {
             ReflectionHacks.privateMethod(Metrics.class, "addData", Object.class, Object.class)
                     .invoke(__instance, "quest_pickup_per_floor", questPickupPerFloorLog.get(AbstractDungeon.player));
             ReflectionHacks.privateMethod(Metrics.class, "addData", Object.class, Object.class)
+                    .invoke(__instance, "quest_cost_per_floor", questCostPerFloorLog.get(AbstractDungeon.player));
+            ReflectionHacks.privateMethod(Metrics.class, "addData", Object.class, Object.class)
                     .invoke(__instance, "quest_completion_per_floor", questCompletionPerFloorLog.get(AbstractDungeon.player));
             ReflectionHacks.privateMethod(Metrics.class, "addData", Object.class, Object.class)
                     .invoke(__instance, "quest_failure_per_floor", questFailurePerFloorLog.get(AbstractDungeon.player));
@@ -118,6 +145,7 @@ public class QuestRunHistoryPatch {
     @SpirePatch(clz = RunPathElement.class, method = SpirePatch.CLASS)
     public static class RunPathElementFields {
         public static final SpireField<List<String>> questPickups = new SpireField<>(() -> null);
+        public static final SpireField<List<String>> questCosts = new SpireField<>(() -> null);
         public static final SpireField<List<String>> questCompletions = new SpireField<>(() -> null);
         public static final SpireField<List<String>> questFailures = new SpireField<>(() -> null);
     }
@@ -128,9 +156,11 @@ public class QuestRunHistoryPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = {"element", "i"})
         public static void addQuestData(RunHistoryPath __instance, RunData newData, RunPathElement element, int i) throws NoSuchFieldException, IllegalAccessException {
             Field field1 = newData.getClass().getField("quest_pickup_per_floor");
+            Field fieldCost = newData.getClass().getField("quest_cost_per_floor");
             Field field2 = newData.getClass().getField("quest_completion_per_floor");
             Field field3 = newData.getClass().getField("quest_failure_per_floor");
             List quest_pickup_per_floor = (List) field1.get(newData);
+            List quest_cost_per_floor = (List) fieldCost.get(newData);
             List quest_completion_per_floor = (List) field2.get(newData);
             List quest_failure_per_floor = (List) field3.get(newData);
             // Element 0 of the quest data is what happened in the Neow room, but there's no RunPathElement for the Neow
@@ -149,6 +179,17 @@ public class QuestRunHistoryPatch {
                     logger.warn("Unrecognized quest_pickup_per_floor data: " + questIDs);
                 }
                 RunPathElementFields.questPickups.set(element, s);
+            }
+            if (quest_cost_per_floor != null && pickupDataIndex < quest_cost_per_floor.size()) {
+                Object questIDs = quest_cost_per_floor.get(pickupDataIndex);
+                List<String> s = null;
+                if (questIDs instanceof List) {
+                    //noinspection unchecked
+                    s = (List<String>) questIDs;
+                } else if (questIDs != null) {
+                    logger.warn("Unrecognized quest_pickup_per_floor data: " + questIDs);
+                }
+                RunPathElementFields.questCosts.set(element, s);
             }
             if (quest_completion_per_floor != null && i + 1 < quest_completion_per_floor.size()) {
                 Object questIDs = quest_completion_per_floor.get(i + 1);
@@ -188,15 +229,18 @@ public class QuestRunHistoryPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = {"sb"})
         public static void displayQuestData(RunPathElement __instance, StringBuilder sb) {
             List<String> questPickups = RunPathElementFields.questPickups.get(__instance);
+            List<String> questCosts = RunPathElementFields.questCosts.get(__instance);
+            List<String[]> questPickupsAndCosts = questPickups == null ? null : IntStream.range(0, questPickups.size()).mapToObj(i -> new String[] { questPickups.get(i), questCosts != null && questCosts.size() > i ? questCosts.get(i) : NO_COST }).collect(Collectors.toList());
             List<String> questCompletions = RunPathElementFields.questCompletions.get(__instance);
             List<String> questFailures = RunPathElementFields.questFailures.get(__instance);
             Map<String, AbstractQuest> allQuests = QuestManager.getAllQuests().stream().collect(Collectors.toMap(q -> q.id, q -> q));
-            if (questPickups != null && !questPickups.isEmpty()) {
-                String questNames = questPickups.stream()
-                        .map(id -> allQuests.getOrDefault(id, null))
-                        .filter(q -> q != null)
-                        .map(q -> q.name)
-                        .map(s -> FontHelper.colorString(s, "b"))
+            if (questPickupsAndCosts != null && !questPickupsAndCosts.isEmpty()) {
+                String questNames = questPickupsAndCosts.stream()
+                        .filter(t -> allQuests.containsKey(t[0]))
+                        .map(t ->  {
+                            String cost = costToString(t[1]);
+                            return FontHelper.colorString(allQuests.get(t[0]).name, "b") + (cost.isEmpty() ? "" : " (" + cost + ")");
+                        })
                         .collect(Collectors.joining(" NL TAB "));
                 if (!questNames.isEmpty()) {
                     if (sb.length() > 0) {
@@ -247,6 +291,22 @@ public class QuestRunHistoryPatch {
                 return LineFinder.findInOrder(ctMethodToPatch, matcher);
             }
         }
+
+        private static String costToString(String cost) {
+            if (cost == null || cost.equals(NO_COST)) {
+                return "";
+            }
+            if (cost.endsWith(GOLD)) {
+                int gold = Integer.parseInt(cost.replace(GOLD, ""), 10);
+                return String.format(RUN_HISTORY_TEXT[17].replace("#y", ""), gold);
+            }
+            if (cost.endsWith(HP)) {
+                int hp = Integer.parseInt(cost.replace(HP, ""), 10);
+                return String.format(RUN_HISTORY_TEXT[39], hp);
+            }
+            logger.warn("Unrecognized quest cost string: " + cost);
+            return "";
+        }
     }
 
     @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = {SaveFile.class})
@@ -254,6 +314,7 @@ public class QuestRunHistoryPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static void nextRoomTransitionAddEntriesPatch(AbstractDungeon __instance, SaveFile saveFile) {
             questPickupPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
+            questCostPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
             questCompletionPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
             questFailurePerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
         }
@@ -274,6 +335,7 @@ public class QuestRunHistoryPatch {
         public static void startOfRun() {
             if (!CardCrawlGame.loadingSave) {
                 questPickupPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
+                questCostPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
                 questCompletionPerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
                 questFailurePerFloorLog.get(AbstractDungeon.player).add(new ArrayList<>());
             }

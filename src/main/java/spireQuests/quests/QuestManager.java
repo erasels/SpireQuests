@@ -138,6 +138,13 @@ public class QuestManager {
         } else {
             Anniv8Mod.logger.error("questPickupPerFloor was empty, not adding quest to run history.");
         }
+        List<List<String>> questCostPerFloor = QuestRunHistoryPatch.questCostPerFloorLog.get(AbstractDungeon.player);
+        if (!questCostPerFloor.isEmpty()) {
+            String costString = !Anniv8Mod.questsHaveCost() || quest.getCost() == 0 ? QuestRunHistoryPatch.NO_COST : quest.getCost() + (quest.usingGoldCost ? QuestRunHistoryPatch.GOLD : QuestRunHistoryPatch.HP);
+            questCostPerFloor.get(questCostPerFloor.size() - 1).add(costString);
+        } else {
+            Anniv8Mod.logger.error("questCostPerFloor was empty, not adding quest to run history.");
+        }
     }
 
     public static void completeQuest(AbstractQuest quest) {
