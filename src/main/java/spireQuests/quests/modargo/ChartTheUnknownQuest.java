@@ -16,11 +16,7 @@ public class ChartTheUnknownQuest extends AbstractQuest {
                 .add(this);
 
         addReward(new QuestReward.RelicReward(new OwlMask()));
-    }
-
-    @Override
-    public float getTitleScale() {
-        return 0.8f;
+        titleScale = 0.9f;
     }
 
     @Override

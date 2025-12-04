@@ -45,6 +45,7 @@ public class GatheringExpeditionQuest extends AbstractQuest {
         tracker.text = this.getTrackerText();
 
         addReward(new QuestReward.RelicReward(this.getRelic()));
+        titleScale = 0.8f;
     }
 
     @Override

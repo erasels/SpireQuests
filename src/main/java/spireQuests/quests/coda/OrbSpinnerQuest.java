@@ -1,6 +1,7 @@
 package spireQuests.quests.coda;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -16,7 +17,7 @@ import spireQuests.quests.coda.relics.RadiationDispenserRelic;
 
 public class OrbSpinnerQuest extends AbstractQuest {
 
-    private ArrayList<AbstractOrb> evokedOrbs = new ArrayList();
+    private ArrayList<AbstractOrb> evokedOrbs = new ArrayList<>();
 
     public OrbSpinnerQuest() {
         super(QuestType.SHORT, QuestDifficulty.NORMAL);
@@ -27,12 +28,12 @@ public class OrbSpinnerQuest extends AbstractQuest {
         new TriggerEvent<AbstractOrb>(QuestTriggers.EVOKE_ORB, (orb) -> 
             {
                 // IDK how you evoked an empty orb or null orb, but you did it chief.
-                if (orb.ID == null || orb.ID == EmptyOrbSlot.ORB_ID) {
+                if (orb.ID == null || orb.ID.equals(EmptyOrbSlot.ORB_ID)) {
                     return;
                 }
 
                 for (AbstractOrb o : evokedOrbs) {
-                    if (o.ID == orb.ID) {
+                    if (Objects.equals(o.ID, orb.ID)) {
                         return;
                     }
                 }

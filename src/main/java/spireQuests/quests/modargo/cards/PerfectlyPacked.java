@@ -1,6 +1,5 @@
 package spireQuests.quests.modargo.cards;
 
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

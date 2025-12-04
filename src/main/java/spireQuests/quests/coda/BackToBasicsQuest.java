@@ -70,11 +70,7 @@ public class BackToBasicsQuest extends AbstractQuest {
                     .filter(c -> c.rarity == CardRarity.BASIC || c.rarity == CardRarity.COMMON)
                     .count();
 
-        if (count >= 5) {
-            return true;
-        }
-
-        return false;
+        return count >= 5;
     }
 
     @Override

@@ -56,31 +56,19 @@ public class QuestStats {
     }
 
     public boolean hasBadge(PlayerClass playerClass) {
-        if (this.charactersCompleted.contains(playerClass.toString())) {
-            return true;
-        }
-        return false;
+        return this.charactersCompleted.contains(playerClass.toString());
     }
 
     public boolean hasBronze() {
-        if (this.bronzes >= 1) {
-            return true;
-        }
-        return false;
+        return this.bronzes >= 1;
     }
 
     public boolean hasSilver() {
-        if (this.silvers >= 1) {
-            return true;
-        }
-        return false;
+        return this.silvers >= 1;
     }
 
     public boolean hasGold() {
-        if (this.golds >= 1) {
-            return true;
-        }
-        return false;
+        return this.golds >= 1;
     }
 
     public static QuestStats getAllStats() {
@@ -105,9 +93,6 @@ public class QuestStats {
 
     public static boolean hasFinishedAnyQuest() {
         QuestStats qs = getAllStats();
-        if (qs.timesComplete > 0 || qs.timesFailed > 0) {
-            return true;
-        }
-        return false;
+        return qs.timesComplete > 0 || qs.timesFailed > 0;
     }
 }

@@ -21,6 +21,7 @@ public class WindowShoppingQuest extends AbstractQuest {
                 .add(this);
 
         addReward(new QuestReward.RelicReward(new MembershipCard()));
+        titleScale = 0.9f;
     }
 
 

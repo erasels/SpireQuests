@@ -1,7 +1,6 @@
 package spireQuests.quests.snumodder;
 
 import basemod.helpers.CardPowerTip;
-import basemod.patches.whatmod.RelicTips;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import spireQuests.Anniv8Mod;
@@ -25,6 +24,7 @@ public class GaronaHalforcenQuest extends AbstractQuest {
         questboundCards.add(new KingLlane());
 
         addReward(new QuestReward.RelicReward(new TheKingslayer()));
+        titleScale = 1.0f;
     }
 
     @Override

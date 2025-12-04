@@ -30,15 +30,15 @@ public class QuestStatManager {
     
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private static JsonObject rootJson;
-    private static String FILE_PATH = SpireConfig.makeFilePath(Anniv8Mod.modID, "questStats", "json");
+    private static final String FILE_PATH = SpireConfig.makeFilePath(Anniv8Mod.modID, "questStats", "json");
 
-    private static Logger logger = new Logger(QuestStatManager.class.getSimpleName());
+    private static final Logger logger = new Logger(QuestStatManager.class.getSimpleName());
     
-    private static ArrayList<String> seenBuffer = new ArrayList<>();
-    private static ArrayList<String> takenBuffer = new ArrayList<>();
-    private static ArrayList<String> failedBuffer = new ArrayList<>();
-    private static ArrayList<String> completedBuffer = new ArrayList<>();
-    private static Map<String, String> charBuffer = new HashMap();
+    private static final ArrayList<String> seenBuffer = new ArrayList<>();
+    private static final ArrayList<String> takenBuffer = new ArrayList<>();
+    private static final ArrayList<String> failedBuffer = new ArrayList<>();
+    private static final ArrayList<String> completedBuffer = new ArrayList<>();
+    private static final Map<String, String> charBuffer = new HashMap<>();
     private static File file;
     private static boolean doNotLog = false;
     

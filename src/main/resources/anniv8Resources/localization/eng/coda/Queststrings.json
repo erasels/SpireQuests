@@ -1,7 +1,7 @@
 {
   "${ModID}:OrbSpinnerQuest": {
     "TITLE": "Orb Spinner",
-    "DESCRIPTION": "Evoke 4 unique orb types in one turn.",
+    "DESCRIPTION": "Evoke #b4 unique orb types in one turn.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
       "Evoke 4 unique orb types in one turn.",
@@ -19,7 +19,7 @@
   },
   "${ModID}:UnbreakableQuest": {
     "TITLE": "Unbreakable",
-    "DESCRIPTION": "Take damage equal to your base Max HP within 17 floors.",
+    "DESCRIPTION": "Take damage equal to your base Max HP within #b17 floors.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
       "Damage remaining: ",

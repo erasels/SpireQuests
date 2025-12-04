@@ -170,7 +170,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     /**
-     * This allows customizing the PowerTip that is shown if needsHoverToolip is true and the quets is hovered in the UI
+     * This allows customizing the PowerTip that is shown if needsHoverTooltip is true and the quest is hovered in the UI
      *
      * @return PowerTip that will be displayed on hover
      */

@@ -1,17 +1,10 @@
 package spireQuests.quests.ramchops;
 
-import basemod.helpers.CardPowerTip;
-import basemod.patches.whatmod.RelicTips;
-import com.megacrit.cardcrawl.cards.red.Bash;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.shrines.Nloth;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.neow.NeowRoom;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.NlothsMask;
-import com.megacrit.cardcrawl.vfx.ObtainKeyEffect;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
@@ -38,8 +31,8 @@ public class CeaselessHungerQuest extends AbstractQuest {
 
         addReward(new QuestReward.RandomRelicReward(AbstractRelic.RelicTier.COMMON));
         addReward(new QuestReward.RandomRelicReward(AbstractRelic.RelicTier.COMMON));
+        titleScale = 1.0f;
     }
-
 
     @Override
     public void onStart() {

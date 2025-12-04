@@ -1,7 +1,6 @@
 package spireQuests.quests.modargo;
 
 import basemod.ReflectionHacks;
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.patches.QuestTriggers;

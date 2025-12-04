@@ -1,6 +1,5 @@
 package spireQuests.quests.gk.cards;
 
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ReboundPower;
