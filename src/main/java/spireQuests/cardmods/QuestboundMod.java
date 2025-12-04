@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import spireQuests.Anniv8Mod;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
+import spireQuests.util.QuestStringsUtils;
 import spireQuests.util.TexLoader;
 
 import java.util.Collections;
@@ -56,7 +57,7 @@ public class QuestboundMod extends AbstractCardModifier {
     }
 
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
-        String questName = FontHelper.colorString(CardCrawlGame.languagePack.getUIString(boundQuestID).TEXT[0], "y");
+        String questName = FontHelper.colorString(QuestStringsUtils.getQuestString(boundQuestID).TITLE, "y");
         return Collections.singletonList(new TooltipInfo(Anniv8Mod.keywords.get("Questbound").PROPER_NAME, String.format(uiStrings.TEXT[1], questName)));
     }
 
