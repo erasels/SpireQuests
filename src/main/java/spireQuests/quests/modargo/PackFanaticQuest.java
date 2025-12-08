@@ -16,6 +16,7 @@ import static spireQuests.util.CompatUtil.pmLoaded;
 public class PackFanaticQuest extends AbstractQuest {
     public static Class<?> anniv5;
     public static Class<?> abstractCardPack;
+    public static Class<?> packSummary;
     public static HashMap<String, String> cardParentMap;
 
     public PackFanaticQuest() {
@@ -24,6 +25,7 @@ public class PackFanaticQuest extends AbstractQuest {
             try {
                 anniv5 = Class.forName("thePackmaster.SpireAnniversary5Mod");
                 abstractCardPack = Class.forName("thePackmaster.packs.AbstractCardPack");
+                packSummary = Class.forName("thePackmaster.packs.AbstractCardPack$PackSummary");
                 cardParentMap = ReflectionHacks.getPrivateStatic(anniv5, "cardParentMap");
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -52,6 +54,7 @@ public class PackFanaticQuest extends AbstractQuest {
                 && anniv5 != null
                 && abstractCardPack != null
                 && cardParentMap != null
+                && packSummary != null
                 && AbstractDungeon.player.chosenClass.toString().equals("THE_PACKMASTER")
                 && getCurrentPoolPackIDs().size() == 7;
     }

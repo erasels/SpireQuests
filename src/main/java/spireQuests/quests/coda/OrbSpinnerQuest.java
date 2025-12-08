@@ -1,19 +1,20 @@
 package spireQuests.quests.coda;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward.PotionReward;
 import spireQuests.quests.QuestReward.RelicReward;
 import spireQuests.quests.coda.potions.NuclearJuicePotion;
 import spireQuests.quests.coda.relics.RadiationDispenserRelic;
+import spireQuests.quests.modargo.PackFanaticQuest;
+import spireQuests.util.CompatUtil;
+
+import java.util.*;
 
 public class OrbSpinnerQuest extends AbstractQuest {
 
@@ -62,6 +63,15 @@ public class OrbSpinnerQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
+        if (CompatUtil.pmLoaded() && PackFanaticQuest.anniv5 != null && PackFanaticQuest.abstractCardPack != null && PackFanaticQuest.packSummary != null && AbstractDungeon.player.chosenClass.toString().equals("THE_PACKMASTER")) {
+            List<Object> currentPoolPacks = ReflectionHacks.getPrivateStatic(PackFanaticQuest.anniv5, "currentPoolPacks");
+            //noinspection unchecked,rawtypes
+            return currentPoolPacks.stream()
+                    .map(p -> ReflectionHacks.getPrivate(p, PackFanaticQuest.abstractCardPack, "summary"))
+                    .map(s -> (HashSet<Enum>)ReflectionHacks.getPrivate(s, PackFanaticQuest.packSummary, "tags"))
+                    .flatMap(Collection::stream)
+                    .anyMatch(tag -> tag.name().equals("Orbs"));
+        }
         return AbstractDungeon.player.masterMaxOrbs > 0;
     }
     
