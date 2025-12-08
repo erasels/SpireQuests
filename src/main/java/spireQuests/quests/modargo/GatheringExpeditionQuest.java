@@ -2,8 +2,7 @@ package spireQuests.quests.modargo;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.Loader;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -153,16 +152,22 @@ public class GatheringExpeditionQuest extends AbstractQuest {
             MapRoomNode node = possibleNodes.get(i);
             ShowMarkedNodesOnMapPatch.ImageField.image.set(node, image);
         }
+        MarkedField.marked.set(CardCrawlGame.dungeon, true);
     }
 
     public static void markNodesIfQuestActive() {
-        if (CardCrawlGame.isInARun() && QuestManager.quests().stream().anyMatch(q -> q instanceof GatheringExpeditionQuest)) {
+        if (CardCrawlGame.isInARun() && QuestManager.quests().stream().anyMatch(q -> q instanceof GatheringExpeditionQuest) && !MarkedField.marked.get(CardCrawlGame.dungeon)) {
             markNodes();
         }
     }
 
     public static boolean isNodeMarked(MapRoomNode node) {
         return ShowMarkedNodesOnMapPatch.ImageField.image.get(node) != null;
+    }
+
+    @SpirePatch2(clz = AbstractDungeon.class, method = SpirePatch.CLASS)
+    public static class MarkedField {
+        public static SpireField<Boolean> marked = new SpireField<>(() -> false);
     }
 
     @SpirePatch2(clz = CardCrawlGame.class, method = "getDungeon", paramtypez = {String.class, AbstractPlayer.class})
@@ -181,6 +186,19 @@ public class GatheringExpeditionQuest extends AbstractQuest {
     public static class MarkNodesOnGetDungeonActLikeIt {
         @SpirePostfixPatch
         public static void markNodesOnGetDungeonActLikeIt() {
+            markNodesIfQuestActive();
+        }
+    }
+
+    // When loading a save file, populatePathTaken calls nextRoomTransition, which trigger ENTER_ROOM for quests.
+    // We need the markings to be on the map before that.
+    // In theory, now that this patch exists we might be able to get rid of the SaveFile versions of the other patches.
+    // However, we've left them in place in case there are code paths that still need them, and because we check whether
+    // the marking has already been done so it should be safe
+    @SpirePatch2(clz = AbstractDungeon.class, method = "populatePathTaken")
+    public static class MarkNodesBeforePopulatePathTaken {
+        @SpirePrefixPatch
+        public static void markNodesBeforePopulatePathTaken() {
             markNodesIfQuestActive();
         }
     }
