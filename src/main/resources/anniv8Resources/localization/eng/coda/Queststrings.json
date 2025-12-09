@@ -26,8 +26,8 @@
       "Floors remaining: "
     ],
     "EXTRA_TEXT": [
-      "Take ",
-      " damage within 17 floors."
+      "Take #b",
+      " damage within #b17 floors."
     ]
   }
 }
