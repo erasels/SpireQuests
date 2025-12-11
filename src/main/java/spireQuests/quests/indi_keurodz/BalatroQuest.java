@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Array;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -140,7 +141,7 @@ public class BalatroQuest extends AbstractQuest {
         int n = possibleNodes.size() / 2;
         for (int i = 0; i < n; i++) {
             MapRoomNode node = possibleNodes.get(i);
-            BossBlind randomBlind = BossBlind.values()[rng.random(BossBlind.values().length)];
+            BossBlind randomBlind = BossBlind.values()[rng.random(BossBlind.values().length - 1)];
             ShowBossBlindsOnMapPatch.BossBlindField.blind.set(node, randomBlind);
         }
     }
