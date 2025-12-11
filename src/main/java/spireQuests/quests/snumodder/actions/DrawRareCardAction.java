@@ -1,4 +1,4 @@
-package spireQuests.quests.snumodder;
+package spireQuests.quests.snumodder.actions;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

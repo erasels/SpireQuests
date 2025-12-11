@@ -2,5 +2,76 @@
   "${ModID}:KingLlane": {
     "NAME": "King Llane",
     "DESCRIPTION": "Ethereal. NL Innate. NL Draw !M! card. NL Shuffle this card into your draw pile."
+  },
+  "${ModID}:RecursiveModule": {
+    "NAME": "Recursive Module",
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle this card into your draw pile.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "Shuffle this card into your draw pile."
+    ]
+  },
+  "${ModID}:PowerModule": {
+    "NAME": "Power Module",
+    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by 4 this combat.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "Increase this card's damage by 4 this combat."
+    ]
+  },
+  "${ModID}:HaywireModule": {
+    "NAME": "Haywire Module",
+    "DESCRIPTION": "Deal !D! damage. NL Lose 2 HP.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "Lose 2 HP."
+    ]
+  },
+  "${ModID}:PylonModule": {
+    "NAME": "Pylon Module",
+    "DESCRIPTION": "Deal !D! damage. NL Upgrade a card in your hand for the rest of combat.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "Upgrade a card in your hand for the rest of combat."
+    ]
+  },
+  "${ModID}:VirusModule": {
+    "NAME": "Virus Module",
+    "DESCRIPTION": "Deal !D! damage. NL Apply 1 Weak.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "Apply 1 Weak."
+    ]
+  },
+  "${ModID}:TickingModule": {
+    "NAME": "Ticking Module",
+    "DESCRIPTION": "Costs 1 less [E] for every 5 cards played this turn while in hand. NL Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": [
+      "Costs 1 less [E] for every 5 cards played this turn while in hand.",
+      ""
+    ]
+  },
+  "${ModID}:TwinModule": {
+    "NAME": "Twin Module",
+    "DESCRIPTION": "Deal !D! damage. NL stslib:Persist !stslib:persist!",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "stslib:Persist !stslib:persist!"
+    ]
+  },
+  "${ModID}:PerfectModule": {
+    "NAME": "Perfect Module",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": [
+      "Gain !B! Block.",
+      ""
+    ]
+  },
+  "${ModID}:ZilliaxDeluxe3000": {
+    "NAME": "Zilliax Deluxe 3000",
+    "DESCRIPTION": "This card’s effects are created by combining two modules.",
+    "EXTENDED_DESCRIPTION": [
+      "Deal !D! damage."
+    ]
   }
 }

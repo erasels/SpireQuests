@@ -1,13 +1,14 @@
 package spireQuests.quests.snumodder;
 
 import basemod.helpers.CardPowerTip;
-import basemod.patches.whatmod.RelicTips;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.snumodder.cards.KingLlane;
+import spireQuests.quests.snumodder.relics.TheKingslayer;
 
 import java.util.ArrayList;
 import java.util.List;
