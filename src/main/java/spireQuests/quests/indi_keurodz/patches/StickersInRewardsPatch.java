@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.helpers.CardModifierManager;
-import spireQuests.quests.indi_keurodz.EternalStickerModifier;
-import spireQuests.quests.indi_keurodz.PerishableStickerModifier;
-import spireQuests.quests.indi_keurodz.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.EternalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 
 public class StickersInRewardsPatch {

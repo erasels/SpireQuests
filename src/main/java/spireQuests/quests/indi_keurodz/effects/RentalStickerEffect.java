@@ -1,4 +1,4 @@
-package spireQuests.quests.indi_keurodz;
+package spireQuests.quests.indi_keurodz.effects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
+import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 import spireQuests.quests.indi_keurodz.patches.DisableLoseGoldSfxPatch;
 
 public class RentalStickerEffect extends AbstractGameEffect {

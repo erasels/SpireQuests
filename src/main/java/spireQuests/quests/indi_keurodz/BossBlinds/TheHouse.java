@@ -1,69 +1,85 @@
 package spireQuests.quests.indi_keurodz.BossBlinds;
 
 import basemod.helpers.CardModifierManager;
+import javassist.CtBehavior;
+
+import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
+import com.evacipated.cardcrawl.modthespire.lib.Matcher;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.FaceDownModifier;
+import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
 import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
-
-import java.util.List;
+import spireQuests.util.Wiz;
 
 public class TheHouse {
-    @SpirePatch(clz = AbstractPlayer.class, method = "draw", paramtypez = {int.class})
+
+    private static boolean finishedDrawingStartingHand = false;
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "draw", paramtypez = { int.class })
     public static class DrawCardPatch {
-        private static boolean hasDrawnStartingHand = false;
 
-        @SpirePostfixPatch
-        public static void afterDraw(AbstractPlayer __instance, int numCards) {
+        @SpireInsertPatch(locator = Locator.class, localvars = { "c" })
+        public static void onDraw(AbstractPlayer __instance, AbstractCard c) {
             BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind == null) return;
+            if (blind == null)
+                return;
 
-            Random rng = new Random(Settings.seed + AbstractDungeon.actNum * 1977L);
-
-            for (AbstractCard card: __instance.hand.group) {
-                switch (blind) {
-                    case Wheel:
-                        if (rng.random(7) == 1) CardModifierManager.addModifier(card, new FaceDownModifier());
-                        break;
-                    case House:
-                        if (!hasDrawnStartingHand) {
-                            CardModifierManager.addModifier(card, new FaceDownModifier());
-                        }
-                        break;
-                    default:
-                        break;
-                }
+            switch (blind) {
+                case Wheel:
+                    if (AbstractDungeon.cardRandomRng.random(6) == 1)
+                        CardModifierManager.addModifier(c, new FaceDownModifier());
+                    break;
+                case House:
+                    if (!finishedDrawingStartingHand) {
+                        CardModifierManager.addModifier(c, new FaceDownModifier());
+                    }
+                    break;
+                default:
+                    break;
             }
 
-            if (!hasDrawnStartingHand && __instance.hand.size() >= __instance.gameHandSize) {
-                hasDrawnStartingHand = true;
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(CardGroup.class, "addToHand");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
     }
 
-    @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfCombatLogic")
+    @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfCombatPreDrawLogic")
     public static class ResetStartingHandFlag {
         @SpirePostfixPatch
         public static void reset(AbstractPlayer __instance) {
-            DrawCardPatch.hasDrawnStartingHand = false;
+            finishedDrawingStartingHand = false;
         }
     }
 
-    /*
-        Probably an ideal entry point since it is on a per card drawn basis before it is shown
-     */
-//    @SpirePatch(clz = CardGroup.class, method = "moveToHand", paramtypez = {AbstractCard.class, CardGroup.class})
-//    public static class MoveToHandPatch {
-//        @SpirePostfixPatch
-//        public static void Postfix(CardGroup __instance, AbstractCard c, CardGroup group) {
-//
-//        }
-//    }
+    @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfTurnPostDrawRelics")
+    public static class FinishedStartingHand {
+        @SpirePrefixPatch
+        public static void finished(AbstractPlayer __instance) {
+            Wiz.atb(new AbstractGameAction() {
+
+                @Override
+                public void update() {
+                    isDone = true;
+                    finishedDrawingStartingHand = true;
+                }
+            });
+        }
+    }
 
 }

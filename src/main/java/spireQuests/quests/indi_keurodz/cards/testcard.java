@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.helpers.CardModifierManager;
 import spireQuests.Anniv8Mod;
 import spireQuests.abstracts.AbstractSQCard;
-import spireQuests.quests.indi_keurodz.EternalStickerModifier;
-import spireQuests.quests.indi_keurodz.FaceDownModifier;
-import spireQuests.quests.indi_keurodz.PerishableStickerModifier;
-import spireQuests.quests.indi_keurodz.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.EternalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
+import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 
 public class testcard extends AbstractSQCard {
 

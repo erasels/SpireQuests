@@ -1,4 +1,4 @@
-package spireQuests.quests.indi_keurodz;
+package spireQuests.quests.indi_keurodz.modifiers;
 
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,14 +8,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import spireQuests.Anniv8Mod;
-import spireQuests.quests.AbstractQuest;
-import spireQuests.quests.indi_keurodz.patches.BattleEndPatch;
 import spireQuests.util.TexLoader;
 
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,8 +53,9 @@ public class PerishableStickerModifier extends AbstractCardModifier {
     }
 
     /*
-        Ticks remaining turns down by 1
-        @returns true if the remaining turns is 0 or less than 0
+     * Ticks remaining turns down by 1
+     *
+     * @returns true if the remaining turns is 0 or less than 0
      */
     public boolean tickRemainingTurns() {
         return --REMAINING_TURNS <= 0;
