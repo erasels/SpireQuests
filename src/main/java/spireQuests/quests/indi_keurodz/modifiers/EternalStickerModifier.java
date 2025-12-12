@@ -1,4 +1,4 @@
-package spireQuests.quests.indi_keurodz;
+package spireQuests.quests.indi_keurodz.modifiers;
 
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Texture;

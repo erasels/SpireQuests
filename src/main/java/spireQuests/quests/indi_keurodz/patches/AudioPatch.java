@@ -3,7 +3,7 @@ package spireQuests.quests.indi_keurodz.patches;
 import basemod.BaseMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import spireQuests.Anniv8Mod;
-import spireQuests.quests.indi_keurodz.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 
 public class AudioPatch {
     @SpirePatch2(clz = BaseMod.class, method = "publishAddAudio")

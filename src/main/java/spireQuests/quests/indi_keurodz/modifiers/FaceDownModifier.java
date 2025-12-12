@@ -1,4 +1,4 @@
-package spireQuests.quests.indi_keurodz;
+package spireQuests.quests.indi_keurodz.modifiers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
