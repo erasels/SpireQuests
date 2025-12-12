@@ -11,8 +11,6 @@ import spireQuests.quests.Trigger;
 
 import java.util.Collections;
 
-import static spireQuests.util.CompatUtil.pmLoaded;
-
 public class BiomeSamplerQuest extends AbstractQuest {
     public static Class<?> anniv6;
     public static Class<?> zonePatches;

@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+
+import spireQuests.questStats.QuestStatManager;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
@@ -38,6 +40,10 @@ public class QuestBoardProp {
         this.sprite = TexLoader.getTexture(questBoardPropImagePath);
         this.hb = new Hitbox(sprite.getWidth() * Settings.xScale, sprite.getHeight() * Settings.yScale);
         this.hb.move(drawX + ((float) sprite.getWidth() / 2) * Settings.xScale, drawY + ((float) sprite.getHeight() / 2) * Settings.yScale);
+
+        for (AbstractQuest q : this.quests){
+            QuestStatManager.markSeen(q.id);
+        }
     }
 
     public void update() {

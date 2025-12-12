@@ -20,6 +20,9 @@ public class BackToBasicsQuest extends AbstractQuest {
         super(QuestType.SHORT, QuestDifficulty.HARD);
 
         new TriggeredUpdateTracker<Integer, Void>(QuestTriggers.VICTORY, 0, 1, () -> {
+            if (AbstractDungeon.currMapNode == null) {
+                return 0;
+            }
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisCombat;
             AbstractRoom room = AbstractDungeon.getCurrRoom();
             if (!(room.eliteTrigger || room instanceof MonsterRoomBoss)) {
@@ -70,11 +73,7 @@ public class BackToBasicsQuest extends AbstractQuest {
                     .filter(c -> c.rarity == CardRarity.BASIC || c.rarity == CardRarity.COMMON)
                     .count();
 
-        if (count >= 5) {
-            return true;
-        }
-
-        return false;
+        return count >= 5;
     }
 
     @Override

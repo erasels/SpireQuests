@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
-import spireQuests.quests.modargo.powers.OrbMinionDefectFocusDamageIncreasePower;
 import spireQuests.quests.modargo.vfx.OrbMinionFlareEffect;
 
 import static spireQuests.Anniv8Mod.makeID;

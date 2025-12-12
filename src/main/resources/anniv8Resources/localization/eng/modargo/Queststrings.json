@@ -1,7 +1,7 @@
 {
   "${ModID}:PeasantQuest": {
     "TITLE": "Peasant",
-    "DESCRIPTION": "Have the number of commons in your deck, minus the number of uncommons and rares, be at least 10.",
+    "DESCRIPTION": "Have the number of commons in your deck, minus the number of uncommons and rares, be at least #b10.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "Common surplus"
@@ -9,7 +9,7 @@
   },
   "${ModID}:ChartTheUnknownQuest": {
     "TITLE": "Chart the Unknown",
-    "DESCRIPTION": "Visit 4 ? rooms.",
+    "DESCRIPTION": "Visit #b4 #y? rooms.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "? rooms"
@@ -90,7 +90,7 @@
   },
   "${ModID}:BiomeSamplerQuest": {
     "TITLE": "Biome Sampler",
-    "DESCRIPTION": "Enter a biome 5 times.",
+    "DESCRIPTION": "Enter a biome #b5 times.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "Biomes entered"

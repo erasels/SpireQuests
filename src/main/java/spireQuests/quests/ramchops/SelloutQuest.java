@@ -32,7 +32,6 @@ public class SelloutQuest extends AbstractQuest implements CustomSavable<Integer
         new TriggerTracker<>(QuestTriggers.REMOVE_CARD, 3).triggerCondition((card)->
            card instanceof SelloutAdvertisementCard
         ).add(this);
-        addReward(new QuestReward.GoldReward(0));
     }
 
     @Override

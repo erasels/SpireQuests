@@ -6,6 +6,10 @@ import com.megacrit.cardcrawl.rooms.ShopRoom;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.ramchops.patch.ShopMoneyTracker;
+
+import static spireQuests.util.Wiz.adp;
+import static spireQuests.util.Wiz.curRoom;
 
 public class WindowShoppingQuest extends AbstractQuest {
 
@@ -21,11 +25,29 @@ public class WindowShoppingQuest extends AbstractQuest {
                 .add(this);
 
         addReward(new QuestReward.RelicReward(new MembershipCard()));
+        titleScale = 0.9f;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (ShopMoneyTracker.getMoneySpentInRoom(curRoom()) > 0){
+            this.forceFail();
+        }
+    }
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum >= 1 && AbstractDungeon.actNum <= 2;
+        return AbstractDungeon.actNum >= 1 && AbstractDungeon.actNum <= 2 && !adp().hasRelic(MembershipCard.ID);
+    }
+
+    @Override
+    public String getDescription() {
+        if(curRoom() instanceof ShopRoom){
+            return super.getDescription() + questStrings.EXTRA_TEXT[0];
+        }
+
+        return super.getDescription();
     }
 }

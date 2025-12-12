@@ -5,7 +5,7 @@
     "AUTHOR": "Darkglade",
     "REWARD": "Upgrade a random #yAttack.",
     "TRACKER_TEXT": [
-      "Elite encounter with last played card being a starter Strike"
+      "Elite finished by starter Strike"
     ]
   },
   "${ModID}:DoomsdayCalendarQuest": {

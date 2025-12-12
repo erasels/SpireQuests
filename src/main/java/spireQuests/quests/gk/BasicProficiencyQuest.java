@@ -55,6 +55,7 @@ public class BasicProficiencyQuest extends AbstractQuest {
                 .add(this);
 
         addReward(new QuestReward.CardReward(CardLibrary.getCopy(rewardCardId)));
+        titleScale = 1.0f;
     }
 
     @Override

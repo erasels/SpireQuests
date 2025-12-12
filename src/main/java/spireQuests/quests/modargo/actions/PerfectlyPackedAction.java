@@ -53,11 +53,16 @@ public class PerfectlyPackedAction extends AbstractGameAction {
         List<AbstractCard> choices = new ArrayList<>();
         Set<String> seenPacks = new HashSet<>();
         Collections.shuffle(cards, new java.util.Random(AbstractDungeon.cardRandomRng.randomLong()));
+        int i = 0;
         for (AbstractCard c : cards) {
             String packID = PackFanaticQuest.cardParentMap.get(c.cardID);
             if (!seenPacks.contains(packID)) {
                 choices.add(c);
                 seenPacks.add(packID);
+                i++;
+                if (i >= 3) {
+                    break;
+                }
             }
         }
 

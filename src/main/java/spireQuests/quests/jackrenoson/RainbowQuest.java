@@ -14,7 +14,6 @@ import spireQuests.quests.modargo.MulticlassQuest;
 import spireQuests.quests.modargo.relics.MulticlassEmblem;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class RainbowQuest extends AbstractQuest {
     ArrayList<AbstractCard.CardColor> colorsAdded = new ArrayList<>();
@@ -39,6 +38,7 @@ public class RainbowQuest extends AbstractQuest {
 
         addReward(new QuestReward.RelicReward(new QuestionCard()));
         addReward(new QuestReward.RelicReward(new PrismaticShard()));
+        titleScale = 1.1f;
     }
 
     @Override

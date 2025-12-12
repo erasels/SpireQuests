@@ -47,6 +47,11 @@ public class UnbreakableQuest extends AbstractQuest {
     }
 
     @Override
+    public boolean canSpawn() {
+        return AbstractDungeon.actNum < 3;
+    }
+
+    @Override
     public String getDescription() {
         if (!CardCrawlGame.isInARun()) {
             return super.getDescription();

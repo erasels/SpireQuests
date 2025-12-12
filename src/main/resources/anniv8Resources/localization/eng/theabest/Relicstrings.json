@@ -1,0 +1,16 @@
+{
+  "${ModID}:NailPolish": {
+    "NAME": "Nail Polish",
+    "FLAVOR": "Got to look your best.",
+    "DESCRIPTIONS": [
+      "ALL #yClaws are #yUpgraded."
+    ]
+  },
+  "${ModID}:GlassBar": {
+    "NAME": "Glass Bar",
+    "FLAVOR": "Not the most sturdy, try not to break it.",
+    "DESCRIPTIONS": [
+      "At the end of your turn gain #b12 #yBlock. Decrease the #yBlock gained by #b2 for each card played this turn."
+    ]
+  }
+}

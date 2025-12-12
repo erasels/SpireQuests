@@ -5,7 +5,8 @@
     "AUTHOR": "ME",
     "REWARD": "Obtain a Burning Blood and 100 Gold.",
     "TRACKER_TEXT": [
-      "Add 5 Common Cards in a row"
+      "Add 5 Common Cards in a row",
+      "Obtain a Burning Blood and 100 Gold."
     ]
   },
   "${ModID}:EnterRoomTestQuest": {

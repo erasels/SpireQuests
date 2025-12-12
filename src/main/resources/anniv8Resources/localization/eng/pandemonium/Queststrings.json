@@ -1,7 +1,7 @@
 {
   "${ModID}:PristineCardsQuest": {
     "TITLE": "Pristine Cards",
-    "DESCRIPTION": "Obtain 3 #yPristine cards that now appear in card rewards.",
+    "DESCRIPTION": "Obtain #b3 #yPristine cards that now appear in card rewards.",
     "AUTHOR": "Pandemonium",
     "REWARD": "#yUpgrade your #yPristine cards.",
     "TRACKER_TEXT": [

@@ -1,0 +1,8 @@
+{
+  "${ModID}:PristineModifier": {
+    "TEXT": [
+      "Pristine",
+      "So new it's shiny! Appears randomly in card rewards while the quest is active."
+    ]
+  }
+}

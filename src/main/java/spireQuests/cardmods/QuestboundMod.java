@@ -8,12 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import spireQuests.Anniv8Mod;
 import spireQuests.quests.AbstractQuest;
-import spireQuests.quests.QuestManager;
+import spireQuests.util.QuestStringsUtils;
 import spireQuests.util.TexLoader;
 
 import java.util.Collections;
@@ -26,12 +25,11 @@ public class QuestboundMod extends AbstractCardModifier {
 
     public transient AbstractQuest boundQuest;
     public String boundQuestID;
-    public int boundQuestIndex;
+    public int boundQuestIndex; // Only used for saving and loading
 
     public QuestboundMod(AbstractQuest quest) {
         boundQuest = quest;
         boundQuestID = quest.id;
-        boundQuestIndex = QuestManager.currentQuests.get(AbstractDungeon.player).indexOf(quest);
     }
 
     public QuestboundMod(String questID, int questIndex) {
@@ -56,7 +54,7 @@ public class QuestboundMod extends AbstractCardModifier {
     }
 
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
-        String questName = FontHelper.colorString(CardCrawlGame.languagePack.getUIString(boundQuestID).TEXT[0], "y");
+        String questName = FontHelper.colorString(QuestStringsUtils.getQuestString(boundQuestID).TITLE, "y");
         return Collections.singletonList(new TooltipInfo(Anniv8Mod.keywords.get("Questbound").PROPER_NAME, String.format(uiStrings.TEXT[1], questName)));
     }
 

@@ -26,6 +26,7 @@ public class GaronaHalforcenQuest extends AbstractQuest {
         questboundCards.add(new KingLlane());
 
         addReward(new QuestReward.RelicReward(new TheKingslayer()));
+        titleScale = 1.0f;
     }
 
     @Override
