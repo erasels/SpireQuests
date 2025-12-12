@@ -31,11 +31,11 @@ public class TickingModuleMonster extends AbstractSQMonster {
     private final int strengthUp;
 
     public TickingModuleMonster(float x, float y) {
-        super(NAME, ID, HEALTH * actNum, 0f, -30.0f, 160f, 140f, null, x, y);
+        super(NAME, ID, HEALTH * actNum, 0f, -30.0f, 160f, 180f, null, x, y);
         setHp(calcAscensionTankiness(HEALTH * actNum));
         addMove(TICK, Intent.BUFF);
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(3 * actNum));
-        strengthUp = AbstractDungeon.ascensionLevel < 17 ? 2 : 3;
+        strengthUp = actNum * AbstractDungeon.ascensionLevel < 17 ? 2 : 3;
         loadAnimation(makeImagePath("snumodder/zilliax/ticking/ticking.atlas"),
                 makeImagePath("snumodder/zilliax/ticking/ticking.json"),
                 1f);

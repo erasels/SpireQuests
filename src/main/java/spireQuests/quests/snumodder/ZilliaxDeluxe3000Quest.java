@@ -25,7 +25,6 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.monsterRng;
-import static spireQuests.Anniv8Mod.logger;
 import static spireQuests.Anniv8Mod.makeID;
 
 public class ZilliaxDeluxe3000Quest extends AbstractQuest {

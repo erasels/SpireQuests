@@ -27,7 +27,7 @@ public class TwinModuleMonster extends AbstractSQMonster {
     private boolean firstTurn = true;
 
     public TwinModuleMonster(float x, float y, boolean first) {
-        super(NAME, ID, HEALTH * actNum, 0f, -30.0f, 160f, 140f, null, x, y);
+        super(NAME, ID, HEALTH * actNum, 0f, -30.0f, 160f, 180f, null, x, y);
         setHp(calcAscensionTankiness(HEALTH * actNum));
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(5 * actNum));
         addMove(REST, Intent.UNKNOWN);

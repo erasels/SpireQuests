@@ -29,7 +29,7 @@ public class PylonModuleMonster extends AbstractSQMonster {
     private static final int HEALTH = 10;
 
     public PylonModuleMonster(float x, float y) {
-        super(NAME, ID, HEALTH * actNum, 0f, -30.0f, 160f, 140f, null, x, y);
+        super(NAME, ID, HEALTH * actNum, 0f, -30.0f, 160f, 180f, null, x, y);
         setHp(calcAscensionTankiness(HEALTH * actNum));
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(5 * actNum));
         loadAnimation(makeImagePath("snumodder/zilliax/pylon/pylon.atlas"),
