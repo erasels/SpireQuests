@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class PeasantQuest extends AbstractQuest {
     public PeasantQuest() {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
-        new TriggeredUpdateTracker<>(QuestTriggers.DECK_CHANGE, 0, 10, () -> {
+        new TriggeredUpdateTracker<>(QuestTriggers.DECK_CHANGE, 0, 8, () -> {
             ArrayList<AbstractCard> deck = AbstractDungeon.player.masterDeck.group;
             int commons = (int) deck.stream().filter(c -> c.rarity == AbstractCard.CardRarity.COMMON).count();
             int others = (int) deck.stream().filter(c -> c.rarity == AbstractCard.CardRarity.UNCOMMON || c.rarity == AbstractCard.CardRarity.RARE).count();

@@ -1,7 +1,7 @@
 {
   "${ModID}:PeasantQuest": {
     "TITLE": "Peasant",
-    "DESCRIPTION": "Have the number of commons in your deck, minus the number of uncommons and rares, be at least #b10.",
+    "DESCRIPTION": "Have the number of commons in your deck, minus the number of uncommons and rares, be at least #b8.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "Common surplus"
@@ -9,7 +9,7 @@
   },
   "${ModID}:ChartTheUnknownQuest": {
     "TITLE": "Chart the Unknown",
-    "DESCRIPTION": "Visit #b4 #y? rooms.",
+    "DESCRIPTION": "Visit #b3 #y? rooms.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "? rooms"
@@ -74,7 +74,7 @@
   },
   "${ModID}:BloodfireRitualQuest": {
     "TITLE": "Bloodfire Ritual",
-    "DESCRIPTION": "Complete a long ritual to gain the #pBlackstaff. Each combat, shuffle a special #b2-cost #ySkill with #yEthereal, #yExhaust, and a small negative effect into your draw pile. Play these special cards #b20 times to complete the ritual.",
+    "DESCRIPTION": "Complete a long ritual to gain the #pBlackstaff. Each combat, shuffle a special #b1-cost #ySkill with #yEthereal, #yExhaust, and a small negative effect into your draw pile. Play these special cards #b20 times to complete the ritual.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "Ritual steps"

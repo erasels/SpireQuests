@@ -12,7 +12,7 @@ public class BloodfireRitualQuestboundPlaceholder extends AbstractSQCard {
     public static final String ID = makeID(BloodfireRitualQuestboundPlaceholder.class.getSimpleName());
 
     public BloodfireRitualQuestboundPlaceholder() {
-        super(ID, "modargo", 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, "modargo", 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
         MultiCardPreview.add(this, new FocusedTrance(), new BloodInTheChalice(), new PrimordialFlux(), new EssenceOfFlame(), new PowerFromTheDark());
         setBackgroundTexture(makeContributionPath("modargo", "BloodfireCardBackground.png"), makeContributionPath("modargo", "BloodfireCardBackground_p.png"));
 

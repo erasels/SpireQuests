@@ -19,7 +19,7 @@ public class VolatileStardust extends AbstractSQRelic {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (damageAmount == 0 && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != AbstractDungeon.player) {
             this.flash();
-            this.addToTop(new DamageAction(info.owner, new DamageInfo(AbstractDungeon.player, 8, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
+            this.addToTop(new DamageAction(info.owner, new DamageInfo(AbstractDungeon.player, 7, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
         }
         return damageAmount;
     }

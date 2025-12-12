@@ -11,7 +11,7 @@ public class ChartTheUnknownQuest extends AbstractQuest {
     public ChartTheUnknownQuest() {
         super(QuestType.SHORT, QuestDifficulty.EASY);
 
-        new TriggerTracker<>(QuestTriggers.ENTER_ROOM, 4)
+        new TriggerTracker<>(QuestTriggers.ENTER_ROOM, 3)
                 .triggerCondition((node) -> node.room instanceof EventRoom)
                 .add(this);
 
