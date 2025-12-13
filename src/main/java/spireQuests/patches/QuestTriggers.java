@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import javassist.CtBehavior;
+import spireQuests.Anniv8Mod;
 import spireQuests.quests.Trigger;
 import spireQuests.quests.ramchops.patch.ShopMoneyTracker;
 
@@ -104,15 +105,35 @@ public class QuestTriggers {
             method = "nextRoomTransition",
             paramtypez = {SaveFile.class}
     )
+    public static class OnLeaveRoom {
+        @SpireInsertPatch(
+                locator = Locator.class
+        )
+        public static void onLeaveRoom(AbstractDungeon __instance, SaveFile file) {
+            if (!disabled() && AbstractDungeon.currMapNode != null) {
+                LEAVE_ROOM.trigger(AbstractDungeon.currMapNode);
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractDungeon.class, "incrementFloorBasedMetrics");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractDungeon.class,
+            method = "nextRoomTransition",
+            paramtypez = {SaveFile.class}
+    )
     public static class OnEnterRoom {
         @SpireInsertPatch(
                 locator = Locator.class
         )
         public static void onEnterRoom(AbstractDungeon __instance, SaveFile file) {
-            if (!disabled() && AbstractDungeon.currMapNode != null) {
-                LEAVE_ROOM.trigger(AbstractDungeon.currMapNode);
-            }
-
             if (!disabled() && AbstractDungeon.nextRoom != null) {
                 ENTER_ROOM.trigger(AbstractDungeon.nextRoom);
             }
