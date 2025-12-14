@@ -1,7 +1,7 @@
 {
   "${ModID}:GennGreymaneQuest": {
     "TITLE": "Genn Greymane",
-    "DESCRIPTION": "Build your deck with at least #b10 even/X-cost cards and no odd-cost cards (excluding starter cards).",
+    "DESCRIPTION": "Build your deck with at least #b7 even/X-cost cards and no odd-cost cards (excluding starter cards).",
     "AUTHOR": "snumodder",
     "REWARD": "Upgrade all starter cards.",
     "TRACKER_TEXT": [
