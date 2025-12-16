@@ -54,8 +54,8 @@ public class BalatroQuest extends AbstractQuest {
         Goad,
         Head,
         Hook,
-        House,
-        Manacle,
+        House, // done
+        Manacle, // done
         Mark,
         Mouth,
         Needle,
@@ -69,7 +69,7 @@ public class BalatroQuest extends AbstractQuest {
         VioletVessel,
         Wall,
         Water,
-        Wheel,
+        Wheel, // done
         Window;
 
         public final TooltipInfo tooltip;
@@ -77,7 +77,7 @@ public class BalatroQuest extends AbstractQuest {
 
         BossBlind() {
             this.tooltip = new TooltipInfo(blindStrings.get(this.toString()),
-                    blindStrings.get(this.toString() + "1"));
+                    blindStrings.get(this.toString() + "_Description"));
 
             this.frames = BossBlindsAtlas.findRegions(this.toString());
         }
