@@ -37,6 +37,7 @@ import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.coda.potions.NuclearJuicePotion;
 import spireQuests.quests.gk.monsters.ICEliteMonster;
+import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 import spireQuests.quests.modargo.monsters.DefectEliteMonster;
 import spireQuests.quests.ramchops.EvilSentryQuest;
 import spireQuests.quests.ramchops.monsters.EvilSentry;
@@ -337,6 +338,8 @@ public class Anniv8Mod implements
 
     @Override
     public void receiveAddAudio() {
+        BaseMod.addAudio(RentalStickerModifier.MODIFIER_ID,
+                Anniv8Mod.modID + "Resources/images/indi_keurodz/coin1.ogg");
     }
 
     @Override
