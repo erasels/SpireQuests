@@ -16,7 +16,7 @@ import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 
 public class ShowBossBlindsOnMapPatch {
 
-    private static final float FRAME_TIME = 0.08f;
+    private static final float FRAME_TIME = 0.085f;
 
     private static final float OFFSET_Y = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_Y");
     private static final float OFFSET_X = ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_X");
