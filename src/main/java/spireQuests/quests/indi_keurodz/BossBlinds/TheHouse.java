@@ -7,7 +7,6 @@ import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -29,7 +28,7 @@ public class TheHouse {
     public static class DrawCardPatch {
 
         @SpireInsertPatch(locator = Locator.class, localvars = { "c" })
-        public static void onDraw(AbstractPlayer __instance, AbstractCard c) {
+        public static void onDraw(AbstractCard c) {
             BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
             if (blind == null)
                 return;
@@ -59,18 +58,18 @@ public class TheHouse {
         }
     }
 
-    @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfCombatPreDrawLogic")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfCombatPreDrawLogic")
     public static class ResetStartingHandFlag {
         @SpirePostfixPatch
-        public static void reset(AbstractPlayer __instance) {
+        public static void reset() {
             finishedDrawingStartingHand = false;
         }
     }
 
-    @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfTurnPostDrawRelics")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfTurnPostDrawRelics")
     public static class FinishedStartingHand {
         @SpirePrefixPatch
-        public static void finished(AbstractPlayer __instance) {
+        public static void finished() {
             Wiz.atb(new AbstractGameAction() {
 
                 @Override
