@@ -13,15 +13,20 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Ectoplasm;
 import com.megacrit.cardcrawl.rewards.chests.AbstractChest;
 import com.megacrit.cardcrawl.rewards.chests.BossChest;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import javassist.CtBehavior;
+import spireQuests.Anniv8Mod;
 import spireQuests.quests.Trigger;
+import spireQuests.quests.ramchops.patch.ShopMoneyTracker;
 
 public class QuestTriggers {
     public static final Trigger<Void> DECK_CHANGE = new Trigger<>();
@@ -45,6 +50,18 @@ public class QuestTriggers {
     public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
     public static final Trigger<Integer> ACT_CHANGE = new Trigger<>();
     public static final Trigger<AbstractChest> CHEST_OPENED = new Trigger<>(); //NOTE: This includes both normal and boss chests.
+
+
+    public static final Trigger<Integer> HEALTH_HEALED = new Trigger<>();
+    public static final Trigger<Void> MAX_HEALTH_CHANGED = new Trigger<>();
+    public static final Trigger<Integer> MAX_HEALTH_INCREASED = new Trigger<>();
+    public static final Trigger<Integer> MAX_HEALTH_DECREASED = new Trigger<>();
+
+    public static final Trigger<Integer> GAIN_MONEY = new Trigger<>(); //NOTE: Will not trigger if you have Ectoplasm.
+    public static final Trigger<Integer> LOSE_MONEY = new Trigger<>(); //NOTE: This counts all instances of losing money, including events
+    public static final Trigger<Integer> MONEY_SPENT_AT_SHOP = new Trigger<>(); //NOTE: This counts only money spent at shop and not money lost through events.
+
+    public static final Trigger<AbstractRelic> OBTAIN_RELIC = new Trigger<>(); //NOTE: This is triggered by both obtain() and instantObtain().
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -88,15 +105,35 @@ public class QuestTriggers {
             method = "nextRoomTransition",
             paramtypez = {SaveFile.class}
     )
+    public static class OnLeaveRoom {
+        @SpireInsertPatch(
+                locator = Locator.class
+        )
+        public static void onLeaveRoom(AbstractDungeon __instance, SaveFile file) {
+            if (!disabled() && AbstractDungeon.currMapNode != null) {
+                LEAVE_ROOM.trigger(AbstractDungeon.currMapNode);
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractDungeon.class, "incrementFloorBasedMetrics");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractDungeon.class,
+            method = "nextRoomTransition",
+            paramtypez = {SaveFile.class}
+    )
     public static class OnEnterRoom {
         @SpireInsertPatch(
                 locator = Locator.class
         )
         public static void onEnterRoom(AbstractDungeon __instance, SaveFile file) {
-            if (!disabled() && AbstractDungeon.currMapNode != null) {
-                LEAVE_ROOM.trigger(AbstractDungeon.currMapNode);
-            }
-
             if (!disabled() && AbstractDungeon.nextRoom != null) {
                 ENTER_ROOM.trigger(AbstractDungeon.nextRoom);
             }
@@ -283,6 +320,97 @@ public class QuestTriggers {
         public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
             Matcher finalMatcher = new Matcher.MethodCallMatcher(TopPanel.class, "destroyPotion");
             return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class, method = "heal", paramtypez = {int.class, boolean.class})
+    public static class OnHealHealth {
+        @SpirePostfixPatch
+        public static void onHeal(AbstractCreature __instance, int healAmount) {
+            if (disabled()) return;
+
+            if (__instance instanceof AbstractPlayer && healAmount > 0)
+                HEALTH_HEALED.trigger(healAmount);
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class, method = "increaseMaxHp")
+    public static class OnIncreaseMaxHealth {
+        @SpirePostfixPatch
+        public static void onIncrease(AbstractCreature __instance, int amount) {
+            if (disabled()) return;
+
+            if (__instance instanceof AbstractPlayer && amount > 0) {
+                MAX_HEALTH_INCREASED.trigger(amount);
+                MAX_HEALTH_CHANGED.trigger();
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class, method = "decreaseMaxHealth")
+    public static class OnDecreaseMaxHealth {
+        @SpirePostfixPatch
+        public static void onDecrease(AbstractCreature __instance, int amount) {
+            if (disabled()) return;
+
+            if (__instance instanceof AbstractPlayer && amount > 0) {
+                MAX_HEALTH_DECREASED.trigger(amount);
+                MAX_HEALTH_CHANGED.trigger();
+            }
+        }
+    }
+
+    @SpirePatch2(
+            clz = AbstractPlayer.class,
+            method = "gainGold",
+            paramtypez = int.class)
+    public static class GainGoldPatch{
+        @SpirePrefixPatch
+        public static void GainGoldPatch(AbstractPlayer __instance, int amount){
+            if (disabled()) return;
+
+            if (!__instance.hasRelic(Ectoplasm.ID)) {
+                GAIN_MONEY.trigger(amount);
+            }
+        }
+    }
+
+    @SpirePatch2(
+            clz = AbstractPlayer.class,
+            method = "loseGold",
+            paramtypez = int.class)
+    public static class SpendGoldPatch{
+        @SpirePrefixPatch
+        public static void LoseGoldPatch(AbstractPlayer __instance, int goldAmount){
+            if (disabled()) return;
+
+            LOSE_MONEY.trigger(goldAmount);
+
+            if (AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
+                MONEY_SPENT_AT_SHOP.trigger(goldAmount);
+            }
+
+        }
+    }
+
+    @SpirePatch2(
+            clz = AbstractRelic.class,
+            method = "obtain"
+    )
+    public static class ObtainRelicHook {
+        @SpireInsertPatch(
+                locator = Locator.class
+        )
+        public static void Insert(AbstractRelic __instance) {
+            if (disabled()) return;
+            OBTAIN_RELIC.trigger(__instance);
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher matcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
+                return LineFinder.findInOrder(ctBehavior, matcher);
+            }
         }
     }
 }

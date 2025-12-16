@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class Statistics {
     public static void logStatistics(Collection<AbstractQuest> quests) {
-        quests.removeIf(q -> q.getClass().getName().contains(".example."));
+        removeExampleQuests(quests);
         Map<AbstractQuest.QuestDifficulty, List<AbstractQuest>> questsByDifficulty = quests.stream().collect(Collectors.groupingBy(q -> q.difficulty));
         Anniv8Mod.logger.info(String.format("Quest difficulty: Easy: %s, Normal: %s, Hard: %s, Challenge: %s, Total: %s",
                 questsByDifficulty.get(AbstractQuest.QuestDifficulty.EASY).size(),
@@ -63,5 +63,9 @@ public class Statistics {
         }
         Anniv8Mod.logger.info(String.format("Quest rewards: relic: %s, random relic: %s, card: %s, gold: %s, potion: %s, custom: %s, multiple types: %s, multiple items: %s",
                 specificRelic, randomRelic, card, gold, potion, custom, multipleTypes, multipleItems));
+    }
+
+    public static void removeExampleQuests(Collection<AbstractQuest> quests) {
+        quests.removeIf(q -> q.getClass().getName().contains(".example."));
     }
 }

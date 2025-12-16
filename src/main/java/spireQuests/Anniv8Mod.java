@@ -31,6 +31,7 @@ import spireQuests.cardvars.SecondMagicNumber;
 import spireQuests.commands.AddQuestCommand;
 import spireQuests.commands.SpawnQuestCommand;
 import spireQuests.patches.QuestRunHistoryPatch;
+import spireQuests.questStats.QuestStatManager;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestGenerator;
 import spireQuests.quests.QuestManager;
@@ -38,10 +39,13 @@ import spireQuests.quests.coda.potions.NuclearJuicePotion;
 import spireQuests.quests.gk.monsters.ICEliteMonster;
 import spireQuests.quests.modargo.RealityTwistQuest;
 import spireQuests.quests.modargo.monsters.DefectEliteMonster;
+import spireQuests.quests.ramchops.EvilSentryQuest;
+import spireQuests.quests.ramchops.monsters.EvilSentry;
 import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.CompatUtil;
+import spireQuests.util.QuestStringsUtils;
 import spireQuests.util.TexLoader;
 
 import java.io.IOException;
@@ -62,7 +66,8 @@ public class Anniv8Mod implements
         AddAudioSubscriber,
         PostDungeonInitializeSubscriber,
         StartGameSubscriber,
-        PostRenderSubscriber {
+        PostRenderSubscriber,
+        PostDeathSubscriber {
 
     public static final Logger logger = LogManager.getLogger("SpireQuests");
 
@@ -76,6 +81,9 @@ public class Anniv8Mod implements
     public static SpireConfig modConfig = null;
     public static final String QUESTBOUND_CONFIG = "questboundConfig";
     public static boolean questboundConfig = true;
+    public static final String TROPHY_TOOLTIP_CONFIG = "trophyTooltipsConfig";
+    public static boolean trophyTooltipsConfig = false;
+
 
     public static final String modID = "anniv8";
 
@@ -161,6 +169,7 @@ public class Anniv8Mod implements
         QuestManager.initialize();
         QuestGenerator.initialize();
         QuestRunHistoryPatch.initialize();
+        QuestStatManager.initialize();
         addPotions();
         addMonsters();
         addSaveFields();
@@ -188,6 +197,11 @@ public class Anniv8Mod implements
     public static void addMonsters() {
         BaseMod.addMonster(ICEliteMonster.ID, () -> new ICEliteMonster());
         BaseMod.addMonster(DefectEliteMonster.ID, () -> new DefectEliteMonster());
+        BaseMod.addMonster(EvilSentry.ID, QuestStringsUtils.getQuestString(makeID(EvilSentryQuest.class.getSimpleName())).TITLE, () -> new MonsterGroup(new AbstractMonster[]{
+                new EvilSentry(-330.0F, 25.0F),
+                new EvilSentry(-85.0F, 10.0F),
+                new EvilSentry(140.0F, 30.0F)
+        }));
     }
 
     private static Consumer<String> getWidePotionsWhitelistMethod() {
@@ -269,6 +283,7 @@ public class Anniv8Mod implements
             loadStringsFile(languageAndFolder, PotionStrings.class);
             loadStringsFile(languageAndFolder, MonsterStrings.class);
             loadStringsFile(languageAndFolder, BlightStrings.class);
+            QuestStringsUtils.registerQuestStrings(filepath);
         }
     }
 
@@ -373,12 +388,24 @@ public class Anniv8Mod implements
                 });
         settingsPanel.addUIElement(toggleQuestboundButton);
 
+        FixedModLabeledToggleButton toggleTrophyTooltipsButton = new FixedModLabeledToggleButton(configStrings.TEXT[5],
+                350.0f, 500.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                trophyTooltipsConfig,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+                    trophyTooltipsConfig = button.enabled;
+                    saveConfig();
+                });
+        settingsPanel.addUIElement(toggleTrophyTooltipsButton);
+
         BaseMod.registerModBadge(badge, configStrings.TEXT[0], configStrings.TEXT[1], configStrings.TEXT[2], settingsPanel);
     }
 
     private void initializeSavedData() {
         hardModeConfig = modConfig.getBool(HARD_MODE_CONFIG);
         questboundConfig = modConfig.getBool(QUESTBOUND_CONFIG);
+        trophyTooltipsConfig = modConfig.getBool(TROPHY_TOOLTIP_CONFIG);
     }
 
     public static void addSaveFields() {
@@ -398,13 +425,45 @@ public class Anniv8Mod implements
         return questboundConfig;
     }
 
+    public static boolean trophyTooltipsEnabled() {
+        return trophyTooltipsConfig;
+    }
+
     public static void saveConfig() {
         try {
             modConfig.setBool(HARD_MODE_CONFIG, hardModeConfig);
             modConfig.setBool(QUESTBOUND_CONFIG, questboundConfig);
+            modConfig.setBool(TROPHY_TOOLTIP_CONFIG, trophyTooltipsConfig);
             modConfig.save();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void receivePostDeath() {
+        QuestManager.failAllActiveQuests();
+    }
+
+
+    public static boolean isStatsFTUEComplete() {
+        if (modConfig == null) {
+            return true;
+        }
+        return modConfig.getBool("CompletedStatsFTUE");
+    }
+
+
+    public static void completeStatsFTUE() {
+        if (modConfig == null) {
+            return;
+        }
+        try {
+            modConfig.setBool("CompletedStatsFTUE", true);
+            modConfig.save();
+        } catch (IOException e) {
+            logger.error(e);
         }
     }
 

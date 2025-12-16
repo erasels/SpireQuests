@@ -5,7 +5,8 @@
       "",
       "",
       "Enable quests to have costs to pick up.",
-      "Enable Master Deck visuals for Questbound cards."
+      "Enable Master Deck visuals for Questbound cards.",
+      "Enable tooltips to view trophy status on the quest board."
     ]
   },
   "${ModID}:QuestUI": {
@@ -29,7 +30,8 @@
   },
   "${ModID}:AbstractQuest": {
     "TEXT": [
-      "Quest Complete! Click to claim.",
+      "Quest Complete! Click outside of combat to claim.",
+      "Quest Complete! Click at a Reward Screen to claim.",
       "Quest Failed! Click to remove."
     ]
   },
@@ -40,7 +42,8 @@
       "a random Common relic",
       "a random Uncommon relic",
       "a random Rare relic",
-      "a random relic"
+      "a random relic",
+      "Gain #b%d Max HP."
     ]
   },
   "${ModID}:SingleCardReward": {
@@ -52,7 +55,8 @@
   "${ModID}:RunHistoryScreen": {
     "TEXT": [
       "Quests:",
-      "Completed:"
+      "Completed:",
+      "Failed:"
     ]
   },
     "${ModID}:QuestboundMod": {
@@ -60,5 +64,63 @@
         "${ModID}:Questbound. NL ",
         "Whenever you complete %s, remove this from your deck. Cannot be modified or removed by any other means."
       ]
-    }
+    },
+  "${ModID}:QuestManager": {
+    "TEXT": [
+      "I cannot claim this quest right now.",
+      "I cannot claim quests during combat.",
+      "I can only claim this quest at a reward screen."
+    ]
+  },
+  "${ModID}:QuestStatsScreen": {
+    "TEXT": [
+      "Quest Statistics",
+      "Times Seen",
+      "Times Taken",
+      "Times Completed",
+      "Times Failed",
+      "Quest Summary",
+      "Return",
+      "Complete quests to earn and upgrade medals. NL NL • 1 Completion — Bronze Medal NL • 5 Completions — Silver Medal NL • 10 Completions — Gold Medal NL NL Each time you complete a quest as a new character, you'll earn a badge that's displayed under your medal." ,
+      "Medal Progress",
+      "Bronze Medals",
+      "Silver Medals",
+      "Gold Medals",
+      "Quests Seen",
+      "Quests Taken",
+      "Quests Completed",
+      "Quests Failed"
+    ]
+  },
+  "${ModID}:QuestStatsMainMenuPanel": {
+    "TEXT": [
+      "Quest Log",
+      "View all quests along with your trophy and medal status."
+    ]
+  },
+  "${ModID}:StatRewardBox": {
+    "TEXT": [
+      "Random Relic Reward",
+      "Gold Reward",
+      "Other Reward",
+      "Max HP Reward"
+    ]
+  },
+  "${ModID}:StatisticsFTUE": {
+    "TEXT": [
+      "Quest Log",
+      "As you complete quests in the Spire you'll earn trophies and badges. You can view your progress toward them in the Quest Log section of the Statistics menu.",
+      "Continue"
+    ]
+  },
+  "${ModID}:QuestStats": {
+    "TEXT": [
+      "Trophy Stats",
+      "You've earned a #yBronze #yMedal for this quest! ",
+      "You've earned a #ySilver #yMedal for this quest! ",
+      "You've earned a #yGold #yMedal for this quest! ",
+      "You haven't earned a medal for this quest yet. ",
+      "You've completed this quest as: "
+    ]
+  }
 }

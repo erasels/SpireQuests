@@ -1,0 +1,9 @@
+{
+  "${ModID}:TheKingslayer": {
+    "NAME": "The Kingslayer",
+    "FLAVOR": "Llane's cruel grip shall be met with blood.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, put a random #yRare card from your draw pile into your hand."
+    ]
+  }
+}

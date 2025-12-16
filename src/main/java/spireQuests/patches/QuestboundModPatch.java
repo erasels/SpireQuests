@@ -178,7 +178,9 @@ public class QuestboundModPatch {
         @SpirePostfixPatch
         public static void loadPlayerSave() {
             for (AbstractQuest q : QuestManager.currentQuests.get(AbstractDungeon.player)) {
-                if (q.questboundCards != null) q.questboundCards.clear();
+                if (q.questboundCards != null) {
+                    q.questboundCards.clear();
+                }
             }
             for (Iterator<AbstractCard> iterator = Wiz.adp().masterDeck.group.iterator(); iterator.hasNext(); ) {
                 AbstractCard c = iterator.next();
@@ -197,9 +199,13 @@ public class QuestboundModPatch {
     public static class saveQuestboundCards {
         @SpirePrefixPatch
         public static void savefile() {
-            getQuestbound().forEach(q ->
-                    AbstractDungeon.player.masterDeck.group.addAll(0, q.questboundCards)
-            );
+            getQuestbound().flatMap(q -> q.questboundCards.stream()).forEach(c -> {
+                QuestboundMod mod = (QuestboundMod) CardModifierManager.getModifiers(c, QuestboundMod.ID).get(0);
+                if (mod != null) {
+                    mod.boundQuestIndex = QuestManager.currentQuests.get(AbstractDungeon.player).indexOf(mod.boundQuest);
+                }
+                AbstractDungeon.player.masterDeck.group.add(0, c);
+            });
         }
 
         // yes this needs to be an insert patch. It will break violently if it isn't.

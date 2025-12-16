@@ -37,16 +37,9 @@ public class BountyICQuest extends AbstractQuest {
                         ICEliteMonster.ID.equals(AbstractDungeon.lastCombatMetricKey))
                 .setFailureTrigger(QuestTriggers.ACT_CHANGE)
                 .add(this);
-    }
+        titleScale = 0.9f;
 
-    @Override
-    public float getTitleScale() {
-        return 0.8f;
-    }
-
-    @Override
-    public String getRewardsText() {
-        return localization.TEXT[3];
+        this.isAutoComplete = true;
     }
 
     @Override
@@ -107,31 +100,6 @@ public class BountyICQuest extends AbstractQuest {
         private static class PostNumCardsLocator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(ModHelper.class, "isModEnabled");
-                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
-            }
-        }
-    }
-
-    // Remove quest once the room is left, needs this annoying time since card rewards are re-generated and I don't want to introduce a custom eward type
-    @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = {SaveFile.class})
-    public static class AutoCompleteQuestLater {
-        @SpireInsertPatch(locator = Locator.class)
-        public static void enteringRoomPatch(AbstractDungeon __instance, SaveFile file) {
-            if (AbstractDungeon.currMapNode != null) {
-                BountyICQuest q = (BountyICQuest) QuestManager.quests().stream()
-                        .filter(quest -> ID.equals(quest.id) && quest.isCompleted())
-                        .findAny()
-                        .orElse(null);
-                if(q != null) {
-                    QuestManager.completeQuest(q);
-                }
-            }
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }

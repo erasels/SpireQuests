@@ -1,7 +1,7 @@
 {
   "${ModID}:SelloutAdCard": {
     "NAME": "Advertisement",
-    "DESCRIPTION": "Exhaust.",
+    "DESCRIPTION": "stslib:Exhaustive !stslib:ex!. Shuffle this card into your draw pile.",
     "EXTENDED_DESCRIPTION": [
       "(Your Ad Here, contact The Merchant for details.)",
       "(Ad Space For Rent, contact the Merchant for details.)",
@@ -36,7 +36,20 @@
       "(This card text was sponsored by Slay the Spire 2. Wishlist now on Steam!)",
       "(This card text was sponsored by Spire Cafe. Tired of climbing? Come in for a quick drink!)",
       "(This card text was sponsored by Paul Goodgrem. Did you know you have rights? Better Call Paul!)",
-      "(This card text was sponsored by the Free Spire Society. Tired of doing menial labor for the Taskmaster? You may be entitled to financial compensation.)"
+      "(This card text was sponsored by the Free Spire Society. Tired of doing menial labor for the Taskmaster? You may be entitled to financial compensation.)",
+      "(This card text was sponsored by Baalorlord. Slaying the Spire 4 days a week!)",
+      "(This card text was sponsored by the Necrobinder. Have you seen Osty? 500 Gold reward if found.)",
+      "(This card text was sponsored by the Regent. My goals are beyond your understanding.)",
+      "(This card text was sponsored by the Battle Tower. Enter if you dare...)",
+      "(This card text was sponsored by ModTheSpire. Happy 8th Anniversary!)",
+      "(This card text was sponsored by Jelly G..)",
+      "(This card text was sponsored by the City Library. Come read or relax! Our books don't stab you!)",
+      "(This card text was sponsored by the Transient. I hope I finish writing this before I",
+      "(This card text was sponsored by the Time Eater. Handsome slug looking for company. Watchers need not apply. Inquire in the Beyond.)",
+      "(This card text was sponsored by the Cult of Mazaleth. CAW CAW!)",
+      "(This card text was sponsored by the Cult of Mazaleth. To the thief who so brazenly stole our donation box: YOU DO NOT BELONG HERE!)",
+      "(This card text was sponsored by UPDATE BODY TEXT.)",
+      "(This card text was sponsored by the Champ. I AWAIT THE DAY A WORTHY CHALLENGER APPEARS. COME AT ME WITH ALL YOUR MIGHT, WEAKLINGS!)"
     ]
   }
 }

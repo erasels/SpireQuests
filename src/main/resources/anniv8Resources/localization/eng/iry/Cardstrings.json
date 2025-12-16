@@ -1,0 +1,18 @@
+{
+  "${ModID}:ClumsyOffering": {
+    "NAME": "Clumsy Offering",
+    "DESCRIPTION": "Ethereal. NL Lose 6 HP. NL Exhaust."
+  },
+  "${ModID}:ClumsyNightmare": {
+    "NAME": "Clumsy Nightmare",
+    "DESCRIPTION": "Ethereal. NL Choose a card. NL Exhaust."
+  },
+  "${ModID}:ClumsyReboot": {
+    "NAME": "Clumsy Reboot",
+    "DESCRIPTION": "Ethereal. NL Shuffle ALL your cards into your draw pile. NL Exhaust."
+  },
+  "${ModID}:ClumsyBlasphemy": {
+    "NAME": "Clumsy Blasphemy",
+    "DESCRIPTION": "Ethereal. NL Die next turn. NL Exhaust."
+  }
+}

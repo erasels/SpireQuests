@@ -46,6 +46,7 @@ public class PlatinumCafeMemberQuest extends AbstractQuest {
         patron.hide();
 
         addReward(new QuestReward.RelicReward(new CustomerAppreciationAward()));
+        titleScale = 0.8f;
     }
 
     @Override

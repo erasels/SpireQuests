@@ -1,0 +1,16 @@
+{
+  "${ModID}:RainbowQuest": {
+    "TITLE": "Chase a Rainbow",
+    "DESCRIPTION": "",
+    "AUTHOR": "JackRenoson",
+    "TRACKER_TEXT": [
+      "Add cards from #b",
+      " unique colors to your deck."
+    ],
+    "EXTRA_TEXT": [
+      "Upon pickup, obtain #yPrismatic #yShard. Add cards from #b",
+      " unique colors to your deck.",
+      "Colors added:"
+    ]
+  }
+}

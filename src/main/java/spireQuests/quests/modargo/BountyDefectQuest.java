@@ -5,13 +5,13 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.modargo.monsters.DefectEliteMonster;
+import spireQuests.quests.modargo.relics.VolatileStardust;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -27,12 +27,8 @@ public class BountyDefectQuest extends AbstractQuest {
                 .setFailureTrigger(QuestTriggers.ACT_CHANGE)
                 .add(this);
 
-        addReward(new QuestReward.RandomRelicReward(AbstractRelic.RelicTier.UNCOMMON));
-    }
-
-    @Override
-    public float getTitleScale() {
-        return 0.8f;
+        addReward(new QuestReward.RelicReward(new VolatileStardust()));
+        titleScale = 0.9f;
     }
 
     @Override

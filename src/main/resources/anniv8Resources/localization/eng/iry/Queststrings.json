@@ -1,0 +1,34 @@
+{
+  "${ModID}:LessonOfTheBloodQuest": {
+    "TITLE": "Lesson of the Blood",
+    "DESCRIPTION": "Obtain #yQuestbound #yClumsy #yOffering. NL Play #yClumsy #yOffering #b4 times.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "Clumsy Offerings played"
+    ]
+  },
+  "${ModID}:LessonOfTheBogQuest": {
+    "TITLE": "Lesson of the Bog",
+    "DESCRIPTION": "Obtain #yQuestbound #yClumsy #yNightmare. NL Play #yClumsy #yNightmare #b4 times.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "Clumsy Nightmares played"
+    ]
+  },
+  "${ModID}:LessonOfTheCoreQuest": {
+    "TITLE": "Lesson of the Core",
+    "DESCRIPTION": "Obtain #yQuestbound #yClumsy #yReboot. NL Play #yClumsy #yReboot #b9 times.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "Clumsy Reboots played"
+    ]
+  },
+  "${ModID}:LessonOfTheAsceticQuest": {
+    "TITLE": "Lesson of the Ascetic",
+    "DESCRIPTION": "Obtain #yQuestbound #yClumsy #yBlasphemy. NL Play #yClumsy #yBlasphemy #b3 times.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "Clumsy Blasphemies played"
+    ]
+  }
+}

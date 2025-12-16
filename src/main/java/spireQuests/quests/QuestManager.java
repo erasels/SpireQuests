@@ -7,14 +7,16 @@ import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import spireQuests.Anniv8Mod;
 import spireQuests.cardmods.QuestboundMod;
 import spireQuests.patches.QuestRunHistoryPatch;
+import spireQuests.questStats.QuestStatManager;
 import spireQuests.vfx.ShowCardandFakeObtainEffect;
 
 import java.util.*;
@@ -27,6 +29,8 @@ import static spireQuests.Anniv8Mod.modID;
         method = SpirePatch.CLASS
 )
 public class QuestManager {
+    private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestManager")).TEXT;
+
     public static final int QUEST_LIMIT = 5;
 
     private static final Map<String, AbstractQuest> quests = new HashMap<>();
@@ -124,14 +128,22 @@ public class QuestManager {
         if (quest.questboundCards != null) {
             quest.questboundCards.forEach(c -> {
                 CardModifierManager.addModifier(c, new QuestboundMod(quest));
-                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(new GrandFinale(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(c.makeCopy(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
             });
         }
+        QuestStatManager.markTaken(quest.id);
         List<List<String>> questPickupPerFloor = QuestRunHistoryPatch.questPickupPerFloorLog.get(AbstractDungeon.player);
         if (!questPickupPerFloor.isEmpty()) {
             questPickupPerFloor.get(questPickupPerFloor.size() - 1).add(quest.id);
         } else {
             Anniv8Mod.logger.error("questPickupPerFloor was empty, not adding quest to run history.");
+        }
+        List<List<String>> questCostPerFloor = QuestRunHistoryPatch.questCostPerFloorLog.get(AbstractDungeon.player);
+        if (!questCostPerFloor.isEmpty()) {
+            String costString = !Anniv8Mod.questsHaveCost() || quest.getCost() == 0 ? QuestRunHistoryPatch.NO_COST : quest.getCost() + (quest.usingGoldCost ? QuestRunHistoryPatch.GOLD : QuestRunHistoryPatch.HP);
+            questCostPerFloor.get(questCostPerFloor.size() - 1).add(costString);
+        } else {
+            Anniv8Mod.logger.error("questCostPerFloor was empty, not adding quest to run history.");
         }
     }
 
@@ -144,15 +156,30 @@ public class QuestManager {
         if (quest.fail()) {
             quests().remove(quest);
             quest.onFail();
+
+            QuestStatManager.markFailed(quest.id);
+            List<List<String>> questFailurePerFloor = QuestRunHistoryPatch.questFailurePerFloorLog.get(AbstractDungeon.player);
+            if (!questFailurePerFloor.isEmpty()) {
+                questFailurePerFloor.get(questFailurePerFloor.size() - 1).add(quest.id);
+            } else {
+                Anniv8Mod.logger.error("questFailurePerFloor was empty, not adding quest to run history.");
+            }
             return;
         }
 
-        if (AbstractDungeon.currMapNode == null) return;
-        if (AbstractDungeon.currMapNode.room == null) return;
-        if (AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT) return;
+        int complainCode = -1;
+        if (AbstractDungeon.currMapNode == null) complainCode = 0;
+        else if (AbstractDungeon.currMapNode.room == null) complainCode = 0;
+        else if (AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT) complainCode = 1;
+        if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.COMBAT_REWARD && quest.rewardScreenOnly) complainCode = 2;
+        if(complainCode > -1) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[complainCode], true));
+            return;
+        }
 
         quests().remove(quest);
         quest.obtainRewards();
+        QuestStatManager.markComplete(quest.id);
         List<List<String>> questCompletionPerFloor = QuestRunHistoryPatch.questCompletionPerFloorLog.get(AbstractDungeon.player);
         questCompletionPerFloor.get(questCompletionPerFloor.size() - 1).add(quest.id);
     }
@@ -161,6 +188,14 @@ public class QuestManager {
         quest.forceFail();
         quest.onFail();
         completeQuest(quest);
+
+        QuestStatManager.markFailed(quest.id);
+        List<List<String>> questFailurePerFloor = QuestRunHistoryPatch.questFailurePerFloorLog.get(AbstractDungeon.player);
+        if (!questFailurePerFloor.isEmpty()) {
+            questFailurePerFloor.get(questFailurePerFloor.size() - 1).add(quest.id);
+        } else {
+            Anniv8Mod.logger.error("questFailurePerFloor was empty, not adding quest to run history.");
+        }
     }
 
     public void update() {
@@ -178,5 +213,11 @@ public class QuestManager {
         if (AbstractDungeon.player == null) {
         }
         //quest ui
+    }
+
+    public static void failAllActiveQuests() {
+        for (AbstractQuest q : quests()) {
+            q.forceFail();
+        }
     }
 }

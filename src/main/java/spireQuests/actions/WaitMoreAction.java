@@ -13,7 +13,7 @@ public class WaitMoreAction extends AbstractGameAction {
         for (AbstractGameAction actcheck : AbstractDungeon.actionManager.actions) {
             if (actcheck instanceof WaitMoreAction && actcheck != this) {
                 actcheck.isDone = true;
-                duration += 0.15;
+                duration += 0.15f;
             }
         }
     }

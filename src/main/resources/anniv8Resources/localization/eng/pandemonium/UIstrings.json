@@ -1,15 +1,4 @@
 {
-  "${ModID}:PristineCardsQuest": {
-    "TEXT": [
-      "Pristine Cards",
-      "Obtain 3 #yPristine cards that now appear in card rewards.",
-      "Pandemonium"
-    ],
-    "EXTRA_TEXT": [
-      "Pristine cards",
-      "#yUpgrade your #yPristine cards."
-    ]
-  },
   "${ModID}:PristineModifier": {
     "TEXT": [
       "Pristine",

@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
+import spireQuests.Anniv8Mod;
 import spireQuests.ui.QuestBoardProp;
 import spireQuests.util.ActUtil;
 
@@ -38,7 +39,7 @@ public class ShopPatch {
     public static class PostPlayerEntry {
         @SpirePostfixPatch
         public static void PlayerEntry() {
-            if (ActUtil.getRealActNum() == 4 && !Settings.isEndless) return;
+            if (ActUtil.getRealActNum() >= 4) return;
             QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 300.0F * Settings.xScale, AbstractDungeon.floorY + 109.0F * Settings.yScale, false);
         }
     }

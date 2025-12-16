@@ -1,36 +1,26 @@
 {
-  "${ModID}:BalatroQuest": {
-    "TEXT": [
-      "Gold Stake",
-      "Card rewards have a 30% chance to have an eternal sticker, perishable sticker, or a rental sticker. NL 50% of combats will be blind combats that have special modifiers. NL Defeat 8 blind-enhanced combats to win",
-      "indi + keurodz"
-    ],
-    "EXTRA_TEXT": [
-      "Blind battles completed"
-    ]
-  },
   "${ModID}:PerishableSticker": {
     "TEXT": [
       "Perishable",
-      "Purged from deck after #b%d #b combats"
+      "Purged from deck after #b%d #b combats."
     ]
   },
   "${ModID}:EternalSticker": {
     "TEXT": [
       "Eternal",
-      "#rCannot be removed from deck"
+      "#rCannot be removed from your deck."
     ]
   },
   "${ModID}:RentalSticker": {
     "TEXT": [
       "Rental",
-      "Lose #y3 #ygold at the end of combat "
+      "Lose #y3 #ygold at the end of combat."
     ]
   },
   "${ModID}:Foil": {
     "TEXT": [
       "Foil",
-      "Gain 50 gold the first time this card is played each combat"
+      "Gain 50 gold the first time this card is played each combat."
     ]
   },
   "${ModID}:Holographic": {
@@ -42,74 +32,74 @@
   "${ModID}:Polychrome": {
     "TEXT": [
       "Polychrome",
-      "50% chance to play twice"
+      "50% chance to play twice."
     ]
   },
   "${ModID}:Negative": {
     "TEXT": [
       "Negative",
-      "When you draw this card, draw a card"
+      "When you draw this card, draw a card."
     ]
   },
   "${ModID}:BalatroBlinds": {
     "TEXT_DICT": {
       "AmberAcorn": "Amber Acorn",
-      "AmberAcorn1": "TODO",
+      "AmberAcorn_Description": "TODO",
       "Arm": "The Arm",
-      "Arm1": "Replace the first upgraded card you play with a plain, unupgraded version.",
+      "Arm_Description": "Replace the first upgraded card you play with a plain, unupgraded version.",
       "CeruleanBell": "Cerulean Bell",
-      "CeruleanBell1": "Autoplay a random card at the start of each turn.",
+      "CeruleanBell_Description": "Autoplay a random card at the start of each turn.",
       "Club": "The Club",
-      "Club1": "All starter cards are debuffed.",
+      "Club_Description": "All starter cards are debuffed.",
       "CrimsonHeart": "Crimson Heart",
-      "CrimsonHeart1": "One random card is unplayable each turn.",
+      "CrimsonHeart_Description": "One random card is unplayable each turn.",
       "Eye": "The Eye",
-      "Eye1": "Lose 3 HP when you play the same card type twice in a row.",
+      "Eye_Description": "Lose 3 HP when you play the same card type twice in a row.",
       "Fish": "The Fish",
-      "Fish1": "Cards drawn after the start of your turn are drawn face down.",
+      "Fish_Description": "Cards drawn after the start of your turn are drawn face down.",
       "Flint": "The Flint",
-      "Flint1": "Disable half of your relics randomly.",
+      "Flint_Description": "Disable half of your relics randomly.",
       "Goad": "The Goad",
-      "Goad1": "All common cards are debuffed.",
+      "Goad_Description": "All common cards are debuffed.",
       "Head": "The Head",
-      "Head1": "All uncommon cards are debuffed.",
+      "Head_Description": "All uncommon cards are debuffed.",
       "Hook": "The Hook",
-      "Hook1": "Whenever you play a card, discard 2 cards, and draw that many.",
+      "Hook_Description": "Whenever you play a card, discard 2 cards, and draw that many.",
       "House": "The House",
-      "House1": "First hand is drawn face down.",
+      "House_Description": "First hand is drawn face down.",
       "Manacle": "The Manacle",
-      "Manacle1": "Draw 1 less card at the start of each turn.",
+      "Manacle_Description": "Draw 1 less card at the start of each turn.",
       "Mark": "The Mark",
-      "Mark1": "All powers are drawn face down.",
+      "Mark_Description": "All powers are drawn face down.",
       "Mouth": "The Mouth",
-      "Mouth1": "Lose 3 HP when you play a card that has a different type than the first card played each turn.",
+      "Mouth_Description": "Lose 3 HP when you play a card that has a different type than the first card played each turn.",
       "Needle": "The Needle",
-      "Needle1": "Enemies have half health. Draw 5 additional cards and gain 3 additional [E] at the start of your first turn. Lose 10 HP at the end of each of your turns.",
+      "Needle_Description": "Enemies have half health. Draw 5 additional cards and gain 3 additional [E] at the start of your first turn. Lose 10 HP at the end of each of your turns.",
       "Ox": "The Ox",
-      "Ox1": "Set money to 0 when you play your most played card.",
-      "Ox2": "(Most played card: %s)",
+      "Ox_Description": "Set money to 0 when you play your most played card.",
+      "Ox_Extra": "(Most played card: %s)",
       "Pillar": "The Pillar",
-      "Pillar1": "Cards become debuffed after playing them.",
+      "Pillar_Description": "Cards become debuffed after playing them.",
       "Plant": "The Plant",
-      "Plant1": "All power cards are debuffed",
+      "Plant_Description": "All power cards are debuffed",
       "Psychic": "The Psychic",
-      "Psychic1": "Lose 3 HP per unspent energy at the end of each turn.",
+      "Psychic_Description": "Lose 3 HP per unspent energy at the end of each turn.",
       "Serpent": "The Serpent",
-      "Serpent1": "Draw 3 cards at the start of your turns. Whenever you play a card, draw 3 cards.",
+      "Serpent_Description": "Draw 3 cards at the start of your turns. Whenever you play a card, draw 3 cards.",
       "Tooth": "The Tooth",
-      "Tooth1": "Lose 1 gold per card played.",
+      "Tooth_Description": "Lose 1 gold per card played.",
       "VerdantLeaf": "Verdant Leaf",
-      "VerdantLeaf1": "Choose a relic to lose before starting the battle.",
+      "VerdantLeaf_Description": "Choose a relic to lose before starting the battle.",
       "VioletVessel": "Violet Vessel",
-      "VioletVessel1": "Enemies have 20% more health",
+      "VioletVessel_Description": "Enemies have 20% more health",
       "Wall": "The Wall",
-      "Wall1": "Enemies have 10% more health.",
+      "Wall_Description": "Enemies have 10% more health.",
       "Water": "The Water",
-      "Water1": "At the end of your turns, shuffle your discard pile into your draw pile.",
+      "Water_Description": "At the end of your turns, shuffle your discard pile into your draw pile.",
       "Wheel": "The Wheel",
-      "Wheel1": "1 in 7 cards get drawn face down.",
+      "Wheel_Description": "1 in 7 cards get drawn face down.",
       "Window": "The Window",
-      "Window1": "All rare cards are debuffed."
+      "Window_Description": "All rare cards are debuffed."
     }
   }
 }

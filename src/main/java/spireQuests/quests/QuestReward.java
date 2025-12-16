@@ -37,6 +37,7 @@ public abstract class QuestReward {
         addRewardSaver(new RewardLoader(RandomRelicReward.class, (save) -> new RandomRelicReward(RelicLibrary.getRelic(save.param).makeCopy())));
         addRewardSaver(new RewardLoader(PotionReward.class, (save) -> new PotionReward(PotionHelper.getPotion(save.param))));
         addRewardSaver(new RewardLoader(CardReward.class, CardReward::fromSave));
+        addRewardSaver(new RewardLoader(MaxHPReward.class, (save) -> new MaxHPReward(Integer.parseInt(save.param))));
     }
 
     private static void addRewardSaver(RewardLoader loader) {
@@ -151,6 +152,10 @@ public abstract class QuestReward {
         protected String saveParam() {
             return relic.relicId;
         }
+
+        public AbstractRelic getRelic() {
+            return relic;
+        }
     }
 
     public static class RandomRelicReward extends QuestReward {
@@ -261,6 +266,10 @@ public abstract class QuestReward {
         protected String saveParam() {
             return potion.ID;
         }
+
+        public AbstractPotion getPotion() {
+            return potion;
+        }
     }
 
     public static class CardReward extends QuestReward {
@@ -307,6 +316,40 @@ public abstract class QuestReward {
             CardSave s = save.card;
             AbstractCard loaded = CardLibrary.getCopy(s.id, s.upgrades, s.misc);
             return new CardReward(loaded);
+        }
+
+        public AbstractCard getCard() {
+            return card;
+        }
+    }
+
+    public static class MaxHPReward extends QuestReward {
+        private static final TextureRegion img = new TextureRegion(ImageMaster.TP_HP, 8, 0, 48, 48);
+        private final int amount;
+
+        public MaxHPReward(int amount) {
+            super(String.format(TEXT[6], amount));
+            this.amount = amount;
+        }
+
+        @Override
+        public TextureRegion icon() {
+            return img;
+        }
+
+        @Override
+        public void obtainRewardItem() {
+            AbstractDungeon.player.increaseMaxHp(this.amount, true);
+        }
+
+        @Override
+        public void obtainInstant() {
+            AbstractDungeon.player.increaseMaxHp(this.amount, true);
+        }
+
+        @Override
+        public String saveParam() {
+            return String.valueOf(amount);
         }
     }
 

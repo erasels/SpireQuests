@@ -1,11 +1,17 @@
 package spireQuests.quests;
 
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import javassist.CtBehavior;
 import spireQuests.Anniv8Mod;
+import spireQuests.quests.gk.BountyICQuest;
+import spireQuests.util.QuestStrings;
+import spireQuests.util.QuestStringsUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -38,7 +44,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public final QuestType type;
     public final QuestDifficulty difficulty;
 
-    protected final UIStrings localization;
+    protected final QuestStrings questStrings;
     public String name;
     public String description;
     public String author;
@@ -48,6 +54,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     public boolean useDefaultReward;
     public List<QuestReward> questRewards;
+    public boolean rewardScreenOnly = false;
 
     private int trackerTextIndex = 0;
 
@@ -65,6 +72,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public boolean usingGoldCost;
 
     private ArrayList<PowerTip> previewTooltips;
+
+    //If true, the quest will automatically complete when the player leaves the room with the conditions fulfilled.
+    public boolean isAutoComplete;
 
     /*
     trackers that require another tracker to be completed first
@@ -87,10 +97,11 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         triggers = new ArrayList<>();
 
         complete = false;
+        isAutoComplete = false;
 
-        localization = CardCrawlGame.languagePack.getUIString(id);
-        if (localization == null) {
-            throw new RuntimeException("Localization for the quest " + id + " not found!");
+        questStrings = QuestStringsUtils.getQuestString(id);
+        if (questStrings == null) {
+            throw new RuntimeException("Queststrings for the quest " + id + " not found!");
         }
         setText();
     }
@@ -121,9 +132,10 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     //override if you want to set up the text differently
     protected void setText() {
-        name = localization.TEXT[0];
-        description = localization.TEXT[1];
-        author = localization.TEXT[2];
+        name = questStrings.TITLE;
+        description = questStrings.DESCRIPTION;
+        author = questStrings.AUTHOR;
+        rewardsText = questStrings.REWARD; // questStrings.REWARD will be null and set later unless you provide it in the json
     }
 
     //override if you want to set up the text differently
@@ -167,7 +179,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     /**
-     * This allows customizing the PowerTip that is shown if needsHoverToolip is true and the quets is hovered in the UI
+     * This allows customizing the PowerTip that is shown if needsHoverTooltip is true and the quest is hovered in the UI
      *
      * @return PowerTip that will be displayed on hover
      */
@@ -185,11 +197,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         trackers.add(questTracker);
 
         if (!questTracker.hidden) {
-            if (trackerTextIndex >= localization.EXTRA_TEXT.length) {
-                throw new RuntimeException("Quest " + id + " needs more entries in EXTRA_TEXT for its trackers");
+            if (trackerTextIndex >= questStrings.TRACKER_TEXT.length) {
+               throw new RuntimeException("Quest " + id + " needs more entries in TRACKER_TEXT for its trackers");
             }
-            questTracker.text = localization.EXTRA_TEXT[trackerTextIndex];
-            ++trackerTextIndex;
+            
+            questTracker.text = questStrings.TRACKER_TEXT[trackerTextIndex];
+            trackerTextIndex++;
         }
 
         if (questTracker.trigger != null) triggers.add(questTracker.trigger);
@@ -209,7 +222,11 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     public boolean complete() {
         if (failed) return false;
-        if (complete) return true;
+        if (complete) {
+            return true;
+        }
+
+
 
         for (Tracker tracker : trackers) {
             if (!tracker.isComplete()) return false;
@@ -247,6 +264,15 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         trackers.clear();
         triggers.clear();
         trackers.add(new QuestFailedTracker());
+    }
+
+    public void forceComplete() {
+        if (failed) Anniv8Mod.logger.warn("Forcefully completed quest that was failed {}", this.id);
+
+        complete = true;
+        trackers.clear();
+        triggers.clear();
+        trackers.add(new QuestCompleteTracker());
     }
 
     //override if you want different completion SFX.
@@ -767,7 +793,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     /**
      * A tracker used to mark a quest as completed to avoid having the state change afterward
      */
-    private static class QuestCompleteTracker extends Tracker {
+    private class QuestCompleteTracker extends Tracker {
         public static final String COMPLETE_STRING = "COMPLETE";
 
         public QuestCompleteTracker() {
@@ -781,12 +807,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public String progressString() {
-            return TEXT[0];
+            return TEXT[rewardScreenOnly?1:0];
         }
 
         @Override
         public String toString() {
-            return TEXT[0];
+            return TEXT[rewardScreenOnly?1:0];
         }
 
         @Override
@@ -817,12 +843,12 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         @Override
         public String progressString() {
-            return TEXT[1];
+            return TEXT[2];
         }
 
         @Override
         public String toString() {
-            return TEXT[1];
+            return TEXT[2];
         }
 
         @Override
@@ -877,5 +903,29 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     // This is for situations where the Questbound cards in the deck would be replaced. Basically if they're a "Random Attack" or something similar.
     public ArrayList<AbstractCard> overrideQuestboundCards() {
         return null;
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = {SaveFile.class})
+    public static class AutoCompleteQuestLater {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void enteringRoomPatch(AbstractDungeon __instance, SaveFile file) {
+            if (AbstractDungeon.currMapNode != null) {
+                AbstractQuest q = QuestManager.quests().stream()
+                        .filter(quest -> quest.isAutoComplete && quest.isCompleted())
+                        .findAny()
+                        .orElse(null);
+                if(q != null) {
+                    QuestManager.completeQuest(q);
+                }
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package spireQuests.ui;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,31 +11,42 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import spireQuests.Anniv8Mod;
+import spireQuests.questStats.QuestStats;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
+import spireQuests.util.TexLoader;
 
 import java.util.ArrayList;
 
 import static com.badlogic.gdx.graphics.Color.WHITE;
+import static spireQuests.Anniv8Mod.makeUIPath;
 
 public class QuestBoardQuest {
     public static final String ID = spireQuests.Anniv8Mod.makeID("QuestBoard");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
     public AbstractQuest quest;
+    public QuestStats questStats;
     private final float x;
     private final float y;
     private final Hitbox hb; // hitbox for the pickup button
     private final Hitbox previewHb; // hitbox for showing the previews on hover
     public boolean taken;
     protected Color lockAlpha = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    private ArrayList<PowerTip> tips = new ArrayList<>();
 
     public QuestBoardQuest(AbstractQuest quest, float x, float y) {
         this.quest = quest;
+        this.questStats = new QuestStats(quest);
         this.x = x;
         this.y = y;
         this.hb = new Hitbox(300.0F * Settings.xScale, 64.0F * Settings.yScale);
         this.previewHb = new Hitbox(512.0F * Settings.xScale, 716.0F * Settings.yScale);
+
+        this.tips = quest.getPreviewTips();
+        if (Anniv8Mod.trophyTooltipsEnabled()){
+            tips.add(this.questStats.trophyTip);
+        }
     }
 
     public void render(SpriteBatch sb, float boardY) {
@@ -101,10 +113,19 @@ public class QuestBoardQuest {
             if (Anniv8Mod.questsHaveCost()) {
                 renderPrice(sb, boardY);
             }
+            if (Anniv8Mod.trophyTooltipsEnabled()) {
+                renderTrophy(sb, boardY);
+            }
             if (this.previewHb.hovered) {
                 renderPreviews(boardY);
             }
         }
+    }
+
+    private void renderTrophy(SpriteBatch sb, float boardY) {
+        Texture medalIcon = this.questStats.getSmallTrophyTexture();
+
+        sb.draw(medalIcon, this.x + (260.0F * Settings.xScale) - (72.0F / 2.0F * Settings.scale), this.y - 426.0F * Settings.yScale + boardY, 72.0F * Settings.scale, 72.0F * Settings.scale);
     }
 
     public void renderPreviews(float boardY) {
@@ -112,12 +133,11 @@ public class QuestBoardQuest {
         float TIP_OFFSET_R_X = 20.0F * Settings.xScale;
         float TIP_OFFSET_L_X = -380.0F * Settings.xScale;
 
-        ArrayList<PowerTip> tips = quest.getPreviewTips();
-        if (!tips.isEmpty()) {
+        if (!this.tips.isEmpty()) {
             if (this.previewHb.cX + this.previewHb.width / 2.0F < TIP_X_THRESHOLD) {
-                TipHelper.queuePowerTips(this.previewHb.cX + this.previewHb.width / 2.0F + TIP_OFFSET_R_X, this.previewHb.cY + TipHelper.calculateAdditionalOffset(tips, this.previewHb.cY) + boardY, tips);
+                TipHelper.queuePowerTips(this.previewHb.cX + this.previewHb.width / 2.0F + TIP_OFFSET_R_X, this.previewHb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.previewHb.cY) + boardY, tips);
             } else {
-                TipHelper.queuePowerTips(this.previewHb.cX - this.previewHb.width / 2.0F + TIP_OFFSET_L_X, this.previewHb.cY + TipHelper.calculateAdditionalOffset(tips, this.previewHb.cY) + boardY, tips);
+                TipHelper.queuePowerTips(this.previewHb.cX - this.previewHb.width / 2.0F + TIP_OFFSET_L_X, this.previewHb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.previewHb.cY) + boardY, tips);
             }
         }
     }
@@ -127,9 +147,9 @@ public class QuestBoardQuest {
         sb.setColor(lockAlpha);
 
         if (quest.usingGoldCost) {
-            sb.draw(ImageMaster.UI_GOLD, x + 240.0F * Settings.xScale, y - 405.0F * Settings.yScale + boardY, ImageMaster.UI_GOLD.getWidth(), ImageMaster.UI_GOLD.getHeight());
+            sb.draw(ImageMaster.UI_GOLD, x + 240.0F * Settings.xScale, y - 415.0F * Settings.yScale + boardY, ImageMaster.UI_GOLD.getWidth(), ImageMaster.UI_GOLD.getHeight());
         } else {
-            sb.draw(ImageMaster.TP_HP, x + 235.0F * Settings.xScale, y - 410.0F * Settings.yScale + boardY, ImageMaster.TP_HP.getWidth(), ImageMaster.TP_HP.getHeight());
+            sb.draw(ImageMaster.TP_HP, x + 235.0F * Settings.xScale, y - 420.0F * Settings.yScale + boardY, ImageMaster.TP_HP.getWidth(), ImageMaster.TP_HP.getHeight());
         }
 
         if (!this.canBuy()) {

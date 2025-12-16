@@ -1,0 +1,16 @@
+{
+  "${ModID}:FriendSentry": {
+    "NAME": "Friendly Sentry",
+    "FLAVOR": "\"The answer? Use a laser. And if that don't work...use more lasers.\" - The Architect",
+    "DESCRIPTIONS": [
+      "At the start of odd turns, add an #yInsight into your discard pile."
+    ]
+  },
+  "${ModID}:SmoresRelic": {
+    "NAME": "S'Mores",
+    "FLAVOR": "Marshmallow. Chocolate. Graham Cracker.",
+    "DESCRIPTIONS": [
+      "Upon pickup, raise your Max HP by #b%s."
+    ]
+  }
+}
