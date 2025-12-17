@@ -1,5 +1,7 @@
 package spireQuests.quests.gk.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ReboundPower;
@@ -10,6 +12,8 @@ import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.util.CompatUtil.PM_COLOR;
 import static spireQuests.util.CompatUtil.pmLoaded;
 
+@NoPools
+@NoCompendium
 public class Cardmancy extends AbstractBPCard {
     public static final String ID = makeID(Cardmancy.class.getSimpleName());
 
