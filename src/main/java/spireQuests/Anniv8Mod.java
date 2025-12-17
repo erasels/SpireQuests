@@ -38,6 +38,7 @@ import spireQuests.quests.QuestManager;
 import spireQuests.quests.coda.potions.NuclearJuicePotion;
 import spireQuests.quests.enbeon.monsters.WatcherEliteMonster;
 import spireQuests.quests.gk.monsters.ICEliteMonster;
+import spireQuests.quests.modargo.RealityTwistQuest;
 import spireQuests.quests.modargo.monsters.DefectEliteMonster;
 import spireQuests.quests.ramchops.EvilSentryQuest;
 import spireQuests.quests.ramchops.monsters.EvilSentry;
@@ -195,6 +196,7 @@ public class Anniv8Mod implements
     }
 
     public static void addMonsters() {
+        RealityTwistQuest.addMonsters();
         BaseMod.addMonster(ICEliteMonster.ID, () -> new ICEliteMonster());
         BaseMod.addMonster(DefectEliteMonster.ID, () -> new DefectEliteMonster());
         BaseMod.addMonster(WatcherEliteMonster.ID, () -> new WatcherEliteMonster());
@@ -410,7 +412,7 @@ public class Anniv8Mod implements
     }
 
     public static void addSaveFields() {
-
+        RealityTwistQuest.addSaveFields();
     }
 
     @Override

@@ -1,0 +1,59 @@
+{
+  "${ModID}:TwistedFightNames": {
+    "TEXT": [
+      "City Thugs",
+      "Beyond Cultist",
+      "Byrd and Worm",
+      "Burning Orb Walker",
+      "Book of Poking",
+      "Nearly Unshelled Parasite",
+      "Poisoned Slavers",
+      "Jaw Nob",
+      "Exploder and Shelled Parasite",
+      "Extra Fun Snecko",
+      "Mismatched Horde",
+      "Tiny Troupe",
+      "Barricade Buddies",
+      "Malfunctioning Shapes",
+      "Double Trouble",
+      "Snecko Cultists",
+      "Daggavulin",
+      "Chosen of the Slimes",
+      "Super Trio",
+      "Maw and Jaw and Mystic",
+      "Big Byrds"
+    ]
+  },
+  "${ModID}:TwistedEnemyNames": {
+    "TEXT": [
+      "Tiny Head",
+      "Armored Gremlin Wizard",
+      "Snecko Cultist",
+      "Super Sentry",
+      "Tough Mugger",
+      "Overgrown Fungi Beast",
+      "Mini Maw",
+      "Poisoned Slaver",
+      "Dud Exploder",
+      "Soft Spiker",
+      "Cracked Repulsor",
+      "Big Byrd"
+    ]
+  },
+  "${ModID}:SneckoCultistDialog": {
+    "TEXT": [
+      "Praise Snecko!",
+      "The Great Eye looks upon us!",
+      "All 0s and 1s for us! All 2s and 3s for you!",
+      "Snecko is love, Snecko is life!",
+      "Snecko Snecko Snecko Snecko Snecko Snecko Snecko Snecko",
+      "My life for Snecko!",
+      "The Awakened One is false, the Snecko is true!",
+      "I always take Snecko Eye when it's offered!",
+      "3 3 2 1 1 1 0 1 3 0 1 1 2 1 3 0 3 1 1 0 2 1 3 2",
+      "0 0 2 1 0 2 2 1 3 0 2 0 0 2 3 1 0 3 1 3 2 3 0 0",
+      "2 2 0 3 3 0 2 2 0 0 2 2 3 3 0 1 0 3 0 3 2 3 2 1",
+      "1 3 2 2 0 0 0 0 3 2 2 3 1 0 2 2 1 0 2 2 2 2 3 1"
+    ]
+  }
+}
