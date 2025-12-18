@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.Array;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -38,6 +37,7 @@ import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 public class BalatroQuest extends AbstractQuest {
     private static TextureAtlas BossBlindsAtlas;
     public static final String BLIND_STRINGS_ID = makeID("BalatroBlinds");
+    public static final String AUTHOR = "indi_keurodz";
 
     private static Map<String, String> blindStrings = CardCrawlGame.languagePack
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
@@ -90,7 +90,7 @@ public class BalatroQuest extends AbstractQuest {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
 
         BossBlindsAtlas = new TextureAtlas(
-                Gdx.files.internal(Anniv8Mod.makeContributionPath("indi_keurodz", "BossBlinds.atlas")));
+                Gdx.files.internal(Anniv8Mod.makeContributionPath(AUTHOR, "BossBlinds.atlas")));
 
         new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
 

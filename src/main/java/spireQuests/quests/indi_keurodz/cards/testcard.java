@@ -10,8 +10,11 @@ import basemod.helpers.CardModifierManager;
 import spireQuests.Anniv8Mod;
 import spireQuests.abstracts.AbstractSQCard;
 import spireQuests.quests.indi_keurodz.modifiers.EternalStickerModifier;
-import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
+import spireQuests.quests.indi_keurodz.modifiers.FoilModifier;
+import spireQuests.quests.indi_keurodz.modifiers.HoloModifier;
+import spireQuests.quests.indi_keurodz.modifiers.NegativeModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.PolychromeModifier;
 import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 
 public class testcard extends AbstractSQCard {
@@ -30,23 +33,27 @@ public class testcard extends AbstractSQCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         Random rand = new Random();
         for (AbstractCard card : p.hand.group) {
+
             int mod = rand.nextInt(4);
 
             switch (mod) {
                 case 0:
                     CardModifierManager.addModifier(card, new EternalStickerModifier());
+                    CardModifierManager.addModifier(card, new NegativeModifier());
                     break;
 
                 case 1:
                     CardModifierManager.addModifier(card, new PerishableStickerModifier());
+                    CardModifierManager.addModifier(card, new HoloModifier());
                     break;
 
                 case 2:
                     CardModifierManager.addModifier(card, new RentalStickerModifier());
+                    CardModifierManager.addModifier(card, new PolychromeModifier());
                     break;
 
                 case 3:
-                    CardModifierManager.addModifier(card, new FaceDownModifier());
+                    CardModifierManager.addModifier(card, new FoilModifier());
                     break;
 
             }
@@ -59,6 +66,7 @@ public class testcard extends AbstractSQCard {
             switch (mod) {
                 case 0:
                     CardModifierManager.addModifier(card, new EternalStickerModifier());
+                    CardModifierManager.addModifier(card, new NegativeModifier());
                     break;
 
                 case 1:
