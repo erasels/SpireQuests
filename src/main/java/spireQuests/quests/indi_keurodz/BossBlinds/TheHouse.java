@@ -1,6 +1,7 @@
 package spireQuests.quests.indi_keurodz.BossBlinds;
 
 import basemod.helpers.CardModifierManager;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
 import javassist.CtBehavior;
 
 import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
@@ -23,6 +24,7 @@ import spireQuests.util.Wiz;
 public class TheHouse {
 
     private static boolean finishedDrawingStartingHand = false;
+    private static boolean finishedInitialDraw = false;
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "draw", paramtypez = { int.class })
     public static class DrawCardPatch {
@@ -32,7 +34,6 @@ public class TheHouse {
             BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
             if (blind == null)
                 return;
-
             switch (blind) {
                 case Wheel:
                     if (AbstractDungeon.cardRandomRng.random(6) == 1)
@@ -43,6 +44,14 @@ public class TheHouse {
                         CardModifierManager.addModifier(c, new FaceDownModifier());
                     }
                     break;
+                case Mark:
+                    if (c.type == AbstractCard.CardType.POWER)
+                        CardModifierManager.addModifier(c, new FaceDownModifier());
+                case Fish:
+                    if (finishedInitialDraw) {
+                        CardModifierManager.addModifier(c, new FaceDownModifier());
+                        break;
+                    }
                 default:
                     break;
             }
@@ -66,6 +75,14 @@ public class TheHouse {
         }
     }
 
+    @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfTurnRelics")
+    public static class ResetInitialDrawFlag {
+        @SpirePrefixPatch
+        public static void reset() {
+            finishedInitialDraw = false;
+        }
+    }
+
     @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfTurnPostDrawRelics")
     public static class FinishedStartingHand {
         @SpirePrefixPatch
@@ -76,9 +93,11 @@ public class TheHouse {
                 public void update() {
                     isDone = true;
                     finishedDrawingStartingHand = true;
+                    finishedInitialDraw = true;
                 }
             });
         }
     }
-
 }
+
+
