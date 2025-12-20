@@ -1,12 +1,14 @@
 package spireQuests.quests.modargo.monsters.realitytwist;
 
 import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.powers.FlightPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import spireQuests.Anniv8Mod;
 import spireQuests.quests.modargo.RealityTwistQuest;
 
 public class BigByrd extends Byrd {
@@ -27,12 +29,18 @@ public class BigByrd extends Byrd {
     public void usePreBattleAction() {
         super.usePreBattleAction();
         this.addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, 1)));
-        FlightPower flightPower = (FlightPower)this.getPower(FlightPower.POWER_ID);
-        if (flightPower != null) {
-            flightPower.amount += 1;
-            ReflectionHacks.setPrivate(flightPower, FlightPower.class, "storedAmount", flightPower.amount);
-            flightPower.updateDescription();
-        }
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                FlightPower flightPower = (FlightPower)BigByrd.this.getPower(FlightPower.POWER_ID);
+                if (flightPower != null) {
+                    flightPower.amount += 1;
+                    ReflectionHacks.setPrivate(flightPower, FlightPower.class, "storedAmount", flightPower.amount);
+                    flightPower.updateDescription();
+                }
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
