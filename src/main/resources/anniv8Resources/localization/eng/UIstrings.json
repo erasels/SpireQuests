@@ -122,5 +122,10 @@
       "You haven't earned a medal for this quest yet. ",
       "You've completed this quest as: "
     ]
+  },
+  "${ModID}:Score": {
+    "TEXT": [
+      "Quests Completed (%d)"
+    ]
   }
 }
