@@ -57,7 +57,7 @@ public class RealityTwistQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.floorNum > 0 && AbstractDungeon.floorNum < 40;
+        return AbstractDungeon.floorNum > 0 && (AbstractDungeon.floorNum < 40 || Settings.isEndless);
     }
 
     @Override
