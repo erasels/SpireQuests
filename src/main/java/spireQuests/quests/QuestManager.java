@@ -81,7 +81,7 @@ public class QuestManager {
                             if(r != null) {
                                 quest.questboundRelics.add(r);
                                 QuestboundRelicsPatch.QuestboundRelicFields.isQuestbound.set(r, quest);
-                                String questName = FontHelper.colorString(CardCrawlGame.languagePack.getUIString(quest.id).TEXT[0], "y");
+                                String questName = FontHelper.colorString(quest.name, "y");
                                 r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID("Questbound")).TEXT[2],questName)));
                             }
                         }
