@@ -70,19 +70,21 @@ public class QuestManager {
                     quest.loadSave(questSave.questData[i], questSave.questRewards[i]);
                     if(!quest.complete() && !quest.fail()) {
                         quest.questboundRelics = new ArrayList<>();
-                        for(int y = 0; y < questSave.questRelicIndex[i].length; ++y) {
-                            AbstractRelic r = null;
-                            try {
-                                r = Wiz.adp().relics.get(questSave.questRelicIndex[i][y]);
-                            }
-                            catch (ArrayIndexOutOfBoundsException e) {
-                                Anniv8Mod.logger.warn("Relic was not found for Quest ({})", quest.name);
-                            }
-                            if(r != null) {
-                                quest.questboundRelics.add(r);
-                                QuestboundRelicsPatch.QuestboundRelicFields.isQuestbound.set(r, quest);
-                                String questName = FontHelper.colorString(quest.name, "y");
-                                r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID("Questbound")).TEXT[2],questName)));
+                        if (questSave.questRelicIndex[i] != null) {
+                            for(int y = 0; y < questSave.questRelicIndex[i].length; ++y) {
+                                AbstractRelic r = null;
+                                try {
+                                    r = Wiz.adp().relics.get(questSave.questRelicIndex[i][y]);
+                                }
+                                catch (ArrayIndexOutOfBoundsException e) {
+                                    Anniv8Mod.logger.warn("Relic was not found for Quest ({})", quest.name);
+                                }
+                                if(r != null) {
+                                    quest.questboundRelics.add(r);
+                                    QuestboundRelicsPatch.QuestboundRelicFields.isQuestbound.set(r, quest);
+                                    String questName = FontHelper.colorString(quest.name, "y");
+                                    r.tips.add(new PowerTip(keywords.get("Questbound").PROPER_NAME, String.format(CardCrawlGame.languagePack.getUIString(makeID("Questbound")).TEXT[2],questName)));
+                                }
                             }
                         }
                     }
