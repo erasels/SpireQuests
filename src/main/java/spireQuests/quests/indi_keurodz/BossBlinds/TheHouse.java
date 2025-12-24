@@ -47,11 +47,12 @@ public class TheHouse {
                 case Mark:
                     if (c.type == AbstractCard.CardType.POWER)
                         CardModifierManager.addModifier(c, new FaceDownModifier());
+                    break;
                 case Fish:
                     if (finishedInitialDraw) {
                         CardModifierManager.addModifier(c, new FaceDownModifier());
-                        break;
                     }
+                    break;
                 default:
                     break;
             }
