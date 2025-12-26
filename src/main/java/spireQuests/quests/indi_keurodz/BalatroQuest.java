@@ -48,26 +48,26 @@ public class BalatroQuest extends AbstractQuest {
         CeruleanBell,
         Club,
         CrimsonHeart,
-        Eye,
-        Fish,
+        Eye, // done
+        Fish, // done
         Flint,
         Goad,
         Head,
-        Hook,
+        Hook, // done
         House, // done
         Manacle, // done
-        Mark,
+        Mark, // done
         Mouth,
-        Needle,
+        Needle, // done
         Ox,
         Pillar,
         Plant,
-        Psychic,
+        Psychic, // done
         Serpent,
-        Tooth,
+        Tooth, // done
         VerdantLeaf,
-        VioletVessel,
-        Wall,
+        VioletVessel, // done
+        Wall, // done
         Water,
         Wheel, // done
         Window;
