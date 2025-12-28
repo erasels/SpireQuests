@@ -148,10 +148,12 @@ public class QuestManager {
         questList.add(quest);
         questList.sort(null);
         quest.onStart();
-        if (quest.questboundCards != null && questboundEnabled()) {
+        if (quest.questboundCards != null) {
             quest.questboundCards.forEach(c -> {
                 CardModifierManager.addModifier(c, new QuestboundMod(quest));
-                AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(c.makeStatEquivalentCopy(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                if (questboundEnabled()) {
+                    AbstractDungeon.effectList.add(new ShowCardandFakeObtainEffect(c.makeStatEquivalentCopy(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                }
             });
         }
         if (quest.questboundRelics != null) {
