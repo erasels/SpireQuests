@@ -42,12 +42,6 @@ public class LessonOfTheBloodQuest extends AbstractQuest {
     }
 
     @Override
-    public void makeTooltips(List<PowerTip> tipList) {
-        super.makeTooltips(tipList);
-        tipList.add(new CardPowerTip(new ClumsyOffering()));
-    }
-
-    @Override
     public boolean canSpawn() {
         Random rng = new Random(Settings.seed + (1911L * (AbstractDungeon.floorNum + 1)));
         boolean weightedSpawnCheck = rng.randomBoolean(LessonQuestUtil.getLessonSpawnChance());
