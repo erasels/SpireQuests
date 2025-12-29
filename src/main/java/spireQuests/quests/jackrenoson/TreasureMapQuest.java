@@ -36,7 +36,7 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
             startX = x;
             startY = y;
         }
-        public boolean isComplete() { return false; }
+        public boolean isComplete() { return true; }
         public String progressString() { return ""; }
 
         @Override
@@ -69,6 +69,7 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
 
         new SaveTracker(startX, startY).hide().add(this);
 
+        isAutoComplete = true;
         isAutoFail = true;
     }
 
