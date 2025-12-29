@@ -21,6 +21,7 @@ import spireQuests.quests.gk.cards.StoneArmor;
 import spireQuests.quests.gk.cards.Taunt;
 import spireQuests.quests.gk.cards.Unrelenting;
 import spireQuests.quests.gk.monsters.ICEliteMonster;
+import spireQuests.util.NodeUtil;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class BountyICQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 1;
+        return AbstractDungeon.actNum == 1 && NodeUtil.canPathToElite();
     }
 
     @SpirePatch2(clz = CombatRewardScreen.class, method = "setupItemReward")
