@@ -28,6 +28,8 @@ import javassist.CtBehavior;
 import spireQuests.Anniv8Mod;
 import spireQuests.quests.Trigger;
 
+import java.util.ArrayList;
+
 public class QuestTriggers {
     public static final Trigger<Void> DECK_CHANGE = new Trigger<>();
     public static final Trigger<AbstractCard> REMOVE_CARD = new Trigger<>();
@@ -49,6 +51,7 @@ public class QuestTriggers {
     public static final Trigger<Void> BOOT_TRIGGER = new Trigger<>();
     public static final Trigger<AbstractOrb> CHANNEL_ORB = new Trigger<>();
     public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
+    public static final Trigger<Integer> BEFORE_ACT_CHANGE = new Trigger<>();
     public static final Trigger<Integer> ACT_CHANGE = new Trigger<>();
     public static final Trigger<AbstractChest> CHEST_OPENED = new Trigger<>(); //NOTE: This includes both normal and boss chests.
 
@@ -254,6 +257,19 @@ public class QuestTriggers {
             if (__instance.maxOrbs > 0){
                 CHANNEL_ORB.trigger(orbToSet);
             }
+        }
+    }
+
+    @SpirePatch2(
+            clz = AbstractDungeon.class,
+            method = SpirePatch.CONSTRUCTOR,
+            paramtypez = { String.class, String.class, AbstractPlayer.class, ArrayList.class }
+    )
+    public static class BeforeActChange {
+        @SpirePostfixPatch
+        public static void beforeActChange(){
+            if (disabled()) return;
+            BEFORE_ACT_CHANGE.trigger(AbstractDungeon.actNum);
         }
     }
 
