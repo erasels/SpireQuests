@@ -26,13 +26,14 @@ public class HaywireModuleMonster extends AbstractSQMonster {
     private static final byte ATTACK = 0;
 
     private static final int HEALTH = 14;
-    private final int hpLoss;
+    private int hpLoss;
 
     public HaywireModuleMonster(float x, float y) {
         super(NAME, ID, HEALTH * actNum, 0f, -30.0f, 160f, 180f, null, x, y);
         setHp(calcAscensionTankiness(HEALTH * actNum));
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(7 * actNum));
         hpLoss = AbstractDungeon.ascensionLevel < 17 ? 8 : 7;
+        if (actNum == 1) hpLoss -= 3;
         loadAnimation(makeImagePath("snumodder/zilliax/haywire/haywire.atlas"),
                 makeImagePath("snumodder/zilliax/haywire/haywire.json"),
                 1f);

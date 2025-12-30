@@ -279,7 +279,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "#wTick every turn. If you play 5 cards in a turn, #wAttack.",
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
           "hp": "(10 HP per act)",
           "moves": [
             {
@@ -304,7 +304,7 @@
         },
         {
           "min_asc": 2,
-          "desc": "#wTick every turn. If you play 5 cards in a turn, #wAttack.",
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
           "hp": "(10 HP per act)",
           "moves": [
             {
@@ -329,7 +329,7 @@
         },
         {
           "min_asc": 7,
-          "desc": "#wTick every turn. If you play 5 cards in a turn, #wAttack.",
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
           "hp": "(11 HP per act)",
           "moves": [
             {
@@ -354,7 +354,7 @@
         },
         {
           "min_asc": 17,
-          "desc": "#wTick every turn. If you play 5 cards in a turn, #wAttack.",
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
           "hp": "(11 HP per act)",
           "moves": [
             {
@@ -471,7 +471,7 @@
           "min_asc": 0,
           "desc": "#wAttack every turn.",
           "hp": "(14 HP per act)",
-          "notes": "Innate #sHaywire #s8",
+          "notes": "Innate #sHaywire #s5 (act 1) #sHaywire #s8 (act 2)",
           "moves": [
             {
               "name": "Attack",
@@ -488,7 +488,7 @@
           "min_asc": 2,
           "desc": "#wAttack every turn.",
           "hp": "(14 HP per act)",
-          "notes": "Innate #sHaywire #s8",
+          "notes": "Innate #sHaywire #s5 (act 1) #sHaywire #s8 (act 2)",
           "moves": [
             {
               "name": "Attack",
@@ -505,7 +505,7 @@
           "min_asc": 7,
           "desc": "#wAttack every turn.",
           "hp": "(15 HP act 1 / 31 HP act 2)",
-          "notes": "Innate #sHaywire #s8",
+          "notes": "Innate #sHaywire #s5 (act 1) #sHaywire #s8 (act 2)",
           "moves": [
             {
               "name": "Attack",
@@ -522,7 +522,7 @@
           "min_asc": 17,
           "desc": "#wAttack every turn.",
           "hp": "(15 HP act 1 / 31 HP act 2)",
-          "notes": "Innate #sHaywire #s7",
+          "notes": "Innate #sHaywire #s4 (act 1) #sHaywire #s7 (act 2)",
           "moves": [
             {
               "name": "Attack",

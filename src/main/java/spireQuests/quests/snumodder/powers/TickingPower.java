@@ -16,7 +16,7 @@ public class TickingPower extends AbstractSQPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public static final int COUNT = 5;
+    public static final int COUNT = 3;
     public TickingPower(AbstractCreature owner) {
         super(POWER_ID, NAME, "snumodder", PowerType.BUFF, false, owner, 0);
     }
