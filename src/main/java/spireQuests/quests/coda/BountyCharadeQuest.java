@@ -18,6 +18,7 @@ import spireQuests.quests.QuestReward.RelicReward;
 import spireQuests.quests.coda.monsters.CharadeMonster;
 import spireQuests.quests.coda.monsters.CharadeMonster.OrbColor;
 import spireQuests.quests.coda.relics.CharadeOrbRelic;
+import spireQuests.util.NodeUtil;
 
 public class BountyCharadeQuest extends AbstractQuest {
 
@@ -44,7 +45,7 @@ public class BountyCharadeQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 3;
+        return AbstractDungeon.actNum == 3 && NodeUtil.canPathToElite();
     }
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "getEliteMonsterForRoomCreation")

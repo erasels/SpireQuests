@@ -12,6 +12,7 @@ import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.enbeon.monsters.WatcherEliteMonster;
 import spireQuests.quests.enbeon.relics.DivineOculus;
+import spireQuests.util.NodeUtil;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -33,7 +34,7 @@ public class BountyWatcherQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 2;
+        return AbstractDungeon.actNum == 2 && NodeUtil.canPathToElite();
     }
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "getEliteMonsterForRoomCreation")

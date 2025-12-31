@@ -104,6 +104,9 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
 
     @Override
     public void markNodes(ArrayList<ArrayList<MapRoomNode>> map, Random rng) {
+        if (this.isFailed()) {
+            return;
+        }
         ArrayList<MapRoomNode> toBeChecked = new ArrayList<>();
         ArrayList<MapRoomNode> validRooms = new ArrayList<>();
         ArrayList<MapRoomNode> checkedRooms = new ArrayList<>();
