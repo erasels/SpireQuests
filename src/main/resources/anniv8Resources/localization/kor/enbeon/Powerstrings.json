@@ -1,0 +1,15 @@
+{
+  "${ModID}:FakeDevotionPower": {
+    "NAME": "헌신",
+    "DESCRIPTIONS": [
+      "턴 종료 시 #y만트라 를 #b",
+      " 얻습니다."
+    ]
+  },
+  "${ModID}:FakeMantraPower": {
+    "NAME": "만트라",
+    "DESCRIPTIONS": [
+      "#y만트라를 #b10 얻으면 #y강림합니다."
+    ]
+  }
+}

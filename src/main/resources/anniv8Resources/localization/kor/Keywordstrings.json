@@ -1,0 +1,18 @@
+[
+    {
+      "PROPER_NAME": "Test",
+      "NAMES": [
+        "test",
+        "Test"
+      ],
+      "DESCRIPTION": "Shouldn't be here."
+    },
+    {
+      "ID": "Questbound",
+      "PROPER_NAME": "퀘스트 귀속",
+      "NAMES": [
+        "퀘스트귀속"
+      ],
+      "DESCRIPTION": "해당 퀘스트를 완료하면 이 대상을 제거합니다. 다른 어떤 방법으로도 변화되거나 제거될 수 없습니다."
+    }
+  ]

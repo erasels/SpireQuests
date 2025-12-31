@@ -1,0 +1,9 @@
+{
+  "${ModID}:BalancingStonesRelic": {
+    "NAME": "돌탑",
+    "FLAVOR": "전문적인 정확도로 쌓아올린 돌들입니다.",
+    "DESCRIPTIONS": [
+      "적을 정확한 피해로 처치할 때마다, 카드를 #b1 장 뽑습니다."
+    ]
+  }
+}

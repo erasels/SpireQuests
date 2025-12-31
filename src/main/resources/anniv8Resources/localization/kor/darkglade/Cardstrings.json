@@ -1,0 +1,10 @@
+{
+  "${ModID}:ImpendingDay": {
+    "NAME": "다가올날",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 치명타라면 체력을 !M! 회복하고 소멸합니다."
+  },
+  "${ModID}:StarOfExtinction": {
+    "NAME": "멸종의 별",
+    "DESCRIPTION": "카드를 소멸시키고 영구적으로 덱에서 제거합니다. NL 적 전체에게 피해를 !D! 줍니다. NL 소멸."
+  }
+}

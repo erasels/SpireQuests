@@ -1,0 +1,61 @@
+{
+  "${ModID}:OrbSpinnerQuest": {
+    "TITLE": "구체 순환기",
+    "DESCRIPTION": "한 턴에 서로 다른 #b4 종류의 구체를 발현하십시오.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "한 턴에 서로 다른 4 종류의 구체를 발현하십시오.",
+      "발현한 구체"
+    ]
+  },
+  "${ModID}:BackToBasicsQuest": {
+    "TITLE": "간단하게 만들어라",
+    "DESCRIPTION": "특별과 희귀 카드를 사용하지 않고 엘리트나 보스를 처치하십시오.",
+    "AUTHOR": "coda",
+    "REWARD": "시작 또는 일반 카드 무작위 3 장을 강화합니다.",
+    "TRACKER_TEXT": [
+      "특별과 희귀 카드를 사용하지 않고 엘리트나 보스를 처치하십시오."
+    ]
+  },
+  "${ModID}:UnbreakableQuest": {
+    "TITLE": "쓰러지지 않는",
+    "DESCRIPTION": "#b17 층 동안 최대 체력만큼의 피해를 받으십시오.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "남은 피해: ",
+      "남은 층: "
+    ],
+    "EXTRA_TEXT": [
+      "#b17 층 동안 피해를 #b",
+      " 받으십시오."
+    ]
+  },
+  "${ModID}:BuildAComboQuest": {
+    "TITLE": "콤보 구축",
+    "DESCRIPTION": "한 턴에 비용이 #b1, #b2, #b3 인 카드를 사용하십시오.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "비용이 1인 카드 사용함.",
+      "비용이 2인 카드 사용함.",
+      "비용이 3인 카드 사용함."
+    ]
+  },
+  "${ModID}:KeyCollector": {
+    "TITLE": "열쇠 수집가",
+    "DESCRIPTION": "이번 막 안에 루비, 에메랄드, 사파이어 열쇠를 모두 획득하십시오.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "루비 열쇠를 획득하십시오.",
+      "에메랄드 열쇠를 획득하십시오.",
+      "사파이어 열쇠를 획득하십시오."
+    ]
+  },
+  "${ModID}:BountyCharadeQuest": {
+    "TITLE": "현상금: 기만의 등불",
+    "DESCRIPTION": "사악한 에너지의 혼합체가 첨탑에 강림했습니다. 쓰러뜨리고 힘을 손에 넣으십시오. NL 이번 막의 다음 엘리트가 #y기만의 #y등불 로 교체됩니다.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "엘리트 처치"
+    ]
+  }
+}

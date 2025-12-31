@@ -18,6 +18,8 @@ import spireQuests.util.TexLoader;
 import java.util.Collections;
 import java.util.List;
 
+import static spireQuests.util.QuestStringsUtils.formatLanguage;
+
 public class QuestboundMod extends AbstractCardModifier {
     public static String ID = Anniv8Mod.makeID("Questbound");
     public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
@@ -55,7 +57,7 @@ public class QuestboundMod extends AbstractCardModifier {
 
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         String questName = FontHelper.colorString(QuestStringsUtils.getQuestString(boundQuestID).TITLE, "y");
-        return Collections.singletonList(new TooltipInfo(Anniv8Mod.keywords.get("Questbound").PROPER_NAME, String.format(uiStrings.TEXT[1], questName)));
+        return Collections.singletonList(new TooltipInfo(Anniv8Mod.keywords.get("Questbound").PROPER_NAME, formatLanguage(uiStrings.TEXT[1], questName)));
     }
 
     @Override

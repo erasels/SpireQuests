@@ -1,0 +1,18 @@
+{
+  "${ModID}:ClumsyOffering": {
+    "NAME": "서투른 제물",
+    "DESCRIPTION": "휘발성. NL 체력을 6 잃습니다. NL 소멸."
+  },
+  "${ModID}:ClumsyNightmare": {
+    "NAME": "서투른 악몽",
+    "DESCRIPTION": "휘발성. NL 카드를 선택합니다. NL 소멸."
+  },
+  "${ModID}:ClumsyReboot": {
+    "NAME": "서투른 다시 시작",
+    "DESCRIPTION": "휘발성. NL 모든 카드를 뽑을 카드 더미에 섞어 넣습니다. NL 소멸."
+  },
+  "${ModID}:ClumsyBlasphemy": {
+    "NAME": "서투른 신성 모독",
+    "DESCRIPTION": "휘발성. NL 다음 턴에 죽습니다. NL 소멸."
+  }
+}

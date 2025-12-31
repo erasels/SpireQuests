@@ -24,8 +24,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import static com.megacrit.cardcrawl.core.Settings.GameLanguage.KOR;
 import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.Anniv8Mod.makeUIPath;
+import static spireQuests.util.QuestStringsUtils.formatLanguage;
 
 public abstract class QuestReward {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestReward")).TEXT;
@@ -122,7 +124,7 @@ public abstract class QuestReward {
         private final TextureRegion img;
 
         public RelicReward(AbstractRelic r) {
-            super(String.format(TEXT[1], FontHelper.colorString(r.name, "y")));
+            super(formatLanguage(TEXT[1], FontHelper.colorString(r.name, "y")));
             this.relic = r;
             this.img = new TextureRegion(this.relic.img, 28, 28, 72, 72);
         }
@@ -223,7 +225,7 @@ public abstract class QuestReward {
                         break;
                 }
             }
-            return String.format(TEXT[1], relicTier);
+            return formatLanguage(TEXT[1], relicTier);
         }
     }
 
@@ -232,7 +234,7 @@ public abstract class QuestReward {
         private final TextureRegion img;
 
         public PotionReward(AbstractPotion p) {
-            super(String.format(TEXT[1], FontHelper.colorString(p.name, "y")));
+            super(formatLanguage(TEXT[1], FontHelper.colorString(p.name, "y")));
             this.potion = p;
             this.img = TexLoader.getTextureAsAtlasRegion(makeUIPath("potion_reward.png"));
         }
@@ -277,7 +279,7 @@ public abstract class QuestReward {
         private final AbstractCard card;
 
         public CardReward(AbstractCard card) {
-            super(String.format(TEXT[1], FontHelper.colorString(card.name, "y")));
+            super(formatLanguage(TEXT[1], FontHelper.colorString(card.name, "y")));
             this.card = card;
         }
 

@@ -1,0 +1,25 @@
+{
+  "${ModID}:RainbowQuest": {
+    "TITLE": "무지개 쫒아가기",
+    "DESCRIPTION": "",
+    "AUTHOR": "JackRenoson",
+    "TRACKER_TEXT": [
+      "서로 다른 색상의 #b",
+      " 장의 카드를 얻으세요."
+    ],
+    "EXTRA_TEXT": [
+      "#y퀘스트 #y귀속 #y프리즘 #y조각 을 얻습니다. 서로 다른 색상의 #b",
+      " 장의 카드를 얻으세요.",
+      "획득한 색상:"
+    ]
+  },
+  "${ModID}:TreasureMapQuest": {
+    "TITLE": "보물 지도",
+    "DESCRIPTION": "이 막에서 나중에 위치한 휴식 장소를 가리키는 지도를 찾았습니다. 그곳으로 가서 보물을 #y발굴 하세요!",
+    "AUTHOR": "JackRenoson",
+    "REWARD": "무작위 유물을 발굴합니다.",
+    "TRACKER_TEXT": [
+      "X 표시된 휴식 장소로 가십시오"
+    ]
+  }
+}

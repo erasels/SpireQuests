@@ -1,0 +1,59 @@
+{
+  "${ModID}:PeasantsTunic": {
+    "NAME": "평민의 옷",
+    "FLAVOR": "단순함에도 불구하고 위세 당당해 보입니다.",
+    "DESCRIPTIONS": [
+      "#y일반 카드를 사용할 때마다, #y방어도 를 #b1 얻습니다."
+    ]
+  },
+  "${ModID}:OwlMask": {
+    "NAME": "부엉이 가면",
+    "FLAVOR": "부엉 부엉.",
+    "DESCRIPTIONS": [
+      "#y? 방을 방문할 때마다, 최대 체력을 #b1 얻습니다."
+    ]
+  },
+  "${ModID}:FloralGarland": {
+    "NAME": "꽃 화관",
+    "FLAVOR": "한 순수한 마음에게 축복받았습니다.",
+    "DESCRIPTIONS": [
+      "매 전투 처음으로 #r저주 카드를 뽑았을 때 카드를 #b1 장 뽑습니다."
+    ]
+  },
+  "${ModID}:SpireAlloyHelmet": {
+    "NAME": "첨탑 합금 투구",
+    "FLAVOR": "금속의 특이한 조합으로 만들어졌습니다.",
+    "DESCRIPTIONS": [
+      "#y약화 나 #y손상 을 받을 때마다, 그 값을 #b1 감소시킵니다."
+    ]
+  },
+  "${ModID}:JewelledBauble": {
+    "NAME": "보석 장식 소품",
+    "FLAVOR": "이걸 들고 있으면 아이디어가 샘솟는다는 말이 있습니다.",
+    "DESCRIPTIONS": [
+      "전투 시작 시 #y특별 카드 #b3 장 중 #b1 장을 선택해 얻습니다."
+    ]
+  },
+  "${ModID}:MulticlassEmblem": {
+    "NAME": "다중 직업의 표상",
+    "FLAVOR": "전문가의 상징.",
+    "DESCRIPTIONS": [
+      "카드 보상이 다른 캐릭터의 카드를 포함합니다. 그 카드를 획득하면 #y골드 를 #b%d 얻습니다.",
+      "카드 보상이 %s 의 카드를 포함합니다. %s 의 카드를 획득하면 #y골드 를 #b%d 얻습니다."
+    ]
+  },
+  "${ModID}:CustomerAppreciationAward": {
+    "NAME": "고객 감사상",
+    "FLAVOR": "고객님을 위해 최선을 다하겠습니다.",
+    "DESCRIPTIONS": [
+      "획득 시 골드를 #b10 얻고, 최대 체력을 #b1 얻고 무작위 #y일반 카드를 #b1 장 강화합니다."
+    ]
+  },
+  "${ModID}:VolatileStardust": {
+    "NAME": "휘발성 소성단",
+    "FLAVOR": "추락한 별에서 추출했습니다.",
+    "DESCRIPTIONS": [
+      "공격 피해를 완전히 막을 때마다 피해를 #b7 되돌려 줍니다."
+    ]
+  }
+}

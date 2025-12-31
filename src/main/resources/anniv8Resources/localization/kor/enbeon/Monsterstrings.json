@@ -1,0 +1,10 @@
+{
+  "${ModID}:WatcherEliteMonster": {
+    "MOVES": [
+      "신속한 타격들",
+      "맹공",
+      "손절 / 보호"
+    ],
+    "NAME": "보라색 잔상"
+  }
+}

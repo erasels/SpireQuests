@@ -1,0 +1,34 @@
+{
+  "${ModID}:LessonOfTheBloodQuest": {
+    "TITLE": "피의 가르침",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y서투른 #y제물 을 얻습니다. NL #y서투른 #y제물 을 #b4 번 사용하십시오.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "서투른 제물 사용"
+    ]
+  },
+  "${ModID}:LessonOfTheBogQuest": {
+    "TITLE": "늪의 가르침",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y서투른 #y악몽 을 얻습니다. NL #y서투른 #y악몽 을 #b4 번 사용하십시오.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "서투른 악몽 사용"
+    ]
+  },
+  "${ModID}:LessonOfTheCoreQuest": {
+    "TITLE": "핵의 가르침",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y서투른 #y다시 #y시작 을 얻습니다. NL #y서투른 #y다시 #y시작 을 #b9 번 사용하십시오.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "서투른 다시 시작 사용"
+    ]
+  },
+  "${ModID}:LessonOfTheAsceticQuest": {
+    "TITLE": "고행의 가르침",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y서투른 #y신성 #y모독 을 얻습니다. NL #y서투른 #y신성 #y모독 을 #b3 번 사용하십시오.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "서투른 신성 모독 사용"
+    ]
+  }
+}

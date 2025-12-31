@@ -1,0 +1,9 @@
+{
+  "${ModID}:UpgradeNextPower": {
+    "NAME": "카드맨시",
+    "DESCRIPTIONS": [
+      "다음으로 사용하는 카드를 #y강화합니다.",
+      "다음으로 사용하는 #b%s 장의 카드를 #y강화합니다."
+    ]
+  }
+}

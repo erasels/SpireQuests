@@ -1,0 +1,20 @@
+{
+  "${ModID}:GennGreymaneQuest": {
+    "TITLE": "겐 그레이메인",
+    "DESCRIPTION": "덱에 비용이 짝수/X인 카드가 #b7 장 이상 있고 홀수인 카드가 없도록 만드세요 (시작 카드 제외).",
+    "AUTHOR": "snumodder",
+    "REWARD": "모든 시작 카드를 강화합니다.",
+    "TRACKER_TEXT": [
+      "짝수/X",
+      "남아있는 홀수"
+    ]
+  },
+  "${ModID}:GaronaHalforcenQuest": {
+    "TITLE": "가로나 하프오큰",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y국왕 #y레인 을 얻습니다. NL #b3 번의 전투 동안 소멸되는 것을 막으세요.",
+    "AUTHOR": "snumodder",
+    "TRACKER_TEXT": [
+      "국왕 레인 생존"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "${ModID}:EvilSentry": {
+    "MOVES": [
+      "속이기"
+    ],
+      "NAME": "사악한 보초기",
+      "DIALOG": [
+      ""
+      ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "${ModID}:CalculatedKillerQuest": {
+    "TITLE": "계산된 일격",
+    "DESCRIPTION": "적을 정확한 피해로 #b3 번 처치하십시오.",
+    "AUTHOR": "MaybeLaterx",
+    "TRACKER_TEXT": [
+      "정확한 처치"
+    ]
+  }
+}

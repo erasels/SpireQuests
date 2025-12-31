@@ -1,0 +1,19 @@
+{
+  "${ModID}:AmbitiousStrikeQuest": {
+    "TITLE": "야심찬 타격",
+    "DESCRIPTION": "엘리트 전투에서 마지막 카드로 기본 #y타격 을 사용하고 끝내십시오.",
+    "AUTHOR": "Darkglade",
+    "REWARD": "무작위 #y공격 카드를 강화합니다.",
+    "TRACKER_TEXT": [
+      "기본 타격으로 처치한 엘리트"
+    ]
+  },
+  "${ModID}:DoomsdayCalendarQuest": {
+    "TITLE": "종말 달력",
+    "DESCRIPTION": "#y다가올날 을 얻습니다. NL #y다가올날 을 사용해 #y치명타 로 적을 #b12 번 죽이십시오.",
+    "AUTHOR": "Darkglade",
+    "TRACKER_TEXT": [
+      "처치 횟수"
+    ]
+  }
+}

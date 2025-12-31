@@ -1,0 +1,10 @@
+{
+  "${ModID}:BountyWatcherQuest": {
+    "TITLE": "현상금: 보라색 잔상",
+    "DESCRIPTION": "지팡이를 휘두르는, 신속하고 위험한 개체가 등장했습니다. 이번 막의 다음 엘리트가 #p와쳐 로 교체됩니다.",
+    "AUTHOR": "Enbeon",
+    "TRACKER_TEXT": [
+      "잔상 처치"
+    ]
+  }
+}

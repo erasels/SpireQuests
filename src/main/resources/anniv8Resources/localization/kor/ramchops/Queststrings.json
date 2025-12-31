@@ -1,0 +1,67 @@
+{
+  "${ModID}:SelloutQuest": {
+    "TITLE": "장사치",
+    "DESCRIPTION": "#y광고 를 #b1 장 얻습니다. #y광고 를 제거하여 퀘스트를 완료하세요.\n\n",
+    "AUTHOR": "RamChops Games",
+    "REWARD": "사용한 #y광고 마다 #y골드를 #b10 얻습니다.",
+    "TRACKER_TEXT": [
+      "획득한 광고 수입",
+      "광고 제거"
+    ]
+  },
+  "${ModID}:CeaselessHungerQuest": {
+    "TITLE": "끝없는 굶주림",
+    "DESCRIPTION": "#y느로스의 #y얼굴 을 얻습니다. 2막 시작 시 하나 더 얻습니다. 3막에서 상자를 열어 퀘스트를 완료하세요.",
+    "AUTHOR": "RamChops Games",
+    "REWARD": "모든 #y느로스의 #y얼굴 을 제거하고 #y느로스의 #y얼굴이 제거한 유물마다 무작위 #b2 개의 유물을 얻습니다.",
+    "TRACKER_TEXT": [
+      "3막 상자 열기"
+    ]
+  },
+  "${ModID}:EvilSentryQuest": {
+    "TITLE": "사악한 보초기",
+    "DESCRIPTION": "이번 막의 다음 엘리트가 세 보초기로 교체됩니다. 기본 행동에 더해서 특별한 행동을 취할 수 있습니다 (피해를 #b5 주고 드로우 감소 #b1 부여). 그들을 처치하십시오.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "사악한 보초기 처치"
+    ]
+  },
+  "${ModID}:WindowShoppingQuest": {
+    "TITLE": "아이쇼핑",
+    "DESCRIPTION": "#b2 개의 상점에서 아무 것도 사지 않고 떠나십시오.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "골드를 사용하지 않고 상점 떠나기"
+    ],
+    "EXTRA_TEXT": [
+      " NL NL #r경고: #r이번 #r상점에서 #r골드를 #r사용하고 #r나서 #r퀘스트를 #r수락해도 #r퀘스트를 #r실패합니다!"
+    ]
+  },
+  "${ModID}:ThatsSmoresQuest": {
+    "TITLE": "스모어 타임",
+    "DESCRIPTION": "휴식 장소에서 마시멜로를 구울 수 있습니다. 2번 수행하세요.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "구운 마시멜로"
+    ]
+  },
+  "${ModID}:CharityQuest": {
+    "TITLE": "자선 모금함",
+    "DESCRIPTION": "스킵하는 모든 골드 보상이 성직자에게 기부됩니다. 이 퀘스트는 골드를 얻거나 #y외형질 을 얻으면 종료됩니다.",
+    "AUTHOR": "RamChops Games",
+    "REWARD": "성직자가 감사를 표합니다! 기부한 골드 #b15 마다 최대 체력을 #b1 얻습니다.",
+    "TRACKER_TEXT": [
+      "기부한 골드",
+      "성직자의 감사",
+      "골드 얻기"
+    ]
+  },
+  "${ModID}:BloomerQuest": {
+    "TITLE": "꼰대",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y개화의 #y표식 을 얻습니다. 가지고 #b10 층을 등반하세요.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "등반한 층수"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "${ModID}:DefectEliteMonster": {
+    "MOVES": [
+      "코어 서지 / 인지 편향 / 무지개",
+      "축전기 / 전기 역학 / 조각모음",
+      "전류 타격 / 도약 / 역장",
+      "번개 구체 / 컴파일 드라이버 / 조각모음",
+      "파지직 / 냉정함 / 어둠"
+    ],
+    "NAME": "파란 악마"
+  },
+  "${ModID}:LightningOrbMinion": {
+    "MOVES": [
+      "전기"
+    ],
+    "NAME": "전기 구체"
+  },
+  "${ModID}:FrostOrbMinion": {
+    "MOVES": [
+      "냉기"
+    ],
+    "NAME": "냉기 구체"
+  },
+  "${ModID}:DarkOrbMinion": {
+    "MOVES": [
+      "지속",
+      "발현"
+    ],
+    "NAME": "암흑 구체"
+  }
+}

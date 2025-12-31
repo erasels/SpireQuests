@@ -1,0 +1,19 @@
+{
+  "${ModID}:CowardiceQuest": {
+    "TITLE": "겁쟁이 루트",
+    "DESCRIPTION": "엘리트를 3 번 회피하십시오. (엘리트 전투가 주어졌을 때, 다른 길로 가십시오.)",
+    "AUTHOR": "Dayvig",
+    "REWARD": "무작위 일반 #y유물.",
+    "TRACKER_TEXT": [
+      "회피한 엘리트"
+    ]
+  },
+  "${ModID}:AddictQuest": {
+    "TITLE": "중독성 성격",
+    "DESCRIPTION": "#yJ.A.X. 를 5번의 전투 동안 연속으로 사용하십시오. 다음 #y? 방이 #yJ.A.X 를 주는 증강자 이벤트로 대체됩니다. (다른 선택지 없음.)",
+    "AUTHOR": "Dayvig",
+    "TRACKER_TEXT": [
+      "연속으로 전투에서 복용한 J.A.X."
+    ]
+  }
+}

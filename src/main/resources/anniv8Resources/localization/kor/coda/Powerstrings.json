@@ -1,0 +1,9 @@
+{
+  "${ModID}:MonsterSpiritShieldPower": {
+    "NAME": "영혼 방패",
+    "DESCRIPTIONS": [
+      "카드를 사용할 때마다 다음 턴에 이 적이 #y방어도 를 #b",
+      " 얻습니다."
+    ]
+  }
+}

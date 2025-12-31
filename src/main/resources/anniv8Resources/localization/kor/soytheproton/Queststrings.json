@@ -1,0 +1,18 @@
+{
+  "${ModID}:GrandFinaleQuest": {
+    "TITLE": "대단원",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y대단원의 #y막 을 얻습니다. NL #y대단원의 #y막 을 사용하세요.",
+    "AUTHOR": "SoytheProton",
+    "TRACKER_TEXT": [
+      "대단원의 막 사용"
+    ]
+  },
+  "${ModID}:LuckyNumberQuest": {
+    "TITLE": "행운의 숫자",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y장화 를 얻습니다. NL 한 전투에서 #y장화 를 7 번 발동시키세요.",
+    "AUTHOR": "SoytheProton",
+    "TRACKER_TEXT": [
+      "장화 발동"
+    ]
+  }
+}

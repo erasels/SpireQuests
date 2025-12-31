@@ -1,0 +1,38 @@
+{
+  "${ModID}:TripleCast": {
+    "NAME": "삼중 시전",
+    "DESCRIPTION": "가장 오른쪽의 구체를 3 번 발현합니다."
+  },
+  "${ModID}:Smash": {
+    "NAME": "초강타",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 주고 취약을 !M! 부여합니다. NL 소멸."
+  },
+  "${ModID}:Thriver": {
+    "NAME": "활약자",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 카드를 !M! 장 뽑습니다. NL 카드를 !M! 장 버립니다."
+  },
+  "${ModID}:Cardmancy": {
+    "NAME": "카드맨시",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 이번 턴에 다음으로 사용하는 카드가 뽑을 카드 더미 맨 위로 강화되어 돌아갑니다."
+  },
+  "${ModID}:Balance": {
+    "NAME": "균형",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 명상합니다."
+  },
+  "${ModID}:Trapshot": {
+    "NAME": "트랩샷",
+    "DESCRIPTION": "피해를 !D! 줍니다. hermit:정조준: 적이 막히지 않은 피해만큼 이번 턴 힘을 잃습니다."
+  },
+  "${ModID}:Unrelenting": {
+    "NAME": "무자비함",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 다음 사용하는 공격 카드의 비용이 0이 됩니다."
+  },
+  "${ModID}:Taunt": {
+    "NAME": "도발",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 적 전체에게 취약을 !M! 부여합니다."
+  },
+  "${ModID}:StoneArmor": {
+    "NAME": "돌 갑옷",
+    "DESCRIPTION": "*판금 *갑옷 을 !M! 얻습니다. NL 민첩을 1 잃습니다."
+  }
+}

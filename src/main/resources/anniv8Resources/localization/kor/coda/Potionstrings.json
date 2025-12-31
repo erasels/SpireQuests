@@ -1,0 +1,9 @@
+{
+  "${ModID}:NuclearJuicePotion": {
+    "NAME": "핵분열 주스",
+    "DESCRIPTIONS": [
+      "#y핵분열+ 을 #b",
+      " 장 얻습니다."
+    ]
+  }
+}

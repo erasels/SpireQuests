@@ -1,0 +1,16 @@
+{
+  "${ModID}:PristineCardsQuest": {
+    "TITLE": "신선한 카드",
+    "DESCRIPTION": "카드 보상에 등장하는 #y신선한 카드 #b3 장을 획득하십시오.",
+    "AUTHOR": "Pandemonium",
+    "REWARD": "#y신선한 카드들을 #y강화합니다.",
+    "TRACKER_TEXT": [
+      "신선한 카드"
+    ]
+  },
+  "${ModID}:PristineModifier": {
+    "TITLE": "신선한",
+    "DESCRIPTION": "정말 새롭네요! 퀘스트가 활성화된 동안 무작위로 카드 보상에 나타납니다.",
+    "AUTHOR": "Pandemonium"
+  }
+}

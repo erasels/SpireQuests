@@ -1,0 +1,38 @@
+{
+  "${ModID}:RagerQuest": {
+    "TITLE": "난동",
+    "DESCRIPTION": "한 턴에 공격 카드를 #b5 번 사용하십시오.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "이번 턴에 사용한 공격 카드"
+    ]
+  },
+  "${ModID}:AbstinenceQuest": {
+    "TITLE": "절제",
+    "DESCRIPTION":"다음 #b4 번의 전투 동안 포션을 사용하지 마십시오.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "포션을 사용하지 않은 전투"
+    ]
+  },
+  "${ModID}:BasicProficiencyQuest": {
+    "TITLE": "기본기 숙련",
+    "DESCRIPTION":"한 전투에서 %s %s #b3 번 사용하십시오.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "사용함"
+    ],
+    "EXTRA_TEXT": [
+      "한 전투에서 특정 시작 카드를 #b3 번 사용하십시오."
+    ]
+  },
+  "${ModID}:BountyICQuest": {
+    "TITLE": "현상금: 붉은 재앙",
+    "DESCRIPTION": "불과 철로 이루어진 재앙이 이곳을 노리고 있습니다. 이번 막의 다음 엘리트가 #r아이언클래드 로 교체됩니다.",
+    "AUTHOR": "Gk",
+    "REWARD": "엘리트 보상을 좋은 #r아이언클래드 보상으로 교체합니다.",
+    "TRACKER_TEXT": [
+      "재앙 처치"
+    ]
+  }
+}
