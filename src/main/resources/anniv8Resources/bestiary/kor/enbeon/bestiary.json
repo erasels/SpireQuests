@@ -1,0 +1,198 @@
+{
+  "monsters": [
+    {
+      "name": "와쳐",
+      "id": "${ModID}:WatcherEliteMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#w맹공 -> #w신속한 #w타격들 -> #w손절 / #w보호 를 반복합니다. NL #s강림하면, #w맹공 부터 다시 시작합니다.",
+          "notes": "선천성 #u헌신 #b2 (매 턴 #u만트라 획득). #u만트라 를 #b10 얻으면 그 턴 동안 #s강림하고 공격으로 #r세 #r배의 #r피해를 줍니다. NL #w맹공 은 #r막히지 #r않은 #r피해 만큼 #b방어도 를 얻습니다.",
+          "hp": "(144 - 154 체력)",
+          "moves": [
+            {
+              "name": "맹공",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "신속한 타격들",
+              "effects": [
+                {
+                  "name": "5x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "힘 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "손절 / 보호",
+              "effects": [
+                {
+                  "name": "Weak 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "12",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "#w맹공 -> #w신속한 #w타격들 -> #w손절 / #w보호 를 반복합니다. NL #s강림하면, #w맹공 부터 다시 시작합니다.",
+          "notes": "선천성 #u헌신 #b2 (매 턴 #u만트라 획득). #u만트라 를 #b10 얻으면 그 턴 동안 #s강림하고 공격으로 #r세 #r배의 #r피해를 줍니다. NL #w맹공 은 #r막히지 #r않은 #r피해 만큼 #b방어도 를 얻습니다.",
+          "hp": "(144 - 154 체력)",
+          "moves": [
+            {
+              "name": "맹공",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "신속한 타격들",
+              "effects": [
+                {
+                  "name": "6x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "힘 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "손절 / 보호",
+              "effects": [
+                {
+                  "name": "Weak 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "12",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "#w맹공 -> #w신속한 #w타격들 -> #w손절 / #w보호 를 반복합니다. NL #s강림하면, #w맹공 부터 다시 시작합니다.",
+          "notes": "선천성 #u헌신 #b2 (매 턴 #u만트라 획득). #u만트라 를 #b10 얻으면 그 턴 동안 #s강림하고 공격으로 #r세 #r배의 #r피해를 줍니다. NL #w맹공 은 #r막히지 #r않은 #r피해 만큼 #b방어도 를 얻습니다.",
+          "hp": "(158 - 169 체력)",
+          "moves": [
+            {
+              "name": "맹공",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "신속한 타격들",
+              "effects": [
+                {
+                  "name": "6x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "힘 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "손절 / 보호",
+              "effects": [
+                {
+                  "name": "Weak 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "13",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "#w맹공 -> #w신속한 #w타격들 -> #w손절 / #w보호 를 반복합니다. NL #s강림하면, #w맹공 부터 다시 시작합니다.",
+          "notes": "선천성 #u헌신 #b3 (매 턴 #u만트라 획득). #u만트라 를 #b10 얻으면 그 턴 동안 #s강림하고 공격으로 #r세 #r배의 #r피해를 줍니다. NL #w맹공 은 #r막히지 #r않은 #r피해 만큼 #b방어도 를 얻습니다.",
+          "hp": "(158 - 169 체력)",
+          "moves": [
+            {
+              "name": "맹공",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "신속한 타격들",
+              "effects": [
+                {
+                  "name": "6x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "힘 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "손절 / 보호",
+              "effects": [
+                {
+                  "name": "Weak 2",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "13",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

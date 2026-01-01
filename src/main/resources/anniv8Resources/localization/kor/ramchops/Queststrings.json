@@ -57,7 +57,7 @@
     ]
   },
   "${ModID}:BloomerQuest": {
-    "TITLE": "꼰대",
+    "TITLE": "네 다음 개화",
     "DESCRIPTION": "#y퀘스트 #y귀속 #y개화의 #y표식 을 얻습니다. 가지고 #b10 층을 등반하세요.",
     "AUTHOR": "RamChops Games",
     "TRACKER_TEXT": [

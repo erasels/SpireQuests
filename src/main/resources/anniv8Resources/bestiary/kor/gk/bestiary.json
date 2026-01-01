@@ -1,0 +1,218 @@
+{
+	"monsters": [
+		{
+			"name": "아이언클래드",
+			"id": "${ModID}:ICEliteMonster",
+			"ai": [
+				{
+					"min_asc": 0,
+					"desc": "#w악마의 #w형상 으로 시작해서, #w철의 #w파동 -> #w강타 -> #w이중 #w타격 을 반복합니다.",
+					"notes": "선천성 #u버퍼 #b1.",
+					"hp": "(80 - 87 체력)",
+					"moves": [
+						{
+							"name": "악마의 형상",
+							"effects": [
+								{
+									"name": "악마화 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "철의 파동",
+							"effects": [
+								{
+									"name": "5",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "5",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "강타",
+							"effects": [
+								{
+									"name": "8",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "취약 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "이중 타격",
+							"effects": [
+								{
+									"name": "5x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 3,
+					"desc": "#w악마의 #w형상 으로 시작해서, #w철의 #w파동 -> #w강타 -> #w이중 #w타격 을 반복합니다.",
+					"notes": "선천성 #u버퍼 #b1.",
+					"hp": "(80 - 87 체력)",
+					"moves": [
+						{
+							"name": "악마의 형상",
+							"effects": [
+								{
+									"name": "악마화 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "철의 파동",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "강타",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "취약 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "이중 타격",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 8,
+					"desc": "#w악마의 #w형상 으로 시작해서, #w철의 #w파동 -> #w강타 -> #w이중 #w타격 을 반복합니다.",
+					"notes": "선천성 #u버퍼 #b1.",
+					"hp": "(88 - 95 체력)",
+					"moves": [
+						{
+							"name": "악마의 형상",
+							"effects": [
+								{
+									"name": "악마화 2",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "철의 파동",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "강타",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "취약 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "이중 타격",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"min_asc": 18,
+					"desc": "#w악마의 #w형상 으로 시작해서, #w철의 #w파동 -> #w강타 -> #w이중 #w타격 을 반복합니다.",
+					"notes": "선천성 #u버퍼 #b1.",
+					"hp": "(88 - 95 체력)",
+					"moves": [
+						{
+							"name": "악마의 형상",
+							"effects": [
+								{
+									"name": "악마화 3",
+									"color": "BUFF"
+								}
+							]
+						},
+						{
+							"name": "철의 파동",
+							"effects": [
+								{
+									"name": "6",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "6",
+									"color": "BLOCK"
+								}
+							]
+						},
+						{
+							"name": "강타",
+							"effects": [
+								{
+									"name": "9",
+									"color": "DAMAGE"
+								},
+								{
+									"name": "취약 2",
+									"color": "DEBUFF"
+								}
+							]
+						},
+						{
+							"name": "이중 타격",
+							"effects": [
+								{
+									"name": "6x2",
+									"color": "DAMAGE"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

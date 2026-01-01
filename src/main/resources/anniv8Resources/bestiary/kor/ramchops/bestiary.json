@@ -1,0 +1,166 @@
+{
+	"monsters": [
+      {
+        "name": "사악한 보초기",
+        "id": "${ModID}:EvilSentry",
+        "ai": [
+          {
+            "min_asc": 0,
+            "desc": "왼쪽부터 각각 #w볼트 / #w광선 / #w속이기 로 시작합니다. 다음부터 각자 의도에서 시작해서 #w볼트 -> #w광선 -> #w속이기 -> #w볼트 로 반복합니다.",
+            "hp": "(38 - 42 체력)",
+            "notes": "선천성 #u인공물 #u1",
+            "moves": [
+              {
+                "name": "광선",
+                "effects": [
+                  {
+                    "name": "9",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "볼트",
+                "effects": [
+                  {
+                    "name": "어지러움 2",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "속이기",
+                "effects": [
+                  {
+                    "name": "5",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "드로우 감소 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min_asc": 3,
+            "desc": "왼쪽부터 각각 #w볼트 / #w광선 / #w속이기 로 시작합니다. 다음부터 각자 의도에서 시작해서 #w볼트 -> #w광선 -> #w속이기 -> #w볼트 로 반복합니다.",
+            "hp": "(38 - 42 체력)",
+            "notes": "선천성 #u인공물 #u1",
+            "moves": [
+              {
+                "name": "광선",
+                "effects": [
+                  {
+                    "name": "10",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "볼트",
+                "effects": [
+                  {
+                    "name": "어지러움 2",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "속이기",
+                "effects": [
+                  {
+                    "name": "6",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "드로우 감소 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min_asc": 8,
+            "desc": "왼쪽부터 각각 #w볼트 / #w광선 / #w속이기 로 시작합니다. 다음부터 각자 의도에서 시작해서 #w볼트 -> #w광선 -> #w속이기 -> #w볼트 로 반복합니다.",
+            "hp": "(39 - 45 체력)",
+            "notes": "선천성 #u인공물 #u1",
+            "moves": [
+              {
+                "name": "광선",
+                "effects": [
+                  {
+                    "name": "10",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "볼트",
+                "effects": [
+                  {
+                    "name": "어지러움 2",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "속이기",
+                "effects": [
+                  {
+                    "name": "6",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "드로우 감소 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min_asc": 18,
+            "desc": "왼쪽부터 각각 #w볼트 / #w광선 / #w속이기 로 시작합니다. 다음부터 각자 의도에서 시작해서 #w볼트 -> #w광선 -> #w속이기 -> #w볼트 로 반복합니다.",
+            "hp": "(39 - 45 체력)",
+            "notes": "선천성 #u인공물 #u1",
+            "moves": [
+              {
+                "name": "광선",
+                "effects": [
+                  {
+                    "name": "10",
+                    "color": "DAMAGE"
+                  }
+                ]
+              },
+              {
+                "name": "볼트",
+                "effects": [
+                  {
+                    "name": "어지러움 3",
+                    "color": "DEBUFF"
+                  }
+                ]
+              },
+              {
+                "name": "속이기",
+                "effects": [
+                  {
+                    "name": "6",
+                    "color": "DAMAGE"
+                  },
+                  {
+                    "name": "드로우 감소 1",
+                    "color": "DEBUFF"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+	]
+}

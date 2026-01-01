@@ -413,7 +413,7 @@
 					]
 				},
 				{
-					"min_asc": 0,
+					"min_asc": 8,
 					"desc": "Starts with #wGather twice, then #wEvoke.",
 					"notes": "Store damage amount from #wGather is increased by the Defect's #uFocus.",
 					"hp": "(25 - 28 HP)",
