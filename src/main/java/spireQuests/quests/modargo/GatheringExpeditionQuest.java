@@ -123,7 +123,7 @@ public class GatheringExpeditionQuest extends AbstractQuest implements MarkNodeQ
 
         Collections.shuffle(possibleNodes, new java.util.Random(rng.randomLong()));
         Supplier<Integer> f = () -> (rng.randomBoolean() ? 0 : 1);
-        int n = 3 + (AbstractDungeon.actNum == 3 ? 1 : 0) + (AbstractDungeon.actNum == 2 ? f.get() : 0)  + f.get() + f.get() + f.get();
+        int n = 4 + (AbstractDungeon.actNum == 3 ? 1 : 0) + (AbstractDungeon.actNum == 2 ? f.get() : 0)  + f.get() + f.get();
         n = AbstractDungeon.actNum > 3 ? 1 : n;
         n = Math.min(n, possibleNodes.size());
         for (int i = 0; i < n; i++) {

@@ -16,7 +16,7 @@ import static spireQuests.Anniv8Mod.*;
 
 public class TheBlackstaff extends AbstractSQCard {
     public static final String ID = makeID(TheBlackstaff.class.getSimpleName());
-    private static final int IGNITE_HP = 10;
+    private static final int IGNITE_HP = 9;
     private static final int UPGRADE_IGNITE_HP = 3;
 
     public TheBlackstaff() {
