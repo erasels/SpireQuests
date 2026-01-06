@@ -1,9 +1,5 @@
 package spireQuests.quests.indi_keurodz.BossBlinds;
 
-import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
-import javassist.CtBehavior;
-
 import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
@@ -16,6 +12,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+
+import basemod.helpers.CardModifierManager;
+import javassist.CtBehavior;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
 import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;

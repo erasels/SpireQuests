@@ -1,23 +1,23 @@
 package spireQuests.quests.indi_keurodz.modifiers;
 
-import basemod.helpers.TooltipInfo;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-
-import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
+
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
 import spireQuests.util.TexLoader;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RentalStickerModifier extends AbstractCardModifier {
 
-    public static String MODIFIER_ID = Anniv8Mod.makeID("RentalSticker");
+    public static final String MODIFIER_ID = Anniv8Mod.makeID("RentalSticker");
     private static final UIStrings strings = CardCrawlGame.languagePack.getUIString(MODIFIER_ID);
 
     private static final Texture icon = TexLoader

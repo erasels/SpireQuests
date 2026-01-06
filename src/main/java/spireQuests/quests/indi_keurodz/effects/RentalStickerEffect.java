@@ -11,7 +11,7 @@ import spireQuests.quests.indi_keurodz.patches.DisableLoseGoldSfxPatch;
 
 public class RentalStickerEffect extends AbstractGameEffect {
     private int numSoundsPlayed = 0;
-    private int numStickers;
+    private final int numStickers;
     private int extraGold = 0;
     private int originalGold = -5;
 

@@ -1,7 +1,5 @@
 package spireQuests.quests.indi_keurodz;
 
-import static spireQuests.Anniv8Mod.makeID;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +25,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 
 import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
+import static spireQuests.Anniv8Mod.makeID;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
@@ -39,12 +38,12 @@ public class BalatroQuest extends AbstractQuest {
     public static final String BLIND_STRINGS_ID = makeID("BalatroBlinds");
     public static final String AUTHOR = "indi_keurodz";
 
-    private static Map<String, String> blindStrings = CardCrawlGame.languagePack
+    private static final Map<String, String> blindStrings = CardCrawlGame.languagePack
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
 
     public static enum BossBlind {
         AmberAcorn,
-        Arm,
+        Arm, // done
         CeruleanBell,
         Club,
         CrimsonHeart,

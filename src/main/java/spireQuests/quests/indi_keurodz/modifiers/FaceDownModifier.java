@@ -7,7 +7,8 @@ import spireQuests.Anniv8Mod;
 
 public class FaceDownModifier extends AbstractCardModifier {
 
-    public static String MODIFIER_ID = Anniv8Mod.makeID(FaceDownModifier.class.getSimpleName());
+    public static final String MODIFIER_ID = Anniv8Mod.makeID("FaceDownModifier");
+
 
     @Override
     public String identifier(AbstractCard card) {

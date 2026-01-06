@@ -1,5 +1,11 @@
 package spireQuests.quests.indi_keurodz.patches;
 
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
@@ -18,22 +24,16 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+
 import basemod.helpers.CardModifierManager;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import static spireQuests.Anniv8Mod.makeShaderPath;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.quests.indi_keurodz.modifiers.FoilModifier;
 import spireQuests.quests.indi_keurodz.modifiers.HoloModifier;
 import spireQuests.quests.indi_keurodz.modifiers.NegativeModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PolychromeModifier;
-
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import static spireQuests.Anniv8Mod.makeShaderPath;
 
 public class EditionShaders {
 
@@ -56,11 +56,12 @@ public class EditionShaders {
         }
 
         private static class Locator extends SpireInsertLocator {
+            @Override
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher("com.megacrit.cardcrawl.helpers.input.InputHelper",
                         "updateLast");
 
-                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<>(), finalMatcher);
             }
         }
     }
@@ -155,7 +156,7 @@ public class EditionShaders {
                 foilShader = loadShader("foil.frag");
             if (foilShader != null) {
                 renderWithShader(card, sb, t, foilShader, (shader) -> {
-                    float slowTime = time * 0.04f;
+                    float slowTime = time * 0.08f;
                     shader.setUniformf("u_roll", slowTime, slowTime);
                 });
                 return;

@@ -7,7 +7,8 @@ import spireQuests.Anniv8Mod;
 
 public class NegativeModifier extends AbstractCardModifier {
 
-    public static final String MODIFIER_ID = Anniv8Mod.makeID(NegativeModifier.class.getSimpleName());
+    public static final String MODIFIER_ID = Anniv8Mod.makeID("NegativeBalatro");
+
 
     @Override
     public String identifier(AbstractCard card) {

@@ -14,13 +14,12 @@ import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import basemod.ReflectionHacks;
 import javassist.CtBehavior;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
+import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
 
 public class TheArm {
 
     static boolean card_transformed = false;
-    static boolean show_poof_anim = false;
 
     @SpirePatch2(clz = UseCardAction.class, method = "update")
     public static class TranformFirstCardIntoPlainCopy {
