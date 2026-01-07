@@ -41,7 +41,10 @@ public class TheWall {
             if (hasBuffedEnemies || AbstractDungeon.getCurrRoom().monsters == null) return;
 
             BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind == null) return;
+            if (blind == null) {
+                hasBuffedEnemies = true;
+                return;
+            }
 
             float hpMod = 0.0f;
             switch (blind) {
