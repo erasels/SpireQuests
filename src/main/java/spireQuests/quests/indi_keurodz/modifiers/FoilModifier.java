@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import basemod.abstracts.AbstractCardModifier;
 import spireQuests.Anniv8Mod;
 
-public class FaceDownModifier extends AbstractCardModifier {
+public class FoilModifier extends AbstractCardModifier {
 
-    public static final String MODIFIER_ID = Anniv8Mod.makeID("FaceDownModifier");
+        public static final String MODIFIER_ID = Anniv8Mod.makeID("FoilBalatro");
 
 
     @Override
@@ -17,12 +17,7 @@ public class FaceDownModifier extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new EternalStickerModifier();
-    }
-
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.isFlipped = true;
+        return new FoilModifier();
     }
 
 }

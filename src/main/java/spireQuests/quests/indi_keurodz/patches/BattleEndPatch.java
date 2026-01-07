@@ -1,6 +1,7 @@
 package spireQuests.quests.indi_keurodz.patches;
 
-import basemod.helpers.CardModifierManager;
+import java.util.ArrayList;
+
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,11 +10,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
+import basemod.helpers.CardModifierManager;
 import spireQuests.quests.indi_keurodz.effects.RentalStickerEffect;
 import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
 import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
-
-import java.util.ArrayList;
 
 public class BattleEndPatch {
     @SpirePatch2(clz = AbstractPlayer.class, method = "onVictory")

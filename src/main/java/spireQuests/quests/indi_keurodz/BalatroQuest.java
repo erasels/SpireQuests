@@ -1,7 +1,5 @@
 package spireQuests.quests.indi_keurodz;
 
-import static spireQuests.Anniv8Mod.makeID;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +12,6 @@ import com.badlogic.gdx.utils.Array;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -28,6 +25,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 
 import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
+import static spireQuests.Anniv8Mod.makeID;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
@@ -38,36 +36,37 @@ import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 public class BalatroQuest extends AbstractQuest {
     private static TextureAtlas BossBlindsAtlas;
     public static final String BLIND_STRINGS_ID = makeID("BalatroBlinds");
+    public static final String AUTHOR = "indi_keurodz";
 
-    private static Map<String, String> blindStrings = CardCrawlGame.languagePack
+    private static final Map<String, String> blindStrings = CardCrawlGame.languagePack
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
 
     public static enum BossBlind {
         AmberAcorn,
-        Arm,
+        Arm, // done
         CeruleanBell,
         Club,
         CrimsonHeart,
-        Eye,
-        Fish,
+        Eye, // done
+        Fish, // done
         Flint,
         Goad,
         Head,
-        Hook,
+        Hook, // done
         House, // done
         Manacle, // done
-        Mark,
+        Mark, // done
         Mouth,
-        Needle,
+        Needle, // done
         Ox,
         Pillar,
         Plant,
-        Psychic,
+        Psychic, // done
         Serpent,
-        Tooth,
+        Tooth, // done
         VerdantLeaf,
-        VioletVessel,
-        Wall,
+        VioletVessel, // done
+        Wall, // done
         Water,
         Wheel, // done
         Window;
@@ -90,7 +89,7 @@ public class BalatroQuest extends AbstractQuest {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
 
         BossBlindsAtlas = new TextureAtlas(
-                Gdx.files.internal(Anniv8Mod.makeContributionPath("indi_keurodz", "BossBlinds.atlas")));
+                Gdx.files.internal(Anniv8Mod.makeContributionPath(AUTHOR, "BossBlinds.atlas")));
 
         new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
 
