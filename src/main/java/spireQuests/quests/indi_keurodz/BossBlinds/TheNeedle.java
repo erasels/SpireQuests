@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch;
 
-public class Needle {
+public class TheNeedle {
 
     private static boolean finishedDrawingStartingHand = false;
     @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfTurnPostDrawRelics")

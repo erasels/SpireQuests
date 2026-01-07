@@ -14,7 +14,7 @@ import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
 
 
-public class VioletVessel {
+public class TheWall {
 
     private static boolean hasBuffedEnemies = false;
 
@@ -45,9 +45,6 @@ public class VioletVessel {
 
             float hpMod = 0.0f;
             switch (blind) {
-                case VioletVessel:
-                    hpMod = 0.2f;
-                    break;
                 case Wall:
                     hpMod = 0.1f;
                     break;

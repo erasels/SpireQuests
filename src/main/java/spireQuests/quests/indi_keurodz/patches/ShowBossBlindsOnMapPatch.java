@@ -52,7 +52,7 @@ public class ShowBossBlindsOnMapPatch {
                 sb.draw(image,
                         __instance.x * SPACING_X + OFFSET_X - 68.0F + __instance.offsetX + imgWidth * scale,
                         __instance.y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - 68.0F
-                                + __instance.offsetY + 68.0F * scale,
+                                + __instance.offsetY + 68.0F * scale * Settings.scale,
                         68f, 68f, 68f, 68f, scale * Settings.scale, scale * Settings.scale, 0f);
             }
 
@@ -89,7 +89,7 @@ public class ShowBossBlindsOnMapPatch {
                 TipHelper.renderGenericTip(
                         __instance.x * SPACING_X + OFFSET_X - 64f + __instance.offsetX + imgWidth * 1.75f,
                         __instance.y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - 64f
-                                + __instance.offsetY + 64f * scale,
+                                + __instance.offsetY + 64f * scale * Settings.scale,
                         blind.tooltip.title,
                         blind.tooltip.description);
 

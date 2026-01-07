@@ -1,6 +1,7 @@
 package spireQuests.quests.indi_keurodz;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -42,11 +43,8 @@ public class BalatroQuest extends AbstractQuest {
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
 
     public static enum BossBlind {
-        AmberAcorn,
         Arm, // done
-        CeruleanBell,
         Club,
-        CrimsonHeart,
         Eye, // done
         Fish, // done
         Flint,
@@ -64,8 +62,6 @@ public class BalatroQuest extends AbstractQuest {
         Psychic, // done
         Serpent,
         Tooth, // done
-        VerdantLeaf,
-        VioletVessel, // done
         Wall, // done
         Water,
         Wheel, // done
@@ -138,10 +134,19 @@ public class BalatroQuest extends AbstractQuest {
 
         Collections.shuffle(possibleNodes, new java.util.Random(rng.randomLong()));
         int n = possibleNodes.size() / 2;
+        
+        List<BossBlind> blindsList = new ArrayList<>(Arrays.asList(BossBlind.values()));
+        Collections.shuffle(blindsList, new java.util.Random(rng.randomLong()));
+        blindsList = blindsList.subList(0, Math.max(n, blindsList.size() - 1));
+
         for (int i = 0; i < n; i++) {
-            MapRoomNode node = possibleNodes.get(i);
-            BossBlind randomBlind = BossBlind.values()[rng.random(BossBlind.values().length - 1)];
-            ShowBossBlindsOnMapPatch.BossBlindField.blind.set(node, randomBlind);
+            try {
+                MapRoomNode node = possibleNodes.get(i);
+                BossBlind nextBlind = blindsList.remove(0);
+                ShowBossBlindsOnMapPatch.BossBlindField.blind.set(node, nextBlind);
+            } catch (IndexOutOfBoundsException e) {
+                break;
+            }
         }
     }
 

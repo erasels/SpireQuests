@@ -181,7 +181,6 @@ public class EditionShaders {
             if (polychromeShader == null)
                 polychromeShader = loadShader("polychrome.frag");
             if (polychromeShader != null) {
-
                 renderWithShader(card, sb, t, polychromeShader, (shader) -> {
                     float polyOffset = (float) (card.uuid.hashCode() % 100);
                     shader.setUniformf("u_polychrome", polyOffset, polyOffset / 100f);
