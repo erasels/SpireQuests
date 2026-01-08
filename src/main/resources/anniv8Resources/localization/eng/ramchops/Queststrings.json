@@ -55,5 +55,13 @@
       "Cleric's Gratitude",
       "Gain Some Gold"
     ]
+  },
+  "${ModID}:BloomerQuest": {
+    "TITLE": "Okay, Bloomer",
+    "DESCRIPTION": "Upon pickup, obtain a #yQuestbound #yMark #yof #ythe #yBloom [REMOVE_SPACE]. Climb #b10 floors with it.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "Climb Floors"
+    ]
   }
 }

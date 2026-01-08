@@ -1,0 +1,9 @@
+{
+  "${ModID}:MutagenBlood": {
+    "NAME": "Mutagen Blood",
+    "FLAVOR": "Woops. I forgot to tell you about side effects. NL -The Augmenter",
+    "DESCRIPTIONS": [
+      "Reduce HP loss from #yJ.A.X. to #b1. At the end of combat, lose #b6 HP if you didn't play #yJ.A.X."
+    ]
+  }
+}

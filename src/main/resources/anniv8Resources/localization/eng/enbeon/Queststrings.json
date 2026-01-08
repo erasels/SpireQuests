@@ -1,0 +1,10 @@
+{
+  "${ModID}:BountyWatcherQuest": {
+    "TITLE": "Bounty: Purple Blur",
+    "DESCRIPTION": "A swift and dangerous entity wielding a staff has been sighted. The next elite this act is replaced by the #pWatcher.",
+    "AUTHOR": "Enbeon",
+    "TRACKER_TEXT": [
+      "Blur slain"
+    ]
+  }
+}

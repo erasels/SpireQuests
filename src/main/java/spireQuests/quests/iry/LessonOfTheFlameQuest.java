@@ -1,50 +1,41 @@
 package spireQuests.quests.iry;
 
-import basemod.helpers.CardPowerTip;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.red.Offering;
+import com.megacrit.cardcrawl.cards.red.FiendFire;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.random.Random;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
-import spireQuests.quests.iry.cards.ClumsyOffering;
+import spireQuests.quests.iry.cards.ClumsyFiendFire;
 import spireQuests.quests.iry.util.LessonQuestUtil;
 import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-// LessonOfTheBloodQuest:
-// Obtain a modified offering with ethereal and no upsides
-// play it 4 times to receive an offering+
-public class LessonOfTheBloodQuest extends AbstractQuest {
+// LessonOfTheFlameQuest:
+// Obtain a modified fiend fire with ethereal and no upsides
+// play it 4 times to receive a fiend fire+
+public class LessonOfTheFlameQuest extends AbstractQuest {
 
-    public LessonOfTheBloodQuest() {
-        super(QuestType.SHORT, QuestDifficulty.HARD);
+    public LessonOfTheFlameQuest() {
+        super(QuestType.SHORT, QuestDifficulty.NORMAL);
 
         new TriggerTracker<>(QuestTriggers.PLAY_CARD, 4)
-            .triggerCondition((card) -> Objects.equals(card.cardID, ClumsyOffering.ID))
+            .triggerCondition((card) -> Objects.equals(card.cardID, ClumsyFiendFire.ID))
             .add(this);
 
         questboundCards = new ArrayList<>();
-        questboundCards.add(new ClumsyOffering());
+        questboundCards.add(new ClumsyFiendFire());
 
-        AbstractCard offering = new Offering();
-        offering.upgrade();
-        addReward(new QuestReward.CardReward(offering));
+        AbstractCard fiendFire = new FiendFire();
+        fiendFire.upgrade();
+        addReward(new QuestReward.CardReward(fiendFire));
         titleScale = 0.9f;
 
         useDefaultReward = false;
-    }
-
-    @Override
-    public void makeTooltips(List<PowerTip> tipList) {
-        super.makeTooltips(tipList);
-        tipList.add(new CardPowerTip(new ClumsyOffering()));
     }
 
     @Override

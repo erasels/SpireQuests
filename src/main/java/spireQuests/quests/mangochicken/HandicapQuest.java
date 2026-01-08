@@ -6,6 +6,7 @@ import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.mangochicken.relics.HeartyAnchor;
+import spireQuests.util.NodeUtil;
 
 
 public class HandicapQuest extends AbstractQuest {
@@ -28,6 +29,6 @@ public class HandicapQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 2;
+        return AbstractDungeon.actNum == 2 && NodeUtil.canPathToElite();
     }
 }

@@ -12,5 +12,28 @@
     "DESCRIPTIONS": [
       "Upon pickup, raise your Max HP by #b20%."
     ]
+  },
+  "${ModID}:CharadeOrbRelic": {
+    "NAME": "Chromatic Cell",
+    "FLAVOR": "The cell's power whispers four voices, but never in harmony.",
+    "DESCRIPTIONS": [
+      "At the start of each turn, the relic will cycle to a new state. Each state #rdeals #rdamage, #gdraws #gand #gdiscards #gcards, #bgains #bblock, or #pscrys at the start of each turn depending on its color.",
+      "At the start of this turn, deal #b5 damage to ALL enemies.",
+      "At the start of this turn, draw #b1 card, then discard #b1 card.",
+      "At the start of this turn, gain #b5 block.",
+      "At the start of this turn, Scry #b1.",
+      "The next color will be %s",
+      "#rRED.",
+      "#gGREEN.",
+      "#bBLUE.",
+      "#pPURPLE."
+    ]
+  },
+  "${ModID}:KeyringRelic": {
+    "NAME": "Ambitious Keyring",
+    "FLAVOR": "One of these has to open something...",
+    "DESCRIPTIONS": [
+      "The next Boss chest you open will have an additional relic to choose from."
+    ]
   }
 }

@@ -1,0 +1,9 @@
+{
+  "${ModID}:MonsterSpiritShieldPower": {
+    "NAME": "Spirit Shield",
+    "DESCRIPTIONS": [
+      "Whenever you play a card, this enemy gains #b",
+      " #yBlock next turn."
+    ]
+  }
+}

@@ -42,6 +42,7 @@ public class StatRewardBox implements IUIElement {
     private static final Texture RANDOM_RELIC_TEX = TexLoader.getTexture(makeUIPath("stats/relic.png"));
     private static final Texture GOLD_TEX = TexLoader.getTexture(makeUIPath("stats/gold.png"));
     private static final Texture HEALTH_TEX = TexLoader.getTexture(makeUIPath("stats/heart.png"));
+    private static final Texture RANDOM_REWARD_TEX = TexLoader.getTexture(makeUIPath("stats/random_item.png"));
 
     private static final String ID = makeID(StatRewardBox.class.getSimpleName());
     private UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
@@ -96,15 +97,35 @@ public class StatRewardBox implements IUIElement {
 
     public StatRewardBox(AbstractQuest q, float xPos, float yPos) {
         this(xPos, yPos);
-        this.img = new TextureRegion(CUSTOM_REWARD_IMG);
-        this.header = uiStrings.TEXT[2];
-        this.body = q.getRewardsText();
+        if (q.useDefaultReward) {
+            this.img = new TextureRegion(RANDOM_REWARD_TEX);
+            this.header = uiStrings.TEXT[4];
+            this.body = uiStrings.TEXT[5];
+        } else {
+            this.img = new TextureRegion(CUSTOM_REWARD_IMG);
+            this.header = uiStrings.TEXT[2];
+            this.body = q.getRewardsText();
+        }
     }
 
     private StatRewardBox(float xPos, float yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.hb = new Hitbox(xPos, yPos, FRAME_X, FRAME_Y);
+    }
+
+    public StatRewardBox(QuestReward reward) {
+        this(reward, 0.0F, 0.0F);
+    }
+
+    public StatRewardBox(AbstractQuest q) {
+        this(q, 0.0F, 0.0F);
+    }
+
+    public void move(float xPos, float yPos){
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.hb.translate(xPos, yPos);
     }
 
     public void render(SpriteBatch sb) {

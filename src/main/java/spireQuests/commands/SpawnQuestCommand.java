@@ -50,11 +50,17 @@ public class SpawnQuestCommand extends ConsoleCommand {
             return;
         }
 
+        ArrayList<AbstractQuest> questBoardQuests = QuestBoardProp.questBoardProp.quests;
+        if (questBoardQuests.size() != 3) {
+            DevConsole.log("Must still have a full quest board to spawn quests");
+            return;
+        }
+
         AbstractQuest quest = QuestManager.getAllQuests().stream()
                 .filter(q -> (!tokens[2].contains(":") && q.id.equals(makeID(tokens[2]))) || q.id.equals(tokens[2]))
                 .findFirst().orElse(null);
         if (quest != null) {
-            QuestBoardProp.questBoardProp.quests.set(i, quest.makeCopy());
+            questBoardQuests.set(i, quest.makeCopy());
             QuestBoardScreen.init(QuestBoardProp.questBoardProp, QuestBoardProp.questBoardProp.quests);
         } else {
             DevConsole.log("No matching quest id found");

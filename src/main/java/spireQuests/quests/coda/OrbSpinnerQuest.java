@@ -38,8 +38,12 @@ public class OrbSpinnerQuest extends AbstractQuest {
                         return;
                     }
                 }
-                
-                evokedOrbs.add(orb.makeCopy());
+
+                // If somehow the copied orb is null, we prefer ignoring buggy orbs to crashing.
+                AbstractOrb orbCopy = orb.makeCopy();
+                if (orbCopy != null) {
+                    evokedOrbs.add(orbCopy);
+                }
             })
         .add(this);
  

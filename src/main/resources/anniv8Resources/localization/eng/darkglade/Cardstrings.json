@@ -1,7 +1,7 @@
 {
   "${ModID}:ImpendingDay": {
     "NAME": "Impending Day",
-    "DESCRIPTION": "Deal !D! damage. NL If Fatal, heal !M! HP."
+    "DESCRIPTION": "Deal !D! damage. NL If Fatal, heal !M! HP and Exhaust."
   },
   "${ModID}:StarOfExtinction": {
     "NAME": "Star of Extinction",

@@ -1,0 +1,198 @@
+{
+  "monsters": [
+    {
+      "name": "Watcher",
+      "id": "${ModID}:WatcherEliteMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles #wWallop -> #wRapid #wStrikes -> #wWave #wof #wthe #wHand / #wProtect. NL Upon entering #sDivinity, the cycle restarts from #wWallop.",
+          "notes": "Innate #uDevotion #b2, which gives #uMantra every turn. Once #b10 #uMantra are obtained, enters #sDivinity for the turn, dealing #rtriple #rdamage with attacks. NL #wWallop #bBlocks equal to the amount of #runblocked #rdamage dealt.",
+          "hp": "(144 - 154 HP)",
+          "moves": [
+            {
+              "name": "Wallop",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Rapid Strikes",
+              "effects": [
+                {
+                  "name": "5x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Strength 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wave of the Hand / Protect",
+              "effects": [
+                {
+                  "name": "Weak 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "12",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Cycles #wWallop -> #wRapid #wStrikes -> #wWave #wof #wthe #wHand / #wProtect. NL Upon entering #sDivinity, the cycle restarts from #wWallop.",
+          "notes": "Innate #uDevotion #b2, which gives #uMantra every turn. Once #b10 #uMantra are obtained, enters #sDivinity for the turn, dealing #rtriple #rdamage with attacks. NL #wWallop #bBlocks equal to the amount of #runblocked #rdamage dealt.",
+          "hp": "(144 - 154 HP)",
+          "moves": [
+            {
+              "name": "Wallop",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Rapid Strikes",
+              "effects": [
+                {
+                  "name": "6x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Strength 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wave of the Hand / Protect",
+              "effects": [
+                {
+                  "name": "Weak 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "12",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Cycles #wWallop -> #wRapid #wStrikes -> #wWave #wof #wthe #wHand / #wProtect. NL Upon entering #sDivinity, the cycle restarts from #wWallop.",
+          "notes": "Innate #uDevotion #b2, which gives #uMantra every turn. Once #b10 #uMantra are obtained, enters #sDivinity for the turn, dealing #rtriple #rdamage with attacks. NL #wWallop #bBlocks equal to the amount of #runblocked #rdamage dealt.",
+          "hp": "(158 - 169 HP)",
+          "moves": [
+            {
+              "name": "Wallop",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Rapid Strikes",
+              "effects": [
+                {
+                  "name": "6x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Strength 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wave of the Hand / Protect",
+              "effects": [
+                {
+                  "name": "Weak 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "13",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Cycles #wWallop -> #wRapid #wStrikes -> #wWave #wof #wthe #wHand / #wProtect. NL Upon entering #sDivinity, the cycle restarts from #wWallop.",
+          "notes": "Innate #uDevotion #b3, which gives #uMantra every turn. Once #b10 #uMantra are obtained, enters #sDivinity for the turn, dealing #rtriple #rdamage with attacks. NL #wWallop #bBlocks equal to the amount of #runblocked #rdamage dealt.",
+          "hp": "(158 - 169 HP)",
+          "moves": [
+            {
+              "name": "Wallop",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "?",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Rapid Strikes",
+              "effects": [
+                {
+                  "name": "6x6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Strength 2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wave of the Hand / Protect",
+              "effects": [
+                {
+                  "name": "Weak 2",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "13",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

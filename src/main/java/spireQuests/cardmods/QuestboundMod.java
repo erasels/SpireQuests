@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuestboundMod extends AbstractCardModifier {
-    public static String ID = Anniv8Mod.makeID(QuestboundMod.class.getSimpleName());
+    public static String ID = Anniv8Mod.makeID("Questbound");
     public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     private static final Texture tex = TexLoader.getTexture(Anniv8Mod.modID + "Resources/images/ui/questboundIcon.png");
 

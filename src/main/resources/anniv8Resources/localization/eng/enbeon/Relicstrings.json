@@ -1,0 +1,9 @@
+{
+  "${ModID}:DivineOculus": {
+    "NAME": "Divine Oculus",
+    "FLAVOR": "A fragment of a golden staff. The pupil glows pink with knowledge.",
+    "DESCRIPTIONS": [
+      "At the start of your 5th turn, gain [E] [E] ."
+    ]
+  }
+}

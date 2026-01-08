@@ -21,11 +21,13 @@ import spireQuests.quests.gk.cards.StoneArmor;
 import spireQuests.quests.gk.cards.Taunt;
 import spireQuests.quests.gk.cards.Unrelenting;
 import spireQuests.quests.gk.monsters.ICEliteMonster;
+import spireQuests.util.NodeUtil;
 
 import java.util.ArrayList;
 
 import static spireQuests.Anniv8Mod.makeID;
 
+// TODO: Fix quest stats rewards
 public class BountyICQuest extends AbstractQuest {
     private static final String ID = makeID(BountyICQuest.class.getSimpleName());
 
@@ -40,11 +42,12 @@ public class BountyICQuest extends AbstractQuest {
         titleScale = 0.9f;
 
         this.isAutoComplete = true;
+        this.useDefaultReward = false;
     }
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 1;
+        return AbstractDungeon.actNum == 1 && NodeUtil.canPathToElite();
     }
 
     @SpirePatch2(clz = CombatRewardScreen.class, method = "setupItemReward")

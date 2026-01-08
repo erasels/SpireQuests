@@ -1,5 +1,7 @@
 package spireQuests.quests.gk.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeWithoutRemovingOrbAction;
@@ -8,6 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static spireQuests.Anniv8Mod.makeID;
 
+@NoPools
+@NoCompendium
 public class TripleCast extends AbstractBPCard {
     public static final String ID = makeID(TripleCast.class.getSimpleName());
 

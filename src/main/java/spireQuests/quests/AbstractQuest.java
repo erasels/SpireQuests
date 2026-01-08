@@ -1,17 +1,23 @@
 package spireQuests.quests;
 
+import basemod.helpers.CardPowerTip;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.potions.AbstractPotion.PotionRarity;
+import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import javassist.CtBehavior;
 import spireQuests.Anniv8Mod;
-import spireQuests.quests.gk.BountyICQuest;
+import spireQuests.patches.ShowMarkedNodesOnMapPatch;
+import spireQuests.questStats.StatRewardBox;
 import spireQuests.util.QuestStrings;
 import spireQuests.util.QuestStringsUtils;
+import spireQuests.util.WeightedList;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -22,6 +28,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -56,6 +63,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     public List<QuestReward> questRewards;
     public boolean rewardScreenOnly = false;
 
+    public boolean isAbandoning = false;
+
     private int trackerTextIndex = 0;
 
     public List<Tracker> trackers;
@@ -76,6 +85,8 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     //If true, the quest will automatically complete when the player leaves the room with the conditions fulfilled.
     public boolean isAutoComplete;
 
+    //If true, the quest will automatically fail when the player leaves the room with the fail conditions fulfilled.
+    public boolean isAutoFail;
     /*
     trackers that require another tracker to be completed first
 
@@ -98,6 +109,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
         complete = false;
         isAutoComplete = false;
+        isAutoFail = false;
 
         questStrings = QuestStringsUtils.getQuestString(id);
         if (questStrings == null) {
@@ -176,6 +188,28 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         for (QuestReward reward : questRewards) {
             reward.addTooltip(tipList);
         }
+
+        boolean hasQuestboundItems = false;
+
+        if(questboundRelics != null){
+            hasQuestboundItems = true;
+
+            for (AbstractRelic r : questboundRelics){
+                tipList.add(new PowerTip(r.name, r.description));
+            }
+        }
+
+        if(questboundCards != null){
+            hasQuestboundItems = true;
+
+            for (AbstractCard c : questboundCards){
+                tipList.add(new CardPowerTip(c));
+            }
+        }
+
+        if(hasQuestboundItems){
+            tipList.add(new PowerTip(Anniv8Mod.keywords.get("Questbound").PROPER_NAME, Anniv8Mod.keywords.get("Questbound").DESCRIPTION));
+        }
     }
 
     /**
@@ -220,6 +254,45 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         return this;
     }
 
+    protected final AbstractQuest addGenericReward() {
+        useDefaultReward = true;
+
+        if (CardCrawlGame.isInARun()) {
+            QuestReward reward = getGenericRewardWeightedList().getRandom(AbstractDungeon.miscRng);
+            questRewards.add(reward);
+        }
+        this.rewardsText = getRewardsText();
+
+        return this;
+    }
+    
+    private WeightedList<QuestReward> getGenericRewardWeightedList() {
+        WeightedList<QuestReward> rewards = new WeightedList<>();
+        
+        // Gold rewards rounded to 5s.
+        switch (this.difficulty) {
+            default:
+            case EASY:
+                rewards.add(new QuestReward.GoldReward(((AbstractDungeon.miscRng.random(50, 70) + 2) / 5) * 5), 3);
+                rewards.add(new QuestReward.PotionReward(AbstractDungeon.returnRandomPotion(PotionRarity.COMMON, true)), 2);
+                rewards.add(new QuestReward.MaxHPReward(AbstractDungeon.miscRng.random(5, 7)), 2);
+                break;
+            case NORMAL:
+                rewards.add(new QuestReward.GoldReward(((AbstractDungeon.miscRng.random(90, 120) + 2) / 5) * 5), 4);
+                rewards.add(new QuestReward.PotionReward(AbstractDungeon.returnRandomPotion(PotionRarity.UNCOMMON, true)), 3);
+                rewards.add(new QuestReward.MaxHPReward(AbstractDungeon.miscRng.random(8, 10)), 2);
+                break;
+            case HARD:
+                rewards.add(new QuestReward.GoldReward(((AbstractDungeon.miscRng.random(140, 180) + 2) / 5) * 5), 3);
+                rewards.add(new QuestReward.RandomRelicReward(RelicTier.COMMON), 2);
+                rewards.add(new QuestReward.RandomRelicReward(), 1);
+                rewards.add(new QuestReward.MaxHPReward(AbstractDungeon.miscRng.random(12, 14)), 2);
+                break;
+        }
+        
+        return rewards;
+    }
+
     public boolean complete() {
         if (failed) return false;
         if (complete) {
@@ -231,6 +304,9 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         for (Tracker tracker : trackers) {
             if (!tracker.isComplete()) return false;
         }
+
+
+
         complete = true;
         trackers.clear();
         triggers.clear();
@@ -317,13 +393,22 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         for (QuestReward r : questRewards) {
             r.init();
         }
+        if(this instanceof MarkNodeQuest) {
+            MarkNodeQuest q = (MarkNodeQuest) this;
+            q.markNodes(AbstractDungeon.map, q.rng());
+        }
     }
 
     public void onComplete() {
-
+        if(this instanceof MarkNodeQuest) {
+            ShowMarkedNodesOnMapPatch.ImageField.ClearMarks(id);
+        }
     }
 
     public void onFail() {
+        if(this instanceof MarkNodeQuest) {
+            ShowMarkedNodesOnMapPatch.ImageField.ClearMarks(id);
+        }
     }
 
     public boolean canSpawn() {
@@ -340,6 +425,23 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         for (Tracker t : trackers) {
             t.refreshState();
         }
+    }
+
+    // Most quests can have these dynamically generated using the code below, however if your
+    // quest has a special reward structure or dynamic rewards, you may need to ovveride
+    // this function and manually define how Quest Log displays rewards.
+    public ArrayList<StatRewardBox> getStatRewardBoxes() {
+        ArrayList<StatRewardBox> ret = new ArrayList<>();
+
+        if (this.questRewards.isEmpty() || this.useDefaultReward) {
+            ret.add(new StatRewardBox(this));
+        } else {
+            for (QuestReward r : this.questRewards) {
+                ret.add(new StatRewardBox(r));
+            }
+        }
+
+        return ret;
     }
 
     public void loadSave(String[] questData, QuestReward.QuestRewardSave[] questRewardSaves) {
@@ -905,18 +1007,26 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         return null;
     }
 
+    // Similar to Questbound cards, but for Relics!
+    public ArrayList<AbstractRelic> questboundRelics;
+    // Setting removeQBDup to true will make it remove from pools when obtained.
+    // Setting returnQPRelics to true adds them to the pool again once the Quest is complete. (Ignored if the first boolean is set to false)
+
+    public boolean removeQuestboundDuplicate = true;
+    public boolean returnQuestboundRelics = true;
     @SpirePatch(clz = AbstractDungeon.class, method = "nextRoomTransition", paramtypez = {SaveFile.class})
     public static class AutoCompleteQuestLater {
         @SpireInsertPatch(locator = Locator.class)
         public static void enteringRoomPatch(AbstractDungeon __instance, SaveFile file) {
             if (AbstractDungeon.currMapNode != null) {
-                AbstractQuest q = QuestManager.quests().stream()
+                QuestManager.quests().stream()
                         .filter(quest -> quest.isAutoComplete && quest.isCompleted())
-                        .findAny()
-                        .orElse(null);
-                if(q != null) {
-                    QuestManager.completeQuest(q);
-                }
+                        .collect(Collectors.toList())
+                        .forEach(QuestManager::completeQuest);
+                QuestManager.quests().stream()
+                        .filter(quest -> quest.isAutoFail && quest.isFailed())
+                        .collect(Collectors.toList())
+                        .forEach(QuestManager::failQuest);
             }
         }
 

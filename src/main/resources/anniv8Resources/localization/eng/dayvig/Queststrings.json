@@ -1,0 +1,19 @@
+{
+  "${ModID}:CowardiceQuest": {
+    "TITLE": "Coward's Path",
+    "DESCRIPTION": "Avoid an Elite encounter 3 times. (When offered an Elite Combat, choose a different path.)",
+    "AUTHOR": "Dayvig",
+    "REWARD": "Random common #yRelic.",
+    "TRACKER_TEXT": [
+      "Elites Dodged"
+    ]
+  },
+  "${ModID}:AddictQuest": {
+    "TITLE": "Addictive Personality",
+    "DESCRIPTION": "Play #yJ.A.X. in 5 consecutive fights. Your next #y? Room will contain a special Augmenter event which grants #yJ.A.X. (no other options.)",
+    "AUTHOR": "Dayvig",
+    "TRACKER_TEXT": [
+      "J.A.X. Taken in Consecutive Combats"
+    ]
+  }
+}

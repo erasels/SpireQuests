@@ -1,0 +1,15 @@
+{
+  "${ModID}:FakeDevotionPower": {
+    "NAME": "Devotion",
+    "DESCRIPTIONS": [
+      "At the end of its turn, gains #b",
+      " #yMantra."
+    ]
+  },
+  "${ModID}:FakeMantraPower": {
+    "NAME": "Mantra",
+    "DESCRIPTIONS": [
+      "Upon obtaining #b10 #yMantra, enters #yDivinity."
+    ]
+  }
+}

@@ -6,5 +6,13 @@
     "TRACKER_TEXT": [
       "Grand Finale played"
     ]
+  },
+  "${ModID}:LuckyNumberQuest": {
+    "TITLE": "Lucky Number",
+    "DESCRIPTION": "Obtain a #yQuestbound #yThe #yBoot. NL Trigger #yThe #yBoot 7 times in one combat.",
+    "AUTHOR": "SoytheProton",
+    "TRACKER_TEXT": [
+      "Boots booted"
+    ]
   }
 }

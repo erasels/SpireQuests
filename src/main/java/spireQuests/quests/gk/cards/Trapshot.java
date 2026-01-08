@@ -1,5 +1,7 @@
 package spireQuests.quests.gk.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +14,8 @@ import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.quests.gk.util.HermitCompatUtil.HERMIT_GUN_EFFECT;
 import static spireQuests.util.CompatUtil.*;
 
+@NoPools
+@NoCompendium
 public class Trapshot extends AbstractBPCard {
     public static final String ID = makeID(Trapshot.class.getSimpleName());
 
