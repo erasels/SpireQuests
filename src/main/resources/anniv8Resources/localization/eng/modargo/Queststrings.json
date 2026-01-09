@@ -111,5 +111,13 @@
     "TRACKER_TEXT": [
       "Curses added"
     ]
+  },
+  "${ModID}:RaresAreGoodQuest": {
+    "TITLE": "Rares Are Good",
+    "DESCRIPTION": "Add #b4 #yRare cards to your deck.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Rares added"
+    ]
   }
 }
