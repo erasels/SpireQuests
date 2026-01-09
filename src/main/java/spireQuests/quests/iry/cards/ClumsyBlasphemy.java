@@ -1,5 +1,7 @@
 package spireQuests.quests.iry.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -20,16 +22,19 @@ import static spireQuests.Anniv8Mod.makeID;
 // ClumsyBlasphemy:
 // like base game blasphemy but with ethereal and no upsides
 // obtained from LessonOfTheAscetic quest
+@NoPools
+@NoCompendium
 public class ClumsyBlasphemy extends AbstractSQCard {
     public final static String ID = makeID("ClumsyBlasphemy");
 
     public ClumsyBlasphemy() {
-        super(ID, "iry",1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF, CardColor.PURPLE);
+        super(ID, "iry",1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.PURPLE);
         this.isEthereal = true;
         this.exhaust = true;
 
         // appropriating the art roller to reuse base game art, hope this is alright!
         CardArtRoller.infos.put(ID, new CardArtRoller.ReskinInfo(Blasphemy.ID, 0.5f, 0.25f, 0.5f, 1f, false));
+        setDisplayRarity(CardRarity.RARE);
     }
 
     @Override

@@ -9,29 +9,27 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
+import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch;
+import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 
 public class TheNeedle {
 
     private static boolean finishedDrawingStartingHand = false;
+
     @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfTurnPostDrawRelics")
     public static class FinishedStartingHand {
         @SpirePostfixPatch
         public static void finished() {
-            BalatroQuest.BossBlind blind = ShowBossBlindsOnMapPatch.BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind == null)
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Needle.frames))
                 return;
 
-            switch (blind) {
-                case Needle:
-                    if (!finishedDrawingStartingHand) {
-                        AbstractDungeon.player.draw(5);
-                        AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(3));
-                        finishedDrawingStartingHand = true;
-                    }
-                    break;
+            if (!finishedDrawingStartingHand) {
+                AbstractDungeon.player.draw(5);
+                AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(3));
+                finishedDrawingStartingHand = true;
             }
+
         }
     }
 
@@ -39,29 +37,21 @@ public class TheNeedle {
     public static class DeductHealthPerEnergy {
         @SpirePostfixPatch
         public static void DeductHealth() {
-            BalatroQuest.BossBlind blind = ShowBossBlindsOnMapPatch.BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind == null)
-                return;
             AbstractPlayer player = AbstractDungeon.player;
 
-            switch (blind) {
-                case Needle:
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Needle.frames)) {
+                AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
+                        player,
+                        player,
+                        10));
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Psychic.frames)) {
+                for (int i = 0; i < EnergyPanel.getCurrentEnergy(); i++) {
                     AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
                             player,
                             player,
-                            10
-                    ));
-                    break;
-                case Psychic:
-                    for (int i = 0; i < EnergyPanel.getCurrentEnergy(); i++) {
-                        AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
-                                player,
-                                player,
-                                3
-                        ));
-                    }
+                            3));
+                }
             }
-
 
         }
     }

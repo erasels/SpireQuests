@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+
+import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 
 public class TheHook {
 
@@ -17,8 +19,8 @@ public class TheHook {
     public static class HookEffectPatch {
         @SpirePostfixPatch
         public static void HookDiscardAndDraw(AbstractPlayer __instance, AbstractCard c) {
-            BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind != BossBlind.Hook) return;
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Hook.frames))
+                return;
 
             int handSize = __instance.hand.size();
             int cardsToDiscard = Math.min(2, handSize);
@@ -28,13 +30,11 @@ public class TheHook {
                         __instance,
                         __instance,
                         cardsToDiscard,
-                        true
-                ));
+                        true));
 
                 AbstractDungeon.actionManager.addToBottom(new DrawCardAction(
                         __instance,
-                        cardsToDiscard
-                ));
+                        cardsToDiscard));
             }
         }
     }

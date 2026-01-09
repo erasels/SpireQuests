@@ -26,6 +26,7 @@ public class Statistics {
         Map<String, List<AbstractQuest>> questsByAuthor = quests.stream().collect(Collectors.groupingBy(q -> q.author));
         Anniv8Mod.logger.info("Quest author: " + questsByAuthor.entrySet().stream().map(entry -> entry.getKey() + ": " + entry.getValue().size()).collect(Collectors.joining(", ")));
 
+        int generic = 0;
         int specificRelic = 0;
         int randomRelic = 0;
         int card = 0;
@@ -36,6 +37,13 @@ public class Statistics {
         int multipleItems = 0;
         for (AbstractQuest q : quests) {
             List<QuestReward> rs = q.questRewards;
+            if (q.useDefaultReward) {
+                generic++;
+                if (rs.size() > 1){
+                    multipleItems++;
+                }
+                continue;
+            }
             if (rs.stream().anyMatch(r -> r instanceof QuestReward.RelicReward)) {
                 specificRelic++;
             }
@@ -61,8 +69,8 @@ public class Statistics {
                 custom++;
             }
         }
-        Anniv8Mod.logger.info(String.format("Quest rewards: relic: %s, random relic: %s, card: %s, gold: %s, potion: %s, custom: %s, multiple types: %s, multiple items: %s",
-                specificRelic, randomRelic, card, gold, potion, custom, multipleTypes, multipleItems));
+        Anniv8Mod.logger.info(String.format("Quest rewards: relic: %s, random relic: %s, card: %s, gold: %s, potion: %s, generic: %s, custom: %s, multiple types: %s, multiple items: %s",
+                specificRelic, randomRelic, card, gold, potion, generic, custom, multipleTypes, multipleItems));
     }
 
     public static void removeExampleQuests(Collection<AbstractQuest> quests) {

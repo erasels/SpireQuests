@@ -10,24 +10,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import javassist.CtBehavior;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+
+import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 
 @SpirePatch2(clz = AbstractPlayer.class, method = "preBattlePrep")
 public class TheManacle {
 
     @SpireInsertPatch(locator = Locator.class)
     public static void Insert() {
-        BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-        if (blind == null)
+        if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Manacle.frames))
             return;
 
-        switch (blind) {
-            case Manacle:
-                AbstractDungeon.player.gameHandSize--;
-                break;
-            default:
-                break;
-        }
+        AbstractDungeon.player.gameHandSize--;
     }
 
     private static class Locator extends SpireInsertLocator {

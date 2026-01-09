@@ -138,7 +138,9 @@ public class QuestboundModPatch {
                 else {
                     List<AbstractCard> questboundCards = q.questboundCards.stream().map(AbstractCard::makeSameInstanceOf).collect(Collectors.toList());
                     copy.group.addAll(questboundCards);
-                    QuestboundCardsToShowField.cards.get(AbstractDungeon.player).addAll(questboundCards);
+                    if (!questboundEnabled()) {
+                        QuestboundCardsToShowField.cards.get(AbstractDungeon.player).addAll(questboundCards);
+                    }
                 }
             });
         }
@@ -228,11 +230,9 @@ public class QuestboundModPatch {
     public static class applyStartOfCombatPreDrawLogic {
         @SpireInsertPatch(locator = Locator.class)
         public static void update() {
-            if (!questboundEnabled()) {
-                List<AbstractCard> questboundCards = QuestboundCardsToShowField.cards.get(AbstractDungeon.player);
-                questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c, true)));
-                questboundCards.clear();
-            }
+            List<AbstractCard> questboundCards = QuestboundCardsToShowField.cards.get(AbstractDungeon.player);
+            questboundCards.forEach(c -> Wiz.atb(new ShowTempCardInDrawPileAction(c, true)));
+            questboundCards.clear();
         }
 
         private static class Locator extends SpireInsertLocator {

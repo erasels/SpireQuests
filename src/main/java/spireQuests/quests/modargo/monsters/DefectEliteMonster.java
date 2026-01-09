@@ -38,7 +38,7 @@ public class DefectEliteMonster extends AbstractSQMonster {
 
     private static final byte CORE_SURGE = 0, CAPACITOR = 1, THUNDER_STRIKE = 2, BALL_LIGHTNING = 3, ZAP = 4;
 
-    private static final int HEALTH = 250;
+    private static final int HEALTH = 275;
 
     private final int biasedCognitionAmount;
     private final int defragmentAmount;

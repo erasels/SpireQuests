@@ -58,7 +58,7 @@ public class StarOfExtinctionAction extends AbstractGameAction {
 
     private void onExhaustedCard(AbstractCard card) {
         AbstractCard masterCard = StSLib.getMasterDeckEquivalent(card);
-        if (masterCard != null) {
+        if (masterCard != null && AbstractDungeon.player.masterDeck.getPurgeableCards().contains(masterCard)) {
             AbstractDungeon.player.masterDeck.removeCard(masterCard);
         }
     }

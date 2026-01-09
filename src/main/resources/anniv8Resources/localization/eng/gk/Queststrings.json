@@ -21,6 +21,9 @@
     "AUTHOR": "Gk",
     "TRACKER_TEXT": [
       "Played"
+    ],
+    "EXTRA_TEXT": [
+      "Play a specified starter card #b3 times in one combat."
     ]
   },
   "${ModID}:BountyICQuest": {

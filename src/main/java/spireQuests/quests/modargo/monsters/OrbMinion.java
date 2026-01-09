@@ -14,10 +14,10 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import spireQuests.abstracts.AbstractSQMonster;
 
 public abstract class OrbMinion extends AbstractSQMonster {
-    public static int MIN_HEALTH = 23;
-    public static int A8_MIN_HEALTH = 25;
-    public static int MAX_HEALTH = 26;
-    public static int A8_MAX_HEALTH = 28;
+    public static int MIN_HEALTH = 28;
+    public static int A8_MIN_HEALTH = 30;
+    public static int MAX_HEALTH = 31;
+    public static int A8_MAX_HEALTH = 33;
 
     protected Color c;
     protected Color shineColor;

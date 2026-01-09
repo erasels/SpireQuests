@@ -13,6 +13,7 @@ import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.ramchops.monsters.EvilSentry;
 import spireQuests.quests.ramchops.relics.FriendSentry;
+import spireQuests.util.NodeUtil;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -33,7 +34,7 @@ public class EvilSentryQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 1;
+        return AbstractDungeon.actNum == 1 && NodeUtil.canPathToElite();
     }
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "getEliteMonsterForRoomCreation")

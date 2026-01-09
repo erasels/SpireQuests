@@ -12,6 +12,7 @@ import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.modargo.monsters.DefectEliteMonster;
 import spireQuests.quests.modargo.relics.VolatileStardust;
+import spireQuests.util.NodeUtil;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -33,7 +34,7 @@ public class BountyDefectQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum == 3;
+        return AbstractDungeon.actNum == 3 && NodeUtil.canPathToElite();
     }
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "getEliteMonsterForRoomCreation")

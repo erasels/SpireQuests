@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.characters.TheSilent;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
@@ -31,7 +30,6 @@ public class GrandFinaleQuest extends AbstractQuest {
     public void makeTooltips(List<PowerTip> tipList) {
         super.makeTooltips(tipList);
         tipList.add(new CardPowerTip(new GrandFinale()));
-        tipList.add(new PowerTip(Anniv8Mod.keywords.get("Questbound").PROPER_NAME, Anniv8Mod.keywords.get("Questbound").DESCRIPTION));
     }
 
     @Override

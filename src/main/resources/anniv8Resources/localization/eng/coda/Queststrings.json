@@ -29,5 +29,33 @@
       "Take #b",
       " damage within #b17 floors."
     ]
+  },
+  "${ModID}:BuildAComboQuest": {
+    "TITLE": "Build a Combo",
+    "DESCRIPTION": "Play a #b1 cost, #b2 cost and #b3 cost card in one turn.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "1-Cost card played",
+      "2-Cost card played",
+      "3-Cost card played"
+    ]
+  },
+  "${ModID}:KeyCollector": {
+    "TITLE": "Key Collector",
+    "DESCRIPTION": "Collect the Ruby, Emerald, and Sapphire keys by the end of the act.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Collect the Ruby Key",
+      "Collect the Emerald Key",
+      "Collect the Sapphire Key"
+    ]
+  },
+  "${ModID}:BountyCharadeQuest": {
+    "TITLE": "Bounty: Charadlier",
+    "DESCRIPTION": "A maleficent amalgamation of energies descends the Spire. Cut it down and harness its powers. NL The next elite this act is replaced by the #yCharadlier.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Orb cut down"
+    ]
   }
 }

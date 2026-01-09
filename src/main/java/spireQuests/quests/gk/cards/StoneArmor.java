@@ -1,5 +1,7 @@
 package spireQuests.quests.gk.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.NoCompendium;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -9,6 +11,8 @@ import spireQuests.util.Wiz;
 
 import static spireQuests.Anniv8Mod.makeID;
 
+@NoPools
+@NoCompendium
 public class StoneArmor extends AbstractSQCard {
     public static final String ID = makeID(StoneArmor.class.getSimpleName());
 

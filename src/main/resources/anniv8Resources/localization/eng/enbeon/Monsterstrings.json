@@ -1,0 +1,10 @@
+{
+  "${ModID}:WatcherEliteMonster": {
+    "MOVES": [
+      "Rapid Strikes",
+      "Wallop",
+      "Wave of the Hand / Protect"
+    ],
+    "NAME": "Purple Blur"
+  }
+}

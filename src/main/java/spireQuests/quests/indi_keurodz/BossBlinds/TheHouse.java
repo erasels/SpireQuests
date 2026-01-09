@@ -15,9 +15,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.helpers.CardModifierManager;
 import javassist.CtBehavior;
-import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
+
+import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+
+import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 import spireQuests.util.Wiz;
 
 public class TheHouse {
@@ -30,33 +33,23 @@ public class TheHouse {
 
         @SpireInsertPatch(locator = Locator.class, localvars = { "c" })
         public static void onDraw(AbstractCard c) {
-            BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind == null)
-                return;
-            switch (blind) {
-                case Wheel:
+                if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Wheel.frames)) {
                     if (AbstractDungeon.cardRandomRng.random(6) == 1)
                         CardModifierManager.addModifier(c, new FaceDownModifier());
-                    break;
-                case House:
+                } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.House.frames)) {
                     if (!finishedDrawingStartingHand) {
                         CardModifierManager.addModifier(c, new FaceDownModifier());
                     }
-                    break;
-                case Mark:
+                } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Mark.frames)) {
                     if (c.type == AbstractCard.CardType.POWER)
                         CardModifierManager.addModifier(c, new FaceDownModifier());
-                    break;
-                case Fish:
+                } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Fish.frames)) {
                     if (finishedInitialDraw) {
                         CardModifierManager.addModifier(c, new FaceDownModifier());
                     }
-                    break;
-                default:
-                    break;
+                }
             }
 
-        }
 
         private static class Locator extends SpireInsertLocator {
             @Override

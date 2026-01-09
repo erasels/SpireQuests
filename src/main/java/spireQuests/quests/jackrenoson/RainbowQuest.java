@@ -1,11 +1,12 @@
 package spireQuests.quests.jackrenoson;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PrismaticShard;
 import com.megacrit.cardcrawl.relics.QuestionCard;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
@@ -14,6 +15,7 @@ import spireQuests.quests.modargo.MulticlassQuest;
 import spireQuests.quests.modargo.relics.MulticlassEmblem;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RainbowQuest extends AbstractQuest {
     ArrayList<AbstractCard.CardColor> colorsAdded = new ArrayList<>();
@@ -21,9 +23,9 @@ public class RainbowQuest extends AbstractQuest {
 
     public RainbowQuest() {
         super(QuestType.SHORT, QuestDifficulty.EASY);
-        rewardScreenOnly = true;
         needHoverTip = true;
         req = determineReq();
+        isAutoComplete = true;
 
         Tracker tracker = new TriggerTracker<>(QuestTriggers.ADD_CARD, req)
                 .triggerCondition((card) -> !colorsAdded.contains(card.color))
@@ -36,13 +38,22 @@ public class RainbowQuest extends AbstractQuest {
             }
         }).add(this);
 
+        questboundRelics = new ArrayList<>();
+        questboundRelics.add(new PrismaticShard());
+        returnQuestboundRelics = false;
+
         addReward(new QuestReward.RelicReward(new QuestionCard()));
-        addReward(new QuestReward.RelicReward(new PrismaticShard()));
         titleScale = 1.1f;
     }
 
     @Override
     public boolean canSpawn(){
+        if(AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
+            ShopRoom shop = (ShopRoom) AbstractDungeon.getCurrRoom();
+            for(AbstractRelic r : shop.relics) {
+                if(Objects.equals(r.relicId, PrismaticShard.ID) || Objects.equals(r.relicId, QuestionCard.ID)) return false;
+            }
+        }
         for(AbstractQuest q : QuestManager.getAllQuests()){
             if (q instanceof MulticlassQuest)
                 return false;
@@ -53,14 +64,8 @@ public class RainbowQuest extends AbstractQuest {
     @Override
     public void onStart() {
         super.onStart();
-        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.95F, Settings.HEIGHT / 2.0F, new PrismaticShard());
         AbstractDungeon.shopRelicPool.remove(PrismaticShard.ID);
         AbstractDungeon.uncommonRelicPool.remove(QuestionCard.ID);
-    }
-
-    @Override
-    public void onComplete() {
-        AbstractDungeon.player.loseRelic(new PrismaticShard().relicId);
     }
 
     @Override

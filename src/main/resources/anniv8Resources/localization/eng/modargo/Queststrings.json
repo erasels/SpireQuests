@@ -95,5 +95,13 @@
     "TRACKER_TEXT": [
       "Biomes entered"
     ]
+  },
+  "${ModID}:RealityTwistQuest": {
+    "TITLE": "Reality Twist",
+    "DESCRIPTION": "Something strange is going on... these enemies aren't supposed to be here! Your next #b4 normal fights are replaced by #punusual and #rdangerous enemy mixes.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Twisted fights"
+    ]
   }
 }

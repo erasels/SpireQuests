@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+
+import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 
 public class TheEye {
 
@@ -19,14 +21,13 @@ public class TheEye {
     public static class EyePenaltyPatch {
         @SpirePostfixPatch
         public static void EyePenalty(AbstractPlayer __instance, AbstractCard c) {
-            BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind != BossBlind.Eye) return;
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Eye.frames))
+                return;
             if (lastCardType != null && lastCardType == c.type) {
                 AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
                         __instance,
                         __instance,
-                        3
-                ));
+                        3));
             }
             lastCardType = c.type;
         }

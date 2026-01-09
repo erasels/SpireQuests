@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.vfx.combat.DamageNumberEffect;
 import com.megacrit.cardcrawl.vfx.combat.HealEffect;
 
+import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
-
 
 public class TheWall {
 
@@ -38,45 +38,35 @@ public class TheWall {
     public static class EnemyHealthBuffPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractRoom __instance) {
-            if (hasBuffedEnemies || AbstractDungeon.getCurrRoom().monsters == null) return;
+            if (hasBuffedEnemies || AbstractDungeon.getCurrRoom().monsters == null)
+                return;
+            float hpMod;
 
-            BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind == null) {
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Wall.frames)) {
+                hpMod = 0.1f;
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Needle.frames)) {
+                hpMod = -0.5f;
+            } else {
                 hasBuffedEnemies = true;
                 return;
             }
 
-            float hpMod = 0.0f;
-            switch (blind) {
-                case Wall:
-                    hpMod = 0.1f;
-                    break;
-                case Needle:
-                    hpMod = -0.5f;
-                    break;
-                default:
-                    hasBuffedEnemies = true;
-                    return;
-            }
-
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (m != null && !m.isDying && !m.isEscaping) {
-                    int extraHP = (int)(m.maxHealth * hpMod);
+                    int extraHP = (int) (m.maxHealth * hpMod);
 
                     if (hpMod >= 0) {
                         AbstractDungeon.effectList.add(new HealEffect(
                                 m.hb.cX,
                                 m.hb.cY,
-                                extraHP
-                        ));
+                                extraHP));
                         m.maxHealth += extraHP;
                     } else {
                         AbstractDungeon.effectList.add(new DamageNumberEffect(
                                 m,
                                 m.hb.cX,
                                 m.hb.cY,
-                                -extraHP
-                        ));
+                                -extraHP));
                     }
 
                     m.currentHealth += extraHP;

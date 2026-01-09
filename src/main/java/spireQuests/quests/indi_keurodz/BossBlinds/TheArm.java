@@ -14,8 +14,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import basemod.ReflectionHacks;
 import javassist.CtBehavior;
+
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.patches.ShowBossBlindsOnMapPatch.BossBlindField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+
+import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 
 public class TheArm {
 
@@ -25,8 +28,8 @@ public class TheArm {
     public static class TranformFirstCardIntoPlainCopy {
         @SpireInsertPatch(locator = Locator.class, localvars = { "targetCard" })
         public static void HookDiscardAndDraw(UseCardAction __instance, AbstractCard targetCard) {
-            BossBlind blind = BossBlindField.blind.get(AbstractDungeon.getCurrMapNode());
-            if (blind != BossBlind.Arm || card_transformed || !targetCard.upgraded)
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Arm.frames)
+                    || card_transformed || !targetCard.upgraded)
                 return;
 
             ArrayList<AbstractCard> group = AbstractDungeon.player.masterDeck.group;

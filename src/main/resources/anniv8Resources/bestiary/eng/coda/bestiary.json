@@ -1,0 +1,250 @@
+{
+    "monsters": [
+        {
+            "name": "Charadlier",
+            "id": "${ModID}:CharadeMonster",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Once awake, it cycles through four color modes: #wRed (Defense), #wGreen (Offense), #wBlue (Offense), and #wPurple (Defense). NL This sequence repeats in a fixed order. The order is chosen randomly at the start of combat, but it always alternates between Offensive and Defensive colors, and does not change after that.",
+                    "notes": "Innate #bBlock #b100. NL Wakes up after the first turn or from losing hp. NL #uSpirit #uShield buff gives #uNext #uTurn #uBlock on card play.",
+                    "hp": "(300 - 325 HP)",
+                    "moves": [
+                        {
+                            "name": "Red (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Burn 3",
+                                    "color": "DEBUFF"
+                                },
+                                {
+                                    "name": "Block 30",
+                                    "color": "BLOCK"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Green (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "4x7",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Weak 2",
+                                    "color": "DEBUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Blue (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "40",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Artifact 1",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Purple (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Spirit Shield 5",
+                                    "color": "BUFF"
+                                },
+                                {
+                                    "name": "Str +2",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 3,
+                    "desc": "Once awake, it cycles through four color modes: #wRed (Defense), #wGreen (Offense), #wBlue (Offense), and #wPurple (Defense). NL This sequence repeats in a fixed order. The order is chosen randomly at the start of combat, but it always alternates between Offensive and Defensive colors, and does not change after that.",
+                    "notes": "Innate #bBlock #b100. NL Wakes up after the first turn or from losing hp. NL #uSpirit #uShield buff gives #uNext #uTurn #uBlock on card play.",
+                    "hp": "(300 - 325 HP)",
+                    "moves": [
+                        {
+                            "name": "Red (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Burn 4",
+                                    "color": "DEBUFF"
+                                },
+                                {
+                                    "name": "Block 30",
+                                    "color": "BLOCK"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Green (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "4x8",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Weak 2",
+                                    "color": "DEBUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Blue (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "45",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Artifact 1",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Purple (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Spirit Shield 5",
+                                    "color": "BUFF"
+                                },
+                                {
+                                    "name": "Str +2",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 8,
+                    "desc": "Once awake, it cycles through four color modes: #wRed (Defense), #wGreen (Offense), #wBlue (Offense), and #wPurple (Defense). NL This sequence repeats in a fixed order. The order is chosen randomly at the start of combat, but it always alternates between Offensive and Defensive colors, and does not change after that.",
+                    "notes": "Innate #bBlock #b100. NL Wakes up after the first turn or from losing hp. NL #uSpirit #uShield buff gives #uNext #uTurn #uBlock on card play.",
+                    "hp": "(330 - 357 HP)",
+                    "moves": [
+                        {
+                            "name": "Red (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Burn 4",
+                                    "color": "DEBUFF"
+                                },
+                                {
+                                    "name": "Block 35",
+                                    "color": "BLOCK"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Green (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "5x8",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Weak 3",
+                                    "color": "DEBUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Blue (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "45",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Artifact 2",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Purple (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Spirit Shield 8",
+                                    "color": "BUFF"
+                                },
+                                {
+                                    "name": "Str +3",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 18,
+                    "desc": "Once awake, it cycles through four color modes: #wRed (Defense), #wGreen (Offense), #wBlue (Offense), and #wPurple (Defense). NL This sequence repeats in a fixed order. The order is chosen randomly at the start of combat, but it always alternates between Offensive and Defensive colors, and does not change after that.",
+                    "notes": "Innate #bBlock #b100. NL Wakes up after the first turn or from losing hp. NL #uSpirit #uShield buff gives #uNext #uTurn #uBlock on card play.",
+                    "hp": "(330 - 357 HP)",
+                    "moves": [
+                        {
+                            "name": "Red (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Burn+ 4",
+                                    "color": "DEBUFF"
+                                },
+                                {
+                                    "name": "Block 35",
+                                    "color": "BLOCK"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Green (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "4x8",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Weak 3",
+                                    "color": "DEBUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Blue (Offensive)",
+                            "effects": [
+                                {
+                                    "name": "2x17",
+                                    "color": "DAMAGE"
+                                },
+                                {
+                                    "name": "Artifact 2",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Purple (Defensive)",
+                            "effects": [
+                                {
+                                    "name": "Spirit Shield 7",
+                                    "color": "BUFF"
+                                },
+                                {
+                                    "name": "Str +1",
+                                    "color": "BUFF"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

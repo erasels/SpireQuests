@@ -7,14 +7,20 @@ import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.green.Survivor;
 import com.megacrit.cardcrawl.cards.purple.Vigilance;
 import com.megacrit.cardcrawl.cards.red.Bash;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+
+import basemod.BaseMod;
 import spireQuests.patches.QuestTriggers;
+import spireQuests.questStats.StatRewardBox;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.gk.cards.*;
 import spireQuests.util.Wiz;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +71,31 @@ public class BasicProficiencyQuest extends AbstractQuest {
 
     @Override
     public String getDescription() {
+        if (!CardCrawlGame.isInARun()) {
+            return questStrings.EXTRA_TEXT[0];
+        }
         AbstractCard card = CardLibrary.getCard(cardToPlayId);
         return String.format(description, FontHelper.colorString(card.name, "y"));
+    }
+
+    @Override
+    public ArrayList<StatRewardBox> getStatRewardBoxes() {
+        ArrayList<StatRewardBox> ret = new ArrayList<>();
+
+        ret.add(new StatRewardBox(new QuestReward.CardReward(CardLibrary.getCopy(Smash.ID))));
+        ret.add(new StatRewardBox(new QuestReward.CardReward(CardLibrary.getCopy(Thriver.ID))));
+        ret.add(new StatRewardBox(new QuestReward.CardReward(CardLibrary.getCopy(TripleCast.ID))));
+        ret.add(new StatRewardBox(new QuestReward.CardReward(CardLibrary.getCopy(Balance.ID))));
+
+        List<AbstractPlayer> moddedChars = BaseMod.getModdedCharacters();
+
+        if (moddedChars.stream().anyMatch(p -> p.chosenClass.name().equals("HERMIT"))) {
+            ret.add(new StatRewardBox(new QuestReward.CardReward(CardLibrary.getCopy(Trapshot.ID))));
+        }
+        if (moddedChars.stream().anyMatch(p -> p.chosenClass.name().equals("THE_PACKMASTER"))) {
+            ret.add(new StatRewardBox(new QuestReward.CardReward(CardLibrary.getCopy(Cardmancy.ID))));
+        }
+
+        return ret;
     }
 }

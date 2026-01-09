@@ -1,0 +1,9 @@
+{
+  "${ModID}:MagicBoot": {
+    "NAME": "Magic Boot",
+    "FLAVOR": "When wound up, the boot breaks all known laws of conservation of matter.",
+    "DESCRIPTIONS": [
+      "Whenever you would deal #b6 or less unblocked attack damage, increase it to #b7."
+    ]
+  }
+}

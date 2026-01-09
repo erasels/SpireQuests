@@ -5,16 +5,18 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.Trigger;
 
 import java.util.List;
 
 public class DoomsdayCalendarQuest extends AbstractQuest {
+    public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
+
     public DoomsdayCalendarQuest() {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
-        new TriggerTracker<>(QuestTriggers.IMPENDING_DAY_KILL, 12).add(this);
+        new TriggerTracker<>(IMPENDING_DAY_KILL, 12).add(this);
 
         addReward(new QuestReward.CardReward(new StarOfExtinction()));
         titleScale = 0.9f;
