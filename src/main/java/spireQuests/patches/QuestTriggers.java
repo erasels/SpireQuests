@@ -197,22 +197,13 @@ public class QuestTriggers {
         }
     }
 
-    @SpirePatch2(clz = GameActionManager.class, method = "getNextAction")
-    @SpirePatch2(clz = AbstractRoom.class, method = "update")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfTurnRelics")
     public static class OnTurnStart {
-        @SpireInsertPatch(locator = Locator.class)
+        @SpirePrefixPatch
         public static void turnStartPatch() {
             if (disabled()) return;
 
             TURN_START.trigger();
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "applyStartOfTurnRelics");
-                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
-            }
         }
     }
 
