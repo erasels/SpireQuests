@@ -41,6 +41,12 @@
       "When you draw this card, draw a card."
     ]
   },
+    "${ModID}:DebuffedBalatro": {
+    "TEXT": [
+      "${ModID}:Debuffed",
+      "%s NL ${ModID}:Debuffed."
+    ]
+  },
   "${ModID}:BalatroBlinds": {
     "TEXT_DICT": {
       "Arm": "The Arm",

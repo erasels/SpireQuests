@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.helpers.CardModifierManager;
 import spireQuests.Anniv8Mod;
 import spireQuests.abstracts.AbstractSQCard;
+import spireQuests.quests.indi_keurodz.modifiers.DebuffedModifier;
 import spireQuests.quests.indi_keurodz.modifiers.EternalStickerModifier;
 import spireQuests.quests.indi_keurodz.modifiers.FoilModifier;
 import spireQuests.quests.indi_keurodz.modifiers.HoloModifier;
@@ -54,6 +55,7 @@ public class testcard extends AbstractSQCard {
 
                 case 3:
                     CardModifierManager.addModifier(card, new FoilModifier());
+                    CardModifierManager.addModifier(card, new DebuffedModifier());
                     break;
 
             }

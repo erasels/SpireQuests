@@ -40,28 +40,28 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
 
     public static enum BossBlind {
-        Arm, // done
+        Arm,
         Club,
-        Eye, // done
-        Fish, // done
-        Flint,
+        Eye,
+        Fish,
+        Flint, // TODO
         Goad,
         Head,
-        Hook, // done
-        House, // done
-        Manacle, // done
-        Mark, // done
+        Hook,
+        House,
+        Manacle,
+        Mark,
         Mouth,
-        Needle, // done
-        Ox,
+        Needle,
+        Ox, // TODO
         Pillar,
         Plant,
-        Psychic, // done
-        Serpent,
-        Tooth, // done
-        Wall, // done
-        Water,
-        Wheel, // done
+        Psychic,
+        Serpent, // TODO
+        Tooth,
+        Wall,
+        Water, // TODO
+        Wheel,
         Window;
 
         public final PowerTip tooltip;
