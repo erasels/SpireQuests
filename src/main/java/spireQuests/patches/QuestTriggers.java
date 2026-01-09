@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import com.megacrit.cardcrawl.vfx.campfire.CampfireSmithEffect;
 import javassist.CtBehavior;
 import spireQuests.Anniv8Mod;
 import spireQuests.quests.Trigger;
@@ -67,6 +68,7 @@ public class QuestTriggers {
 
     public static final Trigger<AbstractRelic> OBTAIN_RELIC = new Trigger<>(); //NOTE: This is triggered by both obtain() and instantObtain().
     public static final Trigger<Void> EXACT_KILL = new Trigger<>();
+    public static final Trigger<AbstractCard> UPGRADE_CARD_AT_CAMPFIRE = new Trigger<>();
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -444,6 +446,17 @@ public class QuestTriggers {
                 Matcher matcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
                 return LineFinder.findInOrder(ctBehavior, matcher);
             }
+        }
+    }
+
+    @SpirePatch(
+            clz = CampfireSmithEffect.class,
+            method = "update"
+    )
+    public static class SmithCardHook {
+        @SpireInsertPatch(rloc = 13, localvars = {"c"})
+        public static void Insert(CampfireSmithEffect __instance, AbstractCard c) {
+            UPGRADE_CARD_AT_CAMPFIRE.trigger(c);
         }
     }
 }

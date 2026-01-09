@@ -134,7 +134,7 @@ public abstract class QuestReward {
 
         @Override
         public void addTooltip(List<PowerTip> tips) {
-            tips.add(new PowerTip(relic.name, relic.description));
+            tips.add(new PowerTip(relic.name, relic.tips.get(0).body));
         }
 
         @Override

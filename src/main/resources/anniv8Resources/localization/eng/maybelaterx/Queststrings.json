@@ -6,5 +6,21 @@
     "TRACKER_TEXT": [
       "Exact kills"
     ]
+  },
+  "${ModID}:AutotransfusionQuest": {
+    "TITLE": "Autotransfusion",
+    "DESCRIPTION": "Finish combat with #b25% HP or less #b5 times.",
+    "AUTHOR": "MaybeLaterx",
+    "TRACKER_TEXT": [
+      "Combats finished with 25% HP or less"
+   ]
+  },
+  "${ModID}:HumbleSmithyQuest": {
+    "TITLE": "Humble Smithy",
+    "DESCRIPTION": "Upgrade #b3 starter cards at campfires.",
+    "AUTHOR": "MaybeLaterx",
+    "TRACKER_TEXT": [
+      "Starter cards smithed"
+    ]
   }
 }

@@ -1,12 +1,14 @@
 package spireQuests.quests.coda;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
+import spireQuests.util.Wiz;
 
 public class BuildAComboQuest extends AbstractQuest {
 
@@ -18,7 +20,7 @@ public class BuildAComboQuest extends AbstractQuest {
                 public String progressString(){
                     return "";
                 }
-            }.triggerCondition((card) -> card.cost == 1)
+            }.triggerCondition(this.isCost(1))
             .setResetTrigger(QuestTriggers.TURN_START, t -> true, false)
             .setResetTrigger(QuestTriggers.COMBAT_END, t -> true, false)
             .add(this);
@@ -27,7 +29,7 @@ public class BuildAComboQuest extends AbstractQuest {
                 public String progressString(){
                     return "";
                 }
-            }.triggerCondition((card) -> card.cost == 2)
+            }.triggerCondition(this.isCost(2))
             .setResetTrigger(QuestTriggers.TURN_START, t -> true, false)
             .setResetTrigger(QuestTriggers.COMBAT_END, t -> true, false)
             .add(this);
@@ -36,11 +38,15 @@ public class BuildAComboQuest extends AbstractQuest {
                 public String progressString(){
                     return "";
                 }
-            }.triggerCondition((card) -> card.cost == 3)
+            }.triggerCondition(this.isCost(3))
             .setResetTrigger(QuestTriggers.TURN_START, t -> true, false)
             .setResetTrigger(QuestTriggers.COMBAT_END, t -> true, false)
             .add(this);
         addGenericReward();
+    }
+
+    private Function<AbstractCard, Boolean> isCost(int cost) {
+        return card -> card.cost != -1 && Wiz.getLogicalCardCost(card) == cost;
     }
 
     @Override

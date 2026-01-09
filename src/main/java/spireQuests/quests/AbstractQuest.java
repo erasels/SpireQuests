@@ -231,12 +231,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         trackers.add(questTracker);
 
         if (!questTracker.hidden) {
-            if (trackerTextIndex >= questStrings.TRACKER_TEXT.length) {
-               throw new RuntimeException("Quest " + id + " needs more entries in TRACKER_TEXT for its trackers");
-            }
-            
-            questTracker.text = questStrings.TRACKER_TEXT[trackerTextIndex];
-            trackerTextIndex++;
+            assignTrackerText(questTracker);
         }
 
         if (questTracker.trigger != null) triggers.add(questTracker.trigger);
@@ -244,6 +239,21 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         if (questTracker.failTriggers != null) triggers.addAll(questTracker.failTriggers);
 
         return questTracker;
+    }
+
+    /**
+     * Sets the text of the tracker, which by default tracks the index of each tracker and uses the TRACKER_TEXT entry
+     * for that index. Override this for custom behavior.
+     *
+     * @param questTracker
+     */
+    protected void assignTrackerText(Tracker questTracker) {
+        if (trackerTextIndex >= questStrings.TRACKER_TEXT.length) {
+            throw new RuntimeException("Quest " + id + " needs more entries in TRACKER_TEXT for its trackers");
+        }
+
+        questTracker.text = questStrings.TRACKER_TEXT[trackerTextIndex];
+        trackerTextIndex++;
     }
 
     protected final AbstractQuest addReward(QuestReward reward) {
