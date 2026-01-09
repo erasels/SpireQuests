@@ -18,4 +18,9 @@ public class RaresAreGoodQuest extends AbstractQuest {
 
         addGenericReward();
     }
+
+    @Override
+    public boolean canSpawn() {
+        return AbstractDungeon.actNum == 1 || AbstractDungeon.actNum == 2;
+    }
 }
