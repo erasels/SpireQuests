@@ -17,25 +17,25 @@
       "Lose #y3 #ygold at the end of combat."
     ]
   },
-  "${ModID}:Foil": {
+  "${ModID}:FoilBalatro": {
     "TEXT": [
       "Foil",
       "Gain 50 gold the first time this card is played each combat."
     ]
   },
-  "${ModID}:Holographic": {
+  "${ModID}:HoloBalatro": {
     "TEXT": [
-      "Holographic",
+      "Holo",
       "After you play this card, gain 10 temporary Strength."
     ]
   },
-  "${ModID}:Polychrome": {
+  "${ModID}:PolychromeBalatro": {
     "TEXT": [
       "Polychrome",
       "50% chance to play twice."
     ]
   },
-  "${ModID}:Negative": {
+  "${ModID}:NegativeBalatro": {
     "TEXT": [
       "Negative",
       "When you draw this card, draw a card."
