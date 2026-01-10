@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
-import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.BalatroQuest;
-
 import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
+import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 
 public class TheTooth {
     @SpirePatch(clz = AbstractPlayer.class, method = "useCard")

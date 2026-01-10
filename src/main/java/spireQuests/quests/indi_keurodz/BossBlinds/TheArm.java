@@ -14,11 +14,9 @@ import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import basemod.ReflectionHacks;
 import javassist.CtBehavior;
-
-import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.BalatroQuest;
-
 import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 
 public class TheArm {
 

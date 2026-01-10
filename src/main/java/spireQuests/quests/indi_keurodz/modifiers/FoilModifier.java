@@ -7,8 +7,7 @@ import spireQuests.Anniv8Mod;
 
 public class FoilModifier extends AbstractCardModifier {
 
-        public static final String MODIFIER_ID = Anniv8Mod.makeID("FoilBalatro");
-
+    public static final String MODIFIER_ID = Anniv8Mod.makeID("FoilBalatro");
 
     @Override
     public String identifier(AbstractCard card) {

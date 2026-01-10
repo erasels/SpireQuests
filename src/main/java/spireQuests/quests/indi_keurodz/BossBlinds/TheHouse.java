@@ -15,12 +15,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.helpers.CardModifierManager;
 import javassist.CtBehavior;
-import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
-
-import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.BalatroQuest;
-
 import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
+import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
 import spireQuests.util.Wiz;
 
 public class TheHouse {
@@ -33,23 +31,22 @@ public class TheHouse {
 
         @SpireInsertPatch(locator = Locator.class, localvars = { "c" })
         public static void onDraw(AbstractCard c) {
-                if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Wheel.frames)) {
-                    if (AbstractDungeon.cardRandomRng.random(6) == 1)
-                        CardModifierManager.addModifier(c, new FaceDownModifier());
-                } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.House.frames)) {
-                    if (!finishedDrawingStartingHand) {
-                        CardModifierManager.addModifier(c, new FaceDownModifier());
-                    }
-                } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Mark.frames)) {
-                    if (c.type == AbstractCard.CardType.POWER)
-                        CardModifierManager.addModifier(c, new FaceDownModifier());
-                } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Fish.frames)) {
-                    if (finishedInitialDraw) {
-                        CardModifierManager.addModifier(c, new FaceDownModifier());
-                    }
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Wheel.frames)) {
+                if (AbstractDungeon.cardRandomRng.random(6) == 1)
+                    CardModifierManager.addModifier(c, new FaceDownModifier());
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.House.frames)) {
+                if (!finishedDrawingStartingHand) {
+                    CardModifierManager.addModifier(c, new FaceDownModifier());
+                }
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Mark.frames)) {
+                if (c.type == AbstractCard.CardType.POWER)
+                    CardModifierManager.addModifier(c, new FaceDownModifier());
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Fish.frames)) {
+                if (finishedInitialDraw) {
+                    CardModifierManager.addModifier(c, new FaceDownModifier());
                 }
             }
-
+        }
 
         private static class Locator extends SpireInsertLocator {
             @Override
@@ -92,5 +89,3 @@ public class TheHouse {
         }
     }
 }
-
-

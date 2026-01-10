@@ -4,8 +4,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.util.Wiz;
@@ -15,8 +15,8 @@ public class TheWater {
     public static class DiscardPatch {
         @SpirePostfixPatch
         public static void ShuffleDiscardIntoDraw() {
-            AbstractPlayer player = AbstractDungeon.player;
-            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BalatroQuest.BossBlind.Water.frames)) {
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+                    BalatroQuest.BossBlind.Water.frames)) {
                 Wiz.att(new EmptyDeckShuffleAction());
             }
         }

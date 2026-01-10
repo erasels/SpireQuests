@@ -9,7 +9,6 @@ public class NegativeModifier extends AbstractCardModifier {
 
     public static final String MODIFIER_ID = Anniv8Mod.makeID("NegativeBalatro");
 
-
     @Override
     public String identifier(AbstractCard card) {
         return MODIFIER_ID;

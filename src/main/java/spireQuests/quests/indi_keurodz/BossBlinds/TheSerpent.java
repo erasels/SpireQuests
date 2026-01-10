@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.util.Wiz;
@@ -14,7 +15,8 @@ public class TheSerpent {
     public static class SetInitialHandSizePatch {
         @SpirePostfixPatch
         public static void SetHandSize() {
-            if(ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BalatroQuest.BossBlind.Serpent.frames)) {
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+                    BalatroQuest.BossBlind.Serpent.frames)) {
                 Wiz.p().gameHandSize = 3;
             }
         }
@@ -24,7 +26,8 @@ public class TheSerpent {
     public static class PatchUseCard {
         @SpirePostfixPatch
         public static void DrawThreeCardsAfterUse() {
-            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BalatroQuest.BossBlind.Serpent.frames)) {
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+                    BalatroQuest.BossBlind.Serpent.frames)) {
                 Wiz.atb(new DrawCardAction(3));
             }
         }
