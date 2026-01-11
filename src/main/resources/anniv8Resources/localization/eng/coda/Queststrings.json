@@ -60,7 +60,7 @@
   },
   "${ModID}:UntouchableQuest": {
     "TITLE": "Untouchable",
-    "DESCRIPTION": "Beat 3 combats in a row without losing any HP.",
+    "DESCRIPTION": "Beat #b3 combats in a row without losing any HP.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
       "Combats without losing HP"
