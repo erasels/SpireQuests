@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.JAX;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.quests.dayvig.relics.MutagenBlood;
 
@@ -17,7 +18,7 @@ public class JAXCardDisplayPatch {
         public static ArrayList<AbstractCard> cardsModified = new ArrayList<>();
 
         public static void Prefix(AbstractCard __instance, SpriteBatch sb) {
-            if (__instance.cardID.equals(JAX.ID) && AbstractDungeon.player.hasRelic(MutagenBlood.ID) && !cardsModified.contains(__instance)) {
+            if (__instance.cardID.equals(JAX.ID) && CardCrawlGame.isInARun() && AbstractDungeon.player.hasRelic(MutagenBlood.ID) && !cardsModified.contains(__instance)) {
                 String unmodifiedDescription = __instance.rawDescription;
                 int firstThreeIndex = __instance.rawDescription.indexOf('3');
                 __instance.rawDescription = unmodifiedDescription.substring(0, firstThreeIndex) + '1' + unmodifiedDescription.substring(firstThreeIndex+1);
