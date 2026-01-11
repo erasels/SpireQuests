@@ -375,11 +375,11 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
     }
 
     public boolean isCompleted() {
-        return complete;
+        return this.complete();
     }
 
     public boolean isFailed() {
-        return failed;
+        return this.fail();
     }
 
     public final void obtainRewards() {
