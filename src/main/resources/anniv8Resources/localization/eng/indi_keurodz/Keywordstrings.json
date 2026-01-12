@@ -4,7 +4,7 @@
     "NAMES": [
       "debuffed"
     ],
-    "DESCRIPTION": "After you play this card, randomly gain #b1 #yWeak [REMOVE_SPACE], #yFrail [REMOVE_SPACE], or #yVulnerable [REMOVE_SPACE]."
+    "DESCRIPTION": "After you play this card, randomly gain #b1 #yWeak, #yFrail, or #yVulnerable."
   },
   {
     "ID": "Foil",

@@ -10,14 +10,16 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.relics.BurningBlood;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 
@@ -29,7 +31,11 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.indi_keurodz.icons.*;
+import spireQuests.quests.indi_keurodz.modifiers.EternalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
 import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
+import spireQuests.util.TexLoader;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -47,7 +53,7 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         Club,
         Eye,
         Fish,
-        Flint, // TODO
+        Flint,
         Goad,
         Head,
         Hook,
@@ -60,10 +66,10 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         Pillar,
         Plant,
         Psychic,
-        Serpent, // TODO
+        Serpent,
         Tooth,
         Wall,
-        Water, // TODO
+        Water,
         Wheel,
         Window;
 
@@ -88,11 +94,6 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
         BossBlindsAtlas = new TextureAtlas(
                 Gdx.files.internal(Anniv8Mod.makeContributionPath(AUTHOR, "BossBlinds.atlas")));
-
-        new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
-
-        addReward(new QuestReward.RelicReward(new BurningBlood()));
-        needHoverTip = true;
 
         CustomIconHelper.addCustomIcon(ArmIcon.get());
         CustomIconHelper.addCustomIcon(ClubIcon.get());
@@ -120,6 +121,62 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         CustomIconHelper.addCustomIcon(WaterIcon.get());
         CustomIconHelper.addCustomIcon(WheelIcon.get());
         CustomIconHelper.addCustomIcon(WindowIcon.get());
+
+        new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
+
+        addReward(new BalatroReward());
+        needHoverTip = true;
+
+    }
+
+    public static class BalatroReward extends QuestReward {
+
+        private static final UIStrings EDITION_STRINGS = CardCrawlGame.languagePack
+                .getUIString(makeID("BalatroEditions"));
+
+        private static final String REWARD_DESC = CardCrawlGame.languagePack
+                .getUIString(makeID("BalatroQuestReward")).TEXT[0];
+        private static final TextureRegion REWARD_ICON = TexLoader
+                .getTextureAsAtlasRegion(Anniv8Mod.modID + "Resources/images/indi_keurodz/Aura.png");
+
+        public BalatroReward() {
+            super(REWARD_DESC);
+        }
+
+        @Override
+        public TextureRegion icon() {
+            return REWARD_ICON;
+        }
+
+        @Override
+        protected String saveParam() {
+            return null;
+        }
+
+        @Override
+        public void addTooltip(List<PowerTip> tips) {
+            UIStrings eternalStrings = CardCrawlGame.languagePack
+                    .getUIString(EternalStickerModifier.MODIFIER_ID);
+            UIStrings perishableStrings = CardCrawlGame.languagePack
+                    .getUIString(PerishableStickerModifier.MODIFIER_ID);
+            UIStrings rentalStrings = CardCrawlGame.languagePack
+                    .getUIString(RentalStickerModifier.MODIFIER_ID);
+            tips.add(new PowerTip(eternalStrings.TEXT[0], eternalStrings.TEXT[1]));
+            tips.add(new PowerTip(perishableStrings.TEXT[0], String.format(perishableStrings.TEXT[1], 5)));
+            tips.add(new PowerTip(rentalStrings.TEXT[0], rentalStrings.TEXT[1]));
+            tips.add(new PowerTip(EDITION_STRINGS.TEXT[0], EDITION_STRINGS.TEXT[1]));
+
+        }
+
+        @Override
+        public void obtainRewardItem() {
+            AbstractDungeon.combatRewardScreen.rewards.add(0, new RewardItem(10));
+            AbstractDungeon.combatRewardScreen.positionRewards();
+        }
+
+        @Override
+        public void obtainInstant() {
+        }
 
     }
 

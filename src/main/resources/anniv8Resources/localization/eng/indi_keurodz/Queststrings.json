@@ -1,7 +1,7 @@
 {
   "${ModID}:BalatroQuest": {
     "TITLE": "Gold Stake",
-    "DESCRIPTION": "Card rewards have a #b30% chance to have an #yEternal sticker, #yPerishable sticker, or a #yRental sticker. NL #b50% of combats will be blind combats that have special modifiers. NL Defeat #b8 blind-enhanced combats to win.",
+    "DESCRIPTION": "Card rewards have a chance to be #yEternal, #yPerishable, or #yRental. #b50% of combats will be enhanced by boss blind effects. Defeat #b8 of these combats to complete the quest.",
     "AUTHOR": "indi + keurodz",
     "TRACKER_TEXT": [
       "Blind battles completed"

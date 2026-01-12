@@ -2,7 +2,7 @@
   "${ModID}:PerishableSticker": {
     "TEXT": [
       "[${ModID}:PerishableIcon] Perishable",
-      "Purged from deck after #b%d #b combats."
+      "Purged from deck after #b%d combats."
     ]
   },
   "${ModID}:EternalSticker": {
@@ -14,13 +14,24 @@
   "${ModID}:RentalSticker": {
     "TEXT": [
       "[${ModID}:RentalIcon] Rental",
-      "Lose #y3 #ygold at the end of combat."
+      "Lose #b3 #yGold at the end of combat."
     ]
   },
-    "${ModID}:DebuffedBalatro": {
+  "${ModID}:DebuffedBalatro": {
     "TEXT": [
       "${ModID}:Debuffed",
       "%s NL ${ModID}:Debuffed."
+    ]
+  },
+  "${ModID}:BalatroQuestReward": {
+    "TEXT": [
+      "Apply a random #yEdition to 3 selected cards. Card rewards have a small chance to contain cards with #yEditions."
+    ]
+  },
+  "${ModID}:BalatroEditions": {
+    "TEXT": [
+      "Editions",
+      "#gFoil - Gain #b50 #yGold the first time this card is played. NL #gHolo - After you play this card, gain #b10 temporary #yStrength. NL #gPolychrome - #b50% chance to play twice. NL #gNegative - When you draw this card, draw a card. "
     ]
   },
   "${ModID}:BalatroBlinds": {
