@@ -11,6 +11,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Array;
+import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -26,12 +27,13 @@ import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.indi_keurodz.icons.*;
 import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 
 import static spireQuests.Anniv8Mod.makeID;
 
 public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
-    private static TextureAtlas BossBlindsAtlas;
+    public static TextureAtlas BossBlindsAtlas;
     public static final String BLIND_STRINGS_ID = makeID("BalatroBlinds");
     public static final String AUTHOR = "indi_keurodz";
     public static final String id = makeID("BalatroQuest");
@@ -68,7 +70,7 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         public final Array<AtlasRegion> frames;
 
         BossBlind() {
-        
+
             this.frames = BossBlindsAtlas.findRegions(this.toString());
 
             this.tooltip = new PowerTip(blindStrings.get(this.toString()),
@@ -90,6 +92,34 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
         addReward(new QuestReward.RelicReward(new BurningBlood()));
         needHoverTip = true;
+
+        CustomIconHelper.addCustomIcon(ArmIcon.get());
+        CustomIconHelper.addCustomIcon(ClubIcon.get());
+        CustomIconHelper.addCustomIcon(EternalIcon.get());
+        CustomIconHelper.addCustomIcon(EyeIcon.get());
+        CustomIconHelper.addCustomIcon(FishIcon.get());
+        CustomIconHelper.addCustomIcon(FlintIcon.get());
+        CustomIconHelper.addCustomIcon(GoadIcon.get());
+        CustomIconHelper.addCustomIcon(HeadIcon.get());
+        CustomIconHelper.addCustomIcon(HookIcon.get());
+        CustomIconHelper.addCustomIcon(HouseIcon.get());
+        CustomIconHelper.addCustomIcon(ManacleIcon.get());
+        CustomIconHelper.addCustomIcon(MarkIcon.get());
+        CustomIconHelper.addCustomIcon(MouthIcon.get());
+        CustomIconHelper.addCustomIcon(NeedleIcon.get());
+        CustomIconHelper.addCustomIcon(OxIcon.get());
+        CustomIconHelper.addCustomIcon(PerishableIcon.get());
+        CustomIconHelper.addCustomIcon(PillarIcon.get());
+        CustomIconHelper.addCustomIcon(PlantIcon.get());
+        CustomIconHelper.addCustomIcon(PsychicIcon.get());
+        CustomIconHelper.addCustomIcon(RentalIcon.get());
+        CustomIconHelper.addCustomIcon(SerpentIcon.get());
+        CustomIconHelper.addCustomIcon(ToothIcon.get());
+        CustomIconHelper.addCustomIcon(WallIcon.get());
+        CustomIconHelper.addCustomIcon(WaterIcon.get());
+        CustomIconHelper.addCustomIcon(WheelIcon.get());
+        CustomIconHelper.addCustomIcon(WindowIcon.get());
+
     }
 
     @Override

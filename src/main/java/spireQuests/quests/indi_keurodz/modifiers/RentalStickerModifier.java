@@ -20,7 +20,7 @@ public class RentalStickerModifier extends AbstractCardModifier {
     public static final String MODIFIER_ID = Anniv8Mod.makeID("RentalSticker");
     private static final UIStrings strings = CardCrawlGame.languagePack.getUIString(MODIFIER_ID);
 
-    private static final Texture icon = TexLoader
+    public static final Texture icon = TexLoader
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/RentalStickerIcon.png");
 
     @Override

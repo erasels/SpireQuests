@@ -22,7 +22,7 @@ public class PerishableStickerModifier extends AbstractCardModifier {
 
     public int REMAINING_TURNS;
 
-    private static final Texture icon = TexLoader
+    public static final Texture icon = TexLoader
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/PerishableStickerIcon.png");
 
     @Override
