@@ -1,7 +1,7 @@
 {
-  "${ModID}:ClumsyOffering": {
-    "NAME": "Clumsy Offering",
-    "DESCRIPTION": "Ethereal. NL Lose 6 HP. NL Exhaust."
+  "${ModID}:ClumsyFiendFire": {
+    "NAME": "Clumsy Fiend Fire",
+    "DESCRIPTION": "Ethereal. NL Exhaust your hand. NL Exhaust."
   },
   "${ModID}:ClumsyNightmare": {
     "NAME": "Clumsy Nightmare",

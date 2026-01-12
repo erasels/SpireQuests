@@ -95,6 +95,7 @@ public class QuestGenerator {
 
         ArrayList<AbstractQuest> possible = pool.stream()
                 .filter(q -> !seenQuestIds.contains(q.id))
+                .filter(q -> QuestManager.getFilterConfig(q.id))
                 .filter(AbstractQuest::canSpawn)
                 .collect(Collectors.toCollection(ArrayList::new));
 

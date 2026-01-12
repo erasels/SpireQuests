@@ -55,5 +55,12 @@
     "DESCRIPTIONS": [
       "Whenever you fully block attack damage, deal #b7 damage back."
     ]
+  },
+  "${ModID}:TheLivingCurse": {
+    "NAME": "The Living Curse",
+    "FLAVOR": "It feeds on suffering.",
+    "DESCRIPTIONS": [
+      "Card rewards sometimes contain #rCurses and special cards obtained from #gEmbrace #gthe #gCurse. Whenever you draw a #rCurse, draw #b1 card. #yNormality allows playing #b6 cards. #yPain and #yRegret lose #yBlock instead of HP."
+    ]
   }
 }

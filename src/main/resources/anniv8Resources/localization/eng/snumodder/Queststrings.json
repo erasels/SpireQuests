@@ -16,5 +16,13 @@
     "TRACKER_TEXT": [
       "King Llane survived"
     ]
+  },
+  "${ModID}:ZilliaxDeluxe3000Quest": {
+    "TITLE": "Zilliax Deluxe 3000",
+    "DESCRIPTION": "A random Module monster appears with the enemies. NL Obtain 2 different Modules from extra Module card rewards.",
+    "AUTHOR": "snumodder",
+    "TRACKER_TEXT": [
+      "Module obtained"
+    ]
   }
 }

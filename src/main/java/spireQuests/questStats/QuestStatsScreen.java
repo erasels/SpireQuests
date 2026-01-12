@@ -23,7 +23,6 @@ import com.megacrit.cardcrawl.screens.options.DropdownMenuListener;
 import basemod.BaseMod;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
-import spireQuests.quests.QuestReward;
 import spireQuests.quests.Statistics;
 import spireQuests.util.ImageHelper;
 import spireQuests.util.TexLoader;
@@ -78,7 +77,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private static final float QUEST_DESCRIPTION_LENGTH = 650.0F * Settings.xScale;
 
     private static final float ALL_QUEST_STAT_Y = Y_ANCHOR - (285.0F * Settings.yScale);
-    private static final float QUEST_STAT_Y = Y_ANCHOR - (525.0F * Settings.yScale);
+    private static final float QUEST_STAT_Y = Y_ANCHOR - (490.0F * Settings.yScale);
 
     private static final float REWARD_X = LEFT_ALIGN + (25.0F * Settings.scale);
     private static final float REWARD_OFFSET = 150.0F * Settings.scale;
@@ -109,6 +108,12 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private static final float PROGRESS_BAR_Y = PROGRESS_BORDER_Y + PROGRESS_PADDING_Y;
     private static final float PROGRESS_BAR_WIDTH = BANNER_X - PROGRESS_BAR_X - (50.0F * Settings.xScale);
     
+    private static final float CHECKBOX_X = LEFT_ALIGN;
+    private static final float CHECKBOX_Y = Y_ANCHOR - (632.0F * Settings.yScale);
+    private static final float CHECKBOX_HEIGHT = 32.0F * Settings.scale;
+    private static final float CHECKBOX_WIDTH = 32.0F * Settings.scale;
+    
+
     private static final Color OUTLINE_COLOR = new Color(0.0F, 0.0F, 0.0F, 0.33F);
     private static final Color LOCK_COLOR = Color.valueOf("#2d2d2d");
     private static final Color BRONZE_COLOR = Color.valueOf("#b65b2d");
@@ -122,6 +127,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private DropdownMenu questDropdown;
     
     public static final String ID = makeID(QuestStatsScreen.class.getSimpleName());
+
 
     public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
 
@@ -150,6 +156,10 @@ public class QuestStatsScreen implements DropdownMenuListener {
     private Hitbox trophyHb;
 
     private float bannerBotDraw_y = 365.0F;
+
+    private Hitbox checkboxHb;
+
+    private boolean questEnabled;
     
     public QuestStatsScreen() {
         allQuests = QuestManager.getAllQuests();
@@ -162,6 +172,9 @@ public class QuestStatsScreen implements DropdownMenuListener {
         questDropdown = new DropdownMenu(this, dropdownList, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
         selectedQuestStats = QuestStats.getAllStats();
         trophyHb = new Hitbox(0, 0, 0, 0);
+
+        checkboxHb = new Hitbox(CHECKBOX_X, CHECKBOX_Y, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
+        questEnabled = true;
         refreshData();
     }
 
@@ -173,6 +186,8 @@ public class QuestStatsScreen implements DropdownMenuListener {
         selectedQuestStats = QuestStats.getAllStats();
         questDropdown = new DropdownMenu(this, dropdownList, FontHelper.tipBodyFont, Settings.CREAM_COLOR);
         refreshData();
+
+        Statistics.logStatistics(QuestManager.getAllQuests());
     }
 
     public void update() {
@@ -207,6 +222,12 @@ public class QuestStatsScreen implements DropdownMenuListener {
             cancelButton.hide();
             CardCrawlGame.mainMenuScreen.panelScreen.refresh();
         }
+
+        checkboxHb.update();
+        if (checkboxHb.hovered && InputHelper.justClickedLeft) {
+            questEnabled = !questEnabled;
+            QuestManager.setFilterConfig(selectedQuest.id, questEnabled);
+        }
     }
 
     public void render(SpriteBatch sb) {
@@ -220,6 +241,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
             renderStats(sb);
             renderRewards(sb);
             renderTrophyTooltip(sb);
+            renderCheckbox(sb);
         }
         questDropdown.render(sb, LEFT_ALIGN, DROPDOWN_Y);
         cancelButton.render(sb);
@@ -392,12 +414,27 @@ public class QuestStatsScreen implements DropdownMenuListener {
     }
 
     private void renderRewards(SpriteBatch sb) {
-        if (selectedQuest == null) {
-            return;
-        }
         for (StatRewardBox box : rewardBoxes) {
             box.render(sb);
         }
+    }
+
+    private void renderCheckbox(SpriteBatch sb) {
+        sb.draw(ImageMaster.OPTION_TOGGLE, CHECKBOX_X, CHECKBOX_Y, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
+        Color textColor = Settings.CREAM_COLOR;
+        if (this.checkboxHb.hovered) {
+            textColor = Settings.BLUE_TEXT_COLOR;
+        }
+        FontHelper.renderFont(sb, FontHelper.tipBodyFont, uiStrings.TEXT[16], CHECKBOX_X + CHECKBOX_WIDTH
+            , CHECKBOX_Y + (CHECKBOX_HEIGHT / 2.0F) + (FontHelper.getHeight(FontHelper.tipBodyFont) / 2.0F * Settings.scale)
+            , textColor);
+
+        if (questEnabled) {
+            sb.setColor(Color.WHITE);
+            sb.draw(ImageMaster.OPTION_TOGGLE_ON, CHECKBOX_X, CHECKBOX_Y, CHECKBOX_WIDTH, CHECKBOX_HEIGHT);
+        }
+
+        this.checkboxHb.render(sb);
     }
 
     @Override
@@ -409,6 +446,7 @@ public class QuestStatsScreen implements DropdownMenuListener {
             String qid = nameIDMap.get(s);
             selectedQuestStats = new QuestStats(qid);
             selectedQuest = allQuestsMap.get(qid);
+            questEnabled = QuestManager.getFilterConfig(qid);
         }
         refreshData();
     }
@@ -427,6 +465,8 @@ public class QuestStatsScreen implements DropdownMenuListener {
         this.trophyHb.resize(0.0F, 0.0F);
         this.trophyHb.move(-10000.0F, -10000.0F);
 
+        this.checkboxHb.move(-10000.0F, -10000.0F);
+
         if (selectedQuest == null) {
             return;
         }
@@ -438,6 +478,8 @@ public class QuestStatsScreen implements DropdownMenuListener {
         bannerTotalHeight += extraRows * BANNER_EXTRA.getHeight() * Settings.scale;
         this.trophyHb.resize(BANNER_TOP.getWidth() * Settings.scale, bannerTotalHeight);
         this.trophyHb.move(BANNER_X + BANNER_TOP.getWidth() * Settings.scale / 2.0F, this.bannerBotDraw_y + bannerTotalHeight / 2.0F);
+
+        this.checkboxHb.move(CHECKBOX_X + CHECKBOX_WIDTH / 2.0F, CHECKBOX_Y + CHECKBOX_HEIGHT / 2.0F);
 
         for (AbstractPlayer chars : CardCrawlGame.characterManager.getAllCharacters()) {
             if (!charactersCompletedAs.contains(chars.chosenClass.toString())) {

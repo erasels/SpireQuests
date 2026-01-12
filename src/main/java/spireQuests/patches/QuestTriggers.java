@@ -1,7 +1,6 @@
 package spireQuests.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
@@ -25,8 +23,8 @@ import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import com.megacrit.cardcrawl.vfx.campfire.CampfireSmithEffect;
 import javassist.CtBehavior;
-import spireQuests.Anniv8Mod;
 import spireQuests.quests.Trigger;
 
 import java.util.ArrayList;
@@ -48,7 +46,6 @@ public class QuestTriggers {
     public static final Trigger<Void> COMBAT_END = new Trigger<>();
     public static final Trigger<AbstractPotion> USE_POTION = new Trigger<>();
 
-    public static final Trigger<Void> IMPENDING_DAY_KILL = new Trigger<>();
     public static final Trigger<Void> BOOT_TRIGGER = new Trigger<>();
     public static final Trigger<AbstractOrb> CHANNEL_ORB = new Trigger<>();
     public static final Trigger<AbstractOrb> EVOKE_ORB = new Trigger<>();
@@ -67,6 +64,7 @@ public class QuestTriggers {
 
     public static final Trigger<AbstractRelic> OBTAIN_RELIC = new Trigger<>(); //NOTE: This is triggered by both obtain() and instantObtain().
     public static final Trigger<Void> EXACT_KILL = new Trigger<>();
+    public static final Trigger<AbstractCard> UPGRADE_CARD_AT_CAMPFIRE = new Trigger<>();
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -195,22 +193,13 @@ public class QuestTriggers {
         }
     }
 
-    @SpirePatch2(clz = GameActionManager.class, method = "getNextAction")
-    @SpirePatch2(clz = AbstractRoom.class, method = "update")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfTurnRelics")
     public static class OnTurnStart {
-        @SpireInsertPatch(locator = Locator.class)
+        @SpirePrefixPatch
         public static void turnStartPatch() {
             if (disabled()) return;
 
             TURN_START.trigger();
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "applyStartOfTurnRelics");
-                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
-            }
         }
     }
 
@@ -314,8 +303,6 @@ public class QuestTriggers {
         }
     }
 
-    @SpirePatch2(clz= PotionPopUp.class, method = "updateInput")
-    @SpirePatch2(clz= PotionPopUp.class, method = "updateTargetMode")
     @SpirePatch2(clz = PotionPopUp.class, method = "updateInput")
     @SpirePatch2(clz = PotionPopUp.class, method = "updateTargetMode")
     public static class PotionUse {
@@ -444,6 +431,61 @@ public class QuestTriggers {
                 Matcher matcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
                 return LineFinder.findInOrder(ctBehavior, matcher);
             }
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractRelic.class,
+            method = "instantObtain",
+            paramtypez = {}
+    )
+    public static class InstantObtainRelicGetHook2 {
+        @SpireInsertPatch(
+                locator = Locator.class
+        )
+        public static void Insert(AbstractRelic __instance) {
+            if (disabled()) return;
+            OBTAIN_RELIC.trigger(__instance);
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher matcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
+                return LineFinder.findInOrder(ctBehavior, matcher);
+            }
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractRelic.class,
+            method = "instantObtain",
+            paramtypez = {AbstractPlayer.class, int.class, boolean.class}
+    )
+    public static class InstantObtainRelicGetHook {
+        @SpireInsertPatch(
+                locator = Locator.class
+         )
+        public static void Insert(AbstractRelic __instance, AbstractPlayer p, int slot, boolean callOnEquip) {
+            if (disabled()) return;
+            OBTAIN_RELIC.trigger(__instance);
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctBehavior) throws Exception {
+                Matcher matcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
+                return LineFinder.findInOrder(ctBehavior, matcher);
+            }
+        }
+    }
+
+    @SpirePatch(
+            clz = CampfireSmithEffect.class,
+            method = "update"
+    )
+    public static class SmithCardHook {
+        @SpireInsertPatch(rloc = 13, localvars = {"c"})
+        public static void Insert(CampfireSmithEffect __instance, AbstractCard c) {
+            UPGRADE_CARD_AT_CAMPFIRE.trigger(c);
         }
     }
 }

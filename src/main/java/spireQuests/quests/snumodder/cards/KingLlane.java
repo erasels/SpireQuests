@@ -1,4 +1,4 @@
-package spireQuests.quests.snumodder;
+package spireQuests.quests.snumodder.cards;
 
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

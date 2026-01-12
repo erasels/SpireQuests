@@ -34,5 +34,13 @@
     "TRACKER_TEXT": [
       "Menace slain"
     ]
+  },
+  "${ModID}:FavouriteCustomerQuest": {
+    "TITLE": "Favourite Customer",
+    "DESCRIPTION": "Spend money in shops #b10 times.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "Money spent at shops"
+    ]
   }
 }

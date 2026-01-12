@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class LuckyNumberQuest extends AbstractQuest {
     private AbstractRelic boot = new Boot();
+
     public LuckyNumberQuest() {
         super(QuestType.SHORT, QuestDifficulty.NORMAL);
         new TriggerTracker<>(QuestTriggers.BOOT_TRIGGER, 7)
@@ -30,7 +31,7 @@ public class LuckyNumberQuest extends AbstractQuest {
         if(AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
             ShopRoom shop = (ShopRoom) AbstractDungeon.getCurrRoom();
             for(AbstractRelic r : shop.relics) {
-                if(r.relicId == Boot.ID) return false;
+                if(Boot.ID.equals(r.relicId)) return false;
             }
         }
         return !AbstractDungeon.player.hasRelic(Boot.ID);

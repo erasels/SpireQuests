@@ -22,10 +22,10 @@ public class PristinePatch {
             }
         }
         if (pristineQuest != null && !pristineQuest.isCompleted() && !pristineQuest.isFailed()) {
-            int r = AbstractDungeon.miscRng.random(99);
+            int r = AbstractQuest.rng.random(99);
             if (r < PristineCardsQuest.PRISTINE_CARDS_RATE) {
                 int attempts = 0;
-                r = AbstractDungeon.miscRng.random(__result.size() - 1);
+                r = AbstractQuest.rng.random(__result.size() - 1);
                 while (attempts < __result.size()) {
                     if (__result.get(r).canUpgrade()) {
                         CardModifierManager.addModifier(__result.get(r), new PristineModifier());

@@ -23,7 +23,7 @@
       "You can select ",
       " more quest(s)",
       "By: ",
-      "Quest log is full! The next one will replace: %s",
+      "Quest log is full! Hold right-click on an active quest to remove it.",
       "#yQuest: NL ",
       "#gRewards: NL "
     ]
@@ -90,7 +90,8 @@
       "Quests Seen",
       "Quests Taken",
       "Quests Completed",
-      "Quests Failed"
+      "Quests Failed",
+      "Enabled"
     ]
   },
   "${ModID}:QuestStatsMainMenuPanel": {

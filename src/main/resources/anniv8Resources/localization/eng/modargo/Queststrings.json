@@ -103,5 +103,21 @@
     "TRACKER_TEXT": [
       "Twisted fights"
     ]
+  },
+  "${ModID}:EmbraceTheCurseQuest": {
+    "TITLE": "Embrace the Curse",
+    "DESCRIPTION": "Gain #pThe #pLiving #pCurse, which adds #rCurses to card rewards, draws a card when you draw one, and reduces some of their negative effects. Add #b%s #rCurses to your deck to gain a special card for each milestone (and have them start appearing in rewards too).",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Curses added"
+    ]
+  },
+  "${ModID}:RaresAreGoodQuest": {
+    "TITLE": "Rares Are Good",
+    "DESCRIPTION": "Add #b4 #yRare cards to your deck.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "Rares added"
+    ]
   }
 }

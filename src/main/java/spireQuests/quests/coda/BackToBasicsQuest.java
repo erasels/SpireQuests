@@ -84,7 +84,7 @@ public class BackToBasicsQuest extends AbstractQuest {
                 upgradableCards.add(c);
             }
         }
-        Collections.shuffle(upgradableCards, new Random(AbstractDungeon.miscRng.randomLong()));
+        Collections.shuffle(upgradableCards, new Random(AbstractQuest.rng.randomLong()));
 
         if (upgradableCards.size() == 1) {
             upgradeAndDisplay(upgradableCards.get(0), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F);

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BlueCandle;
+import spireQuests.quests.snumodder.cards.KingLlane;
 
 @SpirePatch2(clz = BlueCandle.class, method = "onUseCard", paramtypez = { AbstractCard.class, UseCardAction.class})
 public class KingLlaneBlueCandlePatch {

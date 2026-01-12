@@ -1,0 +1,598 @@
+{
+  "monsters": [
+    {
+      "name": "Recursive Module",
+      "id": "${ModID}:RecursiveModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Starts with #wAttack and then alternates between the two moves.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "5 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Repeat",
+              "effects": [
+                {
+                  "name": "Daze 1",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Starts with #wAttack and then alternates between the two moves.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Repeat",
+              "effects": [
+                {
+                  "name": "Daze 1",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Starts with #wAttack and then alternates between the two moves.",
+          "hp": "(11 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Repeat",
+              "effects": [
+                {
+                  "name": "Daze 1",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Power Module",
+      "id": "${ModID}:PowerModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#wAttack every turn.",
+          "hp": "(10 HP per act)",
+          "notes": "Innate #uStrength #uUp #u1 per act",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "3 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "#wAttack every turn.",
+          "hp": "(10 HP per act)",
+          "notes": "Innate #uStrength #uUp #u1 per act",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "3 (act 1) / 7 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "#wAttack every turn.",
+          "hp": "(11 HP per act)",
+          "notes": "Innate #uStrength #uUp #u1 per act",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "3 (act 1) / 7 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Twin Module",
+      "id": "${ModID}:TwinModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Twin Modules (from top-left to bottom-right) begin with #wAttack / #wRest. Afterwards, they always alternate between the two moves.",
+          "hp": "(6 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "5 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rest",
+              "effects": [
+                {
+                  "name": "Skip Turn",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Twin Modules (from top-left to bottom-right) begin with #wAttack / #wRest. Afterwards, they always alternate between the two moves.",
+          "hp": "(6 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rest",
+              "effects": [
+                {
+                  "name": "Skip Turn",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Twin Modules (from top-left to bottom-right) begin with #wAttack / #wRest. Afterwards, they always alternate between the two moves.",
+          "hp": "(7 HP act 1 / 13 HP act 2)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rest",
+              "effects": [
+                {
+                  "name": "Skip Turn",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Perfect Module",
+      "id": "${ModID}:PerfectModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#wAttack every turn.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "Lifesteal 3 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "#wAttack every turn.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "Lifesteal 3 (act 1) / Lifesteal 7 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "#wAttack every turn.",
+          "hp": "(11 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "Lifesteal 3 (act 1) / Lifesteal 7 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ticking Module",
+      "id": "${ModID}:TickingModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Tick",
+              "effects": [
+                {
+                  "name": "Str +2 per act",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "3 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Tick",
+              "effects": [
+                {
+                  "name": "Str +2 per act",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "3 (act 1) / 7 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
+          "hp": "(11 HP per act)",
+          "moves": [
+            {
+              "name": "Tick",
+              "effects": [
+                {
+                  "name": "Str +2 per act",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "3 (act 1) / 7 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "#wTick every turn. If you play 3 cards in a turn, #wAttack.",
+          "hp": "(11 HP per act)",
+          "moves": [
+            {
+              "name": "Tick",
+              "effects": [
+                {
+                  "name": "Str +3 per act",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "3 (act 1) / 7 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Virus Module",
+      "id": "${ModID}:VirusModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Starts with #wAttack and then alternates between the two moves.",
+          "notes": "Innate #uVirus.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "5 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rest",
+              "effects": [
+                {
+                  "name": "Skip Turn",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Starts with #wAttack and then alternates between the two moves.",
+          "notes": "Innate #uVirus.",
+          "hp": "(10 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rest",
+              "effects": [
+                {
+                  "name": "Skip Turn",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Starts with #wAttack and then alternates between the two moves.",
+          "notes": "Innate #uVirus.",
+          "hp": "(11 HP per act)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rest",
+              "effects": [
+                {
+                  "name": "Skip Turn",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Haywire Module",
+      "id": "${ModID}:HaywireModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#wAttack every turn.",
+          "hp": "(14 HP per act)",
+          "notes": "Innate #sHaywire #s5 (act 1) #sHaywire #s8 (act 2)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "7 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "#wAttack every turn.",
+          "hp": "(14 HP per act)",
+          "notes": "Innate #sHaywire #s5 (act 1) #sHaywire #s8 (act 2)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "8 (act 1) / 15 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "#wAttack every turn.",
+          "hp": "(15 HP act 1 / 31 HP act 2)",
+          "notes": "Innate #sHaywire #s5 (act 1) #sHaywire #s8 (act 2)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "8 (act 1) / 15 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "#wAttack every turn.",
+          "hp": "(15 HP act 1 / 31 HP act 2)",
+          "notes": "Innate #sHaywire #s4 (act 1) #sHaywire #s7 (act 2)",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "8 (act 1) / 15 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pylon Module",
+      "id": "${ModID}:PylonModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#wAttack every turn.",
+          "hp": "(10 HP per act)",
+          "notes": "Innate Team #uStr #u1",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "5 per act",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "#wAttack every turn.",
+          "hp": "(10 HP per act)",
+          "notes": "Innate Team #uStr #u1",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "#wAttack every turn.",
+          "hp": "(11 HP per act)",
+          "notes": "Innate Team #uStr #u1",
+          "moves": [
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "6 (act 1) / 11 (act 2)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

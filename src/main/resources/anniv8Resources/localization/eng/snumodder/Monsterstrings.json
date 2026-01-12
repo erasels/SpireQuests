@@ -1,0 +1,55 @@
+{
+  "${ModID}:RecursiveModuleMonster": {
+    "MOVES": [
+      "Attack",
+      "Repeat"
+    ],
+    "NAME": "Recursive Module"
+  },
+  "${ModID}:PowerModuleMonster": {
+    "MOVES": [
+      "Attack",
+      "Strength Up"
+    ],
+    "NAME": "Power Module"
+  },
+  "${ModID}:TwinModuleMonster": {
+    "MOVES": [
+      "Attack",
+      "Rest"
+    ],
+    "NAME": "Twin Module"
+  },
+  "${ModID}:PerfectModuleMonster": {
+    "MOVES": [
+      "Attack"
+    ],
+    "NAME": "Perfect Module"
+  },
+  "${ModID}:TickingModuleMonster": {
+    "MOVES": [
+      "Tick",
+      "Attack"
+    ],
+    "NAME": "Ticking Module"
+  },
+  "${ModID}:VirusModuleMonster": {
+    "MOVES": [
+      "Attack",
+      "Rest"
+    ],
+    "NAME": "Virus Module"
+  },
+  "${ModID}:HaywireModuleMonster": {
+    "MOVES": [
+      "Attack"
+    ],
+    "NAME": "Haywire Module"
+  },
+  "${ModID}:PylonModuleMonster": {
+    "MOVES": [
+      "Attack"
+    ],
+    "NAME": "Pylon Module"
+  }
+}

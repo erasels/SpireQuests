@@ -10,9 +10,9 @@ import static spireQuests.Anniv8Mod.makeID;
 
 public class ImpendingDay extends AbstractSQCard {
     public static final String ID = makeID(ImpendingDay.class.getSimpleName());
-    private static final int DAMAGE = 8;
+    private static final int DAMAGE = 5;
     private static final int UP_DAMAGE = 2;
-    private static final int HEAL = 2;
+    private static final int HEAL = 1;
     private static final int UP_HEAL = 1;
 
     public ImpendingDay() {

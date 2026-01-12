@@ -132,9 +132,7 @@ public class QuestBoardScreen extends CustomScreen {
             return;
         }
 
-        AbstractQuest questToReplace = activeQuests.get(0);
         float warningY = AbstractDungeon.floorY - 300F * Settings.yScale + boardY;
-        String replacementText = String.format(TEXT[5], questToReplace.name);
-        FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, replacementText, (float) Settings.WIDTH / 2, warningY, Settings.RED_TEXT_COLOR, 0.7F);
+        FontHelper.renderFontCentered(sb, FontHelper.losePowerFont, TEXT[5], (float) Settings.WIDTH / 2, warningY, Settings.RED_TEXT_COLOR, 0.7F);
     }
 }

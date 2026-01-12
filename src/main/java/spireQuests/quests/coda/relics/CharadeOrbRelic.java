@@ -139,16 +139,16 @@ public class CharadeOrbRelic extends AbstractSQRelic {
         String s;
         switch (this.stateOrder.get(this.counter)) {
             case RED:
-                s = DESCRIPTIONS[6];
-                break;
-            case GREEN:
                 s = DESCRIPTIONS[7];
                 break;
-            case BLUE:
+            case GREEN:
                 s = DESCRIPTIONS[8];
                 break;
-            case PURPLE:
+            case BLUE:
                 s = DESCRIPTIONS[9];
+                break;
+            case PURPLE:
+                s = DESCRIPTIONS[6];
                 break;
             default:
                 s = "";

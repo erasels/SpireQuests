@@ -1,10 +1,10 @@
 {
-  "${ModID}:LessonOfTheBloodQuest": {
-    "TITLE": "Lesson of the Blood",
-    "DESCRIPTION": "Obtain #yQuestbound #yClumsy #yOffering. NL Play #yClumsy #yOffering #b4 times.",
+  "${ModID}:LessonOfTheFlameQuest": {
+    "TITLE": "Lesson of the Flame",
+    "DESCRIPTION": "Obtain #yQuestbound #yClumsy #yFiend #yFire. NL Play #yClumsy #yFiend #yFire #b4 times.",
     "AUTHOR": "iry",
     "TRACKER_TEXT": [
-      "Clumsy Offerings played"
+      "Clumsy Fiend Fires played"
     ]
   },
   "${ModID}:LessonOfTheBogQuest": {
@@ -29,6 +29,14 @@
     "AUTHOR": "iry",
     "TRACKER_TEXT": [
       "Clumsy Blasphemies played"
+    ]
+  },
+  "${ModID}:TwosCompanyQuest": {
+    "TITLE": "Two's Company",
+    "DESCRIPTION": "In #b3 different combats, have exactly #b2 enemies alive at the start of your final turn.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "Two enemies alive at the start of your final turn"
     ]
   }
 }

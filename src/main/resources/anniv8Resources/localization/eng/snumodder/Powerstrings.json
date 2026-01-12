@@ -1,0 +1,22 @@
+{
+  "${ModID}:TickingPower": {
+    "NAME": "Tick",
+    "DESCRIPTIONS": [
+      "If you play #b",
+      " cards this turn, changes its intent to Attack."
+    ]
+  },
+  "${ModID}:VirusPower": {
+    "NAME": "Virus",
+    "DESCRIPTIONS": [
+      "Does not lose HP from non-attack damage."
+    ]
+  },
+  "${ModID}:HaywirePower": {
+    "NAME": "Haywire",
+    "DESCRIPTIONS": [
+      "At the end of its turn, lose #b",
+      " HP."
+    ]
+  }
+}

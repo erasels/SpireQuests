@@ -74,7 +74,7 @@ public class QuestBoardQuest {
             this.previewHb.render(sb);
 
             // Take quest btn
-            if (QuestBoardScreen.parentProp.numQuestsPickable <= 0) {
+            if (!QuestManager.canObtainQuests()) {
                 sb.setColor(Color.GRAY.cpy());
             } else if (this.hb.hovered) {
                 sb.setColor(Color.GOLD.cpy());
@@ -132,12 +132,14 @@ public class QuestBoardQuest {
         float TIP_X_THRESHOLD = 1544.0F * Settings.xScale;
         float TIP_OFFSET_R_X = 20.0F * Settings.xScale;
         float TIP_OFFSET_L_X = -380.0F * Settings.xScale;
+        boolean hasManyTips = this.tips.size() > 3;
 
         if (!this.tips.isEmpty()) {
             if (this.previewHb.cX + this.previewHb.width / 2.0F < TIP_X_THRESHOLD) {
                 TipHelper.queuePowerTips(this.previewHb.cX + this.previewHb.width / 2.0F + TIP_OFFSET_R_X, this.previewHb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.previewHb.cY) + boardY, tips);
             } else {
-                TipHelper.queuePowerTips(this.previewHb.cX - this.previewHb.width / 2.0F + TIP_OFFSET_L_X, this.previewHb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.previewHb.cY) + boardY, tips);
+                float tipX = TIP_OFFSET_L_X + (hasManyTips ? this.tips.size() * -100.0F : 0.0F);
+                TipHelper.queuePowerTips(this.previewHb.cX - this.previewHb.width / 2.0F + tipX, this.previewHb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.previewHb.cY) + boardY, tips);
             }
         }
     }
@@ -174,7 +176,7 @@ public class QuestBoardQuest {
         if (!taken) {
             this.hb.update();
             this.previewHb.update();
-            if (QuestBoardScreen.parentProp.numQuestsPickable > 0) {
+            if (QuestManager.canObtainQuests()) {
                 if (this.hb.justHovered) {
                     CardCrawlGame.sound.playV("UI_HOVER", 0.75F);
                 }

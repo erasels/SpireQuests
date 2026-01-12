@@ -1,8 +1,9 @@
-package spireQuests.quests.snumodder;
+package spireQuests.quests.snumodder.relics;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.abstracts.AbstractSQRelic;
+import spireQuests.quests.snumodder.actions.DrawRareCardAction;
 
 import static spireQuests.Anniv8Mod.makeID;
 

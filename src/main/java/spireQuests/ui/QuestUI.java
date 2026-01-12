@@ -5,17 +5,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
+
+import basemod.helpers.VfxBuilder.Interpolations;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.util.ImageHelper;
 import spireQuests.util.TexLoader;
+import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +53,12 @@ public class QuestUI {
     private static final Hitbox titleHb;
     private static final List<Hitbox> questHitboxes = new ArrayList<>();
     private static final Texture dropdownArrow = TexLoader.getTexture(makeUIPath("arrow.png"));
+    private static final float ABANDON_TIME = 2.0F;
 
     public static boolean expanded = true;
     private static float dropdownAngle = 0;
     private static float questAlpha = 1;
+    private static float abandonTimer = 0.0F;
 
     static {
         float width = FontHelper.getWidth(largeFont, TEXT[0], 1.1f) + 35;
@@ -84,9 +93,32 @@ public class QuestUI {
                 if (InputHelper.justClickedLeft) {
                     if (quest.complete() || quest.fail()) QuestManager.completeQuest(quest);
                 }
+
+                if (AbstractDungeon.screen == QuestBoardScreen.Enum.QUEST_BOARD) {
+                    if (InputHelper.isMouseDown_R && quest.isAbandoning) {
+                        abandonTimer -= Gdx.graphics.getDeltaTime();
+                        if (abandonTimer < 0.0F) {
+                            quest.failSFX();
+                            QuestManager.failQuest(quest);
+                        }
+                    }
+                    if (InputHelper.justClickedRight) {
+                        quest.isAbandoning = true;
+                        abandonTimer = ABANDON_TIME;
+                    }
+                    if (InputHelper.justReleasedClickRight) {
+                        quest.isAbandoning = false;
+                    }
+                } else {
+                    quest.isAbandoning = false;
+                }
+
                 if (Settings.isDebug && InputHelper.justClickedRight) {
                     QuestManager.failQuest(quest);
                 }
+
+            } else {
+                quest.isAbandoning = false;
             }
         }
 
@@ -170,7 +202,12 @@ public class QuestUI {
                     } else if (tracker.isDisabled()) {
                         textColor = Color.GRAY;
                     }
+
+                    if (quest.isAbandoning) {
+                        textColor = textColor.cpy().lerp(Settings.RED_TEXT_COLOR, Interpolation.circleIn.apply(abandonTimer % 1));
+                    }
                     FontHelper.renderFontRightAligned(sb, smallFont, tracker.toString(), xPos, yPos - SMALL_SPACING * 0.5f, textColor);
+                    sb.setColor(Color.WHITE);
                     quest.width = Math.max(quest.width, FontHelper.layout.width);
                 }
 

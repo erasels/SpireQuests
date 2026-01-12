@@ -7,6 +7,8 @@ import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.snumodder.cards.KingLlane;
+import spireQuests.quests.snumodder.relics.TheKingslayer;
 
 import java.util.ArrayList;
 import java.util.List;

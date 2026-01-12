@@ -35,9 +35,9 @@
     "DESCRIPTION": "Play a #b1 cost, #b2 cost and #b3 cost card in one turn.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
-      "1-Cost card played.",
-      "2-Cost card played.",
-      "3-Cost card played."
+      "1-Cost card played",
+      "2-Cost card played",
+      "3-Cost card played"
     ]
   },
   "${ModID}:KeyCollector": {
@@ -45,9 +45,9 @@
     "DESCRIPTION": "Collect the Ruby, Emerald, and Sapphire keys by the end of the act.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
-      "Collect the Ruby Key.",
-      "Collect the Emerald Key.",
-      "Collect the Sapphire Key."
+      "Collect the Ruby Key",
+      "Collect the Emerald Key",
+      "Collect the Sapphire Key"
     ]
   },
   "${ModID}:BountyCharadeQuest": {
@@ -56,6 +56,22 @@
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
       "Orb cut down"
+    ]
+  },
+  "${ModID}:UntouchableQuest": {
+    "TITLE": "Untouchable",
+    "DESCRIPTION": "Beat #b3 combats in a row without losing any HP.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Combats without losing HP"
+    ]
+  },
+  "${ModID}:HellbentQuest": {
+    "TITLE": "Hellbent",
+    "DESCRIPTION": "End #b5 turns with no cards in hand.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Turns with no cards"
     ]
   }
 }

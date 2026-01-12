@@ -1,0 +1,9 @@
+{
+  "${ModID}:BrokenHeartPendant": {
+    "NAME": "Broken Heart Pendant",
+    "FLAVOR": "Till death do us part.",
+    "DESCRIPTIONS": [
+      "While there are exactly #b2 enemies, you have #b%s additional #yStrength [REMOVE_SPACE]."
+    ]
+  }
+}
