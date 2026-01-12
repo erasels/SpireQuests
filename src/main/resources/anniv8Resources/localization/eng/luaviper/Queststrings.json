@@ -1,0 +1,83 @@
+{
+  "${ModID}:VampireInTrainingQuest": {
+    "TITLE": "Vampire-in-Training",
+    "DESCRIPTION": "Play basic Strikes a total of #b66 times.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "Strikes played"
+    ]
+  },
+  "${ModID}:RapidImprovisationQuest": {
+    "TITLE": "Rapid Improvisation",
+    "DESCRIPTION": "Obtain a #yQuestbound #yMetamorphosis #yand #yChrysalis. Next combat, play both questbound cards and all of the cards they add to your draw pile.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "Metamorphosis played",
+      "Chrysalis played"
+    ],
+    "EXTRA_TEXT": [
+      "",
+      " played"
+    ]
+  },
+  "${ModID}:PrioritiesQuest": {
+    "TITLE": "Priorities",
+    "DESCRIPTION": "The next elite this act will be Taskmaster. Defeat the enemies, one at a time, in order, from left to right.",
+    "AUTHOR": "Lua Viper",
+    "REWARD": "All card rewards from this combat will be upgraded.",
+    "TRACKER_TEXT": [
+      "Blue Slaver defeated first",
+      "Taskmaster defeated second",
+      "Red Slaver defeated last"
+    ],
+    "EXTRA_TEXT": [
+      "",
+      ""
+    ]
+  },
+  "${ModID}:SwishSwishSwishQuest": {
+    "TITLE": "Swish Swish Swish (DEPRECATED)",
+    "DESCRIPTION": "Make #b3 unique slashing motions in a single combat.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "Horizontal slash",
+      "Diagonal slash",
+      "Vertical slash",
+      "Heavy slash",
+      "Unique slashes this combat"
+    ],
+    "EXTRA_TEXT": [
+      "\n(Mouse over for details)",
+      "#yHorizontal: Bane, Dash, Die Die Die, Flash of Steel, Quick Slash, Riddle with Holes, Ritual Dagger, Shiv, Strike NL #yVertical: Bane (poisoned), Poisoned Stab NL #yDiagonal: Dramatic Entrance, Finisher, Glass Knife, Panache, Slice, Sneaky Strike, Unload NL #yHeavy: All-Out Attack, Backstab, Choke, Eviscerate, Glass Knife, Grand Finale, Letter Opener, Masterful Stab, Predator"
+    ]
+  },
+  "${ModID}:PainIndexQuest": {
+    "TITLE": "Pain Index (DEPRECATED)",
+    "DESCRIPTION": "Conduct research on the denizens of the Spire by getting hit with 7 unique attacks or elemental effects.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "Total unique attacks",
+      "Light hit",
+      "Heavy hit",
+      "Smash",
+      "Horizontal slash",
+      "Diagonal slash",
+      "Vertical slash",
+      "Heavy slash",
+      "Sudden attack",
+      "Fire",
+      "Poison"
+    ],
+    "EXTRA_TEXT": [
+      "\n(Mouse over for details)"
+    ]
+  },
+  "${ModID}:HydrateQuest": {
+    "TITLE": "Hydrate! (DEPRECATED)",
+    "DESCRIPTION": "End #b8 consecutive combats with no Potions.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "No potions at end of consecutive combat"
+    ]
+  }
+}
