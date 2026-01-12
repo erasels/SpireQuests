@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.relics.BurningBlood;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 
+import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
@@ -66,14 +67,14 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         Wheel,
         Window;
 
-        public final PowerTip tooltip;
+        public final TooltipInfo tooltip;
         public final Array<AtlasRegion> frames;
 
         BossBlind() {
 
             this.frames = BossBlindsAtlas.findRegions(this.toString());
 
-            this.tooltip = new PowerTip(blindStrings.get(this.toString()),
+            this.tooltip = new TooltipInfo(blindStrings.get(this.toString()),
                     blindStrings.get(this.toString() + "_Description"));
         }
 
