@@ -1,0 +1,11 @@
+{
+  "${ModID}:BalatroBlinds": {
+    "TEXT_DICT": {
+      "Flint": "The Flint",
+      "Flint_Description": "Disable half of your relics randomly.",
+      "Ox": "The Ox",
+      "Ox_Description": "Set money to 0 when you play your most played card.",
+      "Ox_Extra": "(Most played card: %s)",
+    }
+  }
+}
