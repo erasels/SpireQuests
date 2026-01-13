@@ -112,7 +112,7 @@ public class GennGreymaneQuest extends AbstractQuest {
             if (validIndices.isEmpty()) return;
 
             int replaceIndex = validIndices.get(
-                    AbstractDungeon.cardRng.random(validIndices.size() - 1)
+                    AbstractQuest.rng.random(validIndices.size() - 1)
             );
             AbstractCard replacement = rollEven(retVal.get(replaceIndex).rarity, retVal);
             if (replacement != null) {
