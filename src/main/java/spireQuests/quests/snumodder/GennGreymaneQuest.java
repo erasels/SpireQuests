@@ -132,6 +132,11 @@ public class GennGreymaneQuest extends AbstractQuest {
 
                 if (c == null) continue;
                 if (!isEven(c)) continue;
+                if (c.canUpgrade()) {
+                    AbstractCard copy = c.makeCopy();
+                    copy.upgrade();
+                    if (!isEven(copy)) continue;
+                }
                 for (AbstractCard e : list) {
                     if (e.cardID.equals(c.cardID)) {
                         c = null;
