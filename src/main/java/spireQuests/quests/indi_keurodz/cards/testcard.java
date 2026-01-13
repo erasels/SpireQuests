@@ -10,13 +10,13 @@ import basemod.helpers.CardModifierManager;
 import spireQuests.Anniv8Mod;
 import spireQuests.abstracts.AbstractSQCard;
 import spireQuests.quests.indi_keurodz.modifiers.DebuffedModifier;
-import spireQuests.quests.indi_keurodz.modifiers.EternalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.EternalModifier;
 import spireQuests.quests.indi_keurodz.modifiers.FoilModifier;
 import spireQuests.quests.indi_keurodz.modifiers.HoloModifier;
 import spireQuests.quests.indi_keurodz.modifiers.NegativeModifier;
-import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PolychromeModifier;
-import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 
 public class testcard extends AbstractSQCard {
 
@@ -39,17 +39,17 @@ public class testcard extends AbstractSQCard {
 
             switch (mod) {
                 case 0:
-                    CardModifierManager.addModifier(card, new EternalStickerModifier());
+                    CardModifierManager.addModifier(card, new EternalModifier());
                     CardModifierManager.addModifier(card, new NegativeModifier());
                     break;
 
                 case 1:
-                    CardModifierManager.addModifier(card, new PerishableStickerModifier());
+                    CardModifierManager.addModifier(card, new PerishableModifier());
                     CardModifierManager.addModifier(card, new HoloModifier());
                     break;
 
                 case 2:
-                    CardModifierManager.addModifier(card, new RentalStickerModifier());
+                    CardModifierManager.addModifier(card, new RentalModifier());
                     CardModifierManager.addModifier(card, new PolychromeModifier());
                     break;
 
@@ -67,16 +67,16 @@ public class testcard extends AbstractSQCard {
 
             switch (mod) {
                 case 0:
-                    CardModifierManager.addModifier(card, new EternalStickerModifier());
+                    CardModifierManager.addModifier(card, new EternalModifier());
                     CardModifierManager.addModifier(card, new NegativeModifier());
                     break;
 
                 case 1:
-                    CardModifierManager.addModifier(card, new PerishableStickerModifier());
+                    CardModifierManager.addModifier(card, new PerishableModifier());
                     break;
 
                 case 2:
-                    CardModifierManager.addModifier(card, new RentalStickerModifier());
+                    CardModifierManager.addModifier(card, new RentalModifier());
                     break;
 
             }

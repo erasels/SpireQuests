@@ -3,7 +3,7 @@
     "NAME": "Gold Stake",
     "FLAVOR": "Jimbo is watching.",
     "DESCRIPTIONS": [
-      "Card rewards can have #yEternal, #yPerishable, or #yRental stickers."
+      "Card rewards can have #y${ModID}:Eternal, #y${ModID}:Perishable, or #y${ModID}:Rental stickers."
     ]
   }
 }

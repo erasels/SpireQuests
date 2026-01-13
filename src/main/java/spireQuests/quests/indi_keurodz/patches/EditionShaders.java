@@ -84,7 +84,7 @@ public class EditionShaders {
     @SpirePatch2(clz = AbstractCard.class, method = "renderTint")
     public static class NegativeCapture {
         public static void Prefix(AbstractCard __instance, SpriteBatch sb) {
-            if (CardModifierManager.hasModifier(__instance, NegativeModifier.MODIFIER_ID)) {
+            if (CardModifierManager.hasModifier(__instance, NegativeModifier.ID)) {
                 endCaptureAndRender(__instance, sb);
             }
         }
@@ -93,19 +93,19 @@ public class EditionShaders {
     private static boolean shouldApplyShader(AbstractCard card) {
         if (Settings.hideCards)
             return false;
-        return CardModifierManager.hasModifier(card, NegativeModifier.MODIFIER_ID) ||
-                CardModifierManager.hasModifier(card, FoilModifier.MODIFIER_ID) ||
-                CardModifierManager.hasModifier(card, HoloModifier.MODIFIER_ID) ||
-                CardModifierManager.hasModifier(card, PolychromeModifier.MODIFIER_ID);
+        return CardModifierManager.hasModifier(card, NegativeModifier.ID) ||
+                CardModifierManager.hasModifier(card, FoilModifier.ID) ||
+                CardModifierManager.hasModifier(card, HoloModifier.ID) ||
+                CardModifierManager.hasModifier(card, PolychromeModifier.ID);
     }
 
     private static boolean notNegativeShader(AbstractCard card) {
-        if (CardModifierManager.hasModifier(card, NegativeModifier.MODIFIER_ID)) {
+        if (CardModifierManager.hasModifier(card, NegativeModifier.ID)) {
             return false;
         }
-        return CardModifierManager.hasModifier(card, FoilModifier.MODIFIER_ID) ||
-                CardModifierManager.hasModifier(card, HoloModifier.MODIFIER_ID) ||
-                CardModifierManager.hasModifier(card, PolychromeModifier.MODIFIER_ID);
+        return CardModifierManager.hasModifier(card, FoilModifier.ID) ||
+                CardModifierManager.hasModifier(card, HoloModifier.ID) ||
+                CardModifierManager.hasModifier(card, PolychromeModifier.ID);
     }
 
     private static void beginCapture(SpriteBatch sb) {
@@ -140,7 +140,7 @@ public class EditionShaders {
         TextureRegion t = new TextureRegion(fbo.getColorBufferTexture());
         t.flip(false, true);
 
-        if (CardModifierManager.hasModifier(card, NegativeModifier.MODIFIER_ID)) {
+        if (CardModifierManager.hasModifier(card, NegativeModifier.ID)) {
             if (negativeShader == null)
                 negativeShader = loadShader("negative.frag");
             if (negativeShader != null) {
@@ -150,7 +150,7 @@ public class EditionShaders {
             }
         }
 
-        if (CardModifierManager.hasModifier(card, FoilModifier.MODIFIER_ID)) {
+        if (CardModifierManager.hasModifier(card, FoilModifier.ID)) {
 
             if (foilShader == null)
                 foilShader = loadShader("foil.frag");
@@ -163,7 +163,7 @@ public class EditionShaders {
             }
         }
 
-        if (CardModifierManager.hasModifier(card, HoloModifier.MODIFIER_ID)) {
+        if (CardModifierManager.hasModifier(card, HoloModifier.ID)) {
             if (holoShader == null)
                 holoShader = loadShader("holo.frag");
             if (holoShader != null) {
@@ -177,7 +177,7 @@ public class EditionShaders {
             }
         }
 
-        if (CardModifierManager.hasModifier(card, PolychromeModifier.MODIFIER_ID)) {
+        if (CardModifierManager.hasModifier(card, PolychromeModifier.ID)) {
             if (polychromeShader == null)
                 polychromeShader = loadShader("polychrome.frag");
             if (polychromeShader != null) {

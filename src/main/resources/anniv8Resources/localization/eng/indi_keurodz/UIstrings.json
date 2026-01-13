@@ -1,22 +1,4 @@
 {
-  "${ModID}:PerishableSticker": {
-    "TEXT": [
-      "[${ModID}:PerishableIcon] Perishable",
-      "Purged from deck after #b%d combats."
-    ]
-  },
-  "${ModID}:EternalSticker": {
-    "TEXT": [
-      "[${ModID}:EternalIcon] Eternal",
-      "#rCannot be removed from your deck."
-    ]
-  },
-  "${ModID}:RentalSticker": {
-    "TEXT": [
-      "[${ModID}:RentalIcon] Rental",
-      "Lose #b3 #yGold at the end of combat."
-    ]
-  },
   "${ModID}:DebuffedBalatro": {
     "TEXT": [
       "${ModID}:Debuffed",

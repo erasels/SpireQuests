@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
-import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 
 public class TheTooth {
     @SpirePatch(clz = AbstractPlayer.class, method = "useCard")
@@ -20,7 +20,7 @@ public class TheTooth {
                 return;
 
             AbstractDungeon.player.loseGold(1);
-            CardCrawlGame.sound.play(RentalStickerModifier.MODIFIER_ID);
+            CardCrawlGame.sound.play(RentalModifier.ID);
 
         }
     }

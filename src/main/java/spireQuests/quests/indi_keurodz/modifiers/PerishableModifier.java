@@ -5,23 +5,24 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.UIStrings;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
 import spireQuests.util.TexLoader;
 
-public class RentalStickerModifier extends AbstractCardModifier {
+public class PerishableModifier extends AbstractCardModifier {
 
-    public static final String MODIFIER_ID = Anniv8Mod.makeID("RentalSticker");
-    private static final UIStrings strings = CardCrawlGame.languagePack.getUIString(MODIFIER_ID);
+    public static final String ID = Anniv8Mod.makeID("Perishable");
+    private static final Keyword KEYWORD = Anniv8Mod.keywords.get(ID);
+
+    public int REMAINING_TURNS;
 
     public static final Texture icon = TexLoader
-            .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/RentalStickerIcon.png");
+            .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/PerishableStickerIcon.png");
 
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
@@ -30,18 +31,33 @@ public class RentalStickerModifier extends AbstractCardModifier {
 
     @Override
     public String identifier(AbstractCard card) {
-        return MODIFIER_ID;
+        return ID;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new RentalStickerModifier();
+        return new PerishableModifier();
+    }
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        REMAINING_TURNS = 5;
     }
 
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tips = new ArrayList<>();
-        tips.add(new TooltipInfo(strings.TEXT[0], strings.TEXT[1]));
+        tips.add(new TooltipInfo(KEYWORD.PROPER_NAME, KEYWORD.DESCRIPTION.replace("5", REMAINING_TURNS + "")));
         return tips;
     }
+
+    /*
+     * Ticks remaining turns down by 1
+     *
+     * @returns true if the remaining turns is 0 or less than 0
+     */
+    public boolean tickRemainingTurns() {
+        return --REMAINING_TURNS <= 0;
+    }
+
 }

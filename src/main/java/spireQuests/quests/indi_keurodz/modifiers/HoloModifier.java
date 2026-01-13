@@ -3,6 +3,7 @@ package spireQuests.quests.indi_keurodz.modifiers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,18 +19,18 @@ import spireQuests.Anniv8Mod;
 
 public class HoloModifier extends AbstractCardModifier {
 
-    public static final String MODIFIER_ID = Anniv8Mod.makeID("Holo");
+    public static final String ID = Anniv8Mod.makeID("Holo");
+    private static final Keyword KEYWORD = Anniv8Mod.keywords.get(ID);
 
     @Override
     public String identifier(AbstractCard card) {
-        return MODIFIER_ID;
+        return ID;
     }
 
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tips = new ArrayList<>();
-        tips.add(new TooltipInfo(Anniv8Mod.keywords.get("Holo").PROPER_NAME,
-                Anniv8Mod.keywords.get("Holo").DESCRIPTION));
+        tips.add(new TooltipInfo(KEYWORD.PROPER_NAME, KEYWORD.DESCRIPTION));
         return tips;
     }
 
@@ -43,7 +44,7 @@ public class HoloModifier extends AbstractCardModifier {
 
     @Override
     public boolean shouldApply(AbstractCard card) {
-        return !CardModifierManager.hasModifier(card, MODIFIER_ID);
+        return !CardModifierManager.hasModifier(card, ID);
     }
 
     @Override

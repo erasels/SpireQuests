@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,9 +29,9 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.indi_keurodz.icons.*;
-import spireQuests.quests.indi_keurodz.modifiers.EternalStickerModifier;
-import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
-import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.EternalModifier;
+import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 import spireQuests.util.TexLoader;
 
@@ -165,8 +166,12 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
     public static class BalatroReward extends QuestReward {
 
-        private static final UIStrings EDITION_STRINGS = CardCrawlGame.languagePack
+        private static final UIStrings EDITIONS = CardCrawlGame.languagePack
                 .getUIString(makeID("BalatroEditions"));
+
+        private static final Keyword ETERNAL = Anniv8Mod.keywords.get(EternalModifier.ID);
+        private static final Keyword PERISHABLE = Anniv8Mod.keywords.get(PerishableModifier.ID);
+        private static final Keyword RENTAL = Anniv8Mod.keywords.get(RentalModifier.ID);
 
         private static final String REWARD_DESC = CardCrawlGame.languagePack
                 .getUIString(makeID("BalatroQuestReward")).TEXT[0];
@@ -189,16 +194,10 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
         @Override
         public void addTooltip(List<PowerTip> tips) {
-            UIStrings eternalStrings = CardCrawlGame.languagePack
-                    .getUIString(EternalStickerModifier.MODIFIER_ID);
-            UIStrings perishableStrings = CardCrawlGame.languagePack
-                    .getUIString(PerishableStickerModifier.MODIFIER_ID);
-            UIStrings rentalStrings = CardCrawlGame.languagePack
-                    .getUIString(RentalStickerModifier.MODIFIER_ID);
-            tips.add(new PowerTip(eternalStrings.TEXT[0], eternalStrings.TEXT[1]));
-            tips.add(new PowerTip(perishableStrings.TEXT[0], String.format(perishableStrings.TEXT[1], 5)));
-            tips.add(new PowerTip(rentalStrings.TEXT[0], rentalStrings.TEXT[1]));
-            tips.add(new PowerTip(EDITION_STRINGS.TEXT[0], EDITION_STRINGS.TEXT[1]));
+            tips.add(new PowerTip(ETERNAL.PROPER_NAME, ETERNAL.DESCRIPTION));
+            tips.add(new PowerTip(PERISHABLE.PROPER_NAME, PERISHABLE.DESCRIPTION));
+            tips.add(new PowerTip(RENTAL.PROPER_NAME, RENTAL.DESCRIPTION));
+            tips.add(new PowerTip(EDITIONS.TEXT[0], EDITIONS.TEXT[1]));
 
         }
 

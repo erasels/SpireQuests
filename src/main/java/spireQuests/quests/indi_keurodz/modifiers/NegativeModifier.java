@@ -3,6 +3,7 @@ package spireQuests.quests.indi_keurodz.modifiers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
@@ -13,18 +14,18 @@ import spireQuests.Anniv8Mod;
 
 public class NegativeModifier extends AbstractCardModifier {
 
-    public static final String MODIFIER_ID = Anniv8Mod.makeID("Negative");
+    public static final String ID = Anniv8Mod.makeID("Negative");
 
     @Override
     public String identifier(AbstractCard card) {
-        return MODIFIER_ID;
+        return ID;
     }
 
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tips = new ArrayList<>();
-        tips.add(new TooltipInfo(Anniv8Mod.keywords.get("Negative").PROPER_NAME,
-                Anniv8Mod.keywords.get("Negative").DESCRIPTION));
+        final Keyword KEYWORD = Anniv8Mod.keywords.get(ID);
+        tips.add(new TooltipInfo(KEYWORD.PROPER_NAME, KEYWORD.DESCRIPTION));
         return tips;
     }
 
@@ -35,7 +36,7 @@ public class NegativeModifier extends AbstractCardModifier {
 
     @Override
     public boolean shouldApply(AbstractCard card) {
-        return !CardModifierManager.hasModifier(card, MODIFIER_ID);
+        return !CardModifierManager.hasModifier(card, ID);
     }
 
     @Override

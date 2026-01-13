@@ -7,7 +7,7 @@
     "DESCRIPTION": "After you play this card, randomly gain #b1 #yWeak, #yFrail, or #yVulnerable."
   },
   {
-    "ID": "Foil",
+    "ID": "${ModID}:Foil",
     "PROPER_NAME": "Foil",
     "NAMES": [
       "foil"
@@ -15,7 +15,7 @@
     "DESCRIPTION": "Gain #b50 Gold the first time this card is played each combat."
   },
   {
-    "ID": "Holo",
+    "ID": "${ModID}:Holo",
     "PROPER_NAME": "Holo",
     "NAMES": [
       "holo"
@@ -23,7 +23,7 @@
     "DESCRIPTION": "After you play this card, gain #b10 temporary #yStrength."
   },
   {
-    "ID": "Polychrome",
+    "ID": "${ModID}:Polychrome",
     "PROPER_NAME": "Polychrome",
     "NAMES": [
       "polychrome"
@@ -31,11 +31,35 @@
     "DESCRIPTION": "#b50% chance to play twice."
   },
   {
-    "ID": "Negative",
+    "ID": "${ModID}:Negative",
     "PROPER_NAME": "Negative",
     "NAMES": [
       "negative"
     ],
     "DESCRIPTION": "When you draw this card, draw a card."
+  },
+  {
+    "ID": "${ModID}:Perishable",
+    "PROPER_NAME": "[${ModID}:PerishableIcon] Perishable",
+    "NAMES": [
+      "perishable"
+    ],
+    "DESCRIPTION": "Purged from deck after #b5 combats."
+  },
+  {
+    "ID": "${ModID}:Eternal",
+    "PROPER_NAME": "[${ModID}:EternalIcon] Eternal",
+    "NAMES": [
+      "eternal"
+    ],
+    "DESCRIPTION": "#rCannot be removed from your deck."
+  },
+  {
+    "ID": "${ModID}:Rental",
+    "PROPER_NAME": "[${ModID}:RentalIcon] Rental",
+    "NAMES": [
+      "rental"
+    ],
+    "DESCRIPTION": "Lose #b3 #yGold at the end of combat."
   }
 ]

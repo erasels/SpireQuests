@@ -17,7 +17,7 @@ public class FaceDownModifier extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new EternalStickerModifier();
+        return new EternalModifier();
     }
 
     @Override

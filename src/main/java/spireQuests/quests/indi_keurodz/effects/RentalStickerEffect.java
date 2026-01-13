@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
-import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 import spireQuests.quests.indi_keurodz.patches.DisableLoseGoldSfxPatch;
 
 public class RentalStickerEffect extends AbstractGameEffect {
@@ -37,7 +37,7 @@ public class RentalStickerEffect extends AbstractGameEffect {
         this.duration -= Gdx.graphics.getDeltaTime();
 
         while (numSoundsPlayed < numStickers && this.duration < 0.0F) {
-            CardCrawlGame.sound.play(RentalStickerModifier.MODIFIER_ID);
+            CardCrawlGame.sound.play(RentalModifier.ID);
 
             AbstractDungeon.player.loseGold(Integer.min(3, originalGold));
             originalGold -= 3;

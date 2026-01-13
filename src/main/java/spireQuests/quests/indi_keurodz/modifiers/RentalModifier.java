@@ -5,24 +5,21 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.UIStrings;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
 import spireQuests.util.TexLoader;
 
-public class EternalStickerModifier extends AbstractCardModifier {
+public class RentalModifier extends AbstractCardModifier {
 
-    public static final String MODIFIER_ID = Anniv8Mod.makeID("EternalSticker");
-    private static final UIStrings strings = CardCrawlGame.languagePack.getUIString(MODIFIER_ID);
+    public static final String ID = Anniv8Mod.makeID("Rental");
 
     public static final Texture icon = TexLoader
-            .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/EternalStickerIcon.png");
+            .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/RentalStickerIcon.png");
 
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
@@ -31,24 +28,19 @@ public class EternalStickerModifier extends AbstractCardModifier {
 
     @Override
     public String identifier(AbstractCard card) {
-        return MODIFIER_ID;
+        return ID;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new EternalStickerModifier();
-    }
-
-    @Override
-    public void onInitialApplication(AbstractCard card) {
-        SoulboundField.soulbound.set(card, true);
+        return new RentalModifier();
     }
 
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tips = new ArrayList<>();
-        tips.add(new TooltipInfo(strings.TEXT[0], strings.TEXT[1]));
+        final Keyword KEYWORD = Anniv8Mod.keywords.get(ID);
+        tips.add(new TooltipInfo(KEYWORD.PROPER_NAME, KEYWORD.DESCRIPTION));
         return tips;
     }
-
 }

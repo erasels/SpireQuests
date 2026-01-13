@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import basemod.helpers.CardModifierManager;
 import spireQuests.quests.indi_keurodz.effects.RentalStickerEffect;
-import spireQuests.quests.indi_keurodz.modifiers.PerishableStickerModifier;
-import spireQuests.quests.indi_keurodz.modifiers.RentalStickerModifier;
+import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
+import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 
 public class BattleEndPatch {
     @SpirePatch2(clz = AbstractPlayer.class, method = "onVictory")
@@ -24,13 +24,13 @@ public class BattleEndPatch {
                 int stickers = 0;
                 ArrayList<AbstractCard> purgedCards = new ArrayList<>();
                 for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-                    if (CardModifierManager.hasModifier(card, RentalStickerModifier.MODIFIER_ID)) {
+                    if (CardModifierManager.hasModifier(card, RentalModifier.ID)) {
                         stickers++;
                     }
-                    if (CardModifierManager.hasModifier(card, PerishableStickerModifier.MODIFIER_ID)) {
+                    if (CardModifierManager.hasModifier(card, PerishableModifier.ID)) {
                         // Assumes we can only have one of this modifier on a card
-                        if (((PerishableStickerModifier) CardModifierManager
-                                .getModifiers(card, PerishableStickerModifier.MODIFIER_ID).get(0))
+                        if (((PerishableModifier) CardModifierManager
+                                .getModifiers(card, PerishableModifier.ID).get(0))
                                 .tickRemainingTurns()) {
                             purgedCards.add(card);
 
