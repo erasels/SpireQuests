@@ -29,6 +29,7 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.QuestReward.QuestRewardSave;
+import spireQuests.quests.indi_keurodz.BossBlinds.TheOx;
 import spireQuests.quests.indi_keurodz.icons.*;
 import spireQuests.quests.indi_keurodz.modifiers.EternalModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
@@ -47,41 +48,9 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
     private static final Map<String, String> blindStrings = CardCrawlGame.languagePack
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
 
-    /*
-        Currently this is a *working* version, however it tracks card name, and not specific instance
-        UUID seems to not work since it is regenerated per card on save/load, will need to figure out how to
-        track something persistent
-     */
-    private static HashMap<String, Integer> PlayedCardStats = new HashMap<>();
 
     public static void addSaveFields() {
-        BaseMod.addSaveField(makeID(id + "PlayedCardStats"), new CustomSavable<HashMap<String, Integer>>() {
-            @Override
-            public HashMap<String, Integer> onSave() {
-                return PlayedCardStats;
-            }
-
-            @Override
-            public void onLoad(HashMap<String, Integer> loadedMap) {
-                if (loadedMap == null) {
-                    PlayedCardStats = new HashMap<>();
-                    return;
-                }
-                PlayedCardStats = loadedMap;
-            }
-        });
-    }
-
-    public static void trackCardPlay(String cardID) {
-        PlayedCardStats.put(cardID, PlayedCardStats.getOrDefault(cardID, 0) + 1);
-        System.out.println("Card Played: " + cardID + " = " + PlayedCardStats.get(cardID));
-    }
-
-    public static String getMostPlayedCard() {
-        return PlayedCardStats.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse(null);
+        TheOx.addSaveFields();
     }
 
     public static enum BossBlind {
