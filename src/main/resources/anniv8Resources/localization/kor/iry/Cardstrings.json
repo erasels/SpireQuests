@@ -1,7 +1,7 @@
 {
-  "${ModID}:ClumsyOffering": {
-    "NAME": "서투른 제물",
-    "DESCRIPTION": "휘발성. NL 체력을 6 잃습니다. NL 소멸."
+  "${ModID}:ClumsyFiendFire": {
+    "NAME": "서투른 지옥불",
+    "DESCRIPTION": "휘발성. NL 카드를 전부 소멸시킵니다. NL 소멸."
   },
   "${ModID}:ClumsyNightmare": {
     "NAME": "서투른 악몽",

@@ -1,10 +1,10 @@
 {
-  "${ModID}:LessonOfTheBloodQuest": {
-    "TITLE": "피의 가르침",
-    "DESCRIPTION": "#y퀘스트 #y귀속 #y서투른 #y제물 을 얻습니다. NL #y서투른 #y제물 을 #b4 번 사용하십시오.",
+  "${ModID}:LessonOfTheFlameQuest": {
+    "TITLE": "화염의 가르침",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y서투른 #y지옥불 을 얻습니다. NL #y서투른 #y지옥불 을 #b4 번 사용하십시오.",
     "AUTHOR": "iry",
     "TRACKER_TEXT": [
-      "서투른 제물 사용"
+      "서투른 지옥불 사용"
     ]
   },
   "${ModID}:LessonOfTheBogQuest": {
@@ -29,6 +29,14 @@
     "AUTHOR": "iry",
     "TRACKER_TEXT": [
       "서투른 신성 모독 사용"
+    ]
+  },
+  "${ModID}:TwosCompanyQuest": {
+    "TITLE": "둘이 먹다가 하나 죽어도",
+    "DESCRIPTION": "서로 다른 #b3 번의 전투에서, 마지막 턴 시작 시 정확히 적이 #b2 마리만 살아있게 하십시오.",
+    "AUTHOR": "iry",
+    "TRACKER_TEXT": [
+      "마지막 턴에 적 2마리 생존"
     ]
   }
 }

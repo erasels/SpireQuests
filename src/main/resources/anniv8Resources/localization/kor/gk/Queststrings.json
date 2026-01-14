@@ -34,5 +34,13 @@
     "TRACKER_TEXT": [
       "재앙 처치"
     ]
+  },
+  "${ModID}:FavouriteCustomerQuest": {
+    "TITLE": "단골 손님",
+    "DESCRIPTION": "상점에서 골드를 #b10 번 사용하십시오.",
+    "AUTHOR": "Gk",
+    "TRACKER_TEXT": [
+      "상점에서 골드 사용"
+    ]
   }
 }
