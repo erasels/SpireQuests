@@ -45,7 +45,7 @@ public abstract class QuestReward {
         addRewardSaver(new RewardLoader(MaxHPReward.class, (save) -> new MaxHPReward(Integer.parseInt(save.param))));
     }
 
-    private static void addRewardSaver(RewardLoader loader) {
+    protected static void addRewardSaver(RewardLoader loader) {
         rewardLoaders.put(loader.key, loader);
     }
 
@@ -358,7 +358,7 @@ public abstract class QuestReward {
         }
     }
 
-    private static class RewardLoader {
+    protected static class RewardLoader {
         public final String key;
         public final Function<QuestRewardSave, ? extends QuestReward> loader;
 

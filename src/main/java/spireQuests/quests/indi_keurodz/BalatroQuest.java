@@ -28,6 +28,7 @@ import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.QuestReward.QuestRewardSave;
 import spireQuests.quests.indi_keurodz.icons.*;
 import spireQuests.quests.indi_keurodz.modifiers.EternalModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
@@ -165,6 +166,9 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
     }
 
     public static class BalatroReward extends QuestReward {
+        static {
+            addRewardSaver(new RewardLoader(BalatroReward.class, (save) -> new BalatroReward()));
+        }
 
         private static final UIStrings EDITIONS = CardCrawlGame.languagePack
                 .getUIString(makeID("BalatroEditions"));
@@ -198,7 +202,6 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
             tips.add(new PowerTip(PERISHABLE.PROPER_NAME, PERISHABLE.DESCRIPTION));
             tips.add(new PowerTip(RENTAL.PROPER_NAME, RENTAL.DESCRIPTION));
             tips.add(new PowerTip(EDITIONS.TEXT[0], EDITIONS.TEXT[1]));
-
         }
 
         @Override
