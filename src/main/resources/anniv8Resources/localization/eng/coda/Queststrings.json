@@ -4,7 +4,7 @@
     "DESCRIPTION": "Evoke #b4 unique orb types in one turn.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
-      "Evoke 4 unique orb types in one turn.",
+      "Evoke 4 unique orb types in one turn",
       "Orbs Evoked"
     ]
   },
@@ -14,7 +14,7 @@
     "AUTHOR": "coda",
     "REWARD": "Upgrade three random starter or common cards.",
     "TRACKER_TEXT": [
-      "Defeat an Elite or Boss without playing uncommon or rare cards."
+      "Defeat an Elite or Boss without playing uncommon or rare cards"
     ]
   },
   "${ModID}:UnbreakableQuest": {
