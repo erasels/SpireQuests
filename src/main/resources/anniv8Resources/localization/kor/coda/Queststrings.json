@@ -60,7 +60,7 @@
   },
   "${ModID}:UntouchableQuest": {
     "TITLE": "무적",
-    "DESCRIPTION": "연속 #b3 번의 전투 동안 체력을 잃지 않으십시오.",
+    "DESCRIPTION": "연속 #b3 번의 전투 동안 체력을 잃지 마십시오.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
       "체력을 잃지 않은 전투"
