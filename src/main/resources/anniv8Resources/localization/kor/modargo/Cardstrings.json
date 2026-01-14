@@ -31,5 +31,30 @@
   "${ModID}:BloodfireRitualQuestboundPlaceholder": {
     "NAME": "혈화 의식",
     "DESCRIPTION": "전투 시작 시, 퀘스트의 특수 카드 중 하나가 됩니다."
+  },
+  "${ModID}:Pain": {
+    "NAME": "",
+    "DESCRIPTION": "사용불가. NL 손에 있을 때 다른 카드를 사용할 때마다 방어도를 1 잃습니다."
+  },
+  "${ModID}:Regret": {
+    "NAME": "",
+    "DESCRIPTION": "사용불가. NL 턴 종료 시 손에 있는 카드만큼 방어도를 잃습니다."
+  },
+  "${ModID}:NetherStrike": {
+    "NAME": "황천 타격",
+    "DESCRIPTION": "피해를 !D! 줍니다. 이번 턴에 저주를 뽑으면, 약화를 !M! 부여하고 취약을 !M! 부여합니다."
+  },
+  "${ModID}:WickedExchange": {
+    "NAME": "사악한 교환",
+    "DESCRIPTION": "손에 있는 모든 저주를 버립니다. 그만큼 카드를 뽑습니다.",
+    "UPGRADE_DESCRIPTION": "보존. NL 손에 있는 모든 저주를 버립니다. 그만큼 카드를 뽑습니다."
+  },
+  "${ModID}:Curseblast": {
+    "NAME": "저주포",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. 덱에 있는 저주마다 피해를 !M! 추가로 줍니다."
+  },
+  "${ModID}:SkullGaze": {
+    "NAME": "해골의 눈",
+    "DESCRIPTION": "덱에 있는 저주 2장마다 적이 힘을 1 잃습니다. NL 소멸."
   }
 }

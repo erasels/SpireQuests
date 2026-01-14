@@ -103,5 +103,21 @@
     "TRACKER_TEXT": [
       "왜곡된 전투"
     ]
+  },
+  "${ModID}:EmbraceTheCurseQuest": {
+    "TITLE": "저주 받아들이기",
+    "DESCRIPTION": "#r저주 를 카드 보상에 추가하고, 뽑았을 때 카드를 1 장 뽑고, 부정적인 효과를 완화하는 #p살아있는 #p저주 를 얻습니다. #r저주 를 #b%s 장 덱에 추가하면 각 목표치에 따른 특별한 카드를 얻습니다. (그리고 카드 보상에도 등장합니다).",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "추가한 저주 카드"
+    ]
+  },
+  "${ModID}:RaresAreGoodQuest": {
+    "TITLE": "비싼 게 좋아",
+    "DESCRIPTION": "#y희귀 카드를 #b4 장 덱에 추가하십시오.",
+    "AUTHOR": "modargo",
+    "TRACKER_TEXT": [
+      "추가한 희귀 카드"
+    ]
   }
 }
