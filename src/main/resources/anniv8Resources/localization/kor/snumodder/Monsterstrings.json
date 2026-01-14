@@ -1,0 +1,55 @@
+{
+  "${ModID}:RecursiveModuleMonster": {
+    "MOVES": [
+      "공격",
+      "반복"
+    ],
+    "NAME": "반복 모듈"
+  },
+  "${ModID}:PowerModuleMonster": {
+    "MOVES": [
+      "공격",
+      "힘 증가"
+    ],
+    "NAME": "괴력 모듈"
+  },
+  "${ModID}:TwinModuleMonster": {
+    "MOVES": [
+      "공격",
+      "휴식"
+    ],
+    "NAME": "쌍둥이 모듈"
+  },
+  "${ModID}:PerfectModuleMonster": {
+    "MOVES": [
+      "공격"
+    ],
+    "NAME": "완전체 모듈"
+  },
+  "${ModID}:TickingModuleMonster": {
+    "MOVES": [
+      "시동",
+      "공격"
+    ],
+    "NAME": "시동 모듈"
+  },
+  "${ModID}:VirusModuleMonster": {
+    "MOVES": [
+      "공격",
+      "휴식"
+    ],
+    "NAME": "바이러스 모듈"
+  },
+  "${ModID}:HaywireModuleMonster": {
+    "MOVES": [
+      "공격"
+    ],
+    "NAME": "폭주 모듈"
+  },
+  "${ModID}:PylonModuleMonster": {
+    "MOVES": [
+      "공격"
+    ],
+    "NAME": "송전 모듈"
+  }
+}

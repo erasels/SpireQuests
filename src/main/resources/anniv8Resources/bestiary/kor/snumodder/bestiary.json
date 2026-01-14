@@ -1,0 +1,598 @@
+{
+  "monsters": [
+    {
+      "name": "반복 모듈",
+      "id": "${ModID}:RecursiveModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#w공격 으로 시작해서 두 행동을 반복합니다.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 5",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "반복",
+              "effects": [
+                {
+                  "name": "어지러움 1",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "#w공격 으로 시작해서 두 행동을 반복합니다.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "반복",
+              "effects": [
+                {
+                  "name": "어지러움 1",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "#w공격 으로 시작해서 두 행동을 반복합니다.",
+          "hp": "(막 당 체력 11)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "반복",
+              "effects": [
+                {
+                  "name": "어지러움 1",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "괴력 모듈",
+      "id": "${ModID}:PowerModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 10)",
+          "notes": "막 당 선천성 #u힘 #u증가 #u1",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 10)",
+          "notes": "막 당 선천성 #u힘 #u증가 #u1",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "3 (1막) / 7 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 11)",
+          "notes": "막 당 선천성 #u힘 #u증가 #u1",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "3 (1막) / 7 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "쌍둥이 모듈",
+      "id": "${ModID}:TwinModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "쌍둥이 모듈들은 (좌상단에서 우하단으로) #w공격 / #w휴식 으로 시작합니다. 다음부터는, 두 행동을 반복합니다.",
+          "hp": "(막 당 체력 6)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 5",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "휴식",
+              "effects": [
+                {
+                  "name": "턴 스킵",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "쌍둥이 모듈들은 (좌상단에서 우하단으로) #w공격 / #w휴식 으로 시작합니다. 다음부터는, 두 행동을 반복합니다.",
+          "hp": "(막 당 체력 6)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "휴식",
+              "effects": [
+                {
+                  "name": "턴 스킵",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "쌍둥이 모듈들은 (좌상단에서 우하단으로) #w공격 / #w휴식 으로 시작합니다. 다음부터는, 두 행동을 반복합니다.",
+          "hp": "(1막 체력 7 / 2막 체력 13)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "휴식",
+              "effects": [
+                {
+                  "name": "턴 스킵",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "완전체 모듈",
+      "id": "${ModID}:PerfectModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 생명력 흡수 3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "생명력 흡수 3 (1막) / 생명력 흡수 7 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 11)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "생명력 흡수 3 (1막) / 생명력 흡수 7 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "시동 모듈",
+      "id": "${ModID}:TickingModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "매 턴 #w시동 합니다. 한 턴에 카드를 3장 사용하면, #w공격 으로 바꿉니다.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "시동",
+              "effects": [
+                {
+                  "name": "막 당 힘 +2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "매 턴 #w시동 합니다. 한 턴에 카드를 3장 사용하면, #w공격 으로 바꿉니다.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "시동",
+              "effects": [
+                {
+                  "name": "막 당 힘 +2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "3 (1막) / 7 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "매 턴 #w시동 합니다. 한 턴에 카드를 3장 사용하면, #w공격 으로 바꿉니다.",
+          "hp": "(막 당 체력 11)",
+          "moves": [
+            {
+              "name": "시동",
+              "effects": [
+                {
+                  "name": "막 당 힘 +2",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "3 (1막) / 7 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "매 턴 #w시동 합니다. 한 턴에 카드를 3장 사용하면, #w공격 으로 바꿉니다.",
+          "hp": "(막 당 체력 11)",
+          "moves": [
+            {
+              "name": "시동",
+              "effects": [
+                {
+                  "name": "막 당 힘 +3",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "3 (1막) / 7 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "바이러스 모듈",
+      "id": "${ModID}:VirusModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "#w공격 으로 시작해서 두 행동을 반복합니다.",
+          "notes": "선천성 #u바이러스.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 5",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "휴식",
+              "effects": [
+                {
+                  "name": "턴 스킵",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "#w공격 으로 시작해서 두 행동을 반복합니다.",
+          "notes": "선천성 #u바이러스.",
+          "hp": "(막 당 체력 10)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "휴식",
+              "effects": [
+                {
+                  "name": "턴 스킵",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "#w공격 으로 시작해서 두 행동을 반복합니다.",
+          "notes": "선천성 #u바이러스.",
+          "hp": "(막 당 체력 11)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "휴식",
+              "effects": [
+                {
+                  "name": "턴 스킵",
+                  "color": "SKIP"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "폭주 모듈",
+      "id": "${ModID}:HaywireModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 14)",
+          "notes": "선천성 #s폭주 #s5 (1막) #s폭주 #s8 (2막)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 7",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 14)",
+          "notes": "선천성 #s폭주 #s5 (1막) #s폭주 #s8 (2막)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "8 (1막) / 15 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(1막 체력 15 / 2막 체력 31)",
+          "notes": "선천성 #s폭주 #s5 (1막) #s폭주 #s8 (2막)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "8 (1막) / 15 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(1막 체력 15 / 2막 체력 31)",
+          "notes": "선천성 #s폭주 #s4 (1막) #s폭주 #s7 (2막)",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "8 (1막) / 15 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "송전 모듈",
+      "id": "${ModID}:PylonModuleMonster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 10)",
+          "notes": "선천성 아군 #u힘 #u1",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "막 당 5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 10)",
+          "notes": "선천성 아군 #u힘 #u1",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "매 턴 #w공격 합니다.",
+          "hp": "(막 당 체력 11)",
+          "notes": "선천성 아군 #u힘 #u1",
+          "moves": [
+            {
+              "name": "공격",
+              "effects": [
+                {
+                  "name": "6 (1막) / 11 (2막)",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

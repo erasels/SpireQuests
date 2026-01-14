@@ -2,5 +2,76 @@
   "${ModID}:KingLlane": {
     "NAME": "국왕 레인",
     "DESCRIPTION": "휘발성. NL 선천성. NL 카드를 !M! 장 뽑습니다. NL 이 카드를 뽑을 카드 더미에 섞어 넣습니다."
+  },
+  "${ModID}:RecursiveModule": {
+    "NAME": "반복 모듈",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이 카드를 뽑을 카드 더미에 섞어 넣습니다.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "이 카드를 뽑을 카드 더미에 섞어 넣습니다."
+    ]
+  },
+  "${ModID}:PowerModule": {
+    "NAME": "괴력 모듈",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이번 전투 동안 이 카드의 피해량이 4 증가합니다.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "이번 전투 동안 이 카드의 피해량이 4 증가합니다."
+    ]
+  },
+  "${ModID}:HaywireModule": {
+    "NAME": "폭주 모듈",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 체력을 2 잃습니다.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "체력을 2 잃습니다."
+    ]
+  },
+  "${ModID}:PylonModule": {
+    "NAME": "송전 모듈",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 카드 1장을 전투가 끝날 때까지 강화합니다.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "카드 1장을 전투가 끝날 때까지 강화합니다."
+    ]
+  },
+  "${ModID}:VirusModule": {
+    "NAME": "바이러스 모듈",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 1 부여합니다.",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "약화를 1 부여합니다."
+    ]
+  },
+  "${ModID}:TickingModule": {
+    "NAME": "시동 모듈",
+    "DESCRIPTION": "손에 있을 때 이번 턴에 카드를 5장 사용할 때마다 비용이 1 감소합니다. NL 피해를 !D! 줍니다.",
+    "EXTENDED_DESCRIPTION": [
+      "손에 있을 때 이번 턴에 카드를 5장 사용할 때마다 비용이 1 감소합니다.",
+      ""
+    ]
+  },
+  "${ModID}:TwinModule": {
+    "NAME": "쌍둥이 모듈",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL stslib:Persist !stslib:persist!",
+    "EXTENDED_DESCRIPTION": [
+      "",
+      "stslib:Persist !stslib:persist!"
+    ]
+  },
+  "${ModID}:PerfectModule": {
+    "NAME": "완전체 모듈",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다.",
+    "EXTENDED_DESCRIPTION": [
+      "방어도를 !B! 얻습니다.",
+      ""
+    ]
+  },
+  "${ModID}:ZilliaxDeluxe3000": {
+    "NAME": "2단 합체 질리악스 3000",
+    "DESCRIPTION": "이 카드의 효과는 두 모듈을 합쳐서 만들어집니다.",
+    "EXTENDED_DESCRIPTION": [
+      "피해를 !D! 줍니다."
+    ]
   }
 }

@@ -1,0 +1,22 @@
+{
+  "${ModID}:TickingPower": {
+    "NAME": "시동",
+    "DESCRIPTIONS": [
+      "이번 턴에 #b",
+      " 장의 카드를 사용하면, 의도를 공격으로 바꿉니다."
+    ]
+  },
+  "${ModID}:VirusPower": {
+    "NAME": "바이러스",
+    "DESCRIPTIONS": [
+      "공격이 아닌 피해로부터 체력을 잃지 않습니다."
+    ]
+  },
+  "${ModID}:HaywirePower": {
+    "NAME": "폭주",
+    "DESCRIPTIONS": [
+      "턴 종료 시, 체력을 #b",
+      " 잃습니다."
+    ]
+  }
+}
