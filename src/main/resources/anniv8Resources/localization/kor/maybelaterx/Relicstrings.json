@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "적을 정확한 피해로 처치할 때마다, 카드를 #b1 장 뽑습니다."
     ]
+  },
+  "${ModID}:TargetDummyRelic": {
+    "NAME": "표적용 인형",
+    "FLAVOR": "정말 많이 닳았습니다.",
+    "DESCRIPTIONS": [
+      "시작 카드가 피해를 #b2 더 주고 방어도를 #b2 얻습니다."
+    ]
   }
 }

@@ -6,5 +6,29 @@
     "TRACKER_TEXT": [
       "정확한 처치"
     ]
+  },
+  "${ModID}:AutotransfusionQuest": {
+    "TITLE": "자가수혈",
+    "DESCRIPTION": "체력 #b25% 이하로 전투를 #b5 번 종료하십시오.",
+    "AUTHOR": "MaybeLaterx",
+    "TRACKER_TEXT": [
+      "체력 25% 이하로 종료한 전투"
+    ]
+  },
+  "${ModID}:HumbleSmithyQuest": {
+    "TITLE": "겸손한 대장장이",
+    "DESCRIPTION": "휴식 장소에서 시작 카드를 #b3 장 재련하십시오.",
+    "AUTHOR": "MaybeLaterx",
+    "TRACKER_TEXT": [
+      "강화한 시작 카드"
+    ]
+  },
+  "${ModID}:JackOfAllTradesQuest": {
+    "TITLE": "팔방미인",
+    "DESCRIPTION": "덱에 무색 카드를 #b2 장 추가하십시오.",
+    "AUTHOR": "MaybeLaterx",
+    "TRACKER_TEXT": [
+      "무색 카드 획득"
+    ]
   }
 }
