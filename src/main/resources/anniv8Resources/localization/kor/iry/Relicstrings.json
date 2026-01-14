@@ -1,0 +1,9 @@
+{
+  "${ModID}:BrokenHeartPendant": {
+    "NAME": "부서진 하트 펜던트",
+    "FLAVOR": "죽음이 우리를 갈라놓을 때까지.",
+    "DESCRIPTIONS": [
+      "적이 정확히 #b2 마리 있을 때 힘을 #b%s 얻습니다."
+    ]
+  }
+}
