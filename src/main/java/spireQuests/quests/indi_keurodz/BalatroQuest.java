@@ -2,8 +2,6 @@ package spireQuests.quests.indi_keurodz;
 
 import java.util.*;
 
-import basemod.BaseMod;
-import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -17,7 +15,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 
@@ -28,13 +26,13 @@ import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestReward;
-import spireQuests.quests.QuestReward.QuestRewardSave;
 import spireQuests.quests.indi_keurodz.BossBlinds.TheOx;
 import spireQuests.quests.indi_keurodz.icons.*;
 import spireQuests.quests.indi_keurodz.modifiers.EternalModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
 import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
+import spireQuests.quests.indi_keurodz.rewards.BalatroQuestCombatReward;
 import spireQuests.util.TexLoader;
 
 import static spireQuests.Anniv8Mod.makeID;
@@ -47,7 +45,6 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
     private static final Map<String, String> blindStrings = CardCrawlGame.languagePack
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
-
 
     public static void addSaveFields() {
         TheOx.addSaveFields();
@@ -148,7 +145,7 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
         private static final String REWARD_DESC = CardCrawlGame.languagePack
                 .getUIString(makeID("BalatroQuestReward")).TEXT[0];
-        private static final TextureRegion REWARD_ICON = TexLoader
+        public static final TextureRegion REWARD_ICON = TexLoader
                 .getTextureAsAtlasRegion(Anniv8Mod.modID + "Resources/images/indi_keurodz/Aura.png");
 
         public BalatroReward() {
@@ -175,8 +172,12 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
         @Override
         public void obtainRewardItem() {
-            AbstractDungeon.combatRewardScreen.rewards.add(0, new RewardItem(10));
+            AbstractDungeon.combatRewardScreen.rewards.add(0, new BalatroQuestCombatReward());
             AbstractDungeon.combatRewardScreen.positionRewards();
+            AbstractRelic goldStakeRelic = AbstractDungeon.player.getRelic(GoldStakeRelic.ID);
+            if (goldStakeRelic != null) {
+                ((GoldStakeRelic) goldStakeRelic).upgradeDescription();
+            }
         }
 
         @Override

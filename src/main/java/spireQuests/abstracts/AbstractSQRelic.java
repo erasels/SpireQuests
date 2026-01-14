@@ -23,6 +23,7 @@ public abstract class AbstractSQRelic extends CustomRelic {
         if(large != MISSING_TEXTURE) largeImg = large;
     }
 
+    @Override
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];
     }
