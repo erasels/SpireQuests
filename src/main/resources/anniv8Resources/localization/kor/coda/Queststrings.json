@@ -35,9 +35,9 @@
     "DESCRIPTION": "한 턴에 비용이 #b1, #b2, #b3 인 카드를 사용하십시오.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
-      "비용이 1인 카드 사용함.",
-      "비용이 2인 카드 사용함.",
-      "비용이 3인 카드 사용함."
+      "비용이 1인 카드 사용",
+      "비용이 2인 카드 사용",
+      "비용이 3인 카드 사용"
     ]
   },
   "${ModID}:KeyCollector": {
@@ -45,9 +45,9 @@
     "DESCRIPTION": "이번 막 안에 루비, 에메랄드, 사파이어 열쇠를 모두 획득하십시오.",
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
-      "루비 열쇠를 획득하십시오.",
-      "에메랄드 열쇠를 획득하십시오.",
-      "사파이어 열쇠를 획득하십시오."
+      "루비 열쇠를 획득",
+      "에메랄드 열쇠를 획득",
+      "사파이어 열쇠를 획득"
     ]
   },
   "${ModID}:BountyCharadeQuest": {
@@ -56,6 +56,22 @@
     "AUTHOR": "coda",
     "TRACKER_TEXT": [
       "엘리트 처치"
+    ]
+  },
+  "${ModID}:UntouchableQuest": {
+    "TITLE": "무적",
+    "DESCRIPTION": "연속 #b3 번의 전투 동안 체력을 잃지 않으십시오.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "체력을 잃지 않은 전투"
+    ]
+  },
+  "${ModID}:HellbentQuest": {
+    "TITLE": "작정한",
+    "DESCRIPTION": "손에 남은 카드 없이 턴 #b5 번을 종료하세요.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "카드 없이 종료한 턴"
     ]
   }
 }
