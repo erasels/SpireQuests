@@ -1,7 +1,7 @@
 {
   "${ModID}:PeasantQuest": {
     "TITLE": "평민",
-    "DESCRIPTION": "덱의 일반 카드가 특별과 희귀 카드의 합보다 #b8 장 이상 많게 하십시오.",
+    "DESCRIPTION": "덱의 일반 카드가 특별과 희귀 카드의 합보다 #b7 장 이상 많게 하십시오.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "일반 카드 초과량"

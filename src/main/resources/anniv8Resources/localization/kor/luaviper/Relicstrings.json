@@ -1,0 +1,31 @@
+{
+  "${ModID}:VampireFangs": {
+    "NAME": "흡혈귀 송곳니",
+    "FLAVOR": "값싼 플라스틱으로 만들어졌지만, 적들을 속이기엔 충분합니다.",
+    "DESCRIPTIONS": [
+      "획득 시, 타격 하나를 흡혈로 교체합니다."
+    ]
+  },
+  "${ModID}:ToyGyrocopter": {
+    "NAME": "Toy Gyrocopter (DEPRECATED)",
+    "FLAVOR": "Its fuel tank seems to run perpetually empty.",
+    "DESCRIPTIONS": [
+      "Whenever you use your last Potion, draw #b1 card."
+    ]
+  },
+  "${ModID}:SignOfTheZ": {
+    "NAME": "Sign of the Z (DEPRECATED)",
+    "FLAVOR": "A glyph used in an ancient language from long ago.",
+    "DESCRIPTIONS": [
+      "Your attacks bypass 50% of the enemy's Block."
+    ]
+  },
+  "${ModID}:AdaptiveArmor": {
+    "NAME": "Adaptive Armor (DEPRECATED)",
+    "FLAVOR": "This looks suspiciously like an ordinary pair of trousers.",
+    "DESCRIPTIONS": [
+      "Whenever you lose HP, gain #b",
+      " #yBlock next turn."
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "${ModID}:VampireInTrainingQuest": {
+    "TITLE": "흡혈귀 견습생",
+    "DESCRIPTION": "시작 타격을 #b66 번 사용하십시오.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "사용한 타격"
+    ]
+  },
+  "${ModID}:RapidImprovisationQuest": {
+    "TITLE": "급속 진화",
+    "DESCRIPTION": "#y퀘스트 #y귀속 #y탈바꿈 과 #y번데기 를 얻습니다. 다음 전투에서, 두 퀘스트 귀속 카드와 두 카드가 섞어넣은 카드를 모두 사용하십시오.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "탈바꿈 사용",
+      "번데기 사용"
+    ],
+    "EXTRA_TEXT": [
+      "",
+      " 사용"
+    ]
+  },
+  "${ModID}:PrioritiesQuest": {
+    "TITLE": "우선순위",
+    "DESCRIPTION": "이번 막의 다음 엘리트가 노예 관리자로 교체됩니다. 적들을 한번에 하나씩, 왼쪽에서 오른쪽으로 처치하십시오.",
+    "AUTHOR": "Lua Viper",
+    "REWARD": "이 전투의 카드 보상이 모두 강화됩니다.",
+    "TRACKER_TEXT": [
+      "처음으로 파란 노예 상인 처치",
+      "다음으로 노에 관리자 처치",
+      "마지막으로 붉은 노예 상인 처치"
+    ],
+    "EXTRA_TEXT": [
+      "",
+      ""
+    ]
+  },
+  "${ModID}:SwishSwishSwishQuest": {
+    "TITLE": "Swish Swish Swish (DEPRECATED)",
+    "DESCRIPTION": "Make #b3 unique slashing motions in a single combat.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "Horizontal slash",
+      "Diagonal slash",
+      "Vertical slash",
+      "Heavy slash",
+      "Unique slashes this combat"
+    ],
+    "EXTRA_TEXT": [
+      "\n(Mouse over for details)",
+      "#yHorizontal: Bane, Dash, Die Die Die, Flash of Steel, Quick Slash, Riddle with Holes, Ritual Dagger, Shiv, Strike NL #yVertical: Bane (poisoned), Poisoned Stab NL #yDiagonal: Dramatic Entrance, Finisher, Glass Knife, Panache, Slice, Sneaky Strike, Unload NL #yHeavy: All-Out Attack, Backstab, Choke, Eviscerate, Glass Knife, Grand Finale, Letter Opener, Masterful Stab, Predator"
+    ]
+  },
+  "${ModID}:PainIndexQuest": {
+    "TITLE": "Pain Index (DEPRECATED)",
+    "DESCRIPTION": "Conduct research on the denizens of the Spire by getting hit with 7 unique attacks or elemental effects.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "Total unique attacks",
+      "Light hit",
+      "Heavy hit",
+      "Smash",
+      "Horizontal slash",
+      "Diagonal slash",
+      "Vertical slash",
+      "Heavy slash",
+      "Sudden attack",
+      "Fire",
+      "Poison"
+    ],
+    "EXTRA_TEXT": [
+      "\n(Mouse over for details)"
+    ]
+  },
+  "${ModID}:HydrateQuest": {
+    "TITLE": "Hydrate! (DEPRECATED)",
+    "DESCRIPTION": "End #b8 consecutive combats with no Potions.",
+    "AUTHOR": "Lua Viper",
+    "TRACKER_TEXT": [
+      "No potions at end of consecutive combat"
+    ]
+  }
+}

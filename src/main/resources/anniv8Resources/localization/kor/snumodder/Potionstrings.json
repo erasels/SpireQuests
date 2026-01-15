@@ -1,0 +1,9 @@
+{
+  "${ModID}:TickAndTockPotion": {
+    "NAME": "재깍 재깍",
+    "DESCRIPTIONS": [
+      "카드를 #b",
+      " 장 뽑습니다. #y약화 #y포션 을 얻습니다."
+    ]
+  }
+}
