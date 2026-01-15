@@ -2,11 +2,14 @@ package spireQuests.quests.indi_keurodz.BossBlinds;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
+import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.util.Wiz;
@@ -15,7 +18,6 @@ import java.util.ArrayList;
 
 import static spireQuests.Anniv8Mod.makeID;
 
-// TODO: make sure most played card doesn't change during the fight
 // TODO: update tooltip on the map
 public class TheOx {
 
@@ -79,7 +81,7 @@ public class TheOx {
 
             if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
                     BalatroQuest.BossBlind.Ox.frames)) {
-                if (isMostPlayedCard(c) && Wiz.p().gold > 0) {
+                if (c.uuid == mostPlayedCard.uuid && Wiz.p().gold > 0) {
                     Wiz.p().loseGold(Wiz.p().gold);
                 }
             }
@@ -122,18 +124,6 @@ public class TheOx {
         return mostPlayed;
     }
 
-    public static boolean isMostPlayedCard(AbstractCard card) {
-        AbstractCard mostPlayed = getMostPlayedCard();
-        if (mostPlayed == null)
-            return false;
-
-        AbstractCard masterCard = findMasterDeckCard(card);
-        if (masterCard == null)
-            return false;
-
-        return masterCard.uuid.equals(mostPlayed.uuid);
-    }
-
     @SpirePatch2(clz = AbstractCard.class, method = "update")
     public static class UpdateOxGlow {
         @SpirePostfixPatch
@@ -143,10 +133,62 @@ public class TheOx {
                 return;
             }
 
-            if (isMostPlayedCard(__instance)) {
-                __instance.glowColor = Color.PINK.cpy();
+            // Only apply glow to most played card at the start of combat
+            if (__instance.uuid == mostPlayedCard.uuid) {
+                __instance.glowColor = Color.RED.cpy();
                 __instance.triggerOnGlowCheck();
             }
         }
     }
+
+    private static AbstractCard mostPlayedCard;
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "applyStartOfCombatPreDrawLogic")
+    public static class SetMostPlayedOnCombatStart {
+        @SpirePostfixPatch
+        public static void SetMostPlayedCard() {
+            if (!ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BalatroQuest.BossBlind.Ox.frames))
+                return;
+            mostPlayedCard = getMostPlayedCard();
+        }
+    }
+
+    public static void updateOxTooltip() {
+        String newDescription = getTooltipDescription();
+
+        try {
+            java.lang.reflect.Field descField = TooltipInfo.class.getDeclaredField("description");
+            descField.setAccessible(true);
+            descField.set(BalatroQuest.BossBlind.Ox.tooltip, newDescription);
+        } catch (Exception e) {
+            System.out.println("Failed to update Ox tooltip: " + e.getMessage());
+        }
+    }
+
+    @SpirePatch2(clz = MapRoomNode.class, method = "update")
+    public static class UpdateOxTooltip {
+        @SpirePostfixPatch
+        public static void UpdateTooltip(MapRoomNode __instance) {
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(__instance, BalatroQuest.id, BalatroQuest.BossBlind.Ox.frames)) {
+                updateOxTooltip();
+            }
+        }
+    }
+
+    public static String getTooltipDescription() {
+        String baseDescription = CardCrawlGame.languagePack
+                .getUIString(BalatroQuest.BLIND_STRINGS_ID).TEXT_DICT.get("Ox_Description");
+        AbstractCard mostPlayed = getMostPlayedCard();
+
+        if (mostPlayed != null) {
+            String extraInfo = String.format(
+                    CardCrawlGame.languagePack.getUIString(BalatroQuest.BLIND_STRINGS_ID).TEXT_DICT.get("Ox_Extra"),
+                    mostPlayed.name
+            );
+            return baseDescription + " NL NL " + extraInfo;
+        }
+
+        return baseDescription;
+    }
+
 }

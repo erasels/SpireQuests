@@ -1,5 +1,6 @@
 package spireQuests.quests.indi_keurodz.BossBlinds;
 
+import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -30,6 +31,19 @@ public class TheMouth {
 
             if (lastCardType == null) {
                 lastCardType = c.type;
+            }
+        }
+    }
+
+    @SpirePatch2(clz = AbstractCard.class, method = "update")
+    public static class GlowOutlinePatch {
+        @SpirePostfixPatch
+        public static void AddGlowIfNotValidType(AbstractCard __instance) {
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Mouth.frames))
+                return;
+            if (lastCardType != null && __instance.type != lastCardType) {
+                __instance.glowColor = Color.RED.cpy();
+                __instance.triggerOnGlowCheck();
             }
         }
     }

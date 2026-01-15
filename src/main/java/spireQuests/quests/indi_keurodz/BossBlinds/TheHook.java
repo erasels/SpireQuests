@@ -22,7 +22,6 @@ public class TheHook {
                 return;
 
             int handSize = __instance.hand.size();
-            // TODO: make sure we don't draw more cards than we discard
             int cardsToDiscard = Math.min(2, handSize);
 
             if (cardsToDiscard > 0) {

@@ -9,6 +9,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -85,7 +89,6 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
             this.tooltip = new TooltipInfo(blindStrings.get(this.toString()),
                     blindStrings.get(this.toString() + "_Description"));
         }
-
     }
 
     public static int BLIND_FIGHTS_COMPLETED = 0;
