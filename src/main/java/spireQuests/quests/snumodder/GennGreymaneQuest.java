@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.relics.PrismaticShard;
+import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import javassist.CtBehavior;
 import spireQuests.patches.QuestTriggers;
@@ -71,7 +72,10 @@ public class GennGreymaneQuest extends AbstractQuest {
             if (!(c.rarity == AbstractCard.CardRarity.BASIC) || !c.canUpgrade()) continue;
             c.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(c);
-            AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), MathUtils.random(0.1f, 0.9f) * (float) Settings.WIDTH, MathUtils.random(0.2f, 0.8f) * (float)Settings.HEIGHT));
+            float x = MathUtils.random(0.1f, 0.9f) * (float) Settings.WIDTH;
+            float y = MathUtils.random(0.2f, 0.8f) * (float)Settings.HEIGHT;
+            AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), x, y));
+            AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect(x, y));// 102
         }
     }
 
