@@ -8,9 +8,9 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.snumodder.potions.TickAndTockPotion;
 
-public class BattleOfTheEndTimeQuest extends AbstractQuest {
+public class BattleAtTheEndTimeQuest extends AbstractQuest {
     private int phase = 0;
-    public BattleOfTheEndTimeQuest() {
+    public BattleAtTheEndTimeQuest() {
         super(QuestType.SHORT, QuestDifficulty.EASY);
         new TriggeredUpdateTracker<Integer, Integer>(QuestTriggers.POTION_CHANGE, 0, 1, () -> checkPhase() > 0 ? 1 : 0
         ){
