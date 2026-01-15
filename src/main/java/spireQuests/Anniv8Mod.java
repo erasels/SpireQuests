@@ -43,6 +43,7 @@ import spireQuests.quests.modargo.RealityTwistQuest;
 import spireQuests.quests.modargo.monsters.DefectEliteMonster;
 import spireQuests.quests.ramchops.EvilSentryQuest;
 import spireQuests.quests.ramchops.monsters.EvilSentry;
+import spireQuests.quests.snumodder.potions.TickAndTockPotion;
 import spireQuests.rewards.SingleCardReward;
 import spireQuests.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireQuests.ui.QuestBoardScreen;
@@ -189,6 +190,7 @@ public class Anniv8Mod implements
     public static void addPotions() {
 
         BaseMod.addPotion(NuclearJuicePotion.class, null, null, null, NuclearJuicePotion.POTION_ID);
+        BaseMod.addPotion(TickAndTockPotion.class, null, null, null, TickAndTockPotion.POTION_ID);
 
         if (Loader.isModLoaded("widepotions")) {
             Consumer<String> whitelist = getWidePotionsWhitelistMethod();
