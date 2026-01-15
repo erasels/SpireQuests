@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import spireQuests.abstracts.AbstractSQCard;
 
-import static spireQuests.Anniv8Mod.makeContributionPath;
 import static spireQuests.Anniv8Mod.makeID;
 
 public class Ecdysis extends AbstractSQCard {
@@ -18,7 +17,7 @@ public class Ecdysis extends AbstractSQCard {
         exhaust = true;
         baseMagicNumber = 3;
         magicNumber = baseMagicNumber;
-        setBannerTexture(makeContributionPath("luaviper", "RareBanner.png"), makeContributionPath("luaviper", "RareBanner_p.png"));
+        setDisplayRarity(CardRarity.RARE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -38,9 +37,5 @@ public class Ecdysis extends AbstractSQCard {
         this.upgradeMagicNumber(2);
     }
 
-
-    public AbstractCard makeCopy() {
-        return new Ecdysis();
-    }
 
 }

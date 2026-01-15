@@ -26,7 +26,12 @@ public class RapidImprovisationQuest extends AbstractQuest {
         questboundCards.add(new Metamorphosis());
         questboundCards.add(new Chrysalis());
 
-        isAutoFail = true; //temp workaround for the questbound card retain bug
+        //https://discord.com/channels/309399445785673728/1432979755652743319/1460212338606084259
+        // Questbound cards remain active after you fail the quest.
+        // They only go away once the failed quest is actually removed from your log.
+        // Quick workaround is setting isAutoFail to true.
+        isAutoFail = true;
+
 
         new TriggerTracker<>(QuestTriggers.PLAY_CARD, 1)
                 .triggerCondition((card) -> Objects.equals(card.cardID, Metamorphosis.ID) && CardModifierManager.hasModifier(card, QuestboundMod.ID))

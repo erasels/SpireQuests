@@ -125,8 +125,10 @@ public class PrioritiesQuest extends AbstractQuest {
                 for (RewardItem r : __instance.rewards) {
                     if (r.cards != null) {
                         for (AbstractCard card : r.cards) {
-                            Anniv8Mod.logger.info("Upgrading " + card.name);
-                            card.upgrade();
+                            if(card.canUpgrade()) {
+                                //Anniv8Mod.logger.info("Upgrading " + card.name);
+                                card.upgrade();
+                            }
                         }
                     }
                 }

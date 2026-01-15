@@ -5,7 +5,7 @@ import spireQuests.quests.luaviper.patches.CardCreationDetection;
 import spireQuests.util.Wiz;
 
 public class MarkCardsAsRapidImprovisationAction extends AbstractGameAction {
-    boolean flag;
+    private boolean flag;
 
     public MarkCardsAsRapidImprovisationAction(boolean flag) {
         this.flag = flag;
