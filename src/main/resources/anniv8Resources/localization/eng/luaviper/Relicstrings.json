@@ -1,0 +1,31 @@
+{
+  "${ModID}:VampireFangs": {
+    "NAME": "Vampire Fangs",
+    "FLAVOR": "Made of cheap plastic, but convincing enough to fool your enemies.",
+    "DESCRIPTIONS": [
+      "Upon pickup, replace one Strike card with a Bite."
+    ]
+  },
+  "${ModID}:ToyGyrocopter": {
+    "NAME": "Toy Gyrocopter (DEPRECATED)",
+    "FLAVOR": "Its fuel tank seems to run perpetually empty.",
+    "DESCRIPTIONS": [
+      "Whenever you use your last Potion, draw #b1 card."
+    ]
+  },
+  "${ModID}:SignOfTheZ": {
+    "NAME": "Sign of the Z (DEPRECATED)",
+    "FLAVOR": "A glyph used in an ancient language from long ago.",
+    "DESCRIPTIONS": [
+      "Your attacks bypass 50% of the enemy's Block."
+    ]
+  },
+  "${ModID}:AdaptiveArmor": {
+    "NAME": "Adaptive Armor (DEPRECATED)",
+    "FLAVOR": "This looks suspiciously like an ordinary pair of trousers.",
+    "DESCRIPTIONS": [
+      "Whenever you lose HP, gain #b",
+      " #yBlock next turn."
+    ]
+  }
+}

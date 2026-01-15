@@ -1,0 +1,9 @@
+{
+  "${ModID}:Sail": {
+    "NAME": "Sail",
+    "FLAVOR": "Much like the other parts of the boat, this piece helps you defensively, but much more flexibly so than the other parts.",
+    "DESCRIPTIONS": [
+      "Start each combat with a #ySet #ySail card that gives #b6 #yBlock. After your 3rd turn, #yExhaust it."
+    ]
+  }
+}

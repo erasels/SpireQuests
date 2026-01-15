@@ -1,7 +1,7 @@
 {
   "${ModID}:PeasantQuest": {
     "TITLE": "Peasant",
-    "DESCRIPTION": "Have the number of commons in your deck, minus the number of uncommons and rares, be at least #b8.",
+    "DESCRIPTION": "Have the number of commons in your deck, minus the number of uncommons and rares, be at least #b7.",
     "AUTHOR": "modargo",
     "TRACKER_TEXT": [
       "Common surplus"

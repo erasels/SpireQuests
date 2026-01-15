@@ -1,6 +1,7 @@
 package spireQuests.util;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 
@@ -41,7 +42,11 @@ public class NodeUtil {
         return false;
     }
 
-    private static MapRoomNode getNode(int x, int y) {
+    public static MapRoomNode getNode(MapEdge edge){
+        return getNode(edge.dstX, edge.dstY);
+    }
+
+    public static MapRoomNode getNode(int x, int y) {
         if (y >= 0 && y < AbstractDungeon.map.size()) {
             List<MapRoomNode> row = AbstractDungeon.map.get(y);
             if (x >= 0 && x < row.size()) {

@@ -35,7 +35,7 @@ import static spireQuests.Anniv8Mod.questboundEnabled;
 
 public class QuestboundModPatch {
     private static Stream<AbstractQuest> getQuestbound() {
-        return QuestManager.quests().stream().filter(q -> q.questboundCards != null && !q.isCompleted());
+        return QuestManager.quests().stream().filter(q -> q.questboundCards != null && !q.isCompleted() && !q.isFailed());
     }
 
     @SpirePatch2(clz = AbstractPlayer.class, method = SpirePatch.CLASS)

@@ -1,0 +1,6 @@
+{
+  "${ModID}:SetSail": {
+    "NAME": "Set Sail",
+    "DESCRIPTION": "Retain. NL Gain !B! Block. NL Exhaust."
+  }
+}

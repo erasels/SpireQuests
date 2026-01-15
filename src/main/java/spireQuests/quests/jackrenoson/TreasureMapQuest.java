@@ -17,6 +17,7 @@ import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.MarkNodeQuest;
+import spireQuests.util.NodeUtil;
 import spireQuests.util.TexLoader;
 
 import java.util.ArrayList;
@@ -29,9 +30,9 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
     private int startX, startY;
     public static final String id = makeID(TreasureMapQuest.class.getSimpleName());
 
-    class SaveTracker extends Tracker { //Hijacking the tracker system to save origin node.
+    static class SaveNodeTracker extends Tracker { //Hijacking the tracker system to save origin node.
         private int startX, startY;
-        public SaveTracker(int x, int y){
+        public SaveNodeTracker(int x, int y){
             super();
             startX = x;
             startY = y;
@@ -67,7 +68,7 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
                 .setFailureTrigger(QuestTriggers.BEFORE_ACT_CHANGE)
                 .add(this);
 
-        new SaveTracker(startX, startY).hide().add(this);
+        new SaveNodeTracker(startX, startY).hide().add(this);
 
         isAutoComplete = true;
         isAutoFail = true;
@@ -111,7 +112,7 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
         ArrayList<MapRoomNode> validRooms = new ArrayList<>();
         ArrayList<MapRoomNode> checkedRooms = new ArrayList<>();
         ArrayList<MapRoomNode> topRests = new ArrayList<>();
-        toBeChecked.add(getNode(startX, startY));
+        toBeChecked.add(NodeUtil.getNode(startX, startY));
         while(!toBeChecked.isEmpty()) {
             MapRoomNode curr = toBeChecked.remove(0);
             if (curr == null || curr.y == -1) { //Neow room
@@ -126,7 +127,7 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
                         }
                         if (curr.hasEdges()) {
                             for (MapEdge edge : curr.getEdges()) {
-                                MapRoomNode node = getNode(edge.dstX, edge.dstY);
+                                MapRoomNode node = NodeUtil.getNode(edge);
                                 if(node!=null) {
                                     toBeChecked.add(node);
                                 }
@@ -142,18 +143,6 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
         }
         MapRoomNode targetRoom = validRooms.get(rng.random(0, validRooms.size()-1));
         ShowMarkedNodesOnMapPatch.ImageField.MarkNode(targetRoom, id, X);
-    }
-
-    private MapRoomNode getNode(int x, int y){
-        if(y==-1){
-            return null;
-        }
-        for (MapRoomNode node : AbstractDungeon.map.get(y)) {
-            if (x == node.x) {
-                return node;
-            }
-        }
-        return null;
     }
 
     @Override

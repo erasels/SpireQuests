@@ -49,6 +49,7 @@ public class ZilliaxDeluxe3000 extends AbstractSQCard implements CustomSavable<Z
         this.upgraded = upgraded;
 
         this.cost = cost;
+        this.costForTurn = cost;
         this.baseDamage = this.damage = damage;
         this.baseBlock = this.block = block;
 

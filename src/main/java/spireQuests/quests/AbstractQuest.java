@@ -68,7 +68,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
     public boolean isAbandoning = false;
 
-    private int trackerTextIndex = 0;
+    protected int trackerTextIndex = 0;
 
     public List<Tracker> trackers;
     protected List<Consumer<Trigger<?>>> triggers;
@@ -314,9 +314,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
 
 
 
-        for (Tracker tracker : trackers) {
-            if (!tracker.isComplete()) return false;
-        }
+        if(!questConditionsAreFulfilled()) return false;
 
 
 
@@ -325,6 +323,13 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         triggers.clear();
         trackers.add(new QuestCompleteTracker());
         completeSFX();
+        return true;
+    }
+
+    protected boolean questConditionsAreFulfilled(){
+        for (Tracker tracker : trackers) {
+            if (!tracker.isComplete()) return false;
+        }
         return true;
     }
 
