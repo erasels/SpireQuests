@@ -1,24 +1,11 @@
 package spireQuests;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.function.Consumer;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import basemod.AutoAdd;
+import basemod.BaseMod;
+import basemod.ModPanel;
+import basemod.devcommands.ConsoleCommand;
+import basemod.helpers.RelicType;
+import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -31,35 +18,13 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.BlightStrings;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.OrbStrings;
-import com.megacrit.cardcrawl.localization.PotionStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.RelicStrings;
-import com.megacrit.cardcrawl.localization.StanceStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-
-import basemod.AutoAdd;
-import basemod.BaseMod;
-import basemod.ModPanel;
-import basemod.devcommands.ConsoleCommand;
-import basemod.helpers.RelicType;
-import basemod.interfaces.AddAudioSubscriber;
-import basemod.interfaces.EditCardsSubscriber;
-import basemod.interfaces.EditKeywordsSubscriber;
-import basemod.interfaces.EditRelicsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
-import basemod.interfaces.PostDeathSubscriber;
-import basemod.interfaces.PostDungeonInitializeSubscriber;
-import basemod.interfaces.PostInitializeSubscriber;
-import basemod.interfaces.PostRenderSubscriber;
-import basemod.interfaces.StartGameSubscriber;
 import javassist.CtClass;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import spireQuests.abstracts.AbstractSQRelic;
 import spireQuests.cardvars.SecondDamage;
 import spireQuests.cardvars.SecondMagicNumber;
@@ -78,6 +43,13 @@ import spireQuests.ui.FixedModLabeledToggleButton.FixedModLabeledToggleButton;
 import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.CompatUtil;
 import spireQuests.util.TexLoader;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.function.Consumer;
 
 @SuppressWarnings({"unused"})
 @SpireInitializer
