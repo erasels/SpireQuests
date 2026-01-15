@@ -81,7 +81,7 @@ public class TheOx {
 
             if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
                     BalatroQuest.BossBlind.Ox.frames)) {
-                if (c.uuid == mostPlayedCard.uuid && Wiz.p().gold > 0) {
+                if (mostPlayedCard != null && c.uuid == mostPlayedCard.uuid && Wiz.p().gold > 0) {
                     Wiz.p().loseGold(Wiz.p().gold);
                 }
             }
@@ -134,7 +134,7 @@ public class TheOx {
             }
 
             // Only apply glow to most played card at the start of combat
-            if (__instance.uuid == mostPlayedCard.uuid) {
+            if (mostPlayedCard != null && __instance.uuid == mostPlayedCard.uuid) {
                 __instance.glowColor = Color.RED.cpy();
                 __instance.triggerOnGlowCheck();
             }
@@ -156,6 +156,7 @@ public class TheOx {
     public static void updateOxTooltip() {
         String newDescription = getTooltipDescription();
 
+        if (getMostPlayedCard() == null) return;
         try {
             java.lang.reflect.Field descField = TooltipInfo.class.getDeclaredField("description");
             descField.setAccessible(true);
