@@ -31,17 +31,17 @@ public class TheHouse {
 
         @SpireInsertPatch(locator = Locator.class, localvars = { "c" })
         public static void onDraw(AbstractCard c) {
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Wheel.frames)) {
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Wheel.frames)) {
                 if (AbstractDungeon.cardRandomRng.random(6) == 1)
                     CardModifierManager.addModifier(c, new FaceDownModifier());
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.House.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.House.frames)) {
                 if (!finishedDrawingStartingHand) {
                     CardModifierManager.addModifier(c, new FaceDownModifier());
                 }
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Mark.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Mark.frames)) {
                 if (c.type == AbstractCard.CardType.POWER)
                     CardModifierManager.addModifier(c, new FaceDownModifier());
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Fish.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Fish.frames)) {
                 if (finishedInitialDraw) {
                     CardModifierManager.addModifier(c, new FaceDownModifier());
                 }

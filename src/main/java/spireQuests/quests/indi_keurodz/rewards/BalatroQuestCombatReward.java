@@ -1,6 +1,7 @@
 package spireQuests.quests.indi_keurodz.rewards;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,12 +12,12 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import basemod.abstracts.CustomReward;
 import basemod.helpers.CardModifierManager;
 import spireQuests.Anniv8Mod;
-import spireQuests.quests.indi_keurodz.BalatroQuest.BalatroReward;
 import spireQuests.quests.indi_keurodz.modifiers.FoilModifier;
 import spireQuests.quests.indi_keurodz.modifiers.HoloModifier;
 import spireQuests.quests.indi_keurodz.modifiers.NegativeModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PolychromeModifier;
 import spireQuests.quests.indi_keurodz.patches.StickersInRewardsPatch;
+import spireQuests.util.TexLoader;
 
 public class BalatroQuestCombatReward extends CustomReward {
 
@@ -25,8 +26,11 @@ public class BalatroQuestCombatReward extends CustomReward {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack
             .getUIString(Anniv8Mod.makeID("BalatroQuestCombatReward"));
 
+    public static final TextureRegion REWARD_ICON = TexLoader
+            .getTextureAsAtlasRegion(Anniv8Mod.modID + "Resources/images/indi_keurodz/Aura.png");
+
     public BalatroQuestCombatReward() {
-        super(BalatroReward.REWARD_ICON, uiStrings.TEXT[0], StickersInRewardsPatch.BALATRO_QUEST_REWARD);
+        super(REWARD_ICON, uiStrings.TEXT[0], StickersInRewardsPatch.BALATRO_QUEST_REWARD);
     }
 
     @Override

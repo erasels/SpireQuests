@@ -20,7 +20,7 @@ public class TheMouth {
     public static class MouthPenaltyPatch {
         @SpirePostfixPatch
         public static void MouthPenalty(AbstractPlayer __instance, AbstractCard c) {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Mouth.frames))
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Mouth.frames))
                 return;
             if (lastCardType != null && lastCardType != c.type) {
                 AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
@@ -39,7 +39,7 @@ public class TheMouth {
     public static class GlowOutlinePatch {
         @SpirePostfixPatch
         public static void AddGlowIfNotValidType(AbstractCard __instance) {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Mouth.frames))
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Mouth.frames))
                 return;
             if (lastCardType != null && __instance.type != lastCardType) {
                 __instance.glowColor = Color.RED.cpy();

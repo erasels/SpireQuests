@@ -26,7 +26,7 @@ public class TheArm {
     public static class TranformFirstCardIntoPlainCopy {
         @SpireInsertPatch(locator = Locator.class, localvars = { "targetCard" })
         public static void HookDiscardAndDraw(UseCardAction __instance, AbstractCard targetCard) {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Arm.frames)
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Arm.frames)
                     || card_transformed || !targetCard.upgraded)
                 return;
 

@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 import static spireQuests.Anniv8Mod.makeID;
 
-// TODO: update tooltip on the map
 public class TheOx {
 
     // Track number of plays within each card
@@ -79,7 +78,7 @@ public class TheOx {
                 System.out.println("Card Played: " + masterCard.name + " = " + newCount);
             }
 
-            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
                     BalatroQuest.BossBlind.Ox.frames)) {
                 if (mostPlayedCard != null && c.uuid == mostPlayedCard.uuid && Wiz.p().gold > 0) {
                     Wiz.p().loseGold(Wiz.p().gold);
@@ -128,7 +127,7 @@ public class TheOx {
     public static class UpdateOxGlow {
         @SpirePostfixPatch
         public static void UpdateGlow(AbstractCard __instance) {
-            if (!ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+            if (!ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
                     BalatroQuest.BossBlind.Ox.frames)) {
                 return;
             }
@@ -147,7 +146,8 @@ public class TheOx {
     public static class SetMostPlayedOnCombatStart {
         @SpirePostfixPatch
         public static void SetMostPlayedCard() {
-            if (!ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BalatroQuest.BossBlind.Ox.frames))
+            if (!ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
+                    BalatroQuest.BossBlind.Ox.frames))
                 return;
             mostPlayedCard = getMostPlayedCard();
         }
@@ -170,7 +170,8 @@ public class TheOx {
     public static class UpdateOxTooltip {
         @SpirePostfixPatch
         public static void UpdateTooltip(MapRoomNode __instance) {
-            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(__instance, BalatroQuest.id, BalatroQuest.BossBlind.Ox.frames)) {
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(__instance, BalatroQuest.ID,
+                    BalatroQuest.BossBlind.Ox.frames)) {
                 updateOxTooltip();
             }
         }
@@ -184,8 +185,7 @@ public class TheOx {
         if (mostPlayed != null) {
             String extraInfo = String.format(
                     CardCrawlGame.languagePack.getUIString(BalatroQuest.BLIND_STRINGS_ID).TEXT_DICT.get("Ox_Extra"),
-                    mostPlayed.name
-            );
+                    mostPlayed.name);
             return baseDescription + " NL NL " + extraInfo;
         }
 

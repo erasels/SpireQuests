@@ -24,7 +24,7 @@ public class ThePillar {
     public static class OnAfterUseCardPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = { "targetCard" })
         public static void Insert(UseCardAction __instance, AbstractCard targetCard) {
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Pillar.frames)) {
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Pillar.frames)) {
                 CardModifierManager.addModifier(targetCard, new DebuffedModifier());
             }
         }

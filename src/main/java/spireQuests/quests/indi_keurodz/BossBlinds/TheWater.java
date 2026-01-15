@@ -15,7 +15,7 @@ public class TheWater {
     public static class DiscardPatch {
         @SpirePostfixPatch
         public static void ShuffleDiscardIntoDraw() {
-            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
                     BalatroQuest.BossBlind.Water.frames)) {
                 Wiz.att(new EmptyDeckShuffleAction());
             }

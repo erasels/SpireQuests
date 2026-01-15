@@ -21,7 +21,7 @@ public class TheNeedle {
     public static class FinishedStartingHand {
         @SpirePostfixPatch
         public static void finished() {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Needle.frames))
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Needle.frames))
                 return;
 
             if (!finishedDrawingStartingHand) {
@@ -39,12 +39,12 @@ public class TheNeedle {
         public static void DeductHealth() {
             AbstractPlayer player = AbstractDungeon.player;
 
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Needle.frames)) {
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Needle.frames)) {
                 AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
                         player,
                         player,
                         10));
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Psychic.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Psychic.frames)) {
                 for (int i = 0; i < EnergyPanel.getCurrentEnergy(); i++) {
                     AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
                             player,

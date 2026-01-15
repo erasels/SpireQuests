@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.relics.Circlet;
 import basemod.Pair;
 import javassist.CtBehavior;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
+import spireQuests.quests.QuestManager;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 
@@ -31,7 +32,14 @@ public class TheManacleFlint {
 
         @SpirePrefixPatch
         public static void BeforehandSizeSet() {
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Flint.frames)) {
+            BalatroQuest q = (BalatroQuest) QuestManager.quests().stream()
+                    .filter(quest -> BalatroQuest.ID.equals(quest.id) && quest.isCompleted())
+                    .findAny()
+                    .orElse(null);
+            if (q == null) {
+                return;
+            }
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Flint.frames)) {
                 int masterHandSize = AbstractDungeon.player.masterHandSize;
                 int energyMaster = AbstractDungeon.player.energy.energyMaster;
                 ArrayList<Integer> indices = new ArrayList<>(AbstractDungeon.player.relics.size());
@@ -54,7 +62,14 @@ public class TheManacleFlint {
 
         @SpireInsertPatch(locator = Locator.class)
         public static void AfterhandSizeSet() {
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Manacle.frames)) {
+            BalatroQuest q = (BalatroQuest) QuestManager.quests().stream()
+                    .filter(quest -> BalatroQuest.ID.equals(quest.id) && quest.isCompleted())
+                    .findAny()
+                    .orElse(null);
+            if (q == null) {
+                return;
+            }
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Manacle.frames)) {
                 AbstractDungeon.player.gameHandSize--;
             }
 

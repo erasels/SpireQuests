@@ -42,9 +42,9 @@ public class TheWall {
                 return;
             float hpMod;
 
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Wall.frames)) {
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Wall.frames)) {
                 hpMod = 0.1f;
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Needle.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Needle.frames)) {
                 hpMod = -0.5f;
             } else {
                 hasBuffedEnemies = true;

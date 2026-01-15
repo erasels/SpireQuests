@@ -5,11 +5,6 @@
       "%s NL ${ModID}:Debuffed."
     ]
   },
-  "${ModID}:BalatroQuestReward": {
-    "TEXT": [
-      "Apply a random #yEdition to 3 selected cards. Card rewards have a small chance to contain cards with #yEditions."
-    ]
-  },
   "${ModID}:BalatroEditions": {
     "TEXT": [
       "Editions",

@@ -5,14 +5,11 @@ import java.util.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
-import com.evacipated.cardcrawl.modthespire.lib.SpireField;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -22,6 +19,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 
 import basemod.helpers.TooltipInfo;
 import spireQuests.Anniv8Mod;
@@ -29,7 +27,7 @@ import spireQuests.patches.QuestTriggers;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
-import spireQuests.quests.QuestReward;
+import spireQuests.quests.QuestManager;
 import spireQuests.quests.indi_keurodz.BossBlinds.TheOx;
 import spireQuests.quests.indi_keurodz.icons.*;
 import spireQuests.quests.indi_keurodz.modifiers.EternalModifier;
@@ -37,7 +35,6 @@ import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
 import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 import spireQuests.quests.indi_keurodz.relics.GoldStakeRelic;
 import spireQuests.quests.indi_keurodz.rewards.BalatroQuestCombatReward;
-import spireQuests.util.TexLoader;
 
 import static spireQuests.Anniv8Mod.makeID;
 
@@ -45,10 +42,17 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
     public static TextureAtlas BossBlindsAtlas;
     public static final String BLIND_STRINGS_ID = makeID("BalatroBlinds");
     public static final String AUTHOR = "indi_keurodz";
-    public static final String id = makeID("BalatroQuest");
+    public static final String ID = makeID("BalatroQuest");
 
     private static final Map<String, String> blindStrings = CardCrawlGame.languagePack
             .getUIString(BLIND_STRINGS_ID).TEXT_DICT;
+
+    private static final UIStrings EDITIONS = CardCrawlGame.languagePack
+            .getUIString(makeID("BalatroEditions"));
+
+    private static final Keyword ETERNAL = Anniv8Mod.keywords.get(EternalModifier.ID);
+    private static final Keyword PERISHABLE = Anniv8Mod.keywords.get(PerishableModifier.ID);
+    private static final Keyword RENTAL = Anniv8Mod.keywords.get(RentalModifier.ID);
 
     public static void addSaveFields() {
         TheOx.addSaveFields();
@@ -129,65 +133,38 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
         new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
 
-        addReward(new BalatroReward());
-        needHoverTip = true;
+        this.isAutoComplete = true;
+        this.needHoverTip = true;
+        this.useDefaultReward = false;
 
     }
 
-    public static class BalatroReward extends QuestReward {
-        static {
-            addRewardSaver(new RewardLoader(BalatroReward.class, (save) -> new BalatroReward()));
-        }
-
-        private static final UIStrings EDITIONS = CardCrawlGame.languagePack
-                .getUIString(makeID("BalatroEditions"));
-
-        private static final Keyword ETERNAL = Anniv8Mod.keywords.get(EternalModifier.ID);
-        private static final Keyword PERISHABLE = Anniv8Mod.keywords.get(PerishableModifier.ID);
-        private static final Keyword RENTAL = Anniv8Mod.keywords.get(RentalModifier.ID);
-
-        private static final String REWARD_DESC = CardCrawlGame.languagePack
-                .getUIString(makeID("BalatroQuestReward")).TEXT[0];
-        public static final TextureRegion REWARD_ICON = TexLoader
-                .getTextureAsAtlasRegion(Anniv8Mod.modID + "Resources/images/indi_keurodz/Aura.png");
-
-        public BalatroReward() {
-            super(REWARD_DESC);
-        }
-
-        @Override
-        public TextureRegion icon() {
-            return REWARD_ICON;
-        }
-
-        @Override
-        protected String saveParam() {
-            return null;
-        }
-
-        @Override
-        public void addTooltip(List<PowerTip> tips) {
-            tips.add(new PowerTip(ETERNAL.PROPER_NAME, ETERNAL.DESCRIPTION));
-            tips.add(new PowerTip(PERISHABLE.PROPER_NAME, PERISHABLE.DESCRIPTION));
-            tips.add(new PowerTip(RENTAL.PROPER_NAME, RENTAL.DESCRIPTION));
-            tips.add(new PowerTip(EDITIONS.TEXT[0], EDITIONS.TEXT[1]));
-        }
-
-        // TODO: how to make reward auto-claim at end of combat
-        @Override
-        public void obtainRewardItem() {
-            AbstractDungeon.combatRewardScreen.rewards.add(0, new BalatroQuestCombatReward());
-            AbstractDungeon.combatRewardScreen.positionRewards();
-            AbstractRelic goldStakeRelic = AbstractDungeon.player.getRelic(GoldStakeRelic.ID);
-            if (goldStakeRelic != null) {
-                ((GoldStakeRelic) goldStakeRelic).upgradeDescription();
+    @SpirePatch2(clz = CombatRewardScreen.class, method = "setupItemReward")
+    public static class RewardReplacementPatch {
+        @SpirePostfixPatch
+        public static void patch(CombatRewardScreen __instance) {
+            BalatroQuest q = (BalatroQuest) QuestManager.quests().stream()
+                    .filter(quest -> ID.equals(quest.id) && quest.isCompleted())
+                    .findAny()
+                    .orElse(null);
+            if (q != null) {
+                __instance.rewards.add(0, new BalatroQuestCombatReward());
+                AbstractRelic goldStakeRelic = AbstractDungeon.player.getRelic(GoldStakeRelic.ID);
+                if (goldStakeRelic != null) {
+                    ((GoldStakeRelic) goldStakeRelic).upgradeDescription();
+                }
             }
         }
+    }
 
-        @Override
-        public void obtainInstant() {
-        }
+    @Override
+    public void makeTooltips(List<PowerTip> tipList) {
+        tipList.clear();
 
+        tipList.add(new PowerTip(ETERNAL.PROPER_NAME, ETERNAL.DESCRIPTION));
+        tipList.add(new PowerTip(PERISHABLE.PROPER_NAME, PERISHABLE.DESCRIPTION));
+        tipList.add(new PowerTip(RENTAL.PROPER_NAME, RENTAL.DESCRIPTION));
+        tipList.add(new PowerTip(EDITIONS.TEXT[0], EDITIONS.TEXT[1]));
     }
 
     @Override
@@ -199,7 +176,7 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
 
     public static int getBlindBattlesCompleted() {
         MapRoomNode node = AbstractDungeon.currMapNode;
-        if (node != null && ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(node, id)) {
+        if (node != null && ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(node, ID)) {
             BLIND_FIGHTS_COMPLETED++;
         }
 
@@ -224,6 +201,9 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         int n = possibleNodes.size() / 2;
 
         List<BossBlind> blindsList = new ArrayList<>(Arrays.asList(BossBlind.values()));
+        if (AbstractDungeon.actNum == 1) {
+            blindsList.remove(BossBlind.Ox);
+        }
         Collections.shuffle(blindsList, new java.util.Random(rng.randomLong()));
         blindsList = blindsList.subList(0, Math.max(n, blindsList.size() - 1));
 
@@ -231,7 +211,7 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
             try {
                 MapRoomNode node = possibleNodes.get(i);
                 BossBlind nextBlind = blindsList.remove(0);
-                ShowMarkedNodesOnMapPatch.ImageField.MarkNode(node, id, nextBlind.frames, 12, nextBlind.tooltip);
+                ShowMarkedNodesOnMapPatch.ImageField.MarkNode(node, ID, nextBlind.frames, 12, nextBlind.tooltip);
             } catch (IndexOutOfBoundsException e) {
                 break;
             }

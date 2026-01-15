@@ -18,7 +18,7 @@ public class TheHook {
     public static class HookEffectPatch {
         @SpirePostfixPatch
         public static void HookDiscardAndDraw(AbstractPlayer __instance, AbstractCard c) {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Hook.frames))
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Hook.frames))
                 return;
 
             int handSize = __instance.hand.size();

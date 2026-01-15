@@ -21,7 +21,7 @@ public class TheEye {
     public static class EyePenaltyPatch {
         @SpirePostfixPatch
         public static void EyePenalty(AbstractPlayer __instance, AbstractCard c) {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Eye.frames))
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Eye.frames))
                 return;
             if (lastCardType != null && lastCardType == c.type) {
                 AbstractDungeon.actionManager.addToBottom(new LoseHPAction(
@@ -37,7 +37,7 @@ public class TheEye {
     public static class GlowOutlinePatch {
         @SpirePostfixPatch
         public static void AddGlowIfNotValidType(AbstractCard __instance) {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Eye.frames))
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Eye.frames))
                 return;
             if (lastCardType != null && __instance.type == lastCardType) {
                 __instance.glowColor = Color.RED.cpy();

@@ -16,7 +16,7 @@ public class TheTooth {
     public static class ChargeCardMoneyPatch {
         @SpirePostfixPatch
         public static void LoseGoldPerCard() {
-            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Tooth.frames))
+            if (!ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Tooth.frames))
                 return;
 
             AbstractDungeon.player.loseGold(1);

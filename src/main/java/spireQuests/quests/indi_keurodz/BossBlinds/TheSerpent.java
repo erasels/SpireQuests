@@ -15,7 +15,7 @@ public class TheSerpent {
     public static class SetInitialHandSizePatch {
         @SpirePostfixPatch
         public static void SetHandSize() {
-            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
                     BalatroQuest.BossBlind.Serpent.frames)) {
                 Wiz.p().gameHandSize = 3;
             }
@@ -26,7 +26,7 @@ public class TheSerpent {
     public static class PatchUseCard {
         @SpirePostfixPatch
         public static void DrawThreeCardsAfterUse() {
-            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id,
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
                     BalatroQuest.BossBlind.Serpent.frames)) {
                 Wiz.atb(new DrawCardAction(3));
             }

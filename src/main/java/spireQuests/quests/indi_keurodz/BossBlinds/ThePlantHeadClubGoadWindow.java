@@ -21,19 +21,19 @@ public class ThePlantHeadClubGoadWindow {
         @SpirePrefixPatch
         public static void onDrawCard() {
 
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Plant.frames)) {
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Plant.frames)) {
                 applyDebuffsToHand(card -> card.type == AbstractCard.CardType.POWER);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Head.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Head.frames)) {
                 applyDebuffsToHand(card -> card.rarity == AbstractCard.CardRarity.UNCOMMON);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Club.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Club.frames)) {
                 applyDebuffsToHand(card -> card.rarity == AbstractCard.CardRarity.BASIC);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Goad.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Goad.frames)) {
                 applyDebuffsToHand(card -> card.rarity == AbstractCard.CardRarity.COMMON);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Window.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Window.frames)) {
                 applyDebuffsToHand(card -> card.rarity == AbstractCard.CardRarity.RARE);
 
             }
@@ -55,19 +55,19 @@ public class ThePlantHeadClubGoadWindow {
 
         @SpirePrefixPatch()
         public static void Insert() {
-            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Plant.frames)) {
+            if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Plant.frames)) {
                 applyDebuffsToExistingCards(card -> card.type == AbstractCard.CardType.POWER);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Head.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Head.frames)) {
                 applyDebuffsToExistingCards(card -> card.rarity == AbstractCard.CardRarity.UNCOMMON);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Club.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Club.frames)) {
                 applyDebuffsToExistingCards(card -> card.rarity == AbstractCard.CardRarity.BASIC);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Goad.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Goad.frames)) {
                 applyDebuffsToExistingCards(card -> card.rarity == AbstractCard.CardRarity.COMMON);
 
-            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.id, BossBlind.Window.frames)) {
+            } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Window.frames)) {
                 applyDebuffsToExistingCards(card -> card.rarity == AbstractCard.CardRarity.RARE);
 
             }
