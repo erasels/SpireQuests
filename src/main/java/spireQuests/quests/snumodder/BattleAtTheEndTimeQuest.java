@@ -3,6 +3,7 @@ package spireQuests.quests.snumodder;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
+import com.megacrit.cardcrawl.relics.Sozu;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
@@ -79,5 +80,10 @@ public class BattleAtTheEndTimeQuest extends AbstractQuest {
                 if (count == 0) phase = 3;
         }
         return phase;
+    }
+
+    @Override
+    public boolean canSpawn() {
+        return !AbstractDungeon.player.hasRelic(Sozu.ID);
     }
 }
