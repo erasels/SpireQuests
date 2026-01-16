@@ -1,7 +1,7 @@
 {
   "${ModID}:GennGreymaneQuest": {
     "TITLE": "Genn Greymane",
-    "DESCRIPTION": "Build your deck with at least #b7 even/X-cost cards and no odd-cost cards (excluding starter cards). Card rewards include at least one even/X-cost card.",
+    "DESCRIPTION": "Build your deck with at least #b7 even/X-cost cards and no odd-cost cards (excluding starter cards). NL Card rewards include at least one even/X-cost card.",
     "AUTHOR": "snumodder",
     "REWARD": "Upgrade all starter cards.",
     "TRACKER_TEXT": [
@@ -19,10 +19,20 @@
   },
   "${ModID}:ZilliaxDeluxe3000Quest": {
     "TITLE": "Zilliax Deluxe 3000",
-    "DESCRIPTION": "A random Module monster appears with the enemies. NL Obtain 2 different Modules from extra Module card rewards.",
+    "DESCRIPTION": "A random Module monster appears with the enemies. NL Obtain #b2 different Modules from extra Module card rewards.",
     "AUTHOR": "snumodder",
     "TRACKER_TEXT": [
       "Module obtained"
+    ]
+  },
+  "${ModID}:BattleAtTheEndTimeQuest": {
+    "TITLE": "Battle at the End Time",
+    "DESCRIPTION": "Empty all Potion slots. NL After having #b2 or more Potions at the same time, empty all Potion slots again.",
+    "AUTHOR": "snumodder",
+    "TRACKER_TEXT": [
+      "Empty slots",
+      "Fill slots",
+      "Empty slots again"
     ]
   }
 }

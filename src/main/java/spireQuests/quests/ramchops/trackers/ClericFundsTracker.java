@@ -34,7 +34,7 @@ public class ClericFundsTracker extends OptionalTriggerTracker<Integer> {
                     SKIP_GOLD.trigger(r.goldAmt);
 
                     if(r.bonusGold != 0){
-                        SKIP_GOLD.trigger(r.goldAmt);
+                        SKIP_GOLD.trigger(r.bonusGold);
                     }
                 }
             }
