@@ -39,7 +39,7 @@ public class StickersInRewardsPatch {
                 if (perishable_eternal_roll < 0.3 && !hasAddedPerishable) {
                     CardModifierManager.addModifier(c, new PerishableModifier());
                     hasAddedPerishable = true;
-                } else if (perishable_eternal_roll < 0.6) {
+                } else if (perishable_eternal_roll >= 0.3 && perishable_eternal_roll < 0.6) {
                     CardModifierManager.addModifier(c, new EternalModifier());
                 }
 

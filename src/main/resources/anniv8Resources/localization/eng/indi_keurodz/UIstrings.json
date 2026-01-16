@@ -17,6 +17,12 @@
       "Choose 3 cards to apply editions to"
     ]
   },
+  "${ModID}:RentalShop": {
+    "TEXT": [
+      "Rental Card Return Service",
+      "Return any number of #yRental cards to the merchant, removing them from your deck."
+    ]
+  },
   "${ModID}:BalatroBlinds": {
     "TEXT_DICT": {
       "Arm": "[${ModID}:ArmIcon] The Arm",
