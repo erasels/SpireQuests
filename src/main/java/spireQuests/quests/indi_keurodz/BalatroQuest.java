@@ -29,7 +29,7 @@ import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.indi_keurodz.BossBlinds.TheOx;
-import spireQuests.quests.indi_keurodz.icons.*;
+import spireQuests.quests.indi_keurodz.QuestIcons.*;
 import spireQuests.quests.indi_keurodz.modifiers.EternalModifier;
 import spireQuests.quests.indi_keurodz.modifiers.PerishableModifier;
 import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;

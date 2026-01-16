@@ -33,7 +33,7 @@ public class TheManacleFlint {
         @SpirePrefixPatch
         public static void BeforehandSizeSet() {
             BalatroQuest q = (BalatroQuest) QuestManager.quests().stream()
-                    .filter(quest -> BalatroQuest.ID.equals(quest.id) && quest.isCompleted())
+                    .filter(quest -> BalatroQuest.ID.equals(quest.id) && !quest.isCompleted())
                     .findAny()
                     .orElse(null);
             if (q == null) {
