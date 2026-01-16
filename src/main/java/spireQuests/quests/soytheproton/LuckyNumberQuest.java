@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.rooms.ShopRoom;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.CountdownTracker;
+import spireQuests.quests.QuestReward;
+import spireQuests.quests.soytheproton.relics.MagicBoot;
 
 import java.util.ArrayList;
 
@@ -20,7 +22,7 @@ public class LuckyNumberQuest extends AbstractQuest {
                 .add(this);
         new CountdownTracker<>(QuestTriggers.COMBAT_END, 3)
                 .add(this);
-
+        addReward(new QuestReward.RelicReward(new MagicBoot()));
         questboundRelics = new ArrayList<>();
         questboundRelics.add(boot);
         returnQuestboundRelics = false;
