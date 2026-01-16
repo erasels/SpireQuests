@@ -24,7 +24,6 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.monsterRng;
 import static spireQuests.Anniv8Mod.makeID;
 
 public class ZilliaxDeluxe3000Quest extends AbstractQuest {
@@ -51,9 +50,9 @@ public class ZilliaxDeluxe3000Quest extends AbstractQuest {
             }
             ZilliaxModules chosen;
             if (candidates.isEmpty()) {
-                chosen = ZilliaxModules.values()[monsterRng.random(ZilliaxModules.values().length - 1)];
+                chosen = ZilliaxModules.values()[AbstractQuest.rng.random(ZilliaxModules.values().length - 1)];
             } else {
-                chosen = candidates.get(monsterRng.random(candidates.size() - 1));
+                chosen = candidates.get(AbstractQuest.rng.random(candidates.size() - 1));
             }
             this.getSpawnedModulesTracker().spawnedModulesSave.add(chosen);
             if (chosen == ZilliaxModules.TWIN) {

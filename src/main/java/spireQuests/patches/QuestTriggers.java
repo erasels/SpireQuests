@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.relics.Boot;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Ectoplasm;
@@ -53,6 +54,7 @@ public class QuestTriggers {
     public static final Trigger<Void> VICTORY = new Trigger<>(); //Excludes Smoke Bomb and other ways of escaping
     public static final Trigger<Void> COMBAT_END = new Trigger<>();
     public static final Trigger<AbstractPotion> USE_POTION = new Trigger<>();
+    public static final Trigger<Integer> POTION_CHANGE = new Trigger<>();
 
     public static final Trigger<Void> BOOT_TRIGGER = new Trigger<>();
     public static final Trigger<AbstractOrb> CHANNEL_ORB = new Trigger<>();
@@ -344,6 +346,47 @@ public class QuestTriggers {
             return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
         }
     }
+
+    @SpirePatch(clz = TopPanel.class, method = "destroyPotion")
+    public static class DestroyPotion {
+        @SpirePostfixPatch
+        public static void destroyPotionPatch(TopPanel __instance, int slot) {
+            int count = 0;
+            for (AbstractPotion p : AbstractDungeon.player.potions) {
+                if (!(p instanceof PotionSlot)) {
+                    count++;
+                }
+            }
+            POTION_CHANGE.trigger(count);
+        }
+    }
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "removePotion")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "obtainPotion", paramtypez = {AbstractPotion.class})
+    @SpirePatch2(clz = AbstractPlayer.class, method = "obtainPotion", paramtypez = {int.class, AbstractPotion.class})
+    public static class RemoveObtainPotion {
+        @SpireInsertPatch(locator = PotionLocator.class)
+        public static void removeObtainPotionPatch() {
+            int count = 0;
+            for (AbstractPotion p : AbstractDungeon.player.potions) {
+                if (!(p instanceof PotionSlot)) {
+                    count++;
+                }
+            }
+            POTION_CHANGE.trigger(count);
+        }
+
+        private static class PotionLocator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(ArrayList.class, "set");
+                int[] lines = LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+                lines[0]++;
+                return lines;
+            }
+        }
+    }
+
     @SpirePatch(clz = Boot.class, method = "onAttackToChangeDamage")
     public static class BootTracker {
         @SpireInsertPatch(locator = BootLocator.class)
