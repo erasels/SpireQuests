@@ -43,6 +43,7 @@ public class TheEye {
                 __instance.glowColor = Color.RED.cpy();
                 __instance.triggerOnGlowCheck();
             }
+            else __instance.glowColor = Color.CYAN;
         }
     }
 

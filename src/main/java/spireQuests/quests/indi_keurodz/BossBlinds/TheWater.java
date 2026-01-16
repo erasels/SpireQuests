@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
+import com.megacrit.cardcrawl.actions.common.ShuffleAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
@@ -17,7 +18,8 @@ public class TheWater {
         public static void ShuffleDiscardIntoDraw() {
             if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
                     BalatroQuest.BossBlind.Water.frames)) {
-                Wiz.att(new EmptyDeckShuffleAction());
+                Wiz.atb(new EmptyDeckShuffleAction());
+                Wiz.atb(new ShuffleAction(AbstractDungeon.player.drawPile, false));
             }
         }
     }

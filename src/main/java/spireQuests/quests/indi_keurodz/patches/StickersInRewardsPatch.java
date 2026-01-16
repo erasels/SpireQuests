@@ -32,12 +32,13 @@ public class StickersInRewardsPatch {
             if (relic == null) {
                 return;
             }
-
+            boolean hasAddedPerishable = false;
             for (AbstractCard c : __result) {
 
                 float perishable_eternal_roll = AbstractQuest.rng.random();
-                if (perishable_eternal_roll < 0.3) {
+                if (perishable_eternal_roll < 0.3 && !hasAddedPerishable) {
                     CardModifierManager.addModifier(c, new PerishableModifier());
+                    hasAddedPerishable = true;
                 } else if (perishable_eternal_roll < 0.6) {
                     CardModifierManager.addModifier(c, new EternalModifier());
                 }
