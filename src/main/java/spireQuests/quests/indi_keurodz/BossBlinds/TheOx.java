@@ -4,6 +4,7 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -41,7 +42,6 @@ public class TheOx {
                     int playCountValue = (count != null) ? count : 0;
 
                     playCounts.add(playCountValue);
-                    System.out.println("SAVING: [" + i + "] " + card.name + " = " + playCountValue + " plays");
                 }
 
                 return playCounts;
@@ -58,7 +58,6 @@ public class TheOx {
                     AbstractCard card = deck.get(i);
                     Integer count = loadedCounts.get(i);
                     PlayCountField.playCount.set(card, count);
-                    System.out.println("LOADED: [" + i + "] " + card.name + " = " + count + " plays");
                 }
             }
         });
@@ -68,14 +67,12 @@ public class TheOx {
     public static class TrackCardPlays {
         @SpirePostfixPatch
         public static void TrackAndDeductPatch(AbstractPlayer __instance, AbstractCard c) {
-            AbstractCard masterCard = findMasterDeckCard(c);
+            AbstractCard masterCard = StSLib.getMasterDeckEquivalent(c);
 
             if (masterCard != null) {
                 Integer currentCount = PlayCountField.playCount.get(masterCard);
                 int newCount = (currentCount != null ? currentCount : 0) + 1;
                 PlayCountField.playCount.set(masterCard, newCount);
-
-                System.out.println("Card Played: " + masterCard.name + " = " + newCount);
             }
 
             if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID,
@@ -85,21 +82,6 @@ public class TheOx {
                 }
             }
         }
-    }
-
-    private static AbstractCard findMasterDeckCard(AbstractCard playedCard) {
-        if (AbstractDungeon.player == null || AbstractDungeon.player.masterDeck == null)
-            return null;
-
-        ArrayList<AbstractCard> deck = AbstractDungeon.player.masterDeck.group;
-
-        for (AbstractCard card : deck) {
-            if (card.uuid.equals(playedCard.uuid)) {
-                return card;
-            }
-        }
-
-        return null;
     }
 
     // A nice to have helper
@@ -157,13 +139,7 @@ public class TheOx {
         String newDescription = getTooltipDescription();
 
         if (getMostPlayedCard() == null) return;
-        try {
-            java.lang.reflect.Field descField = TooltipInfo.class.getDeclaredField("description");
-            descField.setAccessible(true);
-            descField.set(BalatroQuest.BossBlind.Ox.tooltip, newDescription);
-        } catch (Exception e) {
-            System.out.println("Failed to update Ox tooltip: " + e.getMessage());
-        }
+        BalatroQuest.BossBlind.Ox.tooltip.description = newDescription;
     }
 
     @SpirePatch2(clz = MapRoomNode.class, method = "update")

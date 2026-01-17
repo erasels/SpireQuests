@@ -13,8 +13,12 @@ import javassist.expr.MethodCall;
 public class DisableLoseGoldSfxPatch {
     public static boolean ENABLED = false;
 
+    /*
+     *  Patch to disable normal lose gold sound effect, since we are playing a custom one instead
+     *  Used in RentalStickerEffect
+     */
     @SpirePatch2(clz = AbstractPlayer.class, method = "loseGold")
-    public static class IdkMan {
+    public static class DisableVanillaLoseGoldSFX {
         @SpireInstrumentPatch
         public static ExprEditor noGoldSfx() {
             return new ExprEditor() {

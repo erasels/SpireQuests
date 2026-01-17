@@ -8,7 +8,7 @@
   "${ModID}:BalatroEditions": {
     "TEXT": [
       "Editions",
-      "#gFoil - Gain #b50 #yGold the first time this card is played. NL #gHolo - After you play this card, gain #b10 temporary #yStrength. NL #gPolychrome - #b50% chance to play twice. NL #gNegative - When you draw this card, draw a card. "
+      "#gFoil - Gain #b50 #yGold the first time this card is played. NL #gHolo - After you play this card, gain #b10 temporary #yStrength. NL #gPolychrome - #b50% chance to be played an additional time. NL #gNegative - When you draw this card, draw a card. "
     ]
   },
   "${ModID}:BalatroQuestCombatReward": {

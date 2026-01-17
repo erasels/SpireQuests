@@ -20,7 +20,7 @@ public class PerishableModifier extends AbstractCardModifier {
     public static final String ID = Anniv8Mod.makeID("Perishable");
     private static final Keyword KEYWORD = Anniv8Mod.keywords.get(ID);
 
-    public int REMAINING_TURNS;
+    public int remaining_turns;
 
     public static final Texture icon = TexLoader
             .getTexture(Anniv8Mod.modID + "Resources/images/indi_keurodz/PerishableStickerIcon.png");
@@ -42,14 +42,14 @@ public class PerishableModifier extends AbstractCardModifier {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        REMAINING_TURNS = 5;
+        remaining_turns = 5;
     }
 
     @Override
     public List<TooltipInfo> additionalTooltips(AbstractCard card) {
         List<TooltipInfo> tips = new ArrayList<>();
         tips.add(new TooltipInfo("[" + PerishableIcon.ID + "Icon] " + KEYWORD.PROPER_NAME,
-                KEYWORD.DESCRIPTION.replace("5", REMAINING_TURNS + "")));
+                KEYWORD.DESCRIPTION.replace("5", remaining_turns + "")));
         return tips;
     }
 
@@ -59,7 +59,7 @@ public class PerishableModifier extends AbstractCardModifier {
      * @returns true if the remaining turns is 0 or less than 0
      */
     public boolean tickRemainingTurns() {
-        return --REMAINING_TURNS <= 0;
+        return --remaining_turns <= 0;
     }
 
 }

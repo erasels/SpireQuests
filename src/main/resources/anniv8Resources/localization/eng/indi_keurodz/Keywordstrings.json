@@ -28,7 +28,7 @@
     "NAMES": [
       "polychrome"
     ],
-    "DESCRIPTION": "#b50% chance to play twice."
+    "DESCRIPTION": "#b50% chance to be played an additional time."
   },
   {
     "ID": "${ModID}:Negative",
@@ -44,7 +44,7 @@
     "NAMES": [
       "perishable"
     ],
-    "DESCRIPTION": "Purged from deck after #b5 combats."
+    "DESCRIPTION": "Removed from deck after #b5 combats."
   },
   {
     "ID": "${ModID}:Eternal",

@@ -83,7 +83,7 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         Wheel,
         Window;
 
-        public final TooltipInfo tooltip;
+        public TooltipInfo tooltip;
         public final Array<AtlasRegion> frames;
 
         BossBlind() {
