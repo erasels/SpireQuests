@@ -54,6 +54,8 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
     private static final Keyword PERISHABLE = Anniv8Mod.keywords.get(PerishableModifier.ID);
     private static final Keyword RENTAL = Anniv8Mod.keywords.get(RentalModifier.ID);
 
+    private Tracker tracker;
+
     public static void addSaveFields() {
         TheOx.addSaveFields();
     }
@@ -96,7 +98,6 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
     }
 
     public static int BLIND_FIGHTS_COMPLETED = 0;
-    public static MapRoomNode[] markednodes;
 
     public BalatroQuest() {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
@@ -131,7 +132,8 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         CustomIconHelper.addCustomIcon(WheelIcon.get());
         CustomIconHelper.addCustomIcon(WindowIcon.get());
 
-        new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8, BalatroQuest::getBlindBattlesCompleted).add(this);
+        tracker = new TriggeredUpdateTracker<>(QuestTriggers.VICTORY, 0, 8,
+                BalatroQuest::getBlindBattlesCompleted).add(this);
 
         this.isAutoComplete = true;
         this.needHoverTip = true;
@@ -172,6 +174,7 @@ public class BalatroQuest extends AbstractQuest implements MarkNodeQuest {
         super.onStart();
         (new GoldStakeRelic()).instantObtain();
         BLIND_FIGHTS_COMPLETED = 0;
+        tracker.refreshState();
     }
 
     public static int getBlindBattlesCompleted() {
