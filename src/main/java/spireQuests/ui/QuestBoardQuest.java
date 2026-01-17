@@ -138,7 +138,7 @@ public class QuestBoardQuest {
             if (this.previewHb.cX + this.previewHb.width / 2.0F < TIP_X_THRESHOLD) {
                 TipHelper.queuePowerTips(this.previewHb.cX + this.previewHb.width / 2.0F + TIP_OFFSET_R_X, this.previewHb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.previewHb.cY) + boardY, tips);
             } else {
-                float tipX = TIP_OFFSET_L_X + (hasManyTips ? this.tips.size() * -100.0F : 0.0F);
+                float tipX = TIP_OFFSET_L_X + (hasManyTips ? this.tips.size() * -150.0F * Settings.xScale : 0.0F);
                 TipHelper.queuePowerTips(this.previewHb.cX - this.previewHb.width / 2.0F + tipX, this.previewHb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.previewHb.cY) + boardY, tips);
             }
         }
