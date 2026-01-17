@@ -58,12 +58,6 @@ public class DebuffedModifier extends AbstractCardModifier {
     }
 
     @Override
-    public void onInitialApplication(AbstractCard card) {
-        card.keywords.add(uiStrings.TEXT[0]);
-        card.initializeDescription();
-    }
-
-    @Override
     public AbstractCardModifier makeCopy() {
         return new DebuffedModifier();
     }

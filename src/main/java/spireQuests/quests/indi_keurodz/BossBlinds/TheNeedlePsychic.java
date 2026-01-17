@@ -13,7 +13,7 @@ import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 
-public class TheNeedle {
+public class TheNeedlePsychic {
 
     private static boolean finishedDrawingStartingHand = false;
 

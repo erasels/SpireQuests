@@ -14,7 +14,7 @@ import spireQuests.patches.ShowMarkedNodesOnMapPatch.ImageField;
 import spireQuests.quests.indi_keurodz.BalatroQuest;
 import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 
-public class TheWall {
+public class TheWallNeedle {
 
     private static boolean hasBuffedEnemies = false;
 

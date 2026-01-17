@@ -4,7 +4,8 @@
     "NAMES": [
       "debuffed"
     ],
-    "DESCRIPTION": "After you play this card, randomly gain #b1 #yWeak, #yFrail, or #yVulnerable."
+    "DESCRIPTION": "After you play this card, randomly gain #b1 #yWeak, #yFrail, or #yVulnerable.",
+    "COLOR": "ff6563"
   },
   {
     "ID": "${ModID}:Foil",

@@ -26,7 +26,7 @@
   "${ModID}:BalatroBlinds": {
     "TEXT_DICT": {
       "Arm": "[${ModID}:ArmIcon] The Arm",
-      "Arm_Description": "Replace the first upgraded card you play with a plain, unupgraded version.",
+      "Arm_Description": "Permanently replace the first upgraded card you play with a plain, unupgraded version.",
       "Club": "[${ModID}:ClubIcon] The Club",
       "Club_Description": "All starter cards are debuffed.",
       "Eye": "[${ModID}:EyeIcon] The Eye",

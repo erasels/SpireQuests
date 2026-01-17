@@ -21,7 +21,7 @@ import spireQuests.quests.indi_keurodz.BalatroQuest.BossBlind;
 import spireQuests.quests.indi_keurodz.modifiers.FaceDownModifier;
 import spireQuests.util.Wiz;
 
-public class TheHouse {
+public class TheHouseWheelMarkFish {
 
     private static boolean finishedDrawingStartingHand = false;
     private static boolean finishedInitialDraw = false;
@@ -32,7 +32,8 @@ public class TheHouse {
         @SpireInsertPatch(locator = Locator.class, localvars = { "c" })
         public static void onDraw(AbstractCard c) {
             if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.Wheel.frames)) {
-                if (AbstractDungeon.cardRandomRng.random(6) == 1)
+                // 1 in 7 chance
+                if (AbstractDungeon.cardRandomRng.randomBoolean(0.143f))
                     CardModifierManager.addModifier(c, new FaceDownModifier());
             } else if (ImageField.CheckMarks(AbstractDungeon.currMapNode, BalatroQuest.ID, BossBlind.House.frames)) {
                 if (!finishedDrawingStartingHand) {

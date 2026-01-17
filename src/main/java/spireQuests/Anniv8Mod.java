@@ -335,7 +335,7 @@ public class Anniv8Mod implements
         }
 
         for (Keyword keyword : keywords) {
-            BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION, keyword.COLOR);
             if (!keyword.ID.isEmpty()) {
                 Anniv8Mod.keywords.put(keyword.ID, keyword);
             }

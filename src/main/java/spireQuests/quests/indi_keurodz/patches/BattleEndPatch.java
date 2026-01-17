@@ -41,7 +41,7 @@ public class BattleEndPatch {
                 // Remove perishable cards from masterdeck
                 for (AbstractCard card : purgedCards) {
                     AbstractDungeon.player.masterDeck.removeCard(card);
-                    AbstractDungeon.topLevelEffectsQueue
+                    AbstractDungeon.topLevelEffects
                             .add(new PurgeCardEffect(card, Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
                 }
 
