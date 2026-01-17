@@ -1,9 +1,11 @@
 package spireQuests.quests.quorry;
 
+import basemod.helpers.CardPowerTip;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireQuests.patches.QuestTriggers;
@@ -25,7 +27,7 @@ public class FatalStrikesQuest extends AbstractQuest {
         super(QuestType.SHORT, QuestDifficulty.HARD);
 
         new TriggerTracker<>(QuestTriggers.FATAL_CARD, FATAL_STRIKE_COUNT)
-                .triggerCondition((card) -> card.hasTag(AbstractCard.CardTags.STRIKE) && AbstractDungeon.actNum == 2)
+                .triggerCondition((card) -> card.hasTag(AbstractCard.CardTags.STARTER_STRIKE) && AbstractDungeon.actNum == 2)
                 .setFailureTrigger(QuestTriggers.ACT_CHANGE, (act) -> act > 2)
                 .add(this);
 
@@ -36,7 +38,7 @@ public class FatalStrikesQuest extends AbstractQuest {
     @Override
     public void onComplete() {
         ArrayList<AbstractCard> deck = AbstractDungeon.player.masterDeck.group;
-        List<AbstractCard> toReplace = deck.stream().filter(c -> c.hasTag(AbstractCard.CardTags.STRIKE)).collect(Collectors.toList());
+        List<AbstractCard> toReplace = deck.stream().filter(c -> c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)).collect(Collectors.toList());
         AbstractDungeon.topLevelEffectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         float spacing = Settings.WIDTH / (float) (toReplace.size() + 1);
         int i = 1;
@@ -49,10 +51,14 @@ public class FatalStrikesQuest extends AbstractQuest {
         }
     }
 
-
     @Override
     public boolean canSpawn() {
         return AbstractDungeon.actNum == 1;
     }
 
+    @Override
+    public void makeTooltips(List<PowerTip> tipList) {
+        super.makeTooltips(tipList);
+        tipList.add(new CardPowerTip(new LaborStrike()));
+    }
 }
