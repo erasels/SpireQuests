@@ -14,9 +14,9 @@ import spireQuests.abstracts.AbstractSQCard;
 public class LaborStrike extends AbstractSQCard {
     public static final String ID = Anniv8Mod.makeID(LaborStrike.class.getSimpleName());
 
-    private static final int DAMAGE = 10;
+    private static final int DAMAGE = 9;
     private static final int UPGRADE_DAMAGE = 3;
-    private static final int MAGIC = 10;
+    private static final int MAGIC = 9;
     private static final int UPGRADE_MAGIC = 3;
 
     public LaborStrike() {
@@ -25,11 +25,6 @@ public class LaborStrike extends AbstractSQCard {
         this.baseMagicNumber = this.magicNumber = MAGIC;
         this.tags.add(CardTags.STRIKE);
         this.tags.add(CardTags.STARTER_STRIKE);
-    }
-
-    @Override
-    public void atTurnStart() {
-        super.atTurnStart();
     }
 
     @Override
