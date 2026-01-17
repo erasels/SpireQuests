@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import spireQuests.patches.QuestTriggers;
 
 @SpirePatch2(clz = DamageAction.class, method = "update")
 public class FatalPatch {
@@ -19,7 +20,7 @@ public class FatalPatch {
                 !__instance.target.hasPower("Minion")) {
             Object fatalSource = DamageModifierManager.BoundDamageInfoFields.instigatingObject.get(___info);
             if (fatalSource instanceof AbstractCard)
-                FatalStrikesQuest.FATAL_CARD.trigger((AbstractCard) fatalSource);
+                QuestTriggers.FATAL_CARD.trigger((AbstractCard) fatalSource);
         }
     }
 }

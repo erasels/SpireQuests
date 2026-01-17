@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
-import spireQuests.quests.Trigger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +18,13 @@ import static spireQuests.Anniv8Mod.makeID;
 public class FatalStrikesQuest extends AbstractQuest {
 
     public static final String id = makeID(FatalStrikesQuest.class.getSimpleName());
-    public static final Trigger<AbstractCard> FATAL_CARD = new Trigger<>();
     protected static final int FATAL_STRIKE_COUNT = 5;
 
 
     public FatalStrikesQuest() {
         super(QuestType.SHORT, QuestDifficulty.HARD);
 
-        new TriggerTracker<>(FATAL_CARD, FATAL_STRIKE_COUNT)
+        new TriggerTracker<>(QuestTriggers.FATAL_CARD, FATAL_STRIKE_COUNT)
                 .triggerCondition((card) -> card.hasTag(AbstractCard.CardTags.STRIKE) && AbstractDungeon.actNum == 2)
                 .setFailureTrigger(QuestTriggers.ACT_CHANGE, (act) -> act > 2)
                 .add(this);
