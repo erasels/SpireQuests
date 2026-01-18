@@ -58,6 +58,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static spireQuests.quests.soytheproton.MothQuest.FLY_SFX;
+import static spireQuests.quests.soytheproton.MothQuest.MOTH_SFX;
+
 @SuppressWarnings({"unused"})
 @SpireInitializer
 public class Anniv8Mod implements
@@ -341,10 +344,6 @@ public class Anniv8Mod implements
             }
         }
     }
-
-    // Audio Keys idk.
-    public static final String FLY_SFX = makeID("FlySfx");
-    public static final String MOTH_SFX = makeID("MothSfx");
 
     @Override
     public void receiveAddAudio() {

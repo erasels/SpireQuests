@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CtBehavior;
-import spireQuests.Anniv8Mod;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.soytheproton.MothQuest;
@@ -24,6 +23,7 @@ import spireQuests.quests.soytheproton.vfx.DelayedFlightEffect;
 import spireQuests.quests.soytheproton.vfx.ExclamationParticle;
 
 import static spireQuests.Anniv8Mod.makeContributionPath;
+import static spireQuests.quests.soytheproton.MothQuest.MOTH_SFX;
 
 public class MothFriendPatch {
 
@@ -106,7 +106,7 @@ public class MothFriendPatch {
             if(!hasMoth(false) || isFlyingMoth)
                 return;
             if(info.owner != null && info.type != DamageInfo.DamageType.THORNS && damageAmount > 0) {
-                CardCrawlGame.sound.play(Anniv8Mod.MOTH_SFX,0.1F);
+                CardCrawlGame.sound.play(MOTH_SFX,0.1F);
                 AbstractDungeon.effectList.add(new ExclamationParticle(drawX,drawY + 50.0F * Settings.scale));
                 for(AbstractQuest q : QuestManager.quests()) {
                     if(q instanceof MothQuest && q.isFailed()) AbstractDungeon.effectList.add(new DelayedFlightEffect());

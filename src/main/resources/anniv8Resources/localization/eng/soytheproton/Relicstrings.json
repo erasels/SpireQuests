@@ -8,9 +8,9 @@
   },
   "${ModID}:IoMoth": {
     "NAME": "Runic Moth",
-    "FLAVOR": "An ancient charm depicting a Lepidoptera.",
+    "FLAVOR": "An ancient charm depicting a lepidopteran.",
     "DESCRIPTIONS": [
-      "After taking unblocked attack damage, draw 1 additional card at the start of your turn."
+      "After taking unblocked attack damage this combat, draw 1 additional card at the start of your turn."
     ]
   }
 }

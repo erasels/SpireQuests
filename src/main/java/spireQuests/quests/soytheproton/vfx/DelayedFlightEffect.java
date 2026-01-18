@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import spireQuests.Anniv8Mod;
 import spireQuests.quests.soytheproton.patches.MothFriendPatch;
+
+import static spireQuests.quests.soytheproton.MothQuest.FLY_SFX;
 
 public class DelayedFlightEffect extends AbstractGameEffect {
     private static final float DURATION = 5.0f;
@@ -24,7 +25,7 @@ public class DelayedFlightEffect extends AbstractGameEffect {
         duration -= Gdx.graphics.getDeltaTime();
         if (duration < DURATION - 1.0F) {
             if(!laugh) {
-                CardCrawlGame.sound.play(Anniv8Mod.FLY_SFX,0.1F);
+                CardCrawlGame.sound.play(FLY_SFX,0.1F);
                 laugh = true;
             }
             if(!MothFriendPatch.flyingMoth)MothFriendPatch.flyingMoth = true;

@@ -9,7 +9,12 @@ import spireQuests.quests.soytheproton.relics.IoMoth;
 
 import java.util.List;
 
+import static spireQuests.Anniv8Mod.makeID;
+
 public class MothQuest extends AbstractQuest {
+    public static final String FLY_SFX = makeID("FlySfx");
+    public static final String MOTH_SFX = makeID("MothSfx");
+
     public MothQuest() {
         super(QuestType.SHORT, QuestDifficulty.HARD);
 
