@@ -73,5 +73,15 @@
     "TRACKER_TEXT": [
       "카드 없이 종료한 턴"
     ]
+  },
+  "${ModID}:TripleDipperQuest": {
+    "TITLE": "카드 삼합",
+    "DESCRIPTION": "#y공격 #y카드 #b3 장, #y스킬 #y카드 #b3 장, #y파워 #y카드 #b3 장을 덱에 추가하십시오.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "공격 카드",
+      "스킬 카드",
+      "파워 카드"
+    ]
   }
 }

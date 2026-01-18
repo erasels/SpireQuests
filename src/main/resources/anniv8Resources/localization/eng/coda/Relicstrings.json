@@ -40,7 +40,7 @@
     "NAME": "Spearmint Pellets",
     "FLAVOR": "I don't think you're supposed to eat those, but whose going to stop you.",
     "DESCRIPTIONS": [
-      "Whenever you play a #yPower, #yAttack, and #ySkill in the same turn, gain #y1 Energy."
+      "Whenever you play a #yPower, #yAttack, and #ySkill in the same turn, gain [E] ."
     ]
   }
 }
