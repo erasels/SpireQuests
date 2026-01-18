@@ -17,6 +17,7 @@ public class StarOfExtinction extends AbstractSQCard {
         super(ID, "darkglade", 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
         exhaust = true;
+        isMultiDamage = true;
     }
 
     @Override
