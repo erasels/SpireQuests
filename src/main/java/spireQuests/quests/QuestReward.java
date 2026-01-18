@@ -467,7 +467,7 @@ public abstract class QuestReward {
     }
 
     public static Vector2f getMousePositionForTip(){
-        if ((float) InputHelper.mX < 1400.0F * Settings.scale) {
+        if ((float) InputHelper.mX < 1400.0F * Settings.xScale) {
             return new Vector2f((float) InputHelper.mX + 60.0F * Settings.xScale, (float) InputHelper.mY - 50.0F * Settings.yScale);
         } else {
             return new Vector2f((float) InputHelper.mX - 350.0F * Settings.xScale, (float) InputHelper.mY - 50.0F * Settings.yScale);

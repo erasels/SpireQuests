@@ -43,13 +43,13 @@ public class ImageHelper {
     }
 
     public static void tipBoxAtMousePos(String name, String description) {
-        if ((float) InputHelper.mX < 1400.0F * Settings.scale) {
+        if ((float) InputHelper.mX < 1400.0F * Settings.xScale) {
             TipHelper.renderGenericTip(
-                    (float) InputHelper.mX + 60.0F * Settings.scale, (float) InputHelper.mY - 50.0F * Settings.scale,
+                    (float) InputHelper.mX + 60.0F * Settings.xScale, (float) InputHelper.mY - 50.0F * Settings.yScale,
                     name,
                     description);
         } else {
-            TipHelper.renderGenericTip((float) InputHelper.mX - 350.0F * Settings.scale, (float) InputHelper.mY - 50.0F * Settings.scale,
+            TipHelper.renderGenericTip((float) InputHelper.mX - 350.0F * Settings.xScale, (float) InputHelper.mY - 50.0F * Settings.yScale,
                     name,
                     description);
         }
