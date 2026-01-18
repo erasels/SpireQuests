@@ -28,6 +28,7 @@ public class LuckyNumberQuest extends AbstractQuest {
         questboundRelics = new ArrayList<>();
         questboundRelics.add(boot);
         returnQuestboundRelics = false;
+        needHoverTip = true;
     }
 
     @Override

@@ -32,6 +32,8 @@ public class CharityQuest extends AbstractQuest implements CustomSavable<Integer
                 return super.isComplete() || adp().hasRelic(Ectoplasm.ID);
             }
         }.add(this);
+
+        needHoverTip = true;
     }
 
     @Override

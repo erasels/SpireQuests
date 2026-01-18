@@ -82,7 +82,7 @@ public class QuestGenerator {
         return difficulties;
     }
 
-    private static AbstractQuest rollQuestForDifficulty(AbstractQuest.QuestDifficulty difficulty, Set<String> seenQuestIds, Random rng) {
+    public static AbstractQuest rollQuestForDifficulty(AbstractQuest.QuestDifficulty difficulty, Set<String> seenQuestIds, Random rng) {
         ArrayList<AbstractQuest> pool;
         if (difficulty != null) {
             pool = getQuestsByDifficulty(difficulty);

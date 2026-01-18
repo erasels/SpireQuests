@@ -6,7 +6,8 @@
       "",
       "Enable quests to have costs to pick up.",
       "Enable Master Deck visuals for Questbound cards.",
-      "Enable tooltips to view trophy status on the quest board."
+      "Enable tooltips to view trophy status on the quest board.",
+      "Always enable quest description tooltips in the questlog."
     ]
   },
   "${ModID}:QuestUI": {

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,14 +14,11 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
-
-import basemod.helpers.VfxBuilder.Interpolations;
+import spireQuests.Anniv8Mod;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.util.ImageHelper;
 import spireQuests.util.TexLoader;
-import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -217,7 +213,7 @@ public class QuestUI {
                 }
 
                 if (hb.hovered) {
-                    if (quest.needHoverTip && !complete && !failed) {
+                    if (quest.needHoverTip || Anniv8Mod.alwaysShowDescriptionEnabled() && !complete && !failed) {
                         PowerTip tooltip = quest.getHoverTooltip();
                         ImageHelper.tipBoxAtMousePos(tooltip.header, tooltip.body);
                     }

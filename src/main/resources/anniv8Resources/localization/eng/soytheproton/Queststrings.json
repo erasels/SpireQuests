@@ -44,5 +44,14 @@
     "TRACKER_TEXT": [
       "Combats completed in 4 turns"
     ]
+  },
+  "${ModID}:EntropicQuest": {
+    "TITLE": "Entropic Map",
+    "DESCRIPTION": "Complete all your other quests.",
+    "AUTHOR": "CrypticAurora",
+    "REWARD": "Start a random Easy, Normal, and Hard quest.",
+    "TRACKER_TEXT": [
+      "All other quests completed"
+    ]
   }
 }
