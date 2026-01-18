@@ -42,6 +42,8 @@ public class CharityQuest extends AbstractQuest implements CustomSavable<Integer
     @Override
     public void onComplete() {
         questRewards.clear();
+
+        if (maxHPGain <= 0) maxHPGain = 0;
         addReward(new QuestReward.MaxHPReward(maxHPGain));
     }
 
@@ -53,11 +55,14 @@ public class CharityQuest extends AbstractQuest implements CustomSavable<Integer
     @Override
     public boolean complete() {
 
-        if(!this.isCompleted()){
+        if(questConditionsAreFulfilled() && maxHPGain == 0){
             Object o = trackers.get(1);
 
             if(o instanceof ClericRewardTracker){
                 maxHPGain = ((ClericRewardTracker) o).localCount;
+                if (maxHPGain == 0){
+                    maxHPGain = -1;
+                }
             }else{
                 Anniv8Mod.logger.warn("Failed to detect ClericRewardTracker in the list of trackers. Please tell Ram to fix the code.");
             }

@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import spireQuests.Anniv8Mod;
@@ -119,16 +120,32 @@ public class QuestStatManager {
     }
 
     public static void markSeen(String questID) {
+        if (Settings.isDebug) {
+            logger.info(String.format("In debug mode: Not marking %s as seen", questID));
+            return;
+        }
         seenBuffer.add(questID);
     }
     public static void markTaken(String questID) {
+        if (Settings.isDebug) {
+            logger.info(String.format("In debug mode: Not marking %s as taken", questID));
+            return;
+        }
         takenBuffer.add(questID);
     }
     public static void markComplete(String questID) {
+        if (Settings.isDebug) {
+            logger.info(String.format("In debug mode: Not marking %s as complete", questID));
+            return;
+        }
         completedBuffer.add(questID);
         charBuffer.put(questID, AbstractDungeon.player.chosenClass.name());
     }
     public static void markFailed(String questID) {
+        if (Settings.isDebug) {
+            logger.info(String.format("In debug mode: Not marking %s as failed", questID));
+            return;
+        }
         failedBuffer.add(questID);
     }
     

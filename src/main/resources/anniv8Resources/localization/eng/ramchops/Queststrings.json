@@ -63,5 +63,13 @@
     "TRACKER_TEXT": [
       "Climb Floors"
     ]
+  },
+  "${ModID}:HashtagBlessedQuest": {
+    "TITLE": "#Blessed",
+    "DESCRIPTION": "At the start of each combat, a random, non-minion enemy will be blessed with a random buff. Defeat the Act 2 Boss.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "Defeat the Act 2 Boss"
+    ]
   }
 }

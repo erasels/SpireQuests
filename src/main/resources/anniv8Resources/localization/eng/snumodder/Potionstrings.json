@@ -1,0 +1,9 @@
+{
+  "${ModID}:TickAndTockPotion": {
+    "NAME": "Tick and Tock",
+    "DESCRIPTIONS": [
+      "Draw #b",
+      " cards. Gain a #yWeak #yPotion."
+    ]
+  }
+}

@@ -22,7 +22,8 @@
     "dayvig",
     "Lua Viper",
     "indi",
-    "keurodz"
+    "keurodz",
+    "Quorry"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
