@@ -15,5 +15,13 @@
       "Boots booted",
       "Combats left"
     ]
+  },
+  "${ModID}:SpeedrunQuest": {
+    "TITLE": "Speedrun!",
+    "DESCRIPTION": "Finish #b3 combats within #b4 turns.",
+    "AUTHOR": "SoytheProton",
+    "TRACKER_TEXT": [
+      "Combats completed in 4 turns"
+    ]
   }
 }
