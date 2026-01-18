@@ -40,7 +40,7 @@ public class ShopPatch {
         @SpirePostfixPatch
         public static void PlayerEntry() {
             if (ActUtil.getRealActNum() >= 4) return;
-            QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 300.0F * Settings.xScale, AbstractDungeon.floorY + 109.0F * Settings.yScale, false);
+            QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 350.0F * Settings.xScale, AbstractDungeon.floorY + 10.0F * Settings.yScale, false);
         }
     }
 }

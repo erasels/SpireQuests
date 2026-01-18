@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import spireQuests.Anniv8Mod;
 import spireQuests.cardmods.QuestboundMod;
 import spireQuests.patches.QuestRunHistoryPatch;
-import spireQuests.patches.QuestTriggers;
 import spireQuests.patches.QuestboundRelicsPatch;
 import spireQuests.questStats.QuestStatManager;
 import spireQuests.ui.QuestBoardScreen;
@@ -235,7 +234,6 @@ public class QuestManager {
         quest.obtainRewards();
         List<List<String>> questCompletionPerFloor = QuestRunHistoryPatch.questCompletionPerFloorLog.get(AbstractDungeon.player);
         questCompletionPerFloor.get(questCompletionPerFloor.size() - 1).add(quest.id);
-        QuestTriggers.QUEST_COMPLETE.trigger();
     }
 
     public static void failQuest(AbstractQuest quest) {

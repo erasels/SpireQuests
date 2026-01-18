@@ -78,7 +78,7 @@ public class NeowPatch {
         @SpirePostfixPatch
         public static void constructorPatch() {
             if (AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.room instanceof NeowRoom) {
-                QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 425.0F * Settings.xScale, AbstractDungeon.floorY + 189.0F * Settings.yScale, true);
+                QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 420.0F * Settings.xScale, AbstractDungeon.floorY + 10.0F * Settings.yScale, true);
             }
         }
     }
@@ -89,7 +89,7 @@ public class NeowPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static void actLikeItExordiumPatch() {
             if (AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.room instanceof NeowRoom) {
-                QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 425.0F * Settings.xScale, AbstractDungeon.floorY + 189.0F * Settings.yScale, true);
+                QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 420.0F * Settings.xScale, AbstractDungeon.floorY + 10.0F * Settings.yScale, true);
             }
         }
 
@@ -119,7 +119,7 @@ public class NeowPatch {
                 }
 
                 if(normalNeow || customEvent) {
-                    QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 425.0F * Settings.xScale, AbstractDungeon.floorY + 189.0F * Settings.yScale, true);
+                    QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 420.0F * Settings.xScale, AbstractDungeon.floorY + 10.0F * Settings.yScale, true);
                 }
             }
         }

@@ -39,12 +39,6 @@ public class LessonOfTheAsceticQuest extends AbstractQuest {
     }
 
     @Override
-    public void makeTooltips(List<PowerTip> tipList) {
-        super.makeTooltips(tipList);
-        tipList.add(new CardPowerTip(new ClumsyBlasphemy()));
-    }
-
-    @Override
     public boolean canSpawn() {
         Random rng = new Random(Settings.seed + (1914L * (AbstractDungeon.floorNum + 1)));
         boolean weightedSpawnCheck = rng.randomBoolean(LessonQuestUtil.getLessonSpawnChance());

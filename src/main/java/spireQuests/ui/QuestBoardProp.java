@@ -57,13 +57,23 @@ public class QuestBoardProp {
 
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE);
-        sb.draw(sprite, drawX, drawY, sprite.getWidth() * Settings.xScale, sprite.getHeight() * Settings.yScale);
-        if (this.hb.hovered) {
+
+        // Reduce larger image down to 350px width and preserve aspect ratio
+        float targetWidth = 350f * Settings.xScale;
+        float scale = targetWidth / (sprite.getWidth() * Settings.xScale);
+
+        float w = sprite.getWidth()  * Settings.xScale * scale;
+        float h = sprite.getHeight() * Settings.yScale * scale;
+
+        sb.draw(sprite, drawX, drawY, w, h);
+
+        if (hb.hovered) {
             sb.setBlendFunction(770, 1);
             sb.setColor(Color.GOLD);
-            sb.draw(sprite, drawX, drawY, sprite.getWidth() * Settings.xScale, sprite.getHeight() * Settings.yScale);
+            sb.draw(sprite, drawX, drawY, w, h);
             sb.setBlendFunction(770, 771);
         }
-        this.hb.render(sb);
+
+        hb.render(sb);
     }
 }

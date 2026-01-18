@@ -33,11 +33,4 @@ public class GaronaHalforcenQuest extends AbstractQuest {
     public boolean canSpawn() {
         return AbstractDungeon.floorNum < 43;
     }
-
-    @Override
-    public void makeTooltips(List<PowerTip> tipList) {
-        super.makeTooltips(tipList);
-        tipList.add(new CardPowerTip(new KingLlane()));
-        tipList.add(new PowerTip(Anniv8Mod.keywords.get("Questbound").PROPER_NAME, Anniv8Mod.keywords.get("Questbound").DESCRIPTION));
-    }
 }

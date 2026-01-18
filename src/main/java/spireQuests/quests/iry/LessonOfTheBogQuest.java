@@ -42,12 +42,6 @@ public class LessonOfTheBogQuest extends AbstractQuest {
     }
 
     @Override
-    public void makeTooltips(List<PowerTip> tipList) {
-        super.makeTooltips(tipList);
-        tipList.add(new CardPowerTip(new ClumsyNightmare()));
-    }
-
-    @Override
     public boolean canSpawn() {
         Random rng = new Random(Settings.seed + (1912L * (AbstractDungeon.floorNum + 1)));
         boolean weightedSpawnCheck = rng.randomBoolean(LessonQuestUtil.getLessonSpawnChance());
