@@ -34,7 +34,7 @@
       "Fish": "[${ModID}:FishIcon] 물고기",
       "Fish_Description": "턴 시작 후 뽑은 카드가 뒤집혀 나옵니다.",
       "Flint": "[${ModID}:FlintIcon] 부싯돌",
-      "Flint_Description": "유물의 무작위 절반을 비활성화합니다.",
+      "Flint_Description": "매 턴 처음으로 사용하는 #y공격 카드가 피해를 절반만 줍니다.",
       "Goad": "[${ModID}:GoadIcon] 자극",
       "Goad_Description": "모든 일반 카드가 디버프됩니다.",
       "Head": "[${ModID}:HeadIcon] 머리",
