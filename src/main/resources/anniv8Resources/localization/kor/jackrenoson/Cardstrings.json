@@ -1,0 +1,6 @@
+{
+  "${ModID}:SetSail": {
+    "NAME": "출항",
+    "DESCRIPTION": "보존. NL 방어도를 !B! 얻습니다. NL 소멸."
+  }
+}
