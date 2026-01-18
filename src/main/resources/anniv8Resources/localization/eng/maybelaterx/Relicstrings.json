@@ -1,12 +1,12 @@
 {
-  "${ModID}:BalancingStonesRelic": {
+  "${ModID}:BalancingStones": {
     "NAME": "Balancing Stones",
     "FLAVOR": "A pile of stones stacked with expert precision.",
     "DESCRIPTIONS": [
       "Whenever you kill a monster with exact damage, draw #b1 card."
     ]
   },
-  "${ModID}:TargetDummyRelic": {
+  "${ModID}:TargetDummy": {
     "NAME": "Target Dummy",
     "FLAVOR": "It's incredibly worn.",
     "DESCRIPTIONS": [

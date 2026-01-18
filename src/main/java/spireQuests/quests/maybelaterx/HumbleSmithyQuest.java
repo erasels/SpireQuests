@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
-import spireQuests.quests.maybelaterx.relics.TargetDummyRelic;
+import spireQuests.quests.maybelaterx.relics.TargetDummy;
 
 
 public class HumbleSmithyQuest extends AbstractQuest {
@@ -15,7 +15,7 @@ public class HumbleSmithyQuest extends AbstractQuest {
         new TriggerTracker<>(QuestTriggers.UPGRADE_CARD_AT_CAMPFIRE, 3)
                 .triggerCondition(card -> card.rarity == AbstractCard.CardRarity.BASIC)
                 .add(this);
-        addReward(new QuestReward.RelicReward(new TargetDummyRelic()));
+        addReward(new QuestReward.RelicReward(new TargetDummy()));
     }
 
     @Override

@@ -7,10 +7,10 @@ import spireQuests.abstracts.AbstractSQRelic;
 
 import static spireQuests.Anniv8Mod.makeID;
 
-public class BalancingStonesRelic extends AbstractSQRelic {
+public class BalancingStones extends AbstractSQRelic {
 
-    public static final String ID = makeID(BalancingStonesRelic.class.getSimpleName());
-    public BalancingStonesRelic() {
+    public static final String ID = makeID(BalancingStones.class.getSimpleName());
+    public BalancingStones() {
         super(ID, "maybelaterx", RelicTier.SPECIAL, LandingSound.MAGICAL);
     }
 

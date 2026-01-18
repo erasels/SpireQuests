@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import spireQuests.patches.QuestTriggers;
-import spireQuests.quests.maybelaterx.relics.BalancingStonesRelic;
+import spireQuests.quests.maybelaterx.relics.BalancingStones;
 
 @SpirePatch(
         clz = AbstractMonster.class,
@@ -18,7 +18,7 @@ public class PerfectKillPatch {
         if (__instance.currentHealth == 0) {
             QuestTriggers.EXACT_KILL.trigger();
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
-                if (relic instanceof BalancingStonesRelic) {
+                if (relic instanceof BalancingStones) {
                     relic.onTrigger();
                 }
             }

@@ -3,8 +3,6 @@ package spireQuests.quests.maybelaterx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
-import spireQuests.quests.QuestReward;
-import spireQuests.quests.maybelaterx.relics.BalancingStonesRelic;
 
 public class JackOfAllTradesQuest extends AbstractQuest {
 

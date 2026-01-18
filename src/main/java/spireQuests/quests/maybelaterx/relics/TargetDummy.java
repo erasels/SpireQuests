@@ -8,11 +8,11 @@ import spireQuests.cardmods.DamageAndBlockMod;
 
 import static spireQuests.Anniv8Mod.makeID;
 
-public class TargetDummyRelic extends AbstractSQRelic{
+public class TargetDummy extends AbstractSQRelic{
 
-    private static final String ID = makeID(TargetDummyRelic.class.getSimpleName());
+    private static final String ID = makeID(TargetDummy.class.getSimpleName());
 
-    public TargetDummyRelic() {
+    public TargetDummy() {
         super(ID, "maybelaterx", RelicTier.SPECIAL, LandingSound.HEAVY);
     }
 
