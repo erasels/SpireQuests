@@ -12,5 +12,12 @@
     "DESCRIPTIONS": [
       "Upon pickup, raise your Max HP by #b%s."
     ]
+  },
+  "${ModID}:MahjongRelic": {
+    "NAME": "Mahjong Tile",
+    "FLAVOR": "It makes a satisfying clack when you place it down.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, add one of three random 0-cost #yBlessings with #yRetain to your hand. The #yBlessings either prevent the next time you would take damage, grant [E] and card draw, or apply #yVulnerable to all enemies."
+    ]
   }
 }

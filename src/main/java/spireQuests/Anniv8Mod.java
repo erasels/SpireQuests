@@ -39,6 +39,8 @@ import spireQuests.quests.coda.monsters.CharadeMonster;
 import spireQuests.quests.coda.potions.NuclearJuicePotion;
 import spireQuests.quests.enbeon.monsters.WatcherEliteMonster;
 import spireQuests.quests.gk.monsters.ICEliteMonster;
+import spireQuests.quests.indi_keurodz.BalatroQuest;
+import spireQuests.quests.indi_keurodz.modifiers.RentalModifier;
 import spireQuests.quests.modargo.RealityTwistQuest;
 import spireQuests.quests.modargo.monsters.DefectEliteMonster;
 import spireQuests.quests.ramchops.EvilSentryQuest;
@@ -335,7 +337,7 @@ public class Anniv8Mod implements
         }
 
         for (Keyword keyword : keywords) {
-            BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION, keyword.COLOR);
             if (!keyword.ID.isEmpty()) {
                 Anniv8Mod.keywords.put(keyword.ID, keyword);
             }
@@ -350,6 +352,8 @@ public class Anniv8Mod implements
     public void receiveAddAudio() {
         BaseMod.addAudio(FLY_SFX,modID + "Resources/audio/soytheproton/strawberry_flyaway.wav");
         BaseMod.addAudio(MOTH_SFX,modID + "Resources/audio/soytheproton/strawberry_laugh.wav");
+        BaseMod.addAudio(RentalModifier.ID,
+                Anniv8Mod.modID + "Resources/images/indi_keurodz/coin1.ogg");
     }
 
     @Override
@@ -422,6 +426,7 @@ public class Anniv8Mod implements
 
     public static void addSaveFields() {
         RealityTwistQuest.addSaveFields();
+        BalatroQuest.addSaveFields();
     }
 
     @Override
@@ -455,7 +460,7 @@ public class Anniv8Mod implements
 
     @Override
     public void receivePostDeath() {
-        QuestManager.failAllActiveQuests();
+        QuestManager.failAllIncompleteActiveQuests();
     }
 
 

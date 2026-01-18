@@ -20,7 +20,10 @@
     "Enbeon",
     "MaybeLaterx",
     "dayvig",
-    "Lua Viper"
+    "Lua Viper",
+    "indi",
+    "keurodz",
+    "Quorry"
   ],
   "description": "${project.description}",
   "version": "${project.version}",

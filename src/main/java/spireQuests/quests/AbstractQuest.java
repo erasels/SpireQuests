@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import javassist.CtBehavior;
 import spireQuests.Anniv8Mod;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
+import spireQuests.questStats.QuestStatManager;
 import spireQuests.questStats.StatRewardBox;
 import spireQuests.util.QuestStrings;
 import spireQuests.util.QuestStringsUtils;
@@ -323,6 +324,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         triggers.clear();
         trackers.add(new QuestCompleteTracker());
         completeSFX();
+        QuestStatManager.markComplete(this.id);
         return true;
     }
 
@@ -358,6 +360,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         trackers.clear();
         triggers.clear();
         trackers.add(new QuestFailedTracker());
+        QuestStatManager.markFailed(this.id);
     }
 
     public void forceComplete() {
