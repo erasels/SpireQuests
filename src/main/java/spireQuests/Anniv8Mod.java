@@ -450,7 +450,7 @@ public class Anniv8Mod implements
 
     @Override
     public void receivePostDeath() {
-        QuestManager.failAllActiveQuests();
+        QuestManager.failAllIncompleteActiveQuests();
     }
 
 

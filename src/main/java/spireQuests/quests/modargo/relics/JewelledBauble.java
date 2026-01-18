@@ -25,6 +25,7 @@ public class JewelledBauble extends AbstractSQRelic {
         this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
         List<AbstractCard> uncommons = AbstractDungeon.srcUncommonCardPool.group.stream()
                 .filter(r -> r.rarity == AbstractCard.CardRarity.UNCOMMON)
+                .filter(r -> !r.hasTag(AbstractCard.CardTags.HEALING))
                 .map(AbstractCard::makeCopy)
                 .collect(Collectors.toList());
         if (!uncommons.isEmpty()) {

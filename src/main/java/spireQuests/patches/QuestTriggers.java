@@ -75,6 +75,7 @@ public class QuestTriggers {
     public static final Trigger<AbstractRelic> OBTAIN_RELIC = new Trigger<>(); //NOTE: This is triggered by both obtain() and instantObtain().
     public static final Trigger<Void> EXACT_KILL = new Trigger<>();
     public static final Trigger<AbstractCard> UPGRADE_CARD_AT_CAMPFIRE = new Trigger<>();
+    public static final Trigger<AbstractCard> FATAL_CARD = new Trigger<>(); //NOTE: This is in the DamageAction and only triggers if the source is a card.
 
     public static final Trigger<Void> NO_STARTER_STRIKES = new Trigger<>();//
     public static final Trigger<AbstractMonster> ENEMY_DIES_DELAYED_CHECK = new Trigger<>();    //NOTE: This does not trigger until after the action queue has processed.

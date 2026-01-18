@@ -73,5 +73,15 @@
     "TRACKER_TEXT": [
       "Turns with no cards"
     ]
+  },
+  "${ModID}:TripleDipperQuest": {
+    "TITLE": "Triple Dipper",
+    "DESCRIPTION": "Add #b3 #yAttack, #b3 #ySkill and #b3 #yPower cards to your deck.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Attacks added",
+      "Skills added",
+      "Powers added"
+    ]
   }
 }

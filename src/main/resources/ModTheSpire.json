@@ -20,7 +20,8 @@
     "Enbeon",
     "MaybeLaterx",
     "dayvig",
-    "Lua Viper"
+    "Lua Viper",
+    "Quorry"
   ],
   "description": "${project.description}",
   "version": "${project.version}",

@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "Reduce HP loss from #yJ.A.X. to #b1. At the end of combat, lose #b6 HP if you didn't play #yJ.A.X."
     ]
+  },
+  "${ModID}:Binder": {
+    "NAME": "Three Ring Binder",
+    "FLAVOR": "The perfect tool for keeping everything exactly as it should be.",
+    "DESCRIPTIONS": [
+      "On pickup, #yUpgrade #b2 random cards. If your deck has more than #b25 cards, the Merchant's card removal service always costs #b25 #yGold."
+    ]
   }
 }
