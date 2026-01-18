@@ -15,5 +15,29 @@
     "TRACKER_TEXT": [
       "연속으로 전투에서 복용한 J.A.X."
     ]
+  },
+  "${ModID}:NeatQuest": {
+    "TITLE": "체계화된 덱",
+    "DESCRIPTION": "덱에 정확히 #b10 장의 공격 카드, #b10 장의 스킬 카드, #b5 장의 파워 카드가 있도록 만드십시오.",
+    "AUTHOR": "Dayvig",
+    "TRACKER_TEXT": [
+      "공격 10, 스킬 10, 파워 5"
+    ]
+  },
+  "${ModID}:ZeroCost": {
+    "TITLE": "에너지가 필요한가?",
+    "DESCRIPTION": "비용이 #b0 인 카드 #b3 장을 덱에 추가하십시오.",
+    "AUTHOR": "Dayvig",
+    "TRACKER_TEXT": [
+      "0코스트 카드"
+    ]
+  },
+  "${ModID}:BigCost": {
+    "TITLE": "거물",
+    "DESCRIPTION": "비용이 #2 이상인 카드 #b3 장을 덱에 추가하십시오.",
+    "AUTHOR": "Dayvig",
+    "TRACKER_TEXT": [
+      "2+코스트 카드"
+    ]
   }
 }
