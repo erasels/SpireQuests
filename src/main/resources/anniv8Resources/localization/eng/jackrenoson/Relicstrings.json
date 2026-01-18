@@ -10,7 +10,7 @@
     "NAME": "Whelp",
     "FLAVOR": "More gold = More power!",
     "DESCRIPTIONS": [
-      "Whenever you draw a #yStatus or #yCurse card, deal #b1 damage to all enemies. Deal #b1 more for every 100 gold you have."
+      "Whenever you draw a #yStatus or #yCurse card, deal #b1 damage to all enemies. Deal #b1 more for every #b100 gold you have."
     ]
   }
 }

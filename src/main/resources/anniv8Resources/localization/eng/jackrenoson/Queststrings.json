@@ -1,9 +1,9 @@
 {
   "${ModID}:HoardQuest": {
     "TITLE": "Amass a Hoard",
-    "DESCRIPTION": "Gather gold, so you have a hoard of 500 gold or more!",
+    "DESCRIPTION": "Gather gold, so you have a hoard of #b500 gold or more!",
     "AUTHOR": "JackRenoson",
-    "TRACKER_TEXT": ["Have 500 gold."]
+    "TRACKER_TEXT": ["Have 500 gold"]
   },
   "${ModID}:RainbowQuest": {
     "TITLE": "Chase a Rainbow",
@@ -33,9 +33,9 @@
     "DESCRIPTION": "You find a broken Boat. All it needs to work again is an #yAnchor, #yHorn #yCleat, and #yCaptains #yWheel. There are some markings on a map where you might find some, but they'll give less #yBlock until you gather them all.",
     "AUTHOR": "JackRenoson",
     "TRACKER_TEXT": [
-      "Find an Anchor.",
-      "Find a Horn Cleat.",
-      "Find a Captains Wheel."
+      "Find an Anchor",
+      "Find a Horn Cleat",
+      "Find a Captains Wheel"
     ]
   }
 }
