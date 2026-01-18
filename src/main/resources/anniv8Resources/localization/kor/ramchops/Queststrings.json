@@ -63,5 +63,13 @@
     "TRACKER_TEXT": [
       "등반한 층수"
     ]
+  },
+  "${ModID}:HashtagBlessedQuest": {
+    "TITLE": "#축복받음",
+    "DESCRIPTION": "전투 시작 시, 하수인이 아닌 무작위 적이 무작위 이로운 효과를 얻습니다. 2막 보스를 처치하십시오.",
+    "AUTHOR": "RamChops Games",
+    "TRACKER_TEXT": [
+      "2막 보스 처치"
+    ]
   }
 }

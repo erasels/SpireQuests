@@ -51,5 +51,21 @@
       "(이 카드 텍스트는 UPDATE BODY TEXT의 후원으로 제작되었습니다.)",
       "(이 카드 텍스트는 투사의 후원으로 제작되었습니다. 나는 강한 도전자를 기다리고 있다. 최선을 다해 내게 도전해라, 약골들아!)"
     ]
+  },
+
+  "${ModID}:BlessingHeaven": {
+    "NAME": "천화",
+    "DESCRIPTION": "보존. NL 다음에 체력을 잃는 것을 막아줍니다. 소멸.",
+    "UPGRADE_DESCRIPTION": "보존. NL 다음 !M! 번 체력을 잃는 것을 막아줍니다. 소멸."
+  },
+
+  "${ModID}:BlessingEarth": {
+    "NAME": "지화",
+    "DESCRIPTION": "보존. NL [E] 를 얻습니다. NL 카드를 !M! 장 뽑습니다. NL 소멸."
+  },
+
+  "${ModID}:BlessingMan": {
+    "NAME": "인화",
+    "DESCRIPTION": "보존. NL 적 전체에게 취약을 1 만큼 !M! 번 부여합니다. 소멸."
   }
 }
