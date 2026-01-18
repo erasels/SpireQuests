@@ -1,0 +1,10 @@
+{
+  "${ModID}:GoldStakeRelic": {
+    "NAME": "골드 스테이크",
+    "FLAVOR": "짐보가 지켜보고 있습니다.",
+    "DESCRIPTIONS": [
+      "카드 보상이 #y${ModID}:이터널, #y${ModID}:부패, #y${ModID}:렌탈 을 포함할 수 있습니다.",
+      "카드 보상이 #y${ModID}:이터널, #y${ModID}:부패, #y${ModID}:렌탈 을 포함할 수 있습니다. NL 또한 #y${ModID}:포일, #y${ModID}:홀로그램, #y${ModID}:폴리크롬, #y${ModID}:네거티브 를 포함할 수 있습니다."
+    ]
+  }
+}

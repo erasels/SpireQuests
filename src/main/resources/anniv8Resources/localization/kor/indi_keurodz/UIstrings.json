@@ -1,0 +1,77 @@
+{
+  "${ModID}:DebuffedBalatro": {
+    "TEXT": [
+      "${ModID}:디버프됨",
+      "%s NL ${ModID}:디버프됨."
+    ]
+  },
+  "${ModID}:BalatroEditions": {
+    "TEXT": [
+      "에디션",
+      "#g포일 - 매 전투 처음으로 사용할 때 #y골드 를 #b50 얻습니다. NL #g홀로그램 - 이 카드를 사용하면, 임시 #y힘 을 #b10 얻습니다. NL #g폴리크롬 - #b50% 확률로 한번 더 사용됩니다. NL #g네거티브 - 이 카드를 뽑으면, 카드를 1 장 뽑습니다. "
+    ]
+  },
+  "${ModID}:BalatroQuestCombatReward": {
+    "TEXT": [
+      "카드 3 장에 에디션 부여",
+      "에디션을 부여할 카드 3 장을 선택하십시오"
+    ]
+  },
+  "${ModID}:RentalShop": {
+    "TEXT": [
+      "렌탈 카드 반납 서비스",
+      "원하는 만큼 #y렌탈 카드를 상인에게 반납하고 덱에서 제거하십시오."
+    ]
+  },
+  "${ModID}:BalatroBlinds": {
+    "TEXT_DICT": {
+      "Arm": "[${ModID}:ArmIcon] 팔",
+      "Arm_Description": "처음으로 사용하는 강화된 카드를 영구적으로 미강화 상태로 바꿉니다.",
+      "Club": "[${ModID}:ClubIcon] 클럽",
+      "Club_Description": "모든 시작 카드가 디버프됩니다.",
+      "Eye": "[${ModID}:EyeIcon] 눈",
+      "Eye_Description": "같은 카드 종류를 두 번 연속 사용할 때마다 체력을 3 잃습니다.",
+      "Fish": "[${ModID}:FishIcon] 물고기",
+      "Fish_Description": "턴 시작 후 뽑은 카드가 뒤집혀 나옵니다.",
+      "Flint": "[${ModID}:FlintIcon] 부싯돌",
+      "Flint_Description": "유물의 무작위 절반을 비활성화합니다.",
+      "Goad": "[${ModID}:GoadIcon] 자극",
+      "Goad_Description": "모든 일반 카드가 디버프됩니다.",
+      "Head": "[${ModID}:HeadIcon] 머리",
+      "Head_Description": "모든 특별 카드가 디버프됩니다.",
+      "Hook": "[${ModID}:HookIcon] 갈고리",
+      "Hook_Description": "카드를 사용할 때마다, 카드를 2 장 버리고 그만큼 뽑습니다.",
+      "House": "[${ModID}:HouseIcon] 집",
+      "House_Description": "첫 손패가 뒤집혀 나옵니다.",
+      "Manacle": "[${ModID}:ManacleIcon] 수갑",
+      "Manacle_Description": "매 턴 시작 시 카드를 1 장 덜 뽑습니다.",
+      "Mark": "[${ModID}:MarkIcon] 가면",
+      "Mark_Description": "모든 파워 카드가 뒤집혀 나옵니다.",
+      "Mouth": "[${ModID}:MouthIcon] 입",
+      "Mouth_Description": "매 턴 처음으로 사용한 카드와 다른 종류의 카드를 사용할 때마다 체력을 3 잃습니다.",
+      "Needle": "[${ModID}:NeedleIcon] 바늘",
+      "Needle_Description": "적들의 체력이 절반이 됩니다. 턴 시작 시 카드를 5 장 더 뽑고 [E] 를 3 더 얻습니다. 턴 종료 시 체력을 10 잃습니다.",
+      "Ox": "[${ModID}:OxIcon] 황소",
+      "Ox_Description": "가장 많이 사용한 카드를 사용하면 골드가 0 이 됩니다.",
+      "Ox_Extra": "(가장 많이 사용한 카드: %s)",
+      "Pillar": "[${ModID}:PillarIcon] 기둥",
+      "Pillar_Description": "모든 카드가 사용한 후 디버프됩니다.",
+      "Plant": "[${ModID}:PlantIcon] 행성",
+      "Plant_Description": "모든 파워 카드가 디버프됩니다.",
+      "Psychic": "[${ModID}:PsychicIcon] 심령술사",
+      "Psychic_Description": "매 턴 남은 에너지마다 체력을 3 잃습니다.",
+      "Serpent": "[${ModID}:SerpentIcon] 뱀",
+      "Serpent_Description": "매 턴 시작 시 3 장만 뽑습니다. 카드를 사용할 때마다, 카드를 3 장 뽑습니다.",
+      "Tooth": "[${ModID}:ToothIcon] 이빨",
+      "Tooth_Description": "카드를 사용할 때마다 골드를 1 잃습니다.",
+      "Wall": "[${ModID}:WallIcon] 벽",
+      "Wall_Description": "적들의 체력이 10% 증가합니다.",
+      "Water": "[${ModID}:WaterIcon] 물",
+      "Water_Description": "턴 종료 시, 버린 카드 더미를 뽑을 카드 더미에 섞어 넣습니다.",
+      "Wheel": "[${ModID}:WheelIcon] 바퀴",
+      "Wheel_Description": "1/7 확률로 카드가 뒤집혀 나옵니다.",
+      "Window": "[${ModID}:WindowIcon] 창문",
+      "Window_Description": "모든 희귀 카드가 디버프됩니다."
+    }
+  }
+}

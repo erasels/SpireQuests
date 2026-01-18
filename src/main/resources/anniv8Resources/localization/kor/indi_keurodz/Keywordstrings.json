@@ -1,0 +1,67 @@
+[
+  {
+    "PROPER_NAME": "디버프",
+    "NAMES": [
+      "디버프",
+      "디버프됨"
+    ],
+    "DESCRIPTION": "이 카드를 사용한 후, 무작위로 #y약화, #y손상, #y취약 중 하나를 얻습니다.",
+    "COLOR": "ff6563"
+  },
+  {
+    "ID": "${ModID}:Foil",
+    "PROPER_NAME": "포일",
+    "NAMES": [
+      "포일"
+    ],
+    "DESCRIPTION": "매 전투 이 카드를 처음으로 사용할 때 골드를 #b50 얻습니다."
+  },
+  {
+    "ID": "${ModID}:Holo",
+    "PROPER_NAME": "홀로그램",
+    "NAMES": [
+      "홀로그램"
+    ],
+    "DESCRIPTION": "이 카드를 사용한 후, 임시 #y힘 을 #b10 얻습니다."
+  },
+  {
+    "ID": "${ModID}:Polychrome",
+    "PROPER_NAME": "폴리크롬",
+    "NAMES": [
+      "폴리크롬"
+    ],
+    "DESCRIPTION": "#b50% 확률로 한번 더 사용됩니다."
+  },
+  {
+    "ID": "${ModID}:Negative",
+    "PROPER_NAME": "네거티브",
+    "NAMES": [
+      "네거티브"
+    ],
+    "DESCRIPTION": "이 카드를 뽑으면, 카드를 1 장 뽑습니다."
+  },
+  {
+    "ID": "${ModID}:Perishable",
+    "PROPER_NAME": "부패",
+    "NAMES": [
+      "부패"
+    ],
+    "DESCRIPTION": "#b5 번의 전투 후 덱에서 제거됩니다."
+  },
+  {
+    "ID": "${ModID}:Eternal",
+    "PROPER_NAME": "이터널",
+    "NAMES": [
+      "이터널"
+    ],
+    "DESCRIPTION": "덱에서 제거될 수 #r없습니다."
+  },
+  {
+    "ID": "${ModID}:Rental",
+    "PROPER_NAME": "렌탈",
+    "NAMES": [
+      "렌탈"
+    ],
+    "DESCRIPTION": "전투 종료 시 #y골드 를 #b3 잃습니다. 상점에서 무료로 제거할 수 있습니다."
+  }
+]
