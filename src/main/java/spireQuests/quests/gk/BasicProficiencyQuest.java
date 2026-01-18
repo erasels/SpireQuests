@@ -28,7 +28,7 @@ import java.util.Map;
 
 import static spireQuests.util.CompatUtil.CARDISTRY_ID;
 import static spireQuests.util.CompatUtil.SNAPSHOT_ID;
-import static spireQuests.util.QuestStringsUtils.formatLanguage;
+import static spireQuests.util.LanguageUtils.formatLanguage;
 
 public class BasicProficiencyQuest extends AbstractQuest {
     public static final Color TITLE_PURPLE = new Color(183/255f, 95/255f, 245/255f, 1);

@@ -24,10 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import static com.megacrit.cardcrawl.core.Settings.GameLanguage.KOR;
 import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.Anniv8Mod.makeUIPath;
-import static spireQuests.util.QuestStringsUtils.formatLanguage;
+import static spireQuests.util.LanguageUtils.formatLanguage;
 
 public abstract class QuestReward {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestReward")).TEXT;

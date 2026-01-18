@@ -1,7 +1,7 @@
 {
   "${ModID}:HandicapQuest": {
     "TITLE": "핸디캡",
-    "DESCRIPTION": "이번 막의 엘리트 전투에서 첫 턴에 카드를 #b0 장 사용하십시오. NL ''나'의 시대가 온 거 같군, 공정한 시합을 위해 한 수를 양보하지!",
+    "DESCRIPTION": "이번 막의 엘리트 전투에서 첫 턴에 카드를 #b0 장 사용하십시오. NL 여기서 가장 강한 건 '나'이므로, 공정한 시합을 위해 한 수를 양보하지!",
     "AUTHOR": "Mangochicken",
     "TRACKER_TEXT": [
       "첫 턴 0장 사용 엘리트"

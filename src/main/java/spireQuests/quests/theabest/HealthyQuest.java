@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
+import spireQuests.quests.QuestReward;
 
 public class HealthyQuest extends AbstractQuest {
     private int fullHealth = 0;
@@ -24,20 +25,12 @@ public class HealthyQuest extends AbstractQuest {
             if (AbstractDungeon.player.currentHealth == AbstractDungeon.player.maxHealth)
                 fullHealth = 1;
         }).add(this);
+
+        addReward(new QuestReward.MaxHPReward(15));
     }
 
     @Override
     public boolean canSpawn() {
         return ((float) AbstractDungeon.player.currentHealth) / AbstractDungeon.player.maxHealth <= .5;
-    }
-
-    @Override
-    public void onComplete() {
-        AbstractDungeon.player.increaseMaxHp(15, false);
-    }
-
-    @Override
-    public String getRewardsText() {
-        return super.getRewardsText() + "Increase your Max HP by #b15.";
     }
 }

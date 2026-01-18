@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static spireQuests.Anniv8Mod.*;
-import static spireQuests.util.QuestStringsUtils.formatLanguage;
+import static spireQuests.util.LanguageUtils.formatLanguage;
 
 @SpirePatch(
         clz = AbstractPlayer.class,

@@ -37,8 +37,8 @@
     ]
   },
   "${ModID}:SpearmintPelletRelic": {
-    "NAME": "Spearmint Pellets",
-    "FLAVOR": "I don't think you're supposed to eat those, but whose going to stop you.",
+    "NAME": "스피어민트 알약",
+    "FLAVOR": "이걸 먹을거라 생각하지 않지만, 막지는 않을게요.",
     "DESCRIPTIONS": [
       "한 턴에 #y파워 카드, #y공격 카드, #y스킬 카드를 전부 사용할 경우 [E] 를 얻습니다."
     ]

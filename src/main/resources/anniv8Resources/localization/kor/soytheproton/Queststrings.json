@@ -5,6 +5,10 @@
     "AUTHOR": "SoytheProton",
     "TRACKER_TEXT": [
       "대단원의 막 사용"
+    ],
+    "EXTRA_TEXT": [
+      "재밌는 사실!",
+      "이 퀘스트를 위해 퀘스트 귀속 카드가 만들어졌습니다! (제가 만들었습니다)"
     ]
   },
   "${ModID}:LuckyNumberQuest": {
@@ -12,7 +16,33 @@
     "DESCRIPTION": "#y퀘스트 #y귀속 #y장화 를 얻습니다. NL 3번의 전투 안에 한 전투에서 #y장화 를 #b7 번 발동시키세요.",
     "AUTHOR": "SoytheProton",
     "TRACKER_TEXT": [
-      "장화 발동"
+      "장화 발동",
+      "남은 전투"
+    ],
+    "EXTRA_TEXT": [
+      "재밌는 사실!",
+      "이 퀘스트를 위해 퀘스트 귀속 유물이 만들어졌습니다! (그리고 제가 만들었습니다)"
+    ]
+  },
+  "${ModID}:MothQuest": {
+    "TITLE": "팔랑거리는 친구",
+    "DESCRIPTION": "연약한 친구가 당신을 따라옵니다. 이번 막에서 막히지 않은 공격 피해를 #b25 이하로 받으십시오.",
+    "AUTHOR": "CrypticAurora",
+    "TRACKER_TEXT": [
+      "막 완료",
+      "받은 막히지 않은 공격 피해"
+    ],
+    "EXTRA_TEXT": [
+      "재밌는 사실!",
+      "사운드 효과는 셀레스트에서 \"빌렸습니다\"."
+    ]
+  },
+  "${ModID}:SpeedrunQuest": {
+    "TITLE": "스피드런!",
+    "DESCRIPTION": "#b3 번의 전투를 #b4 턴 안에 완료하십시오.",
+    "AUTHOR": "SoytheProton",
+    "TRACKER_TEXT": [
+      "4턴 안에 완료한 전투"
     ]
   }
 }

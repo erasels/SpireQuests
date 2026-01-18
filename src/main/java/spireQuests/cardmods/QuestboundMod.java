@@ -18,7 +18,7 @@ import spireQuests.util.TexLoader;
 import java.util.Collections;
 import java.util.List;
 
-import static spireQuests.util.QuestStringsUtils.formatLanguage;
+import static spireQuests.util.LanguageUtils.formatLanguage;
 
 public class QuestboundMod extends AbstractCardModifier {
     public static String ID = Anniv8Mod.makeID("Questbound");
