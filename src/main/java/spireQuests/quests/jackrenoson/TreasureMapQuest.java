@@ -70,6 +70,7 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
 
         new SaveNodeTracker(startX, startY).hide().add(this);
 
+        useDefaultReward = false;
         isAutoComplete = true;
         isAutoFail = true;
     }
