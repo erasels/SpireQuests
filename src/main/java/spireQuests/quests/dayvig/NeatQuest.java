@@ -11,18 +11,16 @@ public class NeatQuest extends AbstractQuest {
     public NeatQuest() {
         super(QuestType.LONG, QuestDifficulty.CHALLENGE);
 
-        new TriggerTracker<>(QuestTriggers.ADD_CARD, 1)
-                .triggerCondition(this::hasPerfectDeck)
-                .add(this);
-        new TriggerTracker<>(QuestTriggers.REMOVE_CARD, 1)
-                .triggerCondition(this::hasPerfectDeck)
-                .hide()
+        // This would be better set up with three separate tracks, one for each card type, so you could see your progress
+        // without needing to count everything in your deck yourself. But in the interest of getting this working for release,
+        // that will be left for later.
+        new TriggeredUpdateTracker<>(QuestTriggers.DECK_CHANGE, 0, 1, () -> this.hasPerfectDeck() ? 1 : 0)
                 .add(this);
 
         addReward(new QuestReward.RelicReward(new Binder()));
     }
 
-    public boolean hasPerfectDeck(AbstractCard card) {
+    public boolean hasPerfectDeck() {
         int skills = 0;
         int powers = 0;
         int attacks = 0;
