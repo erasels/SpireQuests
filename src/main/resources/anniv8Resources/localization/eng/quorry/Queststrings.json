@@ -1,0 +1,11 @@
+{
+  "${ModID}:FatalStrikesQuest": {
+    "TITLE": "Fatal Strikes",
+    "DESCRIPTION": "Kill #b5 non-minion enemies with a #yStarter #yStrike in Act 2.",
+    "AUTHOR": "Quorry",
+    "REWARD": "Convert your #yStrikes into #yLabor #yStrikes that do more damage and gain gold on Fatal.",
+    "TRACKER_TEXT": [
+      "Get Fatal with Strikes"
+    ]
+  }
+}

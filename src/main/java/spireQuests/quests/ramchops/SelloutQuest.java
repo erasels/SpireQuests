@@ -41,6 +41,8 @@ public class SelloutQuest extends AbstractQuest implements CustomSavable<Integer
     @Override
     public void onComplete() {
         questRewards.clear();
+
+        if (adRevenue <= 0) adRevenue = 0;
         addReward(new QuestReward.GoldReward(adRevenue));
     }
 
@@ -58,11 +60,14 @@ public class SelloutQuest extends AbstractQuest implements CustomSavable<Integer
     @Override
     public boolean complete() {
 
-        if(!this.isCompleted()) {
+        if(questConditionsAreFulfilled() && adRevenue == 0) {
             Object o = trackers.get(0);
 
             if (o instanceof AdsPlayedQuestTracker) {
                 adRevenue = ((AdsPlayedQuestTracker) o).localCount;
+                if (adRevenue == 0){
+                    adRevenue = -1;
+                }
             } else {
                 Anniv8Mod.logger.warn("Failed to detect AdsPlayedQuestTracker in the list of trackers. Please tell Ram to fix the code.");
             }

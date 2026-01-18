@@ -1,0 +1,77 @@
+{
+  "${ModID}:DebuffedBalatro": {
+    "TEXT": [
+      "${ModID}:Debuffed",
+      "%s NL ${ModID}:Debuffed."
+    ]
+  },
+  "${ModID}:BalatroEditions": {
+    "TEXT": [
+      "Editions",
+      "#gFoil - Gain #b50 #yGold the first time this card is played. NL #gHolo - After you play this card, gain #b10 temporary #yStrength. NL #gPolychrome - #b50% chance to be played an additional time. NL #gNegative - When you draw this card, draw a card. "
+    ]
+  },
+  "${ModID}:BalatroQuestCombatReward": {
+    "TEXT": [
+      "Apply editions to 3 cards",
+      "Choose 3 cards to apply editions to"
+    ]
+  },
+  "${ModID}:RentalShop": {
+    "TEXT": [
+      "Rental Card Return Service",
+      "Return any number of #yRental cards to the merchant, removing them from your deck."
+    ]
+  },
+  "${ModID}:BalatroBlinds": {
+    "TEXT_DICT": {
+      "Arm": "[${ModID}:ArmIcon] The Arm",
+      "Arm_Description": "Permanently replace the first upgraded card you play with a plain, unupgraded version.",
+      "Club": "[${ModID}:ClubIcon] The Club",
+      "Club_Description": "All starter cards are debuffed.",
+      "Eye": "[${ModID}:EyeIcon] The Eye",
+      "Eye_Description": "Lose 3 HP when you play the same card type twice in a row.",
+      "Fish": "[${ModID}:FishIcon] The Fish",
+      "Fish_Description": "Cards drawn after the start of your turn are drawn face down.",
+      "Flint": "[${ModID}:FlintIcon] The Flint",
+      "Flint_Description": "Disable half of your relics randomly.",
+      "Goad": "[${ModID}:GoadIcon] The Goad",
+      "Goad_Description": "All common cards are debuffed.",
+      "Head": "[${ModID}:HeadIcon] The Head",
+      "Head_Description": "All uncommon cards are debuffed.",
+      "Hook": "[${ModID}:HookIcon] The Hook",
+      "Hook_Description": "Whenever you play a card, discard 2 cards, and draw that many.",
+      "House": "[${ModID}:HouseIcon] The House",
+      "House_Description": "First hand is drawn face down.",
+      "Manacle": "[${ModID}:ManacleIcon] The Manacle",
+      "Manacle_Description": "Draw 1 less card at the start of each turn.",
+      "Mark": "[${ModID}:MarkIcon] The Mark",
+      "Mark_Description": "All powers are drawn face down.",
+      "Mouth": "[${ModID}:MouthIcon] The Mouth",
+      "Mouth_Description": "Lose 3 HP when you play a card that has a different type than the first card played each turn.",
+      "Needle": "[${ModID}:NeedleIcon] The Needle",
+      "Needle_Description": "Enemies have half health. Draw 5 additional cards and gain 3 additional [E] at the start of your first turn. Lose 10 HP at the end of each of your turns.",
+      "Ox": "[${ModID}:OxIcon] The Ox",
+      "Ox_Description": "Set money to 0 when you play your most played card.",
+      "Ox_Extra": "(Most played card: %s)",
+      "Pillar": "[${ModID}:PillarIcon] The Pillar",
+      "Pillar_Description": "Cards become debuffed after playing them.",
+      "Plant": "[${ModID}:PlantIcon] The Plant",
+      "Plant_Description": "All power cards are debuffed",
+      "Psychic": "[${ModID}:PsychicIcon] The Psychic",
+      "Psychic_Description": "Lose 3 HP per unspent energy at the end of each turn.",
+      "Serpent": "[${ModID}:SerpentIcon] The Serpent",
+      "Serpent_Description": "Draw 3 cards at the start of your turns. Whenever you play a card, draw 3 cards.",
+      "Tooth": "[${ModID}:ToothIcon] The Tooth",
+      "Tooth_Description": "Lose 1 gold per card played.",
+      "Wall": "[${ModID}:WallIcon] The Wall",
+      "Wall_Description": "Enemies have 10% more health.",
+      "Water": "[${ModID}:WaterIcon] The Water",
+      "Water_Description": "At the end of your turns, shuffle your discard pile into your draw pile.",
+      "Wheel": "[${ModID}:WheelIcon] The Wheel",
+      "Wheel_Description": "1 in 7 cards get drawn face down.",
+      "Window": "[${ModID}:WindowIcon] The Window",
+      "Window_Description": "All rare cards are debuffed."
+    }
+  }
+}

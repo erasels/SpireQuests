@@ -4,6 +4,7 @@ package spireQuests.quests.snumodder;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -49,17 +50,17 @@ public class GennGreymaneQuest extends AbstractQuest {
     private int getEvenCards() {
         int cards = 0;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (!Objects.equals(c.cardID, "AscendersBane") && c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 != 1) {
+            if (!Objects.equals(c.cardID, AscendersBane.ID) && c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 != 1) {
                 cards += 1;
             }
         }
         return cards;
     }
 
-    private int getOddCards() {
+    public int getOddCards() {
         int cards = 0;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-            if (!Objects.equals(c.cardID, "AscendersBane") && c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 == 1) {
+            if (!Objects.equals(c.cardID, AscendersBane.ID) && c.rarity != AbstractCard.CardRarity.BASIC && c.cost % 2 == 1) {
                 cards += 1;
             }
         }
@@ -86,13 +87,13 @@ public class GennGreymaneQuest extends AbstractQuest {
     public static class EvenCostRewardPatchFix {
         @SpireInsertPatch(locator = Locator.class, localvars = { "retVal" })
         public static void InsertFix(ArrayList<AbstractCard> retVal) {
-            AbstractQuest gennQuest = null;
+            GennGreymaneQuest gennQuest = null;
             for (AbstractQuest q : QuestManager.quests()) {
                 if (q instanceof GennGreymaneQuest) {
-                    gennQuest = q;
+                    gennQuest = (GennGreymaneQuest)q;
                 }
             }
-            if (gennQuest == null || gennQuest.isCompleted() || gennQuest.isFailed()) return;
+            if (gennQuest == null || gennQuest.isCompleted() || gennQuest.isFailed() || gennQuest.getOddCards() > 0) return;
 
             if (retVal == null || retVal.isEmpty()) return;
             for (AbstractCard c : retVal) {

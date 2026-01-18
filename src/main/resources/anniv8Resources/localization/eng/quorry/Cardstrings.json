@@ -1,0 +1,6 @@
+{
+  "${ModID}:LaborStrike": {
+    "NAME": "Labor Strike",
+    "DESCRIPTION": "Deal !D! damage. NL If Fatal, gain !M! Gold."
+  }
+}

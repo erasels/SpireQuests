@@ -1,0 +1,66 @@
+[
+  {
+    "PROPER_NAME": "Debuffed",
+    "NAMES": [
+      "debuffed"
+    ],
+    "DESCRIPTION": "After you play this card, randomly gain #b1 #yWeak, #yFrail, or #yVulnerable.",
+    "COLOR": "ff6563"
+  },
+  {
+    "ID": "${ModID}:Foil",
+    "PROPER_NAME": "Foil",
+    "NAMES": [
+      "foil"
+    ],
+    "DESCRIPTION": "Gain #b50 Gold the first time this card is played each combat."
+  },
+  {
+    "ID": "${ModID}:Holo",
+    "PROPER_NAME": "Holo",
+    "NAMES": [
+      "holo"
+    ],
+    "DESCRIPTION": "After you play this card, gain #b10 temporary #yStrength."
+  },
+  {
+    "ID": "${ModID}:Polychrome",
+    "PROPER_NAME": "Polychrome",
+    "NAMES": [
+      "polychrome"
+    ],
+    "DESCRIPTION": "#b50% chance to be played an additional time."
+  },
+  {
+    "ID": "${ModID}:Negative",
+    "PROPER_NAME": "Negative",
+    "NAMES": [
+      "negative"
+    ],
+    "DESCRIPTION": "When you draw this card, draw a card."
+  },
+  {
+    "ID": "${ModID}:Perishable",
+    "PROPER_NAME": "Perishable",
+    "NAMES": [
+      "perishable"
+    ],
+    "DESCRIPTION": "Removed from deck after #b5 combats."
+  },
+  {
+    "ID": "${ModID}:Eternal",
+    "PROPER_NAME": "Eternal",
+    "NAMES": [
+      "eternal"
+    ],
+    "DESCRIPTION": "#rCannot be removed from your deck."
+  },
+  {
+    "ID": "${ModID}:Rental",
+    "PROPER_NAME": "Rental",
+    "NAMES": [
+      "rental"
+    ],
+    "DESCRIPTION": "Lose #b3 #yGold at the end of each combat. Can be removed for free at the merchant."
+  }
+]

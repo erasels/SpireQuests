@@ -51,5 +51,22 @@
       "(This card text was sponsored by UPDATE BODY TEXT.)",
       "(This card text was sponsored by the Champ. I AWAIT THE DAY A WORTHY CHALLENGER APPEARS. COME AT ME WITH ALL YOUR MIGHT, WEAKLINGS!)"
     ]
+  },
+
+
+  "${ModID}:BlessingHeaven": {
+    "NAME": "Blessing of Heaven",
+    "DESCRIPTION": "Retain. NL Prevent the next time you would lose HP. Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Prevent the next !M! times you would lose HP. Exhaust."
+  },
+
+  "${ModID}:BlessingEarth": {
+    "NAME": "Blessing of Earth",
+    "DESCRIPTION": "{@@}Retain. NL Gain [E]. NL Draw !M! card{!M!|>1=s}. NL Exhaust."
+  },
+
+  "${ModID}:BlessingMan": {
+    "NAME": "Blessing of Man",
+    "DESCRIPTION": "Retain. NL Apply 1 Vulnerable to ALL enemies !M! times. Exhaust."
   }
 }

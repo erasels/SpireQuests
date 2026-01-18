@@ -23,5 +23,21 @@
     "TRACKER_TEXT": [
       "10 Skills, 10 Attacks, 5 Powers in deck."
     ]
+  },
+  "${ModID}:ZeroCost": {
+    "TITLE": "Who needs energy?",
+    "DESCRIPTION": "Add #b3 cards that cost #b0 to your deck.",
+    "AUTHOR": "Dayvig",
+    "TRACKER_TEXT": [
+      "0-cost cards added to deck"
+    ]
+  },
+  "${ModID}:BigCost": {
+    "TITLE": "Heavy Hitter",
+    "DESCRIPTION": "Add #b3 cards that cost #b2 or more to your deck.",
+    "AUTHOR": "Dayvig",
+    "TRACKER_TEXT": [
+      "2+ cost cards added to deck"
+    ]
   }
 }

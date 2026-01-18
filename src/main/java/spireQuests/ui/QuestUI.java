@@ -90,8 +90,16 @@ public class QuestUI {
             hb.update();
 
             if (hb.hovered) {
-                if (InputHelper.justClickedLeft) {
-                    if (quest.complete() || quest.fail()) QuestManager.completeQuest(quest);
+                if (Settings.isDebug && InputHelper.justClickedRight) {
+                    QuestManager.failQuest(quest);
+                    continue;
+                }
+
+                if (InputHelper.justClickedLeft || InputHelper.justClickedRight) {
+                    if (quest.complete() || quest.fail()) {
+                        QuestManager.completeQuest(quest);
+                        continue;
+                    }
                 }
 
                 if (AbstractDungeon.screen == QuestBoardScreen.Enum.QUEST_BOARD) {
@@ -113,9 +121,6 @@ public class QuestUI {
                     quest.isAbandoning = false;
                 }
 
-                if (Settings.isDebug && InputHelper.justClickedRight) {
-                    QuestManager.failQuest(quest);
-                }
 
             } else {
                 quest.isAbandoning = false;

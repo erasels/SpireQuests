@@ -1,0 +1,10 @@
+{
+  "${ModID}:GoldStakeRelic": {
+    "NAME": "Gold Stake",
+    "FLAVOR": "Jimbo is watching.",
+    "DESCRIPTIONS": [
+      "Card rewards have a chance to be #y${ModID}:Eternal, #y${ModID}:Perishable, or #y${ModID}:Rental.",
+      "Card rewards have a chance to be #y${ModID}:Eternal, #y${ModID}:Perishable, or #y${ModID}:Rental. NL They also have a small chance to be #y${ModID}:Foil, #y${ModID}:Holo, #y${ModID}:Polychrome, or #y${ModID}:Negative."
+    ]
+  }
+}
