@@ -34,7 +34,7 @@
       "Fish": "[${ModID}:FishIcon] The Fish",
       "Fish_Description": "Cards drawn after the start of your turn are drawn face down.",
       "Flint": "[${ModID}:FlintIcon] The Flint",
-      "Flint_Description": "Disable half of your relics randomly.",
+      "Flint_Description": "The first #yAttack you play each turn deals half damage.",
       "Goad": "[${ModID}:GoadIcon] The Goad",
       "Goad_Description": "All common cards are debuffed.",
       "Head": "[${ModID}:HeadIcon] The Head",
