@@ -5,6 +5,10 @@
     "AUTHOR": "SoytheProton",
     "TRACKER_TEXT": [
       "Grand Finale played"
+    ],
+    "EXTRA_TEXT": [
+      "Fun Fact!",
+      "Questbound Cards were made for this quest! (I made them)"
     ]
   },
   "${ModID}:LuckyNumberQuest": {
@@ -14,6 +18,31 @@
     "TRACKER_TEXT": [
       "Boots booted",
       "Combats left"
+    ],
+    "EXTRA_TEXT": [
+      "Fun Fact!",
+      "Questbound Relics were made for this quest! (I also made them)"
+    ]
+  },
+  "${ModID}:MothQuest": {
+    "TITLE": "Fluttering Friend",
+    "DESCRIPTION": "A fragile friend is following along with you. Take no more than #b25 unblocked attack damage this act.",
+    "AUTHOR": "CrypticAurora",
+    "TRACKER_TEXT": [
+      "Acts completed",
+      "Unblocked attack damage taken"
+    ],
+    "EXTRA_TEXT": [
+      "Fun Fact!",
+      "SFXs \"borrowed\" from Celeste."
+    ]
+  },
+  "${ModID}:SpeedrunQuest": {
+    "TITLE": "Speedrun!",
+    "DESCRIPTION": "Finish #b3 combats within #b4 turns.",
+    "AUTHOR": "SoytheProton",
+    "TRACKER_TEXT": [
+      "Combats completed in 4 turns"
     ]
   }
 }

@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "Whenever you would deal #b6 or less unblocked attack damage, increase it to #b7."
     ]
+  },
+  "${ModID}:IoMoth": {
+    "NAME": "Runic Moth",
+    "FLAVOR": "An ancient charm depicting a lepidopteran.",
+    "DESCRIPTIONS": [
+      "After taking unblocked attack damage this combat, draw 1 additional card at the start of your turn."
+    ]
   }
 }

@@ -3,6 +3,7 @@ package spireQuests.patches;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -17,8 +18,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
-import com.megacrit.cardcrawl.relics.Boot;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Boot;
 import com.megacrit.cardcrawl.relics.Ectoplasm;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.chests.AbstractChest;
@@ -82,6 +83,7 @@ public class QuestTriggers {
     public static final Trigger<AbstractPotion> DISCARD_POTION = new Trigger<>();
     public static final Trigger<AbstractPotion> SKIP_POTION = new Trigger<>();
     public static final Trigger<AbstractGameAction.AttackEffect> ATTACK_ANIMATION = new Trigger<>();    //NOTE: This specifically checks for AbstractGameAction.AttackEffect animations. Other animations will not trigger this event.
+    public static final Trigger<Integer> UNBLOCKED_ATTACK_DAMAGE_TAKEN = new Trigger<>();
 
     private static boolean disabled() {
         return CardCrawlGame.mode != CardCrawlGame.GameMode.GAMEPLAY;
@@ -612,4 +614,23 @@ public class QuestTriggers {
             ATTACK_ANIMATION.trigger(effect);
         }
     }
+
+    @SpirePatch(clz = AbstractPlayer.class, method = "damage")
+    public static class OnTakeUnblockedAttackDamage {
+        @SpireInsertPatch(locator = Locator.class, localvars = {"damageAmount"})
+        public static void onDamage(AbstractPlayer __instance, DamageInfo info, int damageAmount) {
+            if (disabled()) return;
+
+            UNBLOCKED_ATTACK_DAMAGE_TAKEN.trigger(damageAmount);
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(GameActionManager.class, "damageReceivedThisTurn");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+
 }

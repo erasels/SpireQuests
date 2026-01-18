@@ -1,0 +1,62 @@
+
+QuestMoth.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+questmothwing1
+  rotate: false
+  xy: 1, 221
+  size: 160, 248
+  orig: 160, 248
+  offset: 0, 0
+  index: -1
+questmothwing2
+  rotate: false
+  xy: 1, 1
+  size: 217, 218
+  orig: 217, 218
+  offset: 0, 0
+  index: -1
+questmothwing3
+  rotate: false
+  xy: 350, 221
+  size: 134, 151
+  orig: 134, 151
+  offset: 0, 0
+  index: -1
+questmothwing4
+  rotate: false
+  xy: 163, 221
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+thepotato
+  rotate: false
+  xy: 220, 1
+  size: 117, 163
+  orig: 117, 163
+  offset: 0, 0
+  index: -1
+antennae2
+  rotate: false
+  xy: 350, 374
+  size: 50, 94
+  orig: 50, 94
+  offset: 0, 0
+  index: -1
+antennae1
+  rotate: false
+  xy: 402, 374
+  size: 84, 45
+  orig: 84, 45
+  offset: 0, 0
+  index: -1
+questmothorbs
+  rotate: false
+  xy: 402, 421
+  size: 66, 46
+  orig: 66, 46
+  offset: 0, 0
+  index: -1

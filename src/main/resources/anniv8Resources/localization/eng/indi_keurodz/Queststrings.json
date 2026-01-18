@@ -1,0 +1,11 @@
+{
+  "${ModID}:BalatroQuest": {
+    "TITLE": "Gold Stake",
+    "DESCRIPTION": "Card rewards have a chance to be #yEternal, #yPerishable, or #yRental. #b50% of combats will be enhanced by boss blind effects. Defeat #b8 of these combats to complete the quest.",
+    "AUTHOR": "indi + keurodz",
+    "REWARD": "Apply a random #yEdition to 3 selected cards. Card rewards have a small chance to contain cards with #yEditions.",
+    "TRACKER_TEXT": [
+      "Blind combats completed"
+    ]
+  }
+}
