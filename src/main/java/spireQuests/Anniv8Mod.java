@@ -136,9 +136,10 @@ public class Anniv8Mod implements
 
         try {
             Properties defaults = new Properties();
-            defaults.put(HARD_MODE_CONFIG, false);
-            defaults.put(QUESTBOUND_CONFIG, true);
-            defaults.put(ALWAYS_SHOW_DESCRIPTION_CONFIG, false);
+            defaults.setProperty(HARD_MODE_CONFIG, "false");
+            defaults.setProperty(QUESTBOUND_CONFIG, "true");
+            defaults.setProperty(TROPHY_TOOLTIP_CONFIG, "false");
+            defaults.setProperty(ALWAYS_SHOW_DESCRIPTION_CONFIG, "false");
             modConfig = new SpireConfig(modID, "anniv8Config", defaults);
         } catch (Exception e) {
             e.printStackTrace();
