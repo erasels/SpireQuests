@@ -391,11 +391,11 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
         CardCrawlGame.sound.play("DEATH_STINGER");
     }
 
-    public boolean isCompleted() {
+    public final boolean isCompleted() {
         return this.complete();
     }
 
-    public boolean isFailed() {
+    public final boolean isFailed() {
         return this.fail();
     }
 
