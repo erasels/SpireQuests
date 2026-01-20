@@ -6,7 +6,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
-import spireQuests.Anniv8Mod;
 import spireQuests.ui.QuestBoardProp;
 import spireQuests.util.ActUtil;
 
@@ -36,9 +35,10 @@ public class ShopPatch {
     }
 
     @SpirePatch(clz = ShopRoom.class, method = "onPlayerEntry")
-    public static class PostPlayerEntry {
+    @SpirePatch(cls = "downfall.rooms.HeartShopRoom", method = "showHeartMerchant", requiredModId = "downfall")
+    public static class InitializeQuestBoard {
         @SpirePostfixPatch
-        public static void PlayerEntry() {
+        public static void initializeQuestBoard() {
             if (ActUtil.getRealActNum() >= 4) return;
             QuestBoardProp.questBoardProp = new QuestBoardProp((float) Settings.WIDTH * 0.5F - 350.0F * Settings.xScale, AbstractDungeon.floorY + 10.0F * Settings.yScale, false);
         }
