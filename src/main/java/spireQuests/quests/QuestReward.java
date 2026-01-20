@@ -307,7 +307,7 @@ public abstract class QuestReward {
 
         @Override
         public void addTooltip(List<PowerTip> tips) {
-            tips.add(new CardPowerTip(card));
+            tips.add(new CardPowerTip(card.makeCopy()));
         }
 
         @Override

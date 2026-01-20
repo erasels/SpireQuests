@@ -39,6 +39,6 @@ public class WickedExchange extends EmbraceTheCurseCard {
 
     @Override
     public void upp() {
-        this.retain = true;
+        this.selfRetain = true;
     }
 }
