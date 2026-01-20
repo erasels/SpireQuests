@@ -220,7 +220,7 @@ public class ZilliaxDeluxe3000Quest extends AbstractQuest {
         public static void patch(CombatRewardScreen __instance) {
             if (!(AbstractDungeon.getCurrRoom() instanceof MonsterRoom || AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite || AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss)) return;
             ZilliaxDeluxe3000Quest q = (ZilliaxDeluxe3000Quest) QuestManager.quests().stream()
-                    .filter(quest -> ID.equals(quest.id))
+                    .filter(quest -> ID.equals(quest.id) && !quest.isCompleted() && !quest.isFailed())
                     .findAny()
                     .orElse(null);
             if (q == null) return;
