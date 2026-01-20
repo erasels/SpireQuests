@@ -1,6 +1,5 @@
 package spireQuests.quests.jackrenoson.patches;
 
-import basemod.Pair;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

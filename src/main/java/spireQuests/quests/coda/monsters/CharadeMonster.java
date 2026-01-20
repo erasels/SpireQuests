@@ -16,10 +16,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -41,7 +39,6 @@ import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 
 import spireQuests.abstracts.AbstractSQMonster;
-import spireQuests.actions.WaitMoreAction;
 import spireQuests.quests.coda.powers.MonsterSpiritShieldPower;
 import spireQuests.util.Wiz;
 public class CharadeMonster extends AbstractSQMonster {

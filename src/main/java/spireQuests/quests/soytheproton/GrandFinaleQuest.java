@@ -1,6 +1,5 @@
 package spireQuests.quests.soytheproton;
 
-import basemod.helpers.CardPowerTip;
 import com.megacrit.cardcrawl.cards.green.GrandFinale;
 import com.megacrit.cardcrawl.characters.TheSilent;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

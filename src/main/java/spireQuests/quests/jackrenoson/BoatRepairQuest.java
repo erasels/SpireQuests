@@ -2,7 +2,6 @@ package spireQuests.quests.jackrenoson;
 
 import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,16 +18,12 @@ import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.jackrenoson.relics.Sail;
-import spireQuests.quests.modargo.MulticlassQuest;
-import spireQuests.ui.QuestBoardScreen;
 import spireQuests.util.NodeUtil;
 import spireQuests.util.TexLoader;
 import spireQuests.util.Wiz;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Objects;
 
 import static spireQuests.Anniv8Mod.makeID;
 

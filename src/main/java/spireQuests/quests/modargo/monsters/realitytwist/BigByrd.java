@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.powers.FlightPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import spireQuests.Anniv8Mod;
 import spireQuests.quests.modargo.RealityTwistQuest;
 
 public class BigByrd extends Byrd {

@@ -1,7 +1,6 @@
 package spireQuests.quests.ramchops.cards;
 
 import com.evacipated.cardcrawl.mod.stslib.variables.ExhaustiveVariable;
-import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -14,7 +13,6 @@ import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import spireQuests.abstracts.AbstractSQCard;
 
 import static spireQuests.Anniv8Mod.makeID;
-import static spireQuests.util.Wiz.adp;
 import static spireQuests.util.Wiz.atb;
 
 public class SelloutAdvertisementCard extends AbstractSQCard {

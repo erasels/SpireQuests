@@ -16,12 +16,10 @@ import spireQuests.Anniv8Mod;
 import spireQuests.questStats.QuestStats;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestManager;
-import spireQuests.util.TexLoader;
 
 import java.util.ArrayList;
 
 import static com.badlogic.gdx.graphics.Color.WHITE;
-import static spireQuests.Anniv8Mod.makeUIPath;
 
 public class QuestBoardQuest {
     public static final BitmapFont QUEST_TITLE_FONT = FontHelper.losePowerFont;

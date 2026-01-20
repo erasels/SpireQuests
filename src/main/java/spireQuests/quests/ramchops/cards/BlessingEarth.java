@@ -5,15 +5,12 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BufferPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.MiracleEffect;
 import spireQuests.abstracts.AbstractSQCard;
 
 import static spireQuests.Anniv8Mod.makeID;
-import static spireQuests.util.Wiz.applyToSelf;
 import static spireQuests.util.Wiz.atb;
 
 public class BlessingEarth extends AbstractSQCard {
