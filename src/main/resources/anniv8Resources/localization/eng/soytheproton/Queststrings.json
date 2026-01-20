@@ -13,7 +13,7 @@
   },
   "${ModID}:LuckyNumberQuest": {
     "TITLE": "Lucky Number",
-    "DESCRIPTION": "Obtain a #yQuestbound #yThe #yBoot. NL Trigger #yThe #yBoot #b7 times in a combat within #b3 combats.",
+    "DESCRIPTION": "Obtain a #yQuestbound #yThe #yBoot. NL Trigger #yThe #yBoot #b7 times in a combat in the next #b3 combats.",
     "AUTHOR": "SoytheProton",
     "TRACKER_TEXT": [
       "Boots booted",
