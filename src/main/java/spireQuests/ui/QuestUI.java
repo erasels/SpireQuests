@@ -42,7 +42,7 @@ public class QuestUI {
 
     private static final float LARGE_SPACING = 34; //no settings.scale for text readability
     private static final float REWARD_SPACING = LARGE_SPACING - 10;
-    private static final float SMALL_SPACING = 30 * Settings.yScale;
+    private static final float SMALL_SPACING = 30 * Math.min(Settings.yScale, 1.0f); // Only adjust size up to the game's standard resolution; beyond that, extra spacing doesn't seem to be needed
 
     private static final BitmapFont largeFont = FontHelper.cardTitleFont;
     private static final BitmapFont smallFont = FontHelper.tipBodyFont;
