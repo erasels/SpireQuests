@@ -42,6 +42,7 @@ public class QuestUI {
 
     private static final float LARGE_SPACING = 34; //no settings.scale for text readability
     private static final float REWARD_SPACING = LARGE_SPACING - 10;
+    private static final float SPACING_BETWEEN_QUESTS = 4 * Math.min(Settings.yScale, 1.0f);
     private static final float SMALL_SPACING = 30 * Math.min(Settings.yScale, 1.0f); // Only adjust size up to the game's standard resolution; beyond that, extra spacing doesn't seem to be needed
 
     private static final BitmapFont largeFont = FontHelper.cardTitleFont;
@@ -90,6 +91,7 @@ public class QuestUI {
             hb.resize(quest.width, height - 2);
             hb.translate(xPos - quest.width, currentY + 1);
             hb.update();
+            currentY -= SPACING_BETWEEN_QUESTS;
 
             if (hb.hovered) {
                 if (Settings.isDebug && InputHelper.justClickedRight) {
@@ -185,7 +187,7 @@ public class QuestUI {
                 if (questHitboxes.size() <= i) questHitboxes.add(new Hitbox(1, 1));
                 Hitbox hb = questHitboxes.get(i);
 
-                yPos -= LARGE_SPACING;
+                yPos -= LARGE_SPACING + SPACING_BETWEEN_QUESTS;
                 float rewardOffset = !failed ? 34 * rewards.size() + 8 : 0;
                 FontHelper.renderFontRightAligned(sb, largeFont, quest.name, xPos - rewardOffset, yPos - REWARD_SPACING * 0.5f, complete ? Settings.GOLD_COLOR : failed ? Settings.RED_TEXT_COLOR : Color.WHITE);
 
