@@ -97,7 +97,7 @@ public class BoatRepairLessBlockPatch {
     private static boolean shouldRun(){
         if(CardCrawlGame.isInARun())
             for (AbstractQuest quest : QuestManager.quests())
-                if (quest instanceof BoatRepairQuest)
+                if (quest instanceof BoatRepairQuest && !quest.complete() && !quest.fail())
                     return true;
         return false;
     }
