@@ -34,6 +34,9 @@ public class WindowShoppingQuest extends AbstractQuest {
         if (ShopMoneyTracker.getMoneySpentInRoom(curRoom()) > 0){
             this.forceFail();
         }
+        else {
+            AbstractDungeon.shopRelicPool.remove(MembershipCard.ID);
+        }
     }
 
     @Override
