@@ -11,7 +11,7 @@ public class WaitForItQuest extends AbstractQuest {
 
     public WaitForItQuest() {
         super(QuestType.LONG, QuestDifficulty.NORMAL);
-        new TriggerTracker<>(QuestTriggers.TURN_END, 5)
+        new TriggerTracker<>(QuestTriggers.BEFORE_TURN_END, 5)
                 .triggerCondition((x) -> {
                     if (progressThisCombat)
                         return false;

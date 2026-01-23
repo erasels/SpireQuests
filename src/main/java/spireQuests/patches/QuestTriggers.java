@@ -51,6 +51,7 @@ public class QuestTriggers {
     public static final Trigger<Integer> DAMAGE_TAKEN = new Trigger<>();
     public static final Trigger<Void> BEFORE_COMBAT_START = new Trigger<>();
     public static final Trigger<Void> TURN_START = new Trigger<>();
+    public static final Trigger<Void> BEFORE_TURN_END = new Trigger<>(); //After the player has clicked end turn, but before end of turn effects like orbs
     public static final Trigger<Void> TURN_END = new Trigger<>();
     public static final Trigger<Void> VICTORY = new Trigger<>(); //Excludes Smoke Bomb and other ways of escaping
     public static final Trigger<Void> COMBAT_END = new Trigger<>();
@@ -222,6 +223,16 @@ public class QuestTriggers {
             if (disabled()) return;
 
             TURN_START.trigger();
+        }
+    }
+
+    @SpirePatch2(clz = GameActionManager.class, method = "callEndOfTurnActions")
+    public static class BeforeTurnEnd {
+        @SpirePrefixPatch
+        public static void beforeTurnEndPatch() {
+            if (disabled()) return;
+
+            BEFORE_TURN_END.trigger();
         }
     }
 
