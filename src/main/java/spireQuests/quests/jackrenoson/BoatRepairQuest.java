@@ -47,13 +47,15 @@ public class BoatRepairQuest extends AbstractQuest implements MarkNodeQuest, Cus
 
         new TriggerTracker<>(QuestTriggers.OBTAIN_RELIC, 1)
                 .triggerCondition(r -> r.relicId.equals(Anchor.ID))
-                .setFailureTrigger(QuestTriggers.ACT_CHANGE)
+                .setFailureTrigger(QuestTriggers.ACT_CHANGE, actNum -> actNum > 3)
                 .add(this);
         new TriggerTracker<>(QuestTriggers.OBTAIN_RELIC, 1)
                 .triggerCondition(r -> r.relicId.equals(HornCleat.ID))
+                .setFailureTrigger(QuestTriggers.ACT_CHANGE, actNum -> actNum > 3)
                 .add(this);
         new TriggerTracker<>(QuestTriggers.OBTAIN_RELIC, 1)
                 .triggerCondition(r -> r.relicId.equals(CaptainsWheel.ID))
+                .setFailureTrigger(QuestTriggers.ACT_CHANGE, actNum -> actNum > 3)
                 .add(this);
 
         addReward(new QuestReward.RelicReward(new Sail()));
@@ -190,11 +192,16 @@ public class BoatRepairQuest extends AbstractQuest implements MarkNodeQuest, Cus
 
     @Override
     public void markNodes(ArrayList<ArrayList<MapRoomNode>> map, Random rng) {
+        if (AbstractDungeon.actNum > 3) {
+            // In act 4, the map layout makes it difficult to have this logic work in a stable way, so we don't try (and fail the quest if you get to act 4 with it incomplete)
+            return;
+        }
         if(curAct != AbstractDungeon.actNum){
             updateSavables();
             markedX = null;
         }
-        if (AbstractDungeon.actNum >= 3) {
+        if (AbstractDungeon.actNum == 3) {
+            // In act 3, we give the player a chance to pick up all three relics on a connected path
             MapRoomNode room1, room2, room3;
             room1 = room2 = room3 = null;
             while (room2 == null || room3 == null) {
@@ -203,10 +210,6 @@ public class BoatRepairQuest extends AbstractQuest implements MarkNodeQuest, Cus
                     room1 = AbstractDungeon.map.get(y).get(rng.random(AbstractDungeon.map.get(y).size() - 1));
                 }
                 room2 = findNewRoom(room1, room1, rng);
-                if(room2 == null) {
-                    Anniv8Mod.logger.warn("BoatRepairQuest couldn't find a new room, preventing crash");
-                    return;
-                }
                 room3 = findNewRoom(room1, room2, rng);
             }
             if(needAnchor) {
@@ -219,6 +222,7 @@ public class BoatRepairQuest extends AbstractQuest implements MarkNodeQuest, Cus
                 ShowMarkedNodesOnMapPatch.ImageField.MarkNode(room3, id, textures.get(2));
             }
         } else {
+            // In act 1 or 2, we distribute the relics across the map, so the player may not have the opportunity to get all of them along one path
             ArrayList<MapRoomNode> toBeChecked = new ArrayList<>();
             ArrayList<MapRoomNode> restRooms = new ArrayList<>();
             ArrayList<MapRoomNode> shopRooms = new ArrayList<>();
