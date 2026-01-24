@@ -83,5 +83,16 @@
       "Skills added",
       "Powers added"
     ]
+  },
+  "${ModID}:MonsterHunterQuest": {
+    "TITLE": "Monster Hunter",
+    "DESCRIPTION": "Defeat 3 elites this act.",
+    "AUTHOR": "coda",
+    "TRACKER_TEXT": [
+      "Elites remaining this act"
+    ],
+    "EXTRA_TEXT": [
+      "Monsters Hunted"
+    ]
   }
 }

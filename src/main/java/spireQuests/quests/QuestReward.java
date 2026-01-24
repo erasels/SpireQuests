@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardColor;
 import com.megacrit.cardcrawl.cards.CardSave;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -29,12 +30,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.Anniv8Mod.makeUIPath;
 import static spireQuests.util.LanguageUtils.formatLanguage;
 
 public abstract class QuestReward {
+    
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("QuestReward")).TEXT;
     private static final Map<String, RewardLoader> rewardLoaders = new HashMap<>();
     protected final Hitbox hb;
@@ -45,7 +48,12 @@ public abstract class QuestReward {
         addRewardSaver(new RewardLoader(RandomRelicReward.class, (save) -> new RandomRelicReward(RelicLibrary.getRelic(save.param).makeCopy())));
         addRewardSaver(new RewardLoader(PotionReward.class, (save) -> new PotionReward(PotionHelper.getPotion(save.param))));
         addRewardSaver(new RewardLoader(CardReward.class, CardReward::fromSave));
+        addRewardSaver(new RewardLoader(CardChoiceReward.class, CardChoiceReward::fromSave));
         addRewardSaver(new RewardLoader(MaxHPReward.class, (save) -> new MaxHPReward(Integer.parseInt(save.param))));
+    }
+
+    public enum QuestRewardType {
+        OTHER, GOLD, RELIC, RANDOM_RELIC, POTION, CARD, CARD_CHOICE, MAX_HP
     }
 
     private static void addRewardSaver(RewardLoader loader) {
@@ -342,6 +350,95 @@ public abstract class QuestReward {
         }
     }
 
+    public static class CardChoiceReward extends QuestReward {
+
+        private static final TextureRegion IMG = TexLoader.getTextureAsAtlasRegion(makeUIPath("card_reward.png"));
+        private ArrayList<AbstractCard> rewardCards;
+        public boolean isColorless = false;
+
+        public CardChoiceReward() {
+            super(TEXT[7]);
+            this.rewardCards = new ArrayList<>();
+        }
+
+        public CardChoiceReward(boolean isColorless) {
+            super(TEXT[9]);
+            this.isColorless = true;
+            this.rewardCards = new ArrayList<>();
+        }
+
+        public CardChoiceReward(ArrayList<AbstractCard> rewardCards) {
+            super(String.format(TEXT[8], String.join(", ", rewardCards.stream().map(c -> c.name).collect(Collectors.toList()))));
+            this.rewardCards = rewardCards;
+        }
+
+        @Override
+        public TextureRegion icon() {
+            return IMG;
+        }
+        
+        @Override
+        protected String saveParam() {
+            return String.join(";", rewardCards.stream().map(c-> c.cardID).collect(Collectors.toList()));
+        }
+
+        @Override
+        public QuestRewardSave getSave() {
+            ArrayList<CardSave> cardSaves = new ArrayList<>();
+            for (AbstractCard c : rewardCards) {
+                cardSaves.add(new CardSave(c.cardID, c.timesUpgraded, c.misc));
+            }
+            return new QuestRewardSave(getClass().getSimpleName(), saveParam(), cardSaves);
+        }
+
+        public static CardChoiceReward fromSave(QuestRewardSave save) {
+            ArrayList<CardSave> cardSaves = save.cards;
+            ArrayList<AbstractCard> loadedCards = new ArrayList<>();
+            for (CardSave s: cardSaves) {
+                AbstractCard loaded = CardLibrary.getCopy(s.id, s.upgrades, s.misc);
+                loadedCards.add(loaded);
+            }
+            return new CardChoiceReward(loadedCards);
+        }
+        
+
+        @Override
+        public void obtainRewardItem() {
+            RewardItem reward = getRewardItem();
+            AbstractDungeon.combatRewardScreen.rewards.add(0, reward);
+            AbstractDungeon.combatRewardScreen.positionRewards();
+        }
+
+        private RewardItem getRewardItem() {
+            RewardItem ret;
+            if (this.isColorless) {
+                ret = new RewardItem(CardColor.COLORLESS);
+            } else {
+                ret = new RewardItem();
+            }
+            if (rewardCards != null && !rewardCards.isEmpty()) {
+                ret.cards = rewardCards;
+                for (AbstractCard c : ret.cards) {
+                    for (AbstractRelic r : Wiz.p().relics)
+                        r.onPreviewObtainCard(c);
+                }
+            }
+            return ret;
+        }
+
+        @Override
+        public void obtainInstant() {
+            RewardItem reward = getRewardItem();
+            AbstractDungeon.previousScreen = AbstractDungeon.screen;
+            AbstractDungeon.cardRewardScreen.open(reward.cards, reward, "TEXT[TODO]");
+        }
+
+        public ArrayList<AbstractCard> getCards() {
+            return rewardCards;
+        }
+
+    }
+
     public static class MaxHPReward extends QuestReward {
         private static final TextureRegion img = new TextureRegion(ImageMaster.TP_HP, 8, 0, 48, 48);
         private final int amount;
@@ -428,19 +525,29 @@ public abstract class QuestReward {
         public String type;
         public String param;
         public CardSave card;
+        public ArrayList<CardSave> cards;
 
         public QuestRewardSave() {
 
         }
 
         public QuestRewardSave(String type, String param) {
-            this(type, param, null);
+            this(type, param, null, null);
         }
 
         public QuestRewardSave(String type, String param, CardSave card) {
+            this(type, param, card, null);
+        }
+
+        public QuestRewardSave(String type, String param, ArrayList<CardSave> cards) {
+            this(type, param, null, cards);
+        }
+
+        public QuestRewardSave(String type, String param, CardSave card, ArrayList<CardSave> cards) {
             this.type = type;
             this.param = param;
             this.card = card;
+            this.cards = cards;
         }
     }
 

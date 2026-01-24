@@ -4,6 +4,7 @@ import static spireQuests.Anniv8Mod.makeID;
 import static spireQuests.Anniv8Mod.makeUIPath;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,10 +24,12 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import basemod.IUIElement;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.quests.QuestReward.CardChoiceReward;
 import spireQuests.quests.QuestReward.CardReward;
 import spireQuests.quests.QuestReward.GoldReward;
 import spireQuests.quests.QuestReward.MaxHPReward;
 import spireQuests.quests.QuestReward.PotionReward;
+import spireQuests.quests.QuestReward.QuestRewardType;
 import spireQuests.quests.QuestReward.RandomRelicReward;
 import spireQuests.quests.QuestReward.RelicReward;
 import spireQuests.util.ImageHelper;
@@ -43,6 +46,7 @@ public class StatRewardBox implements IUIElement {
     private static final Texture GOLD_TEX = TexLoader.getTexture(makeUIPath("stats/gold.png"));
     private static final Texture HEALTH_TEX = TexLoader.getTexture(makeUIPath("stats/heart.png"));
     private static final Texture RANDOM_REWARD_TEX = TexLoader.getTexture(makeUIPath("stats/random_item.png"));
+    private static final Texture CARD_CHOICE_TEX = TexLoader.getTexture(makeUIPath("stats/card_choice.png"));
 
     private static final String ID = makeID(StatRewardBox.class.getSimpleName());
     private UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
@@ -58,8 +62,10 @@ public class StatRewardBox implements IUIElement {
     private float xPos;
     private float yPos;
     private AbstractCard card = null;
+    private ArrayList<AbstractCard> cards = null;
     private AbstractPotion potion = null;
     private AbstractRelic relic = null;
+    private QuestRewardType type = QuestRewardType.OTHER;
 
     public StatRewardBox(QuestReward reward, float xPos, float yPos) {
         this(xPos, yPos);
@@ -71,26 +77,42 @@ public class StatRewardBox implements IUIElement {
             this.relic = ((RelicReward)reward).getRelic().makeCopy();
             this.header = relic.name;
             this.body = relic.description;
+            this.type = QuestRewardType.RELIC;
         }
         if (reward instanceof CardReward) {
             this.card = ((CardReward)reward).getCard().makeStatEquivalentCopy();
+            this.type = QuestRewardType.CARD;
+        }
+        if (reward instanceof CardChoiceReward) {
+            this.cards = ((CardChoiceReward)reward).getCards();
+            if (((CardChoiceReward)reward).isColorless) {
+                this.header = uiStrings.TEXT[7];
+            } else {
+                this.header = uiStrings.TEXT[6];
+            }
+            this.img = new TextureRegion(CARD_CHOICE_TEX);
+            this.type = QuestRewardType.CARD_CHOICE;
         }
         if (reward instanceof PotionReward) {
             this.potion = ((PotionReward)reward).getPotion().makeCopy();
             this.header = potion.name;
             this.body = potion.description;
+            this.type = QuestRewardType.POTION;
         }
         if (reward instanceof RandomRelicReward) {
             this.header = uiStrings.TEXT[0];
             this.img = new TextureRegion(RANDOM_RELIC_TEX);
+            this.type = QuestRewardType.RANDOM_RELIC;
         }
         if (reward instanceof GoldReward) {
             this.header = uiStrings.TEXT[1];
             this.img = new TextureRegion(GOLD_TEX);
+            this.type = QuestRewardType.GOLD;
         }
         if (reward instanceof MaxHPReward) {
             this.header = uiStrings.TEXT[3];
             this.img = new TextureRegion(HEALTH_TEX);
+            this.type = QuestRewardType.MAX_HP;
         }
 
     }
@@ -135,7 +157,7 @@ public class StatRewardBox implements IUIElement {
             sb.draw(FRAME, xPos, yPos, FRAME_X, FRAME_Y);
         }
 
-        if (this.card != null) {
+        if (this.type.equals(QuestRewardType.CARD)) {
             Color cardBGColor;
             switch (this.card.color) {
                 case RED:
@@ -160,7 +182,7 @@ public class StatRewardBox implements IUIElement {
             sb.setColor(Color.WHITE);
             this.img = new TextureRegion(CARD_FG_TEX);
             sb.draw(this.img, xPos + (FRAME_X - WIDTH) / 2, yPos + (FRAME_Y - HEIGHT) / 2, WIDTH, HEIGHT);
-        } else if (this.potion != null) {
+        } else if (this.type.equals(QuestRewardType.POTION)) {
             try {
                 renderPotion(sb);
             } catch (Exception e) {
@@ -172,13 +194,30 @@ public class StatRewardBox implements IUIElement {
         }
 
         if (this.hb.hovered) {
-            if (card != null) {
+            if (this.type.equals(QuestRewardType.CARD)) {
                 card.current_x = InputHelper.mX + (AbstractCard.RAW_W * card.drawScale) * Settings.scale;
                 card.current_y = InputHelper.mY;
                 card.renderHoverShadow(sb);
                 card.render(sb);
+            } else if (this.type.equals(QuestRewardType.CARD_CHOICE)){
+                if (this.cards != null && !this.cards.isEmpty()) {
+                    float gap = 25.0F * Settings.scale;
+                    float cardWidth = AbstractCard.RAW_W * this.cards.get(0).drawScale * Settings.scale;
+                    float totalWidth = (this.cards.size() * cardWidth) + ((this.cards.size() - 1) * gap);
+                    float startX = InputHelper.mX - totalWidth / 2.0F;
+                    float aboveY = (this.yPos + HEIGHT) + ((AbstractCard.RAW_W *  this.cards.get(0).drawScale) * Settings.scale);
+                    for (int i = 0; i < this.cards.size(); i++) {
+                        AbstractCard c = this.cards.get(i);
+                        c.current_x = startX + cardWidth * 0.5F + i * (cardWidth + gap);
+                        c.current_y = aboveY;
+                        c.renderHoverShadow(sb);
+                        c.render(sb);
+                    }
+                } else {
+                    ImageHelper.tipBoxAtMousePos(this.header, this.body);
+                }
             } else {
-               ImageHelper.tipBoxAtMousePos(this.header, this.body);
+                ImageHelper.tipBoxAtMousePos(this.header, this.body);
             }
         }
         this.hb.render(sb);
@@ -230,9 +269,9 @@ public class StatRewardBox implements IUIElement {
             CardCrawlGame.sound.play("UI_HOVER");
         }
         if (this.hb.hovered && InputHelper.justClickedRight) {
-            if (card != null) {
+            if (type.equals(QuestRewardType.CARD)) {
                 CardCrawlGame.cardPopup.open(card);
-            } else if (relic != null) {
+            } else if (type.equals(QuestRewardType.RELIC)) {
                 CardCrawlGame.relicPopup.open(relic);
             }
         }

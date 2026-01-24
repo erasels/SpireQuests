@@ -233,6 +233,9 @@ public class QuestStatsScreen implements DropdownMenuListener {
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE);
         renderBG(sb);
+        if (!questDropdown.isOpen) {
+            questDropdown.render(sb, LEFT_ALIGN, DROPDOWN_Y);
+        }
         if (selectedQuest == null){
             renderTrophyHelp(sb);
             renderSummary(sb);
@@ -243,7 +246,9 @@ public class QuestStatsScreen implements DropdownMenuListener {
             renderTrophyTooltip(sb);
             renderCheckbox(sb);
         }
-        questDropdown.render(sb, LEFT_ALIGN, DROPDOWN_Y);
+        if (questDropdown.isOpen) {
+            questDropdown.render(sb, LEFT_ALIGN, DROPDOWN_Y);
+        }
         cancelButton.render(sb);
     }
 

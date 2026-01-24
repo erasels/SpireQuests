@@ -11,20 +11,26 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 public class NodeUtil {
+
     public static boolean canPathToElite() {
         return canPathToNode(node -> node.room instanceof MonsterRoomElite);
     }
 
     public static boolean canPathToNode(Function<MapRoomNode, Boolean> condition) {
+        return canPathToNodes(condition, 1);
+    }
+
+    public static boolean canPathToNodes(Function<MapRoomNode, Boolean> condition, int count) {
         MapRoomNode start = AbstractDungeon.getCurrMapNode();
         List<MapRoomNode> processing = new ArrayList<>();
         Set<MapRoomNode> seen = new HashSet<>();
+
+        int found = 0;
+
         if (start.y == -1) {
             processing.addAll(AbstractDungeon.map.get(0));
-        }
-        else {
+        } else {
             processing.add(start);
         }
 
@@ -34,7 +40,10 @@ public class NodeUtil {
                 continue;
             }
             if (condition.apply(current)) {
-                return true;
+                found++;
+                if (found >= count) {
+                    return true;
+                }
             }
             processing.addAll(current.getEdges().stream().map(e -> getNode(e.dstX, e.dstY)).filter(n -> n != null && !seen.contains(n)).collect(Collectors.toList()));
             seen.add(current);
