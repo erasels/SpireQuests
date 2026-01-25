@@ -1,6 +1,7 @@
 package spireQuests.quests.jackrenoson.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.events.exordium.DeadAdventurer;
 import com.megacrit.cardcrawl.events.exordium.ScrapOoze;
 import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
 import com.megacrit.cardcrawl.events.shrines.WeMeetAgain;
+import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -24,6 +26,8 @@ import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.quests.jackrenoson.BoatRepairQuest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BoatRepairSpawnPatch {
 
@@ -62,6 +66,20 @@ public class BoatRepairSpawnPatch {
                 return SpireReturn.Return(CaptainsWheel.ID);
             }
             return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch2(clz = EventHelper.class, method = "roll", paramtypez = { Random.class })
+    public static class forceRoomThatCanGiveRelicPatch {
+        @SpirePostfixPatch
+        public static EventHelper.RoomResult forceRoomThatCanGiveRelic(Random eventRng, EventHelper.RoomResult __result) {
+            if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(AbstractDungeon.getCurrMapNode(), BoatRepairQuest.id)) {
+                List<EventHelper.RoomResult> relicGivingResults = Arrays.asList(EventHelper.RoomResult.EVENT, EventHelper.RoomResult.ELITE, EventHelper.RoomResult.TREASURE, EventHelper.RoomResult.SHOP);
+                if(!relicGivingResults.contains(__result)) {
+                    return EventHelper.RoomResult.EVENT;
+                }
+            }
+            return __result;
         }
     }
 
