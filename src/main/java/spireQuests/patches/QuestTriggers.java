@@ -150,27 +150,12 @@ public class QuestTriggers {
         }
     }
 
-    @SpirePatch(
-            clz = AbstractDungeon.class,
-            method = "nextRoomTransition",
-            paramtypez = {SaveFile.class}
-    )
-    public static class OnEnterRoom {
-        @SpireInsertPatch(
-                locator = Locator.class
-        )
-        public static void onEnterRoom(AbstractDungeon __instance, SaveFile file) {
-            if (!disabled() && AbstractDungeon.nextRoom != null) {
-                ENTER_ROOM.trigger(AbstractDungeon.nextRoom);
-            }
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            @Override
-            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "relics");
-                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
-            }
+    // This is called from the patch for autocompleting quests, because we want to guarantee that the trigger happens
+    // after the autocomplete check (both want to patch the same location, which would mean that we can't control which
+    // one goes first).
+    public static void onEnterRoom() {
+        if (!disabled() && AbstractDungeon.nextRoom != null) {
+            ENTER_ROOM.trigger(AbstractDungeon.nextRoom);
         }
     }
 

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import javassist.CtBehavior;
 import spireQuests.Anniv8Mod;
+import spireQuests.patches.QuestTriggers;
 import spireQuests.patches.ShowMarkedNodesOnMapPatch;
 import spireQuests.questStats.QuestStatManager;
 import spireQuests.questStats.StatRewardBox;
@@ -1069,6 +1070,7 @@ public abstract class AbstractQuest implements Comparable<AbstractQuest> {
                         .collect(Collectors.toList())
                         .forEach(QuestManager::failQuest);
             }
+            QuestTriggers.onEnterRoom();
         }
 
         private static class Locator extends SpireInsertLocator {
