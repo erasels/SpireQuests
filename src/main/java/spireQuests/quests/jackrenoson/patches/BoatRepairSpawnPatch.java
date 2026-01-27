@@ -89,55 +89,45 @@ public class BoatRepairSpawnPatch {
         public static SpireReturn<AbstractEvent> spawnRelicGivingEventFirst(Random rng) {
             MapRoomNode curr = AbstractDungeon.getCurrMapNode();
             if (ShowMarkedNodesOnMapPatch.ImageField.CheckMarks(curr, BoatRepairQuest.id)) {
-                ArrayList<AbstractEvent> relicGivingEvents = new ArrayList();
-                ArrayList<String> eventStrings = new ArrayList();
+                ArrayList<String> eventStrings = new ArrayList<>();
                 if(AbstractDungeon.actNum==1){
                     if(AbstractDungeon.eventList.contains(BigFish.ID)) {
-                        relicGivingEvents.add(new BigFish());
                         eventStrings.add(BigFish.ID);
                     }
                     if(AbstractDungeon.eventList.contains(DeadAdventurer.ID)){
-                        relicGivingEvents.add(new DeadAdventurer());
                         eventStrings.add(DeadAdventurer.ID);
                     }
                     if(AbstractDungeon.eventList.contains(ScrapOoze.ID)){
-                        relicGivingEvents.add(new ScrapOoze());
                         eventStrings.add(ScrapOoze.ID);
                     }
                 }
                 if(AbstractDungeon.actNum==2){
                     if(AbstractDungeon.eventList.contains(Colosseum.ID)){
-                        relicGivingEvents.add(new Colosseum());
                         eventStrings.add(Colosseum.ID);
                     }
                     if(AbstractDungeon.eventList.contains(TheMausoleum.ID)){
-                        relicGivingEvents.add(new TheMausoleum());
                         eventStrings.add(TheMausoleum.ID);
                     }
                     if(AbstractDungeon.eventList.contains(Addict.ID)){
-                        relicGivingEvents.add(new Addict());
                         eventStrings.add(Addict.ID);
                     }
                 }
                 if(AbstractDungeon.actNum==3){
                     if(AbstractDungeon.eventList.contains(MindBloom.ID)){
-                        relicGivingEvents.add(new MindBloom());
                         eventStrings.add(MindBloom.ID);
                     }
                 } else {
                     if(AbstractDungeon.eventList.contains(GremlinWheelGame.ID)){
-                        relicGivingEvents.add(new GremlinWheelGame());
                         eventStrings.add(GremlinWheelGame.ID);
                     }
                 }
-                if(AbstractDungeon.eventList.contains(WeMeetAgain.ID) || relicGivingEvents.isEmpty()) {
-                    relicGivingEvents.add(new WeMeetAgain());
+                if(AbstractDungeon.eventList.contains(WeMeetAgain.ID) || eventStrings.isEmpty()) {
                     eventStrings.add(WeMeetAgain.ID);
                 }
-                int r = rng.random(relicGivingEvents.size() - 1);
-                AbstractEvent chosenEvent = relicGivingEvents.get(r);
-                AbstractDungeon.eventList.remove(eventStrings.get(r));
-                return SpireReturn.Return(chosenEvent);
+                int r = rng.random(eventStrings.size() - 1);
+                String eventId = eventStrings.get(r);
+                AbstractDungeon.eventList.remove(eventId);
+                return SpireReturn.Return(EventHelper.getEvent(eventId));
             }
             return SpireReturn.Continue();
         }
