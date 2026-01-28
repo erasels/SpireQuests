@@ -9,10 +9,10 @@
   },
   "${ModID}:AutotransfusionQuest": {
     "TITLE": "自体输血",
-    "DESCRIPTION": "以 #b25% 或更少的生命值结束战斗 #b5 次。",
+    "DESCRIPTION": "以 #b30% 或更少的生命值结束战斗 #b3 次。",
     "AUTHOR": "MaybeLaterx",
     "TRACKER_TEXT": [
-      "以25%或更少的生命值结束的战斗"
+      "以30%或更少的生命值结束的战斗"
     ]
   },
   "${ModID}:HumbleSmithyQuest": {
