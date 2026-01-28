@@ -9,10 +9,10 @@
   },
   "${ModID}:AutotransfusionQuest": {
     "TITLE": "자가수혈",
-    "DESCRIPTION": "체력 #b25% 이하로 전투를 #b5 번 종료하십시오.",
+    "DESCRIPTION": "체력 #b30% 이하로 전투를 #b3 번 종료하십시오.",
     "AUTHOR": "MaybeLaterx",
     "TRACKER_TEXT": [
-      "체력 25% 이하로 종료한 전투"
+      "체력 30% 이하로 종료한 전투"
     ]
   },
   "${ModID}:HumbleSmithyQuest": {
