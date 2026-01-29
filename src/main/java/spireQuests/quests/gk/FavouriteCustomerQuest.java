@@ -1,8 +1,10 @@
 package spireQuests.quests.gk;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.SmilingMask;
+import com.megacrit.cardcrawl.shop.ShopScreen;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
@@ -22,6 +24,14 @@ public class FavouriteCustomerQuest extends AbstractQuest {
     public void onStart() {
         super.onStart();
         AbstractDungeon.commonRelicPool.remove(SmilingMask.ID);
+    }
+
+    @Override
+    public void onComplete() {
+        super.onComplete();
+        if (AbstractDungeon.shopScreen != null) {
+            ReflectionHacks.setPrivate(AbstractDungeon.shopScreen, ShopScreen.class, "actualPurgeCost", SmilingMask.COST);
+        }
     }
 
     @Override
