@@ -20,7 +20,7 @@ public class TheManacle {
     @SpireInsertPatch(locator = Locator.class)
     public static void AfterhandSizeSet() {
         BalatroQuest q = (BalatroQuest) QuestManager.quests().stream()
-                .filter(quest -> BalatroQuest.ID.equals(quest.id) && quest.isCompleted())
+                .filter(quest -> BalatroQuest.ID.equals(quest.id) && !quest.isCompleted())
                 .findAny()
                 .orElse(null);
         if (q == null) {
