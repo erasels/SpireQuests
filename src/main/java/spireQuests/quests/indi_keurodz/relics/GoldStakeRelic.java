@@ -1,5 +1,6 @@
 package spireQuests.quests.indi_keurodz.relics;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 
 import spireQuests.Anniv8Mod;
@@ -29,4 +30,11 @@ public class GoldStakeRelic extends AbstractSQRelic {
         return counter == -2;
     }
 
+    @Override
+    public void updateDescription(AbstractPlayer.PlayerClass _p) {
+        if (descriptionUpgraded()) {
+            upgradeDescription();
+        }
+
+    }
 }
