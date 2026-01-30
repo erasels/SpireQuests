@@ -1,5 +1,6 @@
 package spireQuests.quests.theabest.relics;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -29,8 +30,14 @@ public class GlassBar extends AbstractSQRelic {
     }
 
     private void updateCounter() {
-        int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-        counter = Math.max(0, BASE_BLOCK - BLOCK_LOSS_PER_CARD * cardsPlayed);
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
+                counter = Math.max(0, BASE_BLOCK - BLOCK_LOSS_PER_CARD * cardsPlayed);
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
