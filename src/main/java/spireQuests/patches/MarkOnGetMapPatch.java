@@ -26,7 +26,7 @@ public class MarkOnGetMapPatch {
     public static class MarkNodesOnGetDungeonPatch {
         @SpirePostfixPatch
         public static void markNodesOnGetDungeon(CardCrawlGame __instance) {
-            if (!Loader.isModLoaded("actlikeit") && !MarkedField.marked.get(CardCrawlGame.dungeon)) {
+            if (!Loader.isModLoaded("actlikeit") && CardCrawlGame.dungeon != null && !MarkedField.marked.get(CardCrawlGame.dungeon)) {
                 for(Object q : QuestManager.quests().stream().filter(q -> q instanceof MarkNodeQuest).toArray()){
                     MarkNodeQuest quest = ((MarkNodeQuest) q);
                     quest.markNodes(AbstractDungeon.map, quest.rng());
@@ -41,7 +41,7 @@ public class MarkOnGetMapPatch {
     public static class MarkNodesOnGetDungeonActLikeIt {
         @SpirePostfixPatch
         public static void markNodesOnGetDungeonActLikeIt() {
-            if (!MarkedField.marked.get(CardCrawlGame.dungeon)) {
+            if (CardCrawlGame.dungeon != null && !MarkedField.marked.get(CardCrawlGame.dungeon)) {
                 for (Object q : QuestManager.quests().stream().filter(q -> q instanceof MarkNodeQuest).toArray()) {
                     MarkNodeQuest quest = ((MarkNodeQuest) q);
                     quest.markNodes(AbstractDungeon.map, quest.rng());
@@ -60,7 +60,7 @@ public class MarkOnGetMapPatch {
     public static class MarkNodesBeforePopulatePathTaken {
         @SpirePrefixPatch
         public static void markNodesBeforePopulatePathTaken() {
-            if (!MarkedField.marked.get(CardCrawlGame.dungeon)) {
+            if (CardCrawlGame.dungeon != null && !MarkedField.marked.get(CardCrawlGame.dungeon)) {
                 for (Object q : QuestManager.quests().stream().filter(q -> q instanceof MarkNodeQuest).toArray()) {
                     MarkNodeQuest quest = ((MarkNodeQuest) q);
                     quest.markNodes(AbstractDungeon.map, quest.rng());
