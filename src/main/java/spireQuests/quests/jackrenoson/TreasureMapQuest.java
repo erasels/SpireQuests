@@ -141,8 +141,13 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
         if (!topRests.isEmpty()) {
             validRooms.add(topRests.get(rng.random(0, topRests.size() - 1)));
         }
-        MapRoomNode targetRoom = validRooms.get(rng.random(0, validRooms.size()-1));
-        ShowMarkedNodesOnMapPatch.ImageField.MarkNode(targetRoom, id, X);
+        if (!validRooms.isEmpty()) {
+            MapRoomNode targetRoom = validRooms.get(rng.random(0, validRooms.size()-1));
+            ShowMarkedNodesOnMapPatch.ImageField.MarkNode(targetRoom, id, X);
+        }
+        else {
+            Anniv8Mod.logger.warn("Treasure Map quest: no valid nodes to mark. Perhaps a highly unusual act layout?");
+        }
     }
 
     @Override
