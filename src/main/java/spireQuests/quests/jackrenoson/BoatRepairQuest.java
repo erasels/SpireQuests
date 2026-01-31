@@ -87,7 +87,7 @@ public class BoatRepairQuest extends AbstractQuest implements MarkNodeQuest, Cus
                 if(r.relicId.equals(Anchor.ID) || r.relicId.equals(HornCleat.ID) || r.relicId.equals(CaptainsWheel.ID)) return false;
             }
         }
-        return !Wiz.p().hasRelic(Anchor.ID) || !Wiz.p().hasRelic(HornCleat.ID) || !Wiz.p().hasRelic(CaptainsWheel.ID);
+        return !Wiz.p().hasRelic(Anchor.ID) && !Wiz.p().hasRelic(HornCleat.ID) && !Wiz.p().hasRelic(CaptainsWheel.ID);
     }
 
     @Override
