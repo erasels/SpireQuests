@@ -53,7 +53,7 @@ public class RainbowQuest extends AbstractQuest {
                 if(Objects.equals(r.relicId, PrismaticShard.ID) || Objects.equals(r.relicId, QuestionCard.ID)) return false;
             }
         }
-        for(AbstractQuest q : QuestManager.getAllQuests()){
+        for(AbstractQuest q : QuestManager.quests()){
             if (q instanceof MulticlassQuest)
                 return false;
         }
