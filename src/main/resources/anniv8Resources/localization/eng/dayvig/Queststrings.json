@@ -1,7 +1,7 @@
 {
   "${ModID}:CowardiceQuest": {
     "TITLE": "Coward's Path",
-    "DESCRIPTION": "Avoid an Elite encounter 3 times. (When offered an Elite Combat, choose a different path.)",
+    "DESCRIPTION": "Avoid an Elite encounter 3 times. (When you could go to an Elite Combat on the next floor, choose a different path.)",
     "AUTHOR": "Dayvig",
     "TRACKER_TEXT": [
       "Elites Dodged"
