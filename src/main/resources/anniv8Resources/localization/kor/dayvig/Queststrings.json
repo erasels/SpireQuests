@@ -1,7 +1,7 @@
 {
   "${ModID}:CowardiceQuest": {
     "TITLE": "겁쟁이 루트",
-    "DESCRIPTION": "엘리트를 3 번 회피하십시오. (엘리트 전투가 주어졌을 때, 다른 길로 가십시오.)",
+    "DESCRIPTION": "엘리트를 3 번 회피하십시오. (다음 층에 엘리트 전투가 있을 때, 다른 길로 가십시오.)",
     "AUTHOR": "Dayvig",
     "REWARD": "무작위 일반 #y유물.",
     "TRACKER_TEXT": [
