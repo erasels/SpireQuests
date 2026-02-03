@@ -94,7 +94,21 @@ The quest's name is a reference to the song That's Amore.
 The quest reward's flavor text is a reference to the movie The Menu.
 
 [snumodder]
---- [NO NOTES YET] ---
+BattleAtTheEndTimeQuest:
+The quest's name is a reference to the Hearthstone card Battle at the End Time.
+The quest's reward is a reference to the Hearthstone card Tick and Tock.
+
+GaronaHalforcenQuest:
+The quest's name is a reference to the Hearthstone card Garona Halforcen.
+The quest's questbound card is a reference to the Hearthstone card King Llane.
+The quest's reward is a reference to the Hearthstone card The Kingslayer, and its flavor text is a reference to Garona Halforcen's play sound.
+
+GennGreymaneQuest:
+The quest's name is a reference to the Hearthstone card Genn Greymane.
+
+ZilliaxDeluxe3000Quest:
+The quest's name and reward are references to the Hearthstone card Zilliax Deluxe 3000.
+The quest's monsters and card rewards are references to the token cards of Zilliax Deluxe 3000.
 
 [soytheproton]
 --- [NO NOTES YET] ---
