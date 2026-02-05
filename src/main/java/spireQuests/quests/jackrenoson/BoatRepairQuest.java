@@ -18,6 +18,7 @@ import spireQuests.quests.MarkNodeQuest;
 import spireQuests.quests.QuestManager;
 import spireQuests.quests.QuestReward;
 import spireQuests.quests.jackrenoson.relics.Sail;
+import spireQuests.util.DownfallUtil;
 import spireQuests.util.NodeUtil;
 import spireQuests.util.TexLoader;
 import spireQuests.util.Wiz;
@@ -78,6 +79,9 @@ public class BoatRepairQuest extends AbstractQuest implements MarkNodeQuest, Cus
 
     @Override
     public boolean canSpawn(){
+        if (DownfallUtil.isDownfallMode()) {
+            return false;
+        }
         if(AbstractDungeon.actNum > 2 || (AbstractDungeon.actNum == 2 && AbstractDungeon.getCurrMapNode().y > AbstractDungeon.map.size()/2)){
             return false;
         }
