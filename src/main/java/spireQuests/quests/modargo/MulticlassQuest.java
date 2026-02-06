@@ -29,6 +29,7 @@ public class MulticlassQuest extends AbstractQuest {
         new PlayerClassTracker(null).add(this);
 
         addReward(new QuestReward.RelicReward(new MulticlassEmblem()));
+        this.isAutoComplete = true;
 
         AbstractPlayer.PlayerClass playerClass = null;
         if (CardCrawlGame.isInARun()) {
