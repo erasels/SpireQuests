@@ -40,6 +40,14 @@ public class WindowShoppingQuest extends AbstractQuest {
     }
 
     @Override
+    public void onComplete() {
+        super.onComplete();
+        if (AbstractDungeon.shopScreen != null) {
+            AbstractDungeon.shopScreen.applyDiscount(MembershipCard.MULTIPLIER, true);
+        }
+    }
+
+    @Override
     public boolean canSpawn() {
         return AbstractDungeon.actNum >= 1 && AbstractDungeon.actNum <= 2 && !adp().hasRelic(MembershipCard.ID);
     }
