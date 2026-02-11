@@ -2,13 +2,14 @@ package spireQuests.quests.coda.relics;
 
 import static spireQuests.Anniv8Mod.makeID;
 
+import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 
 import spireQuests.abstracts.AbstractSQRelic;
 import spireQuests.quests.coda.potions.NuclearJuicePotion;
 
-public class RadiationDispenserRelic extends AbstractSQRelic {
+public class RadiationDispenserRelic extends AbstractSQRelic implements CustomSavable<Float> {
 
     public static float chanceBuff = 0.032F;
     public static float chance = chanceBuff;
@@ -16,6 +17,11 @@ public class RadiationDispenserRelic extends AbstractSQRelic {
 
     public RadiationDispenserRelic() {
         super(RELIC_ID, "coda", RelicTier.SPECIAL, LandingSound.SOLID);
+    }
+
+    @Override
+    public void onEquip() {
+        chance = chanceBuff;
     }
 
     @Override
@@ -28,5 +34,17 @@ public class RadiationDispenserRelic extends AbstractSQRelic {
         }
         chance += chanceBuff;
     }
-    
+
+    @Override
+    public Float onSave() {
+        return chance;
+    }
+
+    @Override
+    public void onLoad(Float savedValue) {
+        if (savedValue == null) {
+            return;
+        }
+        chance = savedValue;
+    }
 }
