@@ -26,10 +26,10 @@
   },
   "${ModID}:MothQuest": {
     "TITLE": "Fluttering Friend",
-    "DESCRIPTION": "A fragile friend is following along with you. Take no more than #b25 unblocked attack damage this act.",
+    "DESCRIPTION": "A fragile friend is following along with you. Take no more than #b25 unblocked attack damage in the next 5 floors.",
     "AUTHOR": "CrypticAurora",
     "TRACKER_TEXT": [
-      "Acts completed",
+      "Floors climbed",
       "Unblocked attack damage taken"
     ],
     "EXTRA_TEXT": [
