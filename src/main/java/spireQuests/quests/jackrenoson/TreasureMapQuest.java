@@ -94,13 +94,22 @@ public class TreasureMapQuest extends AbstractQuest implements MarkNodeQuest {
     @Override
     public void onComplete() {
         super.onComplete();
-        AbstractDungeon.rareRelicPool.add(rng().random(AbstractDungeon.rareRelicPool.size() - 1), Shovel.ID);
+        addShovelBack();
     }
 
     @Override
     public void onFail() {
         super.onFail();
-        AbstractDungeon.rareRelicPool.add(rng().random(AbstractDungeon.rareRelicPool.size() - 1), Shovel.ID);
+        addShovelBack();
+    }
+
+    private void addShovelBack() {
+        if (!AbstractDungeon.player.hasRelic(Shovel.ID)) {
+            // Note that the index here can go from 0 to the size of the list, because it's okay to add to the end of
+            // the list, including when the list is empty
+            int index = rng().random(AbstractDungeon.rareRelicPool.size());
+            AbstractDungeon.rareRelicPool.add(index, Shovel.ID);
+        }
     }
 
     @Override
