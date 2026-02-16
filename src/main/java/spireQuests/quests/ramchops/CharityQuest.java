@@ -34,6 +34,7 @@ public class CharityQuest extends AbstractQuest implements CustomSavable<Integer
         }.add(this);
 
         needHoverTip = true;
+        isAutoComplete = true;
     }
 
     @Override
@@ -56,12 +57,9 @@ public class CharityQuest extends AbstractQuest implements CustomSavable<Integer
 
     @Override
     public boolean complete() {
-
         if(questConditionsAreFulfilled() && maxHPGain == 0){
-            Object o = trackers.get(1);
-
-            if(o instanceof ClericRewardTracker){
-                maxHPGain = ((ClericRewardTracker) o).localCount;
+            if(trackers.size() > 1 && trackers.get(1) instanceof ClericRewardTracker){
+                maxHPGain = ((ClericRewardTracker)trackers.get(1)).localCount;
                 if (maxHPGain == 0){
                     maxHPGain = -1;
                 }
