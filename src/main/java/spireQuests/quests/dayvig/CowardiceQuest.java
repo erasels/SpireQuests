@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import spireQuests.patches.QuestTriggers;
 import spireQuests.quests.AbstractQuest;
 import spireQuests.quests.QuestReward;
+import spireQuests.util.DownfallUtil;
 
 public class CowardiceQuest extends AbstractQuest {
     public CowardiceQuest() {
@@ -35,6 +36,6 @@ public class CowardiceQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.actNum < 3;
+        return AbstractDungeon.actNum < 3 && !DownfallUtil.isDownfallMode();
     }
 }
