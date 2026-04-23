@@ -18,7 +18,7 @@ public class MothQuest extends AbstractQuest {
     public MothQuest() {
         super(QuestType.SHORT, QuestDifficulty.HARD);
 
-        new TriggerTracker<>(QuestTriggers.ACT_CHANGE,1)
+        new TriggerTracker<>(QuestTriggers.LEAVE_ROOM,5)
                 .add(this);
         new TriggeredUpdateTracker<Integer, Integer>(QuestTriggers.UNBLOCKED_ATTACK_DAMAGE_TAKEN,
                 0, 25, Integer::sum, ()->false) {
@@ -44,7 +44,7 @@ public class MothQuest extends AbstractQuest {
 
     @Override
     public boolean canSpawn() {
-        // This will make it so it spawns on the first five floors of Act 1 and 2, assuming no shenanigans.
-        return AbstractDungeon.floorNum <= 5 || AbstractDungeon.floorNum > 17 && AbstractDungeon.floorNum <= 23;
+        // This will make it so it won't force you to do the quest against the boss
+        return AbstractDungeon.floorNum <= 11 || AbstractDungeon.floorNum > 17 && AbstractDungeon.floorNum <= 28 || AbstractDungeon.floorNum > 33 && AbstractDungeon.floorNum <= 45;
     }
 }
